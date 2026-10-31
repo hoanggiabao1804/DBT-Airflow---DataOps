@@ -1,0 +1,5 @@
+dbt-core==1.7.3
+dbt-sqlserver==1.8.7
+pyodbc==4.0.39
+python-dotenv==1.0.0
+dbt-utils==1.1.1 

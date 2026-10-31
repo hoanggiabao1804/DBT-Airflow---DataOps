@@ -1,0 +1,37 @@
+[2025-04-16T09:36:22.921+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dbt_transform.dbt_run scheduled__2025-04-15T09:36:19.867062+00:00 [queued]>
+[2025-04-16T09:36:22.930+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dbt_transform.dbt_run scheduled__2025-04-15T09:36:19.867062+00:00 [queued]>
+[2025-04-16T09:36:22.930+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2
+[2025-04-16T09:36:22.946+0000] {taskinstance.py:1380} INFO - Executing <Task(DockerOperator): dbt_run> on 2025-04-15 09:36:19.867062+00:00
+[2025-04-16T09:36:22.954+0000] {standard_task_runner.py:57} INFO - Started process 174 to run task
+[2025-04-16T09:36:22.960+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'dbt_transform', 'dbt_run', 'scheduled__2025-04-15T09:36:19.867062+00:00', '--job-id', '40', '--raw', '--subdir', 'DAGS_FOLDER/dbt_dag.py', '--cfg-path', '/tmp/tmpu5hag8o4']
+[2025-04-16T09:36:22.965+0000] {standard_task_runner.py:85} INFO - Job 40: Subtask dbt_run
+[2025-04-16T09:36:23.036+0000] {task_command.py:415} INFO - Running <TaskInstance: dbt_transform.dbt_run scheduled__2025-04-15T09:36:19.867062+00:00 [running]> on host db6917ed49e2
+[2025-04-16T09:36:23.169+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dbt_transform' AIRFLOW_CTX_TASK_ID='dbt_run' AIRFLOW_CTX_EXECUTION_DATE='2025-04-15T09:36:19.867062+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-15T09:36:19.867062+00:00'
+[2025-04-16T09:36:23.209+0000] {docker.py:333} INFO - Starting docker container from image dbt_***_project-dbt
+[2025-04-16T09:36:26.126+0000] {docker.py:402} INFO - [0m09:36:26  Running with dbt=1.8.7
+[2025-04-16T09:36:26.719+0000] {docker.py:402} INFO - [0m09:36:26  Registered adapter: sqlserver=1.8.7
+[2025-04-16T09:36:27.973+0000] {docker.py:402} INFO - [0m09:36:27  [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.dbt_sqlserver_project.marts
+- models.dbt_sqlserver_project.intermediate
+[2025-04-16T09:36:28.346+0000] {docker.py:402} INFO - [0m09:36:28  Found 4 models, 3 data tests, 13 sources, 614 macros
+[2025-04-16T09:36:28.351+0000] {docker.py:402} INFO - [0m09:36:28
+[2025-04-16T09:36:28.658+0000] {docker.py:402} INFO - [0m09:36:28  Concurrency: 4 threads (target='dev')
+[2025-04-16T09:36:28.659+0000] {docker.py:402} INFO - [0m09:36:28
+[2025-04-16T09:36:28.678+0000] {docker.py:402} INFO - [0m09:36:28  1 of 4 START sql view model dbo.stg_customers .................................. [RUN]
+[2025-04-16T09:36:28.681+0000] {docker.py:402} INFO - [0m09:36:28  2 of 4 START sql view model dbo.stg_example .................................... [RUN]
+[2025-04-16T09:36:28.683+0000] {docker.py:402} INFO - [0m09:36:28  3 of 4 START sql view model dbo.stg_products ................................... [RUN]
+[2025-04-16T09:36:28.685+0000] {docker.py:402} INFO - [0m09:36:28  4 of 4 START sql view model dbo.stg_sales_orders ............................... [RUN]
+[2025-04-16T09:36:29.397+0000] {docker.py:402} INFO - [0m09:36:29  2 of 4 OK created sql view model dbo.stg_example ............................... [[32mOK[0m in 0.70s]
+[2025-04-16T09:36:29.399+0000] {docker.py:402} INFO - [0m09:36:29  1 of 4 OK created sql view model dbo.stg_customers ............................. [[32mOK[0m in 0.71s]
+[2025-04-16T09:36:29.401+0000] {docker.py:402} INFO - [0m09:36:29  3 of 4 OK created sql view model dbo.stg_products .............................. [[32mOK[0m in 0.70s]
+[2025-04-16T09:36:29.402+0000] {docker.py:402} INFO - [0m09:36:29  4 of 4 OK created sql view model dbo.stg_sales_orders .......................... [[32mOK[0m in 0.70s]
+[2025-04-16T09:36:29.417+0000] {docker.py:402} INFO - [0m09:36:29
+[2025-04-16T09:36:29.420+0000] {docker.py:402} INFO - [0m09:36:29  Finished running 4 view models in 0 hours 0 minutes and 1.06 seconds (1.06s).
+[2025-04-16T09:36:29.530+0000] {docker.py:402} INFO - [0m09:36:29
+[2025-04-16T09:36:29.535+0000] {docker.py:402} INFO - [0m09:36:29  [32mCompleted successfully[0m
+[2025-04-16T09:36:29.538+0000] {docker.py:402} INFO - [0m09:36:29
+[2025-04-16T09:36:29.546+0000] {docker.py:402} INFO - [0m09:36:29  Done. PASS=4 WARN=0 ERROR=0 SKIP=0 TOTAL=4
+[2025-04-16T09:36:31.482+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=dbt_transform, task_id=dbt_run, execution_date=20250415T093619, start_date=20250416T093622, end_date=20250416T093631
+[2025-04-16T09:36:31.529+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-04-16T09:36:31.555+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check

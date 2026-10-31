@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: slvr_customers
+    description: Cleaned and standardized customer data
+    columns:
+      - name: customer_id
+        description: Unique customer identifier
+        tests:
+          - unique
+          - not_null
+      - name: full_name
+        description: Customer full name
+      - name: email_promotion
+        description: Email promotion preference
+
+  - name: slvr_products
+    description: Cleaned and standardized product data
+    columns:
+      - name: product_id
+        description: Unique product identifier
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: Product name
+      - name: list_price
+        description: Product list price
+        tests:
+          - not_null
+
+  - name: slvr_sales_orders
+    description: Cleaned sales order data with calculated fields
+    columns:
+      - name: sales_order_id
+        description: Sales order identifier
+        tests:
+          - not_null
+      - name: order_detail_id
+        description: Order detail identifier
+        tests:
+          - not_null
+      - name: line_total
+        description: Total amount for line item
+        tests:
+          - not_null
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - sales_order_id
+            - order_detail_id

@@ -1,0 +1,35 @@
+[2025-11-06T14:52:53.400+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dbt_transform.dbt_test scheduled__2025-11-05T14:47:12.210399+00:00 [queued]>
+[2025-11-06T14:52:53.410+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dbt_transform.dbt_test scheduled__2025-11-05T14:47:12.210399+00:00 [queued]>
+[2025-11-06T14:52:53.411+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2
+[2025-11-06T14:52:53.426+0000] {taskinstance.py:1380} INFO - Executing <Task(DockerOperator): dbt_test> on 2025-11-05 14:47:12.210399+00:00
+[2025-11-06T14:52:53.432+0000] {standard_task_runner.py:57} INFO - Started process 247 to run task
+[2025-11-06T14:52:53.437+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'dbt_transform', 'dbt_test', 'scheduled__2025-11-05T14:47:12.210399+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/dbt_dag.py', '--cfg-path', '/tmp/tmp9ksm4a_h']
+[2025-11-06T14:52:53.443+0000] {standard_task_runner.py:85} INFO - Job 9: Subtask dbt_test
+[2025-11-06T14:52:53.497+0000] {task_command.py:415} INFO - Running <TaskInstance: dbt_transform.dbt_test scheduled__2025-11-05T14:47:12.210399+00:00 [running]> on host a9b12bd32d5c
+[2025-11-06T14:52:53.567+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dbt_transform' AIRFLOW_CTX_TASK_ID='dbt_test' AIRFLOW_CTX_EXECUTION_DATE='2025-11-05T14:47:12.210399+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-11-05T14:47:12.210399+00:00'
+[2025-11-06T14:52:53.625+0000] {docker.py:333} INFO - Starting docker container from image dbt_***_project-dbt
+[2025-11-06T14:52:56.364+0000] {docker.py:402} INFO - [0m14:52:56  Running with dbt=1.8.7
+[2025-11-06T14:52:56.944+0000] {docker.py:402} INFO - [0m14:52:56  Registered adapter: sqlserver=1.8.7
+[2025-11-06T14:52:58.705+0000] {docker.py:402} INFO - [0m14:52:58  [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.dbt_sqlserver_project.marts
+- models.dbt_sqlserver_project.intermediate
+[2025-11-06T14:52:59.031+0000] {docker.py:402} INFO - [0m14:52:59  Found 4 models, 3 data tests, 13 sources, 614 macros
+[2025-11-06T14:52:59.036+0000] {docker.py:402} INFO - [0m14:52:59
+[2025-11-06T14:52:59.137+0000] {docker.py:402} INFO - [0m14:52:59  Concurrency: 4 threads (target='dev')
+[2025-11-06T14:52:59.138+0000] {docker.py:402} INFO - [0m14:52:59
+[2025-11-06T14:52:59.152+0000] {docker.py:402} INFO - [0m14:52:59  1 of 3 START test dbt_utils_unique_combination_of_columns_stg_sales_orders_sales_order_id__order_detail_id  [RUN]
+[2025-11-06T14:52:59.153+0000] {docker.py:402} INFO - [0m14:52:59  2 of 3 START test not_null_stg_sales_orders_order_detail_id .................... [RUN]
+[2025-11-06T14:52:59.154+0000] {docker.py:402} INFO - [0m14:52:59  3 of 3 START test not_null_stg_sales_orders_sales_order_id ..................... [RUN]
+[2025-11-06T14:52:59.367+0000] {docker.py:402} INFO - [0m14:52:59  3 of 3 PASS not_null_stg_sales_orders_sales_order_id ........................... [[32mPASS[0m in 0.21s]
+[2025-11-06T14:52:59.403+0000] {docker.py:402} INFO - [0m14:52:59  2 of 3 PASS not_null_stg_sales_orders_order_detail_id .......................... [[32mPASS[0m in 0.24s]
+[2025-11-06T14:52:59.486+0000] {docker.py:402} INFO - [0m14:52:59  1 of 3 PASS dbt_utils_unique_combination_of_columns_stg_sales_orders_sales_order_id__order_detail_id  [[32mPASS[0m in 0.33s]
+[2025-11-06T14:52:59.500+0000] {docker.py:402} INFO - [0m14:52:59
+[2025-11-06T14:52:59.501+0000] {docker.py:402} INFO - [0m14:52:59  Finished running 3 data tests in 0 hours 0 minutes and 0.46 seconds (0.46s).
+[2025-11-06T14:52:59.593+0000] {docker.py:402} INFO - [0m14:52:59
+[2025-11-06T14:52:59.595+0000] {docker.py:402} INFO - [0m14:52:59  [32mCompleted successfully[0m
+[2025-11-06T14:52:59.597+0000] {docker.py:402} INFO - [0m14:52:59
+[2025-11-06T14:52:59.598+0000] {docker.py:402} INFO - [0m14:52:59  Done. PASS=3 WARN=0 ERROR=0 SKIP=0 TOTAL=3
+[2025-11-06T14:53:01.128+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=dbt_transform, task_id=dbt_test, execution_date=20251105T144712, start_date=20251106T145253, end_date=20251106T145301
+[2025-11-06T14:53:01.170+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-11-06T14:53:01.187+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

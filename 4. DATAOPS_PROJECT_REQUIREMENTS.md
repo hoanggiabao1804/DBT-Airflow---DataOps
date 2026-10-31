@@ -1,0 +1,571 @@
+# DataOps Project Requirements
+## Final Year Student Group Project
+
+---
+
+## Project Information
+
+- **Course:** Data Engineering / DataOps
+- **Grade Weight:** 100 points
+- **Team Size:** 3 students
+- **Duration:** 3 weeks
+- **Level:** Final Year Undergraduate
+
+---
+
+## Project Overview
+
+Your team will implement a complete DataOps pipeline using modern data engineering tools and practices. You will build an automated data transformation pipeline that extracts data from SQL Server, transforms it using DBT (Data Build Tool), and orchestrates the workflow using Apache Airflow. The project emphasizes DevOps principles applied to data engineering: automation, testing, monitoring, and continuous integration/deployment.
+
+### Learning Objectives
+
+By completing this project, you will:
+- Implement a production-grade data pipeline using industry-standard tools
+- Apply DataOps principles including CI/CD, automated testing, and monitoring
+- Work with containerized applications using Docker
+- Practice version control and collaborative development with Git
+- Develop data quality frameworks and testing strategies
+- Implement observability and monitoring for data pipelines
+- Document and present technical solutions professionally
+
+---
+
+## Technical Stack
+
+- **Orchestration:** Apache Airflow
+- **Transformation:** DBT (Data Build Tool)
+- **Database:** SQL Server (AdventureWorks 2014)
+- **Containerization:** Docker & Docker Compose
+- **Version Control:** Git & GitHub
+- **CI/CD:** GitHub Actions
+- **Languages:** SQL, Python, YAML
+
+---
+
+## Project Requirements
+
+**Note:** A working Docker environment with all services (SQL Server, Airflow, DBT, PostgreSQL) is a prerequisite for this project. Setup instructions are provided in the repository. Focus your effort on building the data pipeline and automation.
+
+---
+
+### Part 1: DBT Data Models (25 points)
+
+**Deliverables:**
+1. Bronze layer models (staging)
+2. Silver layer models (intermediate transformations)
+3. Gold layer models (business-ready marts)
+4. Model documentation and lineage
+
+**Requirements:**
+
+**Bronze Layer (8 points):**
+- Extract at least 3 source tables from AdventureWorks
+- Implement basic data cleaning and standardization
+- Add source freshness checks
+- Document all columns
+
+**Silver Layer (8 points):**
+- Create at least 2 intermediate models
+- Implement business logic transformations
+- Join multiple bronze models
+- Add appropriate tests
+
+**Gold Layer (9 points):**
+- Create at least 2 business-ready mart models
+- Implement aggregations and metrics
+- Optimize for query performance
+- Ensure models are analysis-ready
+
+**Evaluation Criteria:**
+- Correct SQL syntax and logic (10 points)
+- Proper layering and separation of concerns (8 points)
+- Documentation quality (4 points)
+- Model performance (3 points)
+
+---
+
+### Part 2: Automated Testing (20 points)
+
+**Deliverables:**
+1. Schema tests for all models
+2. Custom data quality tests
+3. Source freshness tests
+4. Test documentation
+
+**Requirements:**
+
+**Schema Tests (8 points):**
+- Add `not_null` tests for primary keys
+- Add `unique` tests for identifiers
+- Add `relationships` tests for foreign keys
+- Add `accepted_values` tests where appropriate
+
+**Custom Tests (7 points):**
+- Create at least 3 custom generic tests
+- Implement business logic validation tests
+- Add data quality checks (e.g., positive values, date ranges)
+
+**Source Freshness (5 points):**
+- Configure freshness checks for all sources
+- Set appropriate warning and error thresholds
+- Document expected data latency
+
+**Evaluation Criteria:**
+- Test coverage (8 points)
+- Test quality and relevance (7 points)
+- Proper use of DBT testing features (5 points)
+
+---
+
+### Part 3: Airflow Orchestration (15 points)
+
+**Deliverables:**
+1. DAG for DBT pipeline orchestration
+2. Task dependencies and scheduling
+3. Error handling and retries
+4. DAG documentation
+
+**Requirements:**
+- Create a DAG that runs DBT models in correct order
+- Implement proper task dependencies
+- Configure scheduling (daily or hourly)
+- Add error handling and retry logic
+- Include data quality checks in the pipeline
+- Send notifications on failure
+
+**Evaluation Criteria:**
+- DAG structure and logic (6 points)
+- Proper task dependencies (4 points)
+- Error handling (3 points)
+- Documentation (2 points)
+
+---
+
+### Part 4: CI/CD Pipeline & Deployment Automation (35 points)
+
+**Deliverables:**
+1. GitHub Actions workflows for CI/CD
+2. Automated testing on pull requests
+3. Code quality checks
+4. Automated deployment pipeline
+5. Environment-specific deployments
+6. Deployment monitoring and notifications
+
+**Requirements:**
+
+**A. Continuous Integration - CI Workflows (10 points):**
+- DBT model compilation workflow
+- DBT test execution on pull requests
+- Python code linting (flake8, black)
+- SQL linting (sqlfluff)
+- Pull request validation (title format, file size, conflicts)
+- Automated documentation generation
+
+**B. Continuous Deployment - Automated Deployment (20 points):**
+
+**Basic Deployment (12 points):**
+- Workflow triggers automatically on merge to `develop` or `main` branches
+- Automatically installs DBT dependencies (`dbt deps`)
+- Automatically runs DBT models (`dbt run`)
+- Automatically executes data quality tests (`dbt test`)
+- Shows clear success/failure status in GitHub Actions
+- Generates deployment logs
+
+**Advanced Deployment (8 points):**
+- Environment-specific deployments (dev vs prod with different targets)
+- Deployment notifications (GitHub Actions output, comments, or Slack)
+- Deployment status badges in README
+- Rollback capability (manual or automated)
+- Pre-deployment validation checks
+- Post-deployment health checks
+
+**C. Documentation & Monitoring (5 points):**
+- Document deployment process in README
+- Create deployment runbook
+- Track deployment history
+- Monitor deployment success rates
+- Document rollback procedures
+
+**Evaluation Criteria:**
+- CI workflow completeness and quality (8 points)
+- Deployment automation implementation (12 points)
+- Environment management (5 points)
+- Error handling and notifications (5 points)
+- Documentation quality (5 points)
+
+**Grading Breakdown:**
+- **Minimum (20/35):** Basic CI workflow + Simple deployment automation
+- **Good (28/35):** Complete CI + Environment-specific deployment + Notifications
+- **Excellent (35/35):** All above + Rollback + Advanced monitoring + Comprehensive documentation
+
+---
+
+### Part 5: Documentation & Presentation (5 points)
+
+**Deliverables:**
+1. Comprehensive README
+2. Architecture documentation
+3. Setup guide
+4. Final presentation
+
+**Requirements:**
+- README with project overview and setup instructions
+- Architecture diagram showing data flow
+- Step-by-step setup guide for new developers
+- Troubleshooting section
+- 15-minute presentation demonstrating the pipeline
+
+**Evaluation Criteria:**
+- Documentation clarity (2 points)
+- Completeness (2 points)
+- Presentation quality (1 point)
+
+---
+
+## Grading Rubric
+
+| Component | Points | Description |
+|-----------|--------|-------------|
+| DBT Data Models | 25 | Bronze, silver, gold layers |
+| Automated Testing | 20 | Schema, custom, freshness tests |
+| Airflow Orchestration | 15 | DAGs, scheduling, error handling |
+| CI/CD & Deployment Automation | 35 | GitHub Actions, automated deployment, monitoring |
+| Documentation & Presentation | 5 | README, guides, demo |
+| **Total** | **100** | |
+
+**Note:** Docker infrastructure setup is a prerequisite (provided in repository) and not graded separately.
+
+---
+
+## MVP (Minimum Viable Product) Features
+
+**MVP = 60 points (Passing Grade)**
+
+To pass this project, you must implement the following minimum features:
+
+### 1. DBT Data Models (15/25 points)
+
+- ✅ At least 2 bronze layer models
+- ✅ At least 1 gold layer model
+- ✅ Basic SQL transformations
+- ✅ Models compile and run successfully
+
+### 2. Automated Testing (12/20 points)
+
+- ✅ Basic schema tests:
+  - `not_null` tests on primary keys
+  - `unique` tests on identifiers
+- ✅ Tests documented in `schema.yml` files
+
+### 3. Airflow Orchestration (9/15 points)
+
+- ✅ One working DAG that orchestrates DBT models
+- ✅ Basic task dependencies
+- ✅ Simple scheduling (daily or manual trigger)
+- ✅ DAG appears in Airflow UI and runs successfully
+
+### 4. CI/CD & Deployment Automation (20/35 points)
+
+- ✅ **Basic CI workflow:**
+  - Tests run automatically on pull requests
+  - Basic code validation
+- ✅ **Simple deployment automation:**
+  - Workflow triggers on merge to `main` or `develop`
+  - Automatically runs `dbt deps`
+  - Automatically runs `dbt run`
+  - Automatically runs `dbt test`
+  - Shows success/failure status in GitHub Actions
+
+### 5. Documentation (4/5 points)
+
+- ✅ Basic README with:
+  - Project overview
+  - Setup instructions
+  - How to run the pipeline
+  - Basic troubleshooting
+
+### What MVP Does NOT Include:
+
+- ❌ Silver layer models
+- ❌ Custom data quality tests
+- ❌ Source freshness checks
+- ❌ Environment-specific deployments (dev/prod)
+- ❌ Deployment notifications
+- ❌ Rollback capability
+- ❌ Advanced error handling
+- ❌ Comprehensive documentation
+
+---
+
+## Submission Requirements
+
+### Code Repository
+- GitHub repository with complete project code
+- Proper branch structure (main, develop, feature branches)
+- Meaningful commit messages following conventional commits
+- README with setup instructions
+
+### Documentation
+- Architecture diagram (PDF or image)
+- Setup guide (Markdown)
+- API/Model documentation
+- Troubleshooting guide
+
+### Presentation
+- 15-minute live demonstration
+- Slides covering:
+  - Project overview
+  - Architecture
+  - Key technical decisions
+  - Challenges and solutions
+  - Demo of working pipeline
+  - Lessons learned
+
+### Video Demo (Optional Bonus: +5 points)
+- 5-10 minute recorded demonstration
+- Show pipeline execution from start to finish
+- Explain key components
+- Demonstrate CI/CD workflow
+
+## Resources & References
+
+### Official Documentation
+- [DBT Documentation](https://docs.getdbt.com/)
+- [Apache Airflow Documentation](https://airflow.apache.org/docs/)
+- [Docker Documentation](https://docs.docker.com/)
+- [GitHub Actions Documentation](https://docs.github.com/en/actions)
+
+## Academic Integrity
+
+### Allowed Collaboration
+- ✅ Discussing concepts and approaches with other teams
+- ✅ Using official documentation and tutorials
+- ✅ Asking instructors for clarification
+- ✅ Using provided sample code as reference
+- ✅ Using AI tools for learning and debugging (with disclosure)
+
+### Not Allowed
+- ❌ Copying code from other teams
+- ❌ Submitting work done by others as your own
+- ❌ Sharing your complete solution with other teams
+- ❌ Using complete solutions found online without understanding
+
+**Penalty for Academic Dishonesty:** Zero points for the project and potential course failure
+
+## Bonus Opportunities (+15 points maximum)
+
+### Advanced Features (+5 points each)
+1. **Monitoring Dashboard:** Implement Grafana or similar for pipeline monitoring
+2. **Data Lineage Visualization:** Create interactive lineage diagrams
+3. **Advanced Testing:** Implement property-based testing or mutation testing
+4. **Multi-environment Setup:** Implement dev/staging/prod environments
+5. **Performance Optimization:** Demonstrate significant query optimization with benchmarks
+
+### Innovation Bonus (+5 points)
+- Implement a creative feature not covered in requirements
+- Must be well-documented and demonstrated
+- Must add real value to the project
+
+**Note:** Bonus points cannot compensate for missing core requirements
+
+---
+
+## Understanding Deployment Automation
+
+### What is Deployment Automation?
+
+Deployment automation means automatically running your data pipeline when code changes are approved and merged. Instead of manually running `dbt run` every time you update a model, the system does it automatically.
+
+### How It Works in This Project
+
+**Scenario 1: Development Deployment**
+```
+Developer → Creates feature branch → Makes changes → Opens Pull Request
+    ↓
+CI runs tests → Tests pass → PR approved → Merge to develop branch
+    ↓
+GitHub Actions automatically:
+    1. Detects merge to develop
+    2. Runs dbt deps (install dependencies)
+    3. Runs dbt run (execute models)
+    4. Runs dbt test (validate data quality)
+    5. Sends Slack notification: "Dev deployment successful"
+```
+
+**Scenario 2: Production Deployment**
+```
+Team Lead → Merges develop to main branch
+    ↓
+GitHub Actions automatically:
+    1. Detects merge to main
+    2. Creates backup of current production data
+    3. Runs dbt run --target prod
+    4. Runs dbt test --target prod
+    5. If tests pass: Deployment complete
+    6. If tests fail: Rollback to backup
+    7. Sends notification with deployment status
+```
+
+### Example Deployment Workflow
+
+**File: `.github/workflows/deploy.yml`**
+
+```yaml
+name: Deploy Pipeline
+
+on:
+  push:
+    branches:
+      - develop  # Auto-deploy to dev
+      - main     # Auto-deploy to prod
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Determine environment
+        id: env
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "environment=production" >> $GITHUB_OUTPUT
+            echo "target=prod" >> $GITHUB_OUTPUT
+          else
+            echo "environment=development" >> $GITHUB_OUTPUT
+            echo "target=dev" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install DBT
+        run: pip install dbt-sqlserver
+
+      - name: Install dependencies
+        run: |
+          cd dbt
+          dbt deps
+
+      - name: Run DBT models
+        run: |
+          cd dbt
+          dbt run --target ${{ steps.env.outputs.target }}
+
+      - name: Test data quality
+        run: |
+          cd dbt
+          dbt test --target ${{ steps.env.outputs.target }}
+
+      - name: Generate documentation
+        run: |
+          cd dbt
+          dbt docs generate --target ${{ steps.env.outputs.target }}
+
+      - name: Notify team
+        run: |
+          echo "Deployment to ${{ steps.env.outputs.environment }} completed!"
+```
+
+### What Students Need to Implement
+
+**Minimum Requirements:**
+
+1. **Workflow file** that triggers on push to `develop` or `main`
+2. **Automated DBT run** when code is merged
+3. **Automated testing** after deployment
+4. **Success/failure notification** (can be simple GitHub Actions output)
+
+**For Full Credit:**
+
+5. **Environment-specific deployments** (dev vs prod)
+6. **Deployment status badges** in README
+7. **Rollback capability** (basic version acceptable)
+
+### Why This Matters
+
+In real companies:
+- Data engineers don't manually run pipelines after every change
+- Deployments happen automatically when code is approved
+- Tests run automatically to catch issues before they affect users
+- Teams get notified immediately if something breaks
+
+This is called **Continuous Deployment (CD)** - the "CD" in CI/CD.
+
+### Simplified Version for Students
+
+If the full deployment automation is too complex, students can implement a simplified version:
+
+**Basic Deployment Automation:**
+```yaml
+name: Simple Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install and run DBT
+        run: |
+          pip install dbt-sqlserver
+          cd dbt
+          dbt deps
+          dbt run --profiles-dir .
+          dbt test --profiles-dir .
+```
+
+This basic version:
+- ✅ Automatically runs when code is merged to main
+- ✅ Installs dependencies
+- ✅ Runs DBT models
+- ✅ Runs tests
+- ✅ Shows success/failure in GitHub Actions tab
+
+**Note:** For this student project, the deployment automation will run in GitHub Actions environment, not deploy to actual production servers. The focus is on understanding the automation concept and implementing the workflow.
+
+---
+
+## Frequently Asked Questions
+
+### Q: Can we use a different database instead of SQL Server?
+**A:** No, SQL Server with AdventureWorks is required for consistency in grading.
+
+### Q: What if Docker doesn't work on our machines?
+**A:** The Docker setup is provided and should work on most systems. Seek technical support early if you have issues. Focus your effort on the data models and CI/CD automation.
+
+### Q: Do we need to modify the Docker setup?
+**A:** No, the Docker infrastructure is provided. You should focus on DBT models, Airflow DAGs, and CI/CD automation.
+
+### Q: How detailed should our documentation be?
+**A:** Detailed enough that a new developer could set up and run your project in under 30 minutes.
+
+### Q: Can we use additional tools not mentioned?
+**A:** Yes, but they must be justified and documented. Core tools are mandatory.
+
+### Q: What if a team member doesn't contribute?
+**A:** Document individual contributions in your README. Peer evaluation will be conducted.
+
+### Q: For deployment automation, do we need actual servers?
+**A:** No. The deployment automation runs in GitHub Actions (cloud environment). You're automating the process of running DBT models when code changes, not deploying to physical servers.
+
+### Q: What's the difference between CI and CD in this project?
+**A:**
+- **CI (Continuous Integration):** Automatically tests your code when you create a pull request (checking if it works)
+- **CD (Continuous Deployment):** Automatically runs your pipeline when code is merged (actually executing the data transformations)
+
+### Q: Can deployment automation work with our local Docker setup?
+**A:** The GitHub Actions deployment runs in the cloud. For local testing, you can manually run the same commands. The automation concept is what matters for learning.
+
+### Q: What if our deployment automation fails?
+**A:** That's expected during development! The workflow will show errors in GitHub Actions. Fix the issues and push again. This is part of learning DevOps practices.

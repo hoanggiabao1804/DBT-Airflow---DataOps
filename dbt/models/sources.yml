@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: raw
+    database: AdventureWorks2014
+    schema: dbo
+    tables:
+      - name: Customer
+        description: "Raw customer data from AdventureWorks"
+      - name: Person
+        description: "Raw person data from AdventureWorks"
+      - name: SalesOrderHeader
+        description: "Raw sales order header data from AdventureWorks"
+      - name: SalesOrderDetail
+        description: "Raw sales order detail data from AdventureWorks"
+      - name: Product
+        description: "Raw product data from AdventureWorks"
+      - name: ProductCategory
+        description: "Raw product category data from AdventureWorks"
+      - name: ProductSubcategory
+        description: "Raw product subcategory data from AdventureWorks" 

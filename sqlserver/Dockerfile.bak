@@ -1,0 +1,22 @@
+FROM mcr.microsoft.com/mssql/server:2019-latest
+
+# Install curl and unzip
+USER root
+RUN apt-get update && apt-get install -y curl unzip
+
+# Download and install AdventureWorks database
+RUN curl -L -o /tmp/AdventureWorks2014.zip https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorks2014.zip \
+    && unzip /tmp/AdventureWorks2014.zip -d /tmp/ \
+    && rm /tmp/AdventureWorks2014.zip
+
+# Copy the database files to the data directory
+RUN mkdir -p /var/opt/mssql/data \
+    && cp /tmp/AdventureWorks2014.mdf /var/opt/mssql/data/ \
+    && cp /tmp/AdventureWorks2014_log.ldf /var/opt/mssql/data/ \
+    && chown -R mssql:mssql /var/opt/mssql/data
+
+# Clean up
+RUN rm -rf /tmp/AdventureWorks2014*
+
+# Switch back to mssql user
+USER mssql 
