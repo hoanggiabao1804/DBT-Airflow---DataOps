@@ -4,7 +4,7 @@ dbt_airflow_project:
     dev:
       type: sqlserver
       driver: 'ODBC Driver 17 for SQL Server'
-      server: host.docker.internal
+      server: sqlserver
       port: 1433
       database: AdventureWorks2014
       schema: dbo

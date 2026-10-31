@@ -6,7 +6,7 @@
   USE [AdventureWorks2014];
   EXEC('create view 
 
-    [dbt_test__audit.testview_e469becceeffdd2d421a7c040b481e1c]
+    [dbt_test__audit.testview_61b766360f71f122b728fff131d2f4fb]
    as 
 
 
@@ -37,12 +37,12 @@ from validation_errors
   from (
     select  * from 
 
-    [dbt_test__audit.testview_e469becceeffdd2d421a7c040b481e1c]
+    [dbt_test__audit.testview_61b766360f71f122b728fff131d2f4fb]
   
   ) dbt_internal_test;
 
   USE [AdventureWorks2014];
   EXEC('drop view 
 
-    [dbt_test__audit.testview_e469becceeffdd2d421a7c040b481e1c]
+    [dbt_test__audit.testview_61b766360f71f122b728fff131d2f4fb]
   ;')

@@ -6,7 +6,7 @@
   USE [AdventureWorks2014];
   EXEC('create view 
 
-    [dbt_test__audit.testview_a3e2f658e14c8defedfb0ef02c0f35ee]
+    [dbt_test__audit.testview_4850e41a05a4361004983135ba6401ea]
    as 
     
     
@@ -28,12 +28,12 @@ where customer_id is null
   from (
     select  * from 
 
-    [dbt_test__audit.testview_a3e2f658e14c8defedfb0ef02c0f35ee]
+    [dbt_test__audit.testview_4850e41a05a4361004983135ba6401ea]
   
   ) dbt_internal_test;
 
   USE [AdventureWorks2014];
   EXEC('drop view 
 
-    [dbt_test__audit.testview_a3e2f658e14c8defedfb0ef02c0f35ee]
+    [dbt_test__audit.testview_4850e41a05a4361004983135ba6401ea]
   ;')

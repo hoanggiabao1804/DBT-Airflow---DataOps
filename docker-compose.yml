@@ -30,6 +30,7 @@ services:
       - dbt_airflow_network
 
   airflow-webserver:
+    user: "${AIRFLOW_UID:-1000}:0"
     build:
       context: ./airflow
       dockerfile: Dockerfile
@@ -54,6 +55,7 @@ services:
       - dbt_airflow_network
 
   airflow-scheduler:
+    user: "${AIRFLOW_UID:-1000}:0"
     build:
       context: ./airflow
       dockerfile: Dockerfile
