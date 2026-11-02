@@ -94,4 +94,4 @@ volumes:
 
 networks:
   dbt_airflow_network:
-    driver: bridge 
+    driver: bridge

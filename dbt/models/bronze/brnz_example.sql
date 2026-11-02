@@ -17,4 +17,4 @@ transformed as (
     from source_data
 )
 
-select * from transformed 
+select * from transformed

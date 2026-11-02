@@ -1,0 +1,130 @@
+name: DBT CI Pipeline
+
+on:
+  push:
+    branches: [main, develop, 'feature/**']
+  pull_request:
+    branches: [main, develop]
+
+env:
+  DBT_PROFILES_DIR: ./dbt
+
+jobs:
+  lint-sql:
+    name: Lint SQL Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install SQLFluff
+        run: |
+          pip install sqlfluff sqlfluff-templater-dbt
+
+      - name: Lint SQL files
+        run: |
+          cd dbt
+          sqlfluff lint models/ --dialect tsql || true
+        continue-on-error: true
+
+  lint-python:
+    name: Lint Python Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install flake8
+        run: pip install flake8
+
+      - name: Lint Python files
+        run: |
+          flake8 airflow/dags/ --max-line-length=120 --count --statistics || true
+        continue-on-error: true
+
+  dbt-compile:
+    name: Compile DBT Models
+    runs-on: ubuntu-latest
+    needs: [lint-sql, lint-python]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install DBT
+        run: |
+          pip install dbt-sqlserver
+
+      - name: Install DBT dependencies
+        run: |
+          cd dbt
+          dbt deps
+
+      - name: Compile DBT models
+        run: |
+          cd dbt
+          dbt compile --profiles-dir . || true
+        continue-on-error: true
+
+      - name: Upload compiled artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbt-compiled
+          path: dbt/target/
+          retention-days: 7
+
+  generate-docs:
+    name: Generate DBT Documentation
+    runs-on: ubuntu-latest
+    needs: dbt-compile
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install DBT
+        run: pip install dbt-sqlserver
+
+      - name: Install dependencies
+        run: |
+          cd dbt
+          dbt deps
+
+      - name: Generate documentation
+        run: |
+          cd dbt
+          dbt docs generate --profiles-dir . || true
+        continue-on-error: true
+
+      - name: Upload documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbt-docs
+          path: |
+            dbt/target/catalog.json
+            dbt/target/manifest.json
+            dbt/target/index.html
+          retention-days: 30

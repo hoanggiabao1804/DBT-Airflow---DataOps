@@ -26,4 +26,4 @@ staged as (
         on c.PersonID = p.BusinessEntityID
 )
 
-select * from staged 
+select * from staged

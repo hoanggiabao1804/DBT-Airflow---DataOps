@@ -18,4 +18,4 @@ sources:
       - name: ProductCategory
         description: "Raw product category data from AdventureWorks"
       - name: ProductSubcategory
-        description: "Raw product subcategory data from AdventureWorks" 
+        description: "Raw product subcategory data from AdventureWorks"

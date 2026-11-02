@@ -16,7 +16,7 @@ cleaned as (
         due_date,
         ship_date,
         status,
-        case 
+        case
             when online_order_flag = 1 then 'Online'
             else 'Offline'
         end as order_channel,
@@ -33,7 +33,7 @@ cleaned as (
         -- Calculated fields
         unit_price * order_qty as gross_amount,
         line_total / nullif(order_qty, 0) as effective_unit_price,
-        case 
+        case
             when unit_price_discount > 0 then 1
             else 0
         end as has_discount

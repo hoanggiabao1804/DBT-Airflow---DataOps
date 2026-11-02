@@ -1,0 +1,75 @@
+name: Pull Request Checks
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  pr-validation:
+    name: Validate Pull Request
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Check PR title format
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          if [[ ! "$PR_TITLE" =~ ^(feat|fix|docs|style|refactor|test|chore)(\(.+\))?: ]]; then
+            echo "❌ PR title must follow conventional commits format"
+            echo "Examples: feat: add new model, fix: correct date calculation"
+            exit 1
+          fi
+
+      - name: Check for large files
+        run: |
+          git diff --name-only origin/${{ github.base_ref }}...HEAD | while read file; do
+            if [ -f "$file" ]; then
+              size=$(wc -c < "$file")
+              if [ $size -gt 1000000 ]; then
+                echo "❌ File $file is larger than 1MB"
+                exit 1
+              fi
+            fi
+          done
+
+      - name: Check for merge conflicts
+        run: |
+          if git diff --name-only origin/${{ github.base_ref }}...HEAD | xargs grep -l "<<<<<<< HEAD" 2>/dev/null; then
+            echo "❌ Merge conflicts detected"
+            exit 1
+          fi
+
+      - name: Validate DBT models changed
+        run: |
+          echo "📊 DBT models changed in this PR:"
+          git diff --name-only origin/${{ github.base_ref }}...HEAD | grep "dbt/models/" || echo "No DBT models changed"
+
+  size-check:
+    name: Check PR Size
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Check PR size
+        run: |
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | wc -l)
+          CHANGED_LINES=$(git diff origin/${{ github.base_ref }}...HEAD | wc -l)
+
+          echo "📝 Files changed: $CHANGED_FILES"
+          echo "📝 Lines changed: $CHANGED_LINES"
+
+          if [ $CHANGED_FILES -gt 50 ]; then
+            echo "⚠️  Warning: This PR changes more than 50 files. Consider splitting it."
+          fi
+
+          if [ $CHANGED_LINES -gt 1000 ]; then
+            echo "⚠️  Warning: This PR changes more than 1000 lines. Consider splitting it."
+          fi

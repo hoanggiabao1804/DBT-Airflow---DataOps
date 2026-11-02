@@ -46,4 +46,4 @@ select
     d.line_total
 from sales_order_header h
 left join sales_order_detail d
-    on h.sales_order_id = d.sales_order_id 
+    on h.sales_order_id = d.sales_order_id
