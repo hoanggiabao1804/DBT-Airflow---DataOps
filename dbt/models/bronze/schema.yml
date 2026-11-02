@@ -46,4 +46,4 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - sales_order_id
-            - order_detail_id 
+            - order_detail_id

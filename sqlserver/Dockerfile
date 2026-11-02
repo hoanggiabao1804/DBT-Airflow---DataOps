@@ -22,4 +22,4 @@ RUN chmod +x /tmp/restore_db.sh
 USER mssql
 
 # Start SQL Server and keep it running
-CMD /opt/mssql/bin/sqlservr 
+CMD /opt/mssql/bin/sqlservr

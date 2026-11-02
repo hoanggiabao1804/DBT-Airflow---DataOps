@@ -26,4 +26,4 @@ sources:
     schema: Person
     tables:
       - name: Person
-        description: Contains person information 
+        description: Contains person information

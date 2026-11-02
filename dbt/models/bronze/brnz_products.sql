@@ -39,4 +39,4 @@ staged as (
         on p.ProductSubcategoryID = ps.ProductSubcategoryID
 )
 
-select * from staged 
+select * from staged
