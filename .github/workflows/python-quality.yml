@@ -6,11 +6,13 @@ on:
     paths:
       - '**.py'
       - 'airflow/**'
+      - '.github/workflows/python-quality.yml'
   pull_request:
     branches: [main, develop]
     paths:
       - '**.py'
       - 'airflow/**'
+      - '.github/workflows/python-quality.yml'
 
 jobs:
   code-quality:
