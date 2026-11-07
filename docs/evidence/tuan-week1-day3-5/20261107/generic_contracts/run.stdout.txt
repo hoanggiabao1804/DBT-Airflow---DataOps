@@ -1,0 +1,16 @@
+09:29:16  Running with dbt=1.8.7
+09:29:17  Registered adapter: sqlserver=1.8.7
+09:29:19  Found 2 models, 8 data tests, 507 macros
+09:29:19
+09:29:21  Concurrency: 1 threads (target='dev')
+09:29:21
+09:29:21  1 of 2 START sql view model tuan_test_contracts_05c6d1c9a28b4c85a51ca77802ee8f7e.contract_invalid  [RUN]
+09:29:26  1 of 2 OK created sql view model tuan_test_contracts_05c6d1c9a28b4c85a51ca77802ee8f7e.contract_invalid  [OK in 5.13s]
+09:29:26  2 of 2 START sql view model tuan_test_contracts_05c6d1c9a28b4c85a51ca77802ee8f7e.contract_valid  [RUN]
+09:29:32  2 of 2 OK created sql view model tuan_test_contracts_05c6d1c9a28b4c85a51ca77802ee8f7e.contract_valid  [OK in 6.01s]
+09:29:32
+09:29:32  Finished running 2 view models in 0 hours 0 minutes and 13.06 seconds (13.06s).
+09:29:32
+09:29:32  Completed successfully
+09:29:32
+09:29:32  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2

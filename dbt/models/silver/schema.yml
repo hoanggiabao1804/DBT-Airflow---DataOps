@@ -2,50 +2,191 @@ version: 2
 
 models:
   - name: slvr_customers
-    description: Cleaned and standardized customer data
+    description: One row per customer; missing person names are replaced with Unknown.
     columns:
       - name: customer_id
-        description: Unique customer identifier
-        tests:
-          - unique
+        description: Customer key preserved from Bronze.
+        data_tests:
           - not_null
+          - unique
+          - relationships:
+              to: ref('brnz_customers')
+              field: CustomerID
+      - name: first_name
+        description: First name or Unknown for missing person data.
+      - name: last_name
+        description: Last name or Unknown for missing person data.
       - name: full_name
-        description: Customer full name
+        description: Concatenated normalized first and last names.
+        data_tests: [not_null]
       - name: email_promotion
-        description: Email promotion preference
+        description: Person email preference; NULL remains valid for store customers.
+        data_tests:
+          - accepted_values:
+              values: [0, 1, 2]
+              quote: false
+      - name: store_id
+        description: Optional store identifier.
+      - name: territory_id
+        description: Optional sales territory identifier.
+      - name: last_modified_date
+        description: Source customer modification timestamp, interpreted as UTC.
+        data_tests: [not_null, no_future_dates]
 
   - name: slvr_products
-    description: Cleaned and standardized product data
+    description: One row per product; missing descriptive fields use documented defaults.
     columns:
       - name: product_id
-        description: Unique product identifier
-        tests:
+        description: Product key preserved from Bronze.
+        data_tests:
+          - not_null
           - unique
-          - not_null
+          - relationships:
+              to: ref('brnz_products')
+              field: ProductID
       - name: product_name
-        description: Product name
+        description: Source product name.
+        data_tests: [not_null]
+      - name: product_number
+        description: Product business identifier.
+        data_tests: [not_null, unique]
+      - name: color
+        description: Product color, or N/A when absent.
+      - name: standard_cost
+        description: Current unit cost; zero is valid.
+        data_tests: [not_null, positive_values]
       - name: list_price
-        description: Product list price
-        tests:
+        description: Current list price; zero is valid.
+        data_tests: [not_null, positive_values]
+      - name: size
+        description: Product size, or N/A when absent.
+      - name: weight
+        description: Source weight, with missing values replaced by zero.
+        data_tests: [not_null, positive_values]
+      - name: product_line
+        description: Optional source product line.
+      - name: class
+        description: Optional source product class.
+      - name: style
+        description: Optional source product style.
+      - name: subcategory_id
+        description: Optional source subcategory identifier.
+      - name: subcategory_name
+        description: Subcategory name, or Uncategorized when absent.
+      - name: category_id
+        description: Optional source category identifier.
+      - name: sell_start_date
+        description: Selling start date; planned future dates are permitted.
+        data_tests: [not_null]
+      - name: sell_end_date
+        description: Optional selling end date; future dates are permitted.
+      - name: is_discontinued
+        description: One when the source has a discontinuation date, otherwise zero.
+        data_tests:
           - not_null
+          - accepted_values:
+              values: [0, 1]
+              quote: false
+      - name: last_modified_date
+        description: Source product modification timestamp, interpreted as UTC.
+        data_tests: [not_null, no_future_dates]
 
   - name: slvr_sales_orders
-    description: Cleaned sales order data with calculated fields
+    description: >-
+      One sales line per (sales_order_id, order_detail_id), restricted to positive
+      quantities and nonnegative prices. Bronze tests also validate the unfiltered
+      input. An order may span multiple rows.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [sales_order_id, order_detail_id]
+      - line_total_matches:
+          quantity_column: order_qty
+          unit_price_column: unit_price
+          discount_column: unit_price_discount
+          line_total_column: line_total
+          tolerance: 0.01
     columns:
       - name: sales_order_id
-        description: Sales order identifier
-        tests:
-          - not_null
+        description: Order identifier, repeated across order lines.
+        data_tests: [not_null]
       - name: order_detail_id
-        description: Order detail identifier
-        tests:
+        description: Order line identifier.
+        data_tests: [not_null]
+      - name: order_date
+        description: Order placement timestamp, interpreted as UTC.
+        data_tests: [not_null, no_future_dates]
+      - name: due_date
+        description: Expected delivery date; future dates are permitted.
+        data_tests: [not_null]
+      - name: ship_date
+        description: Actual shipping timestamp; NULL before shipping.
+        data_tests: [no_future_dates]
+      - name: status
+        description: Source order status code from 1 through 6.
+        data_tests:
           - not_null
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6]
+              quote: false
+      - name: order_channel
+        description: Online or Offline, derived from the validated source flag.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [Online, Offline]
+      - name: sales_order_number
+        description: Business order number, repeated across order lines.
+        data_tests: [not_null]
+      - name: purchase_order_number
+        description: Optional customer purchase order number.
+      - name: customer_id
+        description: Required Silver customer key.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('slvr_customers')
+              field: customer_id
+      - name: sales_person_id
+        description: Optional salesperson identifier.
+      - name: territory_id
+        description: Optional sales territory identifier.
+      - name: product_id
+        description: Required Silver product key.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('slvr_products')
+              field: product_id
+      - name: order_qty
+        description: Strictly positive quantity on the line.
+        data_tests:
+          - not_null
+          - positive_values:
+              allow_zero: false
+      - name: unit_price
+        description: Unit price before discount; may be zero.
+        data_tests: [not_null, positive_values]
+      - name: unit_price_discount
+        description: Fractional discount between 0 and 1 inclusive.
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 1
+              inclusive: true
       - name: line_total
-        description: Total amount for line item
-        tests:
+        description: Net line revenue excluding tax and freight.
+        data_tests: [not_null, positive_values]
+      - name: gross_amount
+        description: Quantity times unit price before discount.
+        data_tests: [not_null, positive_values]
+      - name: effective_unit_price
+        description: Net line revenue divided by quantity.
+        data_tests: [not_null, positive_values]
+      - name: has_discount
+        description: One when the fractional discount is greater than zero.
+        data_tests:
           - not_null
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - sales_order_id
-            - order_detail_id
+          - accepted_values:
+              values: [0, 1]
+              quote: false

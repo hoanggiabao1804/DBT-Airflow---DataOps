@@ -1,0 +1,47 @@
+{
+  "checks": [
+    {
+      "mismatches": [
+        {
+          "actual": "10.666666",
+          "expected": 16,
+          "key": 1,
+          "metric": "avg_order_value"
+        },
+        {
+          "actual": 2,
+          "expected": 1,
+          "key": 1,
+          "metric": "orders_with_discount"
+        }
+      ],
+      "model": "gld_customer_metrics",
+      "sql_sha256": "42173bc5e6308e09ec431c110e7abc7b949c671232645da81a715bbb8bca4e4b",
+      "status": "failed"
+    },
+    {
+      "mismatches": [
+        {
+          "actual": 2,
+          "expected": 1,
+          "key": "2020-01-01",
+          "metric": "online_orders"
+        }
+      ],
+      "model": "gld_sales_summary",
+      "sql_sha256": "b83b2bd5b3a048ae9fdd61d34cb65890a1b0a4a0cd5de116019efb43db2e7c4c",
+      "status": "failed"
+    },
+    {
+      "error": "('22012', '[22012] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Divide by zero error encountered. (8134) (SQLFetch)')",
+      "mismatches": [],
+      "model": "gld_product_performance",
+      "sql_sha256": "f49b0092484dbfa6f5423a6fe5af2186e07739af43870b18539bd39881780619",
+      "status": "failed"
+    }
+  ],
+  "finished_at_utc": "2026-11-07T02:52:34.089310+00:00",
+  "fixture_scope": "Connection-local #temporary tables; removed when the connection closes.",
+  "started_at_utc": "2026-11-07T02:52:33.372770+00:00",
+  "status": "failed"
+}

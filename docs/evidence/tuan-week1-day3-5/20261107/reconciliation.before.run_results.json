@@ -1,0 +1,166 @@
+{
+  "args": {
+    "cache_selected_only": false,
+    "defer": false,
+    "enable_legacy_logger": false,
+    "exclude": [],
+    "favor_state": false,
+    "indirect_selection": "eager",
+    "introspect": true,
+    "invocation_command": "dbt test --profiles-dir /usr/app/dbt --select path:tests/data_quality",
+    "log_file_max_bytes": 10485760,
+    "log_format": "default",
+    "log_format_file": "debug",
+    "log_level": "info",
+    "log_level_file": "debug",
+    "log_path": "/tmp/tuan-day35-before/logs",
+    "macro_debugging": false,
+    "partial_parse": true,
+    "partial_parse_file_diff": true,
+    "populate_cache": true,
+    "print": true,
+    "printer_width": 80,
+    "profiles_dir": "/usr/app/dbt",
+    "project_dir": "/usr/app/dbt",
+    "quiet": false,
+    "require_explicit_package_overrides_for_builtin_materializations": true,
+    "require_resource_names_without_spaces": false,
+    "select": [
+      "path:tests/data_quality"
+    ],
+    "send_anonymous_usage_stats": true,
+    "show_resource_report": false,
+    "source_freshness_run_project_hooks": false,
+    "static_parser": true,
+    "strict_mode": false,
+    "target_path": "/tmp/tuan-day35-before/target",
+    "use_colors": false,
+    "use_colors_file": false,
+    "vars": {},
+    "version_check": true,
+    "warn_error_options": {
+      "exclude": [],
+      "include": []
+    },
+    "which": "test",
+    "write_json": true
+  },
+  "elapsed_time": 20.900354146957397,
+  "metadata": {
+    "dbt_schema_version": "https://schemas.getdbt.com/dbt/run-results/v6.json",
+    "dbt_version": "1.8.7",
+    "env": {},
+    "generated_at": "2026-11-07T02:54:07.761148Z",
+    "invocation_id": "949ea08f-9023-4181-a3a5-e25da8666a6f"
+  },
+  "results": [
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- One Gold row must exist per Silver order date. Channel metrics count orders,\n-- not order lines. Compare each date independently so offsetting errors fail.\nselect\n    coalesce(expected.order_date, actual.order_date) as order_date,\n    expected.total_orders as expected_total_orders,\n    actual.total_orders as actual_total_orders,\n    expected.online_orders as expected_online_orders,\n    actual.online_orders as actual_online_orders,\n    expected.offline_orders as expected_offline_orders,\n    actual.offline_orders as actual_offline_orders,\n    expected.total_revenue as expected_total_revenue,\n    actual.total_revenue as actual_total_revenue\nfrom (\n    select\n        cast(order_date as date) as order_date,\n        count_big(*) as source_line_count,\n        count(distinct sales_order_id) as total_orders,\n        count(distinct case when order_channel = 'Online' then sales_order_id end) as online_orders,\n        count(distinct case when order_channel = 'Offline' then sales_order_id end) as offline_orders,\n        sum(line_total) as total_revenue\n    from \"AdventureWorks2014\".\"silver\".\"slvr_sales_orders\"\n    group by cast(order_date as date)\n) as expected\nfull outer join (\n    select *, 1 as actual_present\n    from \"AdventureWorks2014\".\"gold\".\"gld_sales_summary\"\n) as actual on actual.order_date = expected.order_date\nwhere expected.source_line_count is null\n    or actual.actual_present is null\n    or exists (\n        select expected.total_orders, expected.online_orders, expected.offline_orders\n        except\n        select actual.total_orders, actual.online_orders, actual.offline_orders\n    )\n    or actual.online_orders + actual.offline_orders <> actual.total_orders\n    or (expected.total_revenue is null and actual.total_revenue is not null)\n    or (expected.total_revenue is not null and actual.total_revenue is null)\n    or abs(expected.total_revenue - actual.total_revenue) > 0.01",
+      "execution_time": 5.384022235870361,
+      "failures": 421,
+      "message": "Got 421 results, configured to fail if != 0",
+      "relation_name": null,
+      "status": "fail",
+      "thread_id": "Thread-2",
+      "timing": [
+        {
+          "completed_at": "2026-11-07T02:53:49.296918Z",
+          "name": "compile",
+          "started_at": "2026-11-07T02:53:48.884433Z"
+        },
+        {
+          "completed_at": "2026-11-07T02:53:54.077852Z",
+          "name": "execute",
+          "started_at": "2026-11-07T02:53:49.466079Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.assert_daily_sales_reconciliation"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Reconcile per product, never SUM(total_orders) across products: one order can\n-- contain several products. Profit uses the current dimension standard_cost.\n-- No sales: counts=0, SUM metrics=NULL, margin=0 (existing contract).\n-- Sales with zero revenue: margin=NULL because the percentage is undefined.\nselect\n    coalesce(expected.product_id, actual.product_id) as product_id,\n    expected.total_orders as expected_total_orders,\n    actual.total_orders as actual_total_orders,\n    expected.total_quantity_sold as expected_quantity,\n    actual.total_quantity_sold as actual_quantity,\n    expected.total_revenue as expected_revenue,\n    actual.total_revenue as actual_revenue,\n    expected.total_profit as expected_profit,\n    actual.total_profit as actual_profit,\n    expected.profit_margin_pct as expected_margin,\n    actual.profit_margin_pct as actual_margin\nfrom (\n    select\n        products.product_id,\n        1 as expected_present,\n        coalesce(sales.total_orders, 0) as total_orders,\n        sales.total_quantity_sold,\n        sales.total_revenue,\n        sales.total_revenue - sales.total_quantity_sold * products.standard_cost as total_profit,\n        case\n            when sales.total_quantity_sold > 0 then\n                (sales.total_revenue - sales.total_quantity_sold * products.standard_cost)\n                    / nullif(sales.total_revenue, 0) * 100\n            else 0\n        end as profit_margin_pct\n    from \"AdventureWorks2014\".\"silver\".\"slvr_products\" as products\n    left join (\n        select\n            product_id,\n            count(distinct sales_order_id) as total_orders,\n            sum(order_qty) as total_quantity_sold,\n            sum(line_total) as total_revenue\n        from \"AdventureWorks2014\".\"silver\".\"slvr_sales_orders\"\n        group by product_id\n    ) as sales on sales.product_id = products.product_id\n) as expected\nfull outer join (\n    select *, 1 as actual_present\n    from \"AdventureWorks2014\".\"gold\".\"gld_product_performance\"\n) as actual on actual.product_id = expected.product_id\nwhere expected.expected_present is null\n    or actual.actual_present is null\n    or exists (\n        select expected.total_orders, expected.total_quantity_sold\n        except\n        select actual.total_orders, actual.total_quantity_sold\n    )\n    or (expected.total_revenue is null and actual.total_revenue is not null)\n    or (expected.total_revenue is not null and actual.total_revenue is null)\n    or abs(expected.total_revenue - actual.total_revenue) > 0.01\n    or (expected.total_profit is null and actual.total_profit is not null)\n    or (expected.total_profit is not null and actual.total_profit is null)\n    or abs(expected.total_profit - actual.total_profit) > 0.01\n    or (expected.profit_margin_pct is null and actual.profit_margin_pct is not null)\n    or (expected.profit_margin_pct is not null and actual.profit_margin_pct is null)\n    or abs(expected.profit_margin_pct - actual.profit_margin_pct) > 0.0001",
+      "execution_time": 13.789045095443726,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-3",
+      "timing": [
+        {
+          "completed_at": "2026-11-07T02:53:49.536257Z",
+          "name": "compile",
+          "started_at": "2026-11-07T02:53:48.944886Z"
+        },
+        {
+          "completed_at": "2026-11-07T02:54:02.487303Z",
+          "name": "execute",
+          "started_at": "2026-11-07T02:53:49.543014Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.assert_product_metrics_reconciliation"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Aggregate at order grain first: AVG(order revenue) is independent of the\n-- number of lines in an order; one discounted line marks the whole order.\n-- The customer dimension anchors the result, including customers with no sales:\n-- their order counts are zero and revenue/AOV remain NULL.\nselect\n    coalesce(expected.customer_id, actual.customer_id) as customer_id,\n    expected.total_orders as expected_total_orders,\n    actual.total_orders as actual_total_orders,\n    expected.orders_with_discount as expected_discounted_orders,\n    actual.orders_with_discount as actual_discounted_orders,\n    expected.total_revenue as expected_total_revenue,\n    actual.total_revenue as actual_total_revenue,\n    expected.avg_order_value as expected_avg_order_value,\n    actual.avg_order_value as actual_avg_order_value\nfrom (\n    select\n        customers.customer_id,\n        1 as expected_present,\n        count(orders.sales_order_id) as total_orders,\n        sum(orders.order_revenue) as total_revenue,\n        avg(orders.order_revenue) as avg_order_value,\n        count(case when orders.discounted = 1 then orders.sales_order_id end) as orders_with_discount\n    from \"AdventureWorks2014\".\"silver\".\"slvr_customers\" as customers\n    left join (\n        select\n            customer_id,\n            sales_order_id,\n            sum(line_total) as order_revenue,\n            max(has_discount) as discounted\n        from \"AdventureWorks2014\".\"silver\".\"slvr_sales_orders\"\n        group by customer_id, sales_order_id\n    ) as orders on orders.customer_id = customers.customer_id\n    group by customers.customer_id\n) as expected\nfull outer join (\n    select *, 1 as actual_present\n    from \"AdventureWorks2014\".\"gold\".\"gld_customer_metrics\"\n) as actual on actual.customer_id = expected.customer_id\nwhere expected.expected_present is null\n    or actual.actual_present is null\n    or exists (\n        select expected.total_orders, expected.orders_with_discount\n        except\n        select actual.total_orders, actual.orders_with_discount\n    )\n    or (expected.total_revenue is null and actual.total_revenue is not null)\n    or (expected.total_revenue is not null and actual.total_revenue is null)\n    or abs(expected.total_revenue - actual.total_revenue) > 0.01\n    or (expected.avg_order_value is null and actual.avg_order_value is not null)\n    or (expected.avg_order_value is not null and actual.avg_order_value is null)\n    or abs(expected.avg_order_value - actual.avg_order_value) > 0.01",
+      "execution_time": 13.813543319702148,
+      "failures": 15913,
+      "message": "Got 15913 results, configured to fail if != 0",
+      "relation_name": null,
+      "status": "fail",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-07T02:53:49.295508Z",
+          "name": "compile",
+          "started_at": "2026-11-07T02:53:48.706565Z"
+        },
+        {
+          "completed_at": "2026-11-07T02:54:02.491282Z",
+          "name": "execute",
+          "started_at": "2026-11-07T02:53:49.298319Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.assert_customer_metrics_reconciliation"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Silver must preserve exactly the eligible Bronze lines, not the unfiltered\n-- Bronze row count. Keys/duplicates/required NULLs have separate schema tests.\n-- EXCEPT compares forwarded values NULL-safely, including nullable ship_date.\nselect\n    coalesce(expected.sales_order_id, actual.sales_order_id) as sales_order_id,\n    coalesce(expected.order_detail_id, actual.order_detail_id) as order_detail_id,\n    expected.expected_present,\n    actual.actual_present,\n    expected.line_total as expected_line_total,\n    actual.line_total as actual_line_total,\n    expected.order_qty as expected_order_qty,\n    actual.order_qty as actual_order_qty\nfrom (\n    select *, 1 as expected_present\n    from \"AdventureWorks2014\".\"bronze\".\"brnz_sales_orders\"\n    where order_qty > 0 and unit_price >= 0\n) as expected\nfull outer join (\n    select *, 1 as actual_present\n    from \"AdventureWorks2014\".\"silver\".\"slvr_sales_orders\"\n) as actual\n    on actual.sales_order_id = expected.sales_order_id\n    and actual.order_detail_id = expected.order_detail_id\nwhere expected.expected_present is null\n    or actual.actual_present is null\n    or exists (\n        select\n            expected.customer_id, expected.product_id,\n            expected.order_date, expected.due_date, expected.ship_date,\n            expected.order_qty, expected.unit_price,\n            expected.unit_price_discount, expected.line_total,\n            case when expected.online_order_flag = 1 then 'Online' else 'Offline' end,\n            case when expected.unit_price_discount > 0 then 1 else 0 end\n        except\n        select\n            actual.customer_id, actual.product_id,\n            actual.order_date, actual.due_date, actual.ship_date,\n            actual.order_qty, actual.unit_price,\n            actual.unit_price_discount, actual.line_total,\n            actual.order_channel, actual.has_discount\n    )\n    or actual.gross_amount is null\n    or abs(actual.gross_amount - expected.unit_price * expected.order_qty) > 0.01\n    or (expected.line_total is null and actual.effective_unit_price is not null)\n    or (expected.line_total is not null and actual.effective_unit_price is null)\n    or abs(actual.effective_unit_price - expected.line_total / nullif(expected.order_qty, 0)) > 0.0001",
+      "execution_time": 19.01256489753723,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-4",
+      "timing": [
+        {
+          "completed_at": "2026-11-07T02:53:49.564000Z",
+          "name": "compile",
+          "started_at": "2026-11-07T02:53:48.919738Z"
+        },
+        {
+          "completed_at": "2026-11-07T02:54:07.713593Z",
+          "name": "execute",
+          "started_at": "2026-11-07T02:53:49.818026Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.assert_silver_eligible_order_lines"
+    }
+  ]
+}

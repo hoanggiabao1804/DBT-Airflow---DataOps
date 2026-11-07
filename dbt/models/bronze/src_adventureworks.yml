@@ -2,28 +2,121 @@ version: 2
 
 sources:
   - name: adventureworks
+    description: Used Sales tables in the AdventureWorks2014 sample database.
     database: AdventureWorks2014
     schema: Sales
     tables:
       - name: SalesOrderHeader
-        description: Contains the sales order header information
+        description: One row per order; distinct from the sales-line grain of Bronze and Silver.
+        columns:
+          - name: SalesOrderID
+            description: Order primary key.
+            data_tests: [not_null, unique]
+          - name: CustomerID
+            description: Customer responsible for the order.
+            data_tests:
+              - not_null
+              - relationships:
+                  to: source('adventureworks', 'Customer')
+                  field: CustomerID
+          - name: OrderDate
+            description: Order placement timestamp, interpreted as UTC.
+            data_tests: [not_null, no_future_dates]
+          - name: DueDate
+            description: Required delivery due date; future dates are permitted.
+            data_tests: [not_null]
+          - name: ShipDate
+            description: Actual shipping timestamp; NULL before shipping.
+            data_tests: [no_future_dates]
+          - name: Status
+            description: Order status code from 1 through 6.
+            data_tests:
+              - not_null
+              - accepted_values:
+                  values: [1, 2, 3, 4, 5, 6]
+                  quote: false
+          - name: OnlineOrderFlag
+            description: Zero for offline and one for online orders.
+            data_tests:
+              - not_null
+              - accepted_values:
+                  values: [0, 1]
+                  quote: false
       - name: SalesOrderDetail
-        description: Contains the sales order detail line items
+        description: One sales line per (SalesOrderID, SalesOrderDetailID).
+        data_tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns: [SalesOrderID, SalesOrderDetailID]
+        columns:
+          - name: SalesOrderID
+            description: Parent order key.
+            data_tests:
+              - not_null
+              - relationships:
+                  to: source('adventureworks', 'SalesOrderHeader')
+                  field: SalesOrderID
+          - name: SalesOrderDetailID
+            description: Order line identifier, paired with SalesOrderID for the source key.
+            data_tests: [not_null]
+          - name: ProductID
+            description: Product on the order line.
+            data_tests:
+              - not_null
+              - relationships:
+                  to: source('adventureworks_production', 'Product')
+                  field: ProductID
       - name: Customer
-        description: Contains customer information
+        description: One row per customer; person and store links are optional.
+        columns:
+          - name: CustomerID
+            description: Customer primary key.
+            data_tests: [not_null, unique]
+          - name: PersonID
+            description: Optional person link; store customers may have no person.
+            data_tests:
+              - relationships:
+                  to: source('adventureworks_person', 'Person')
+                  field: BusinessEntityID
 
   - name: adventureworks_production
+    description: Used Production tables in AdventureWorks2014.
     database: AdventureWorks2014
     schema: Production
     tables:
       - name: Product
-        description: Contains product information
+        description: One row per product, including unsold and uncategorized products.
+        columns:
+          - name: ProductID
+            description: Product primary key.
+            data_tests: [not_null, unique]
+          - name: ProductSubcategoryID
+            description: Optional subcategory link.
+            data_tests:
+              - relationships:
+                  to: source('adventureworks_production', 'ProductSubcategory')
+                  field: ProductSubcategoryID
       - name: ProductSubcategory
-        description: Contains product subcategory information
+        description: One row per product subcategory.
+        columns:
+          - name: ProductSubcategoryID
+            description: Subcategory primary key.
+            data_tests: [not_null, unique]
 
   - name: adventureworks_person
+    description: Used Person table in AdventureWorks2014.
     database: AdventureWorks2014
     schema: Person
     tables:
       - name: Person
-        description: Contains person information
+        description: One row per person; only some people are customers.
+        columns:
+          - name: BusinessEntityID
+            description: Person primary key.
+            data_tests: [not_null, unique]
+          - name: EmailPromotion
+            description: Person email preference code.
+            data_tests:
+              - not_null
+              - accepted_values:
+                  values: [0, 1, 2]
+                  quote: false
