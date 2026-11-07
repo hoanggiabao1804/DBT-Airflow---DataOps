@@ -1,0 +1,54 @@
+﻿{
+    "run_id":  "20261107T014621770Z-70dbdc1c",
+    "started_at_utc":  "2026-11-07T01:46:22.1374191Z",
+    "finished_at_utc":  "2026-11-07T01:47:54.1072046Z",
+    "status":  "passed",
+    "container_artifact_directory":  "/tmp/tuan-dbt-baseline-20261107T014621770Z-70dbdc1c",
+    "steps":  [
+                  {
+                      "command":  "dbt deps --profiles-dir /usr/app/dbt",
+                      "started_at_utc":  "2026-11-07T01:46:22.9993101Z",
+                      "finished_at_utc":  "2026-11-07T01:46:38.6072556Z",
+                      "exit_code":  0,
+                      "stdout_file":  "01_deps.stdout.txt",
+                      "artifact_copy_exit_code":  null,
+                      "artifact_validation":  null,
+                      "artifact_command":  null,
+                      "artifact_file":  null
+                  },
+                  {
+                      "command":  "dbt debug --profiles-dir /usr/app/dbt",
+                      "started_at_utc":  "2026-11-07T01:46:38.6320705Z",
+                      "finished_at_utc":  "2026-11-07T01:46:46.2807868Z",
+                      "exit_code":  0,
+                      "stdout_file":  "02_debug.stdout.txt",
+                      "artifact_copy_exit_code":  null,
+                      "artifact_validation":  null,
+                      "artifact_command":  null,
+                      "artifact_file":  null
+                  },
+                  {
+                      "command":  "dbt run --profiles-dir /usr/app/dbt",
+                      "started_at_utc":  "2026-11-07T01:46:46.2860004Z",
+                      "finished_at_utc":  "2026-11-07T01:47:36.9924693Z",
+                      "exit_code":  0,
+                      "stdout_file":  "03_run.stdout.txt",
+                      "artifact_copy_exit_code":  0,
+                      "artifact_validation":  "verified",
+                      "artifact_command":  "run",
+                      "artifact_file":  "run.run_results.json"
+                  },
+                  {
+                      "command":  "dbt test --profiles-dir /usr/app/dbt",
+                      "started_at_utc":  "2026-11-07T01:47:37.5775690Z",
+                      "finished_at_utc":  "2026-11-07T01:47:50.9317796Z",
+                      "exit_code":  0,
+                      "stdout_file":  "04_test.stdout.txt",
+                      "artifact_copy_exit_code":  0,
+                      "artifact_validation":  "verified",
+                      "artifact_command":  "test",
+                      "artifact_file":  "test.run_results.json"
+                  }
+              ],
+    "manifest_copy_exit_code":  0
+}

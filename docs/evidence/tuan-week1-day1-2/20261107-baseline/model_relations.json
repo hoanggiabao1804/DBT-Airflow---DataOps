@@ -1,0 +1,72 @@
+﻿[
+    {
+        "unique_id":  "model.dbt_sqlserver_project.brnz_customers",
+        "database":  "AdventureWorks2014",
+        "schema":  "bronze",
+        "alias":  "brnz_customers",
+        "relation_name":  "\"AdventureWorks2014\".\"bronze\".\"brnz_customers\""
+    },
+    {
+        "unique_id":  "model.dbt_sqlserver_project.brnz_example",
+        "database":  "AdventureWorks2014",
+        "schema":  "bronze",
+        "alias":  "brnz_example",
+        "relation_name":  "\"AdventureWorks2014\".\"bronze\".\"brnz_example\""
+    },
+    {
+        "unique_id":  "model.dbt_sqlserver_project.brnz_products",
+        "database":  "AdventureWorks2014",
+        "schema":  "bronze",
+        "alias":  "brnz_products",
+        "relation_name":  "\"AdventureWorks2014\".\"bronze\".\"brnz_products\""
+    },
+    {
+        "unique_id":  "model.dbt_sqlserver_project.brnz_sales_orders",
+        "database":  "AdventureWorks2014",
+        "schema":  "bronze",
+        "alias":  "brnz_sales_orders",
+        "relation_name":  "\"AdventureWorks2014\".\"bronze\".\"brnz_sales_orders\""
+    },
+    {
+        "unique_id":  "model.dbt_sqlserver_project.gld_customer_metrics",
+        "database":  "AdventureWorks2014",
+        "schema":  "gold",
+        "alias":  "gld_customer_metrics",
+        "relation_name":  "\"AdventureWorks2014\".\"gold\".\"gld_customer_metrics\""
+    },
+    {
+        "unique_id":  "model.dbt_sqlserver_project.gld_product_performance",
+        "database":  "AdventureWorks2014",
+        "schema":  "gold",
+        "alias":  "gld_product_performance",
+        "relation_name":  "\"AdventureWorks2014\".\"gold\".\"gld_product_performance\""
+    },
+    {
+        "unique_id":  "model.dbt_sqlserver_project.gld_sales_summary",
+        "database":  "AdventureWorks2014",
+        "schema":  "gold",
+        "alias":  "gld_sales_summary",
+        "relation_name":  "\"AdventureWorks2014\".\"gold\".\"gld_sales_summary\""
+    },
+    {
+        "unique_id":  "model.dbt_sqlserver_project.slvr_customers",
+        "database":  "AdventureWorks2014",
+        "schema":  "silver",
+        "alias":  "slvr_customers",
+        "relation_name":  "\"AdventureWorks2014\".\"silver\".\"slvr_customers\""
+    },
+    {
+        "unique_id":  "model.dbt_sqlserver_project.slvr_products",
+        "database":  "AdventureWorks2014",
+        "schema":  "silver",
+        "alias":  "slvr_products",
+        "relation_name":  "\"AdventureWorks2014\".\"silver\".\"slvr_products\""
+    },
+    {
+        "unique_id":  "model.dbt_sqlserver_project.slvr_sales_orders",
+        "database":  "AdventureWorks2014",
+        "schema":  "silver",
+        "alias":  "slvr_sales_orders",
+        "relation_name":  "\"AdventureWorks2014\".\"silver\".\"slvr_sales_orders\""
+    }
+]

@@ -1,0 +1,2 @@
+﻿ dbt-airflow---dataops-dbt-1 Copying dbt-airflow---dataops-dbt-1:/tmp/tuan-dbt-baseline-20261107T014621770Z-70dbdc1c/target/run_results.json to D:\DBT-Airflow---DataOps\docs\evidence\tuan-week1-day1-2\20261107-baseline\test.run_results.unverified.json
+ dbt-airflow---dataops-dbt-1 Copied dbt-airflow---dataops-dbt-1:/tmp/tuan-dbt-baseline-20261107T014621770Z-70dbdc1c/target/run_results.json to D:\DBT-Airflow---DataOps\docs\evidence\tuan-week1-day1-2\20261107-baseline\test.run_results.unverified.json
