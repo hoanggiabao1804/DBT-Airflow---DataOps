@@ -1,0 +1,18 @@
+﻿{
+  "captured_at_utc": "2026-11-06T10:16:12.230883+00:00",
+  "python_version": "3.9.25",
+  "packages": {
+    "dbt-core": "1.8.7",
+    "dbt-sqlserver": "1.8.7",
+    "dbt-fabric": "1.8.9",
+    "pyodbc": "5.1.0"
+  },
+  "odbc_drivers": [
+    "ODBC Driver 17 for SQL Server"
+  ],
+  "target": "dev",
+  "database": "AdventureWorks2014",
+  "target_schema": "dbo",
+  "server": "sqlserver",
+  "threads": 4
+}

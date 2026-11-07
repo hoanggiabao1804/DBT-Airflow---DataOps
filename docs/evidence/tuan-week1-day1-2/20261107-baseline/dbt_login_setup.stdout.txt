@@ -1,0 +1,5 @@
+﻿Created the dbt login from the local profile.
+Changed database context to 'AdventureWorks2014'.
+database_name dbt_is_db_owner setup_finished_at_utc
+------------- --------------- ---------------------
+AdventureWorks2014 1 2026-11-07 01:46:09.2505499
