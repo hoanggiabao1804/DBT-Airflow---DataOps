@@ -1,0 +1,33 @@
+09:29:57  Running with dbt=1.8.7
+09:29:58  Registered adapter: sqlserver=1.8.7
+09:29:59  Unable to do partial parsing because saved manifest not found. Starting full parse.
+09:30:08  Found 10 models, 188 data tests, 13 sources, 617 macros
+09:30:08
+09:30:09  Concurrency: 4 threads (target='dev')
+09:30:09
+09:30:09  1 of 10 START sql view model bronze.brnz_customers ............................. [RUN]
+09:30:09  2 of 10 START sql view model bronze.brnz_example ............................... [RUN]
+09:30:09  3 of 10 START sql view model bronze.brnz_products .............................. [RUN]
+09:30:09  4 of 10 START sql view model bronze.brnz_sales_orders .......................... [RUN]
+09:30:10  2 of 10 OK created sql view model bronze.brnz_example .......................... [OK in 1.45s]
+09:30:10  1 of 10 OK created sql view model bronze.brnz_customers ........................ [OK in 1.54s]
+09:30:10  5 of 10 START sql table model silver.slvr_customers ............................ [RUN]
+09:30:10  4 of 10 OK created sql view model bronze.brnz_sales_orders ..................... [OK in 1.56s]
+09:30:10  6 of 10 START sql table model silver.slvr_sales_orders ......................... [RUN]
+09:30:10  3 of 10 OK created sql view model bronze.brnz_products ......................... [OK in 1.62s]
+09:30:10  7 of 10 START sql table model silver.slvr_products ............................. [RUN]
+09:30:13  7 of 10 OK created sql table model silver.slvr_products ........................ [OK in 2.47s]
+09:30:13  5 of 10 OK created sql table model silver.slvr_customers ....................... [OK in 2.63s]
+09:30:14  6 of 10 OK created sql table model silver.slvr_sales_orders .................... [OK in 3.90s]
+09:30:14  8 of 10 START sql table model gold.gld_customer_metrics ........................ [RUN]
+09:30:14  9 of 10 START sql table model gold.gld_product_performance ..................... [RUN]
+09:30:14  10 of 10 START sql table model gold.gld_sales_summary .......................... [RUN]
+09:30:17  8 of 10 OK created sql table model gold.gld_customer_metrics ................... [OK in 2.52s]
+09:30:17  10 of 10 OK created sql table model gold.gld_sales_summary ..................... [OK in 2.82s]
+09:30:17  9 of 10 OK created sql table model gold.gld_product_performance ................ [OK in 2.96s]
+09:30:17
+09:30:17  Finished running 4 view models, 6 table models in 0 hours 0 minutes and 8.79 seconds (8.79s).
+09:30:17
+09:30:17  Completed successfully
+09:30:17
+09:30:17  Done. PASS=10 WARN=0 ERROR=0 SKIP=0 TOTAL=10

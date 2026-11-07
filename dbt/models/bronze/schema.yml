@@ -1,49 +1,193 @@
 version: 2
 
 models:
+  - name: brnz_customers
+    description: >-
+      One row per CustomerID, with optional person attributes. Store customers
+      without a PersonID may have NULL names and EmailPromotion.
+    columns:
+      - name: CustomerID
+        description: Customer key; the person join must not duplicate it.
+        data_tests: [not_null, unique]
+      - name: FirstName
+        description: Optional person first name.
+      - name: LastName
+        description: Optional person last name.
+      - name: EmailPromotion
+        description: Person email preference; NULL when no person is linked.
+        data_tests:
+          - accepted_values:
+              values: [0, 1, 2]
+              quote: false
+      - name: StoreID
+        description: Optional store identifier.
+      - name: TerritoryID
+        description: Optional sales territory identifier.
+      - name: last_modified_date
+        description: Source Customer.ModifiedDate, interpreted as UTC.
+        data_tests: [not_null, no_future_dates]
+
+  - name: brnz_products
+    description: One row per ProductID, including products without a subcategory.
+    columns:
+      - name: ProductID
+        description: Product key; the subcategory join must not duplicate it.
+        data_tests: [not_null, unique]
+      - name: ProductName
+        description: Source product name.
+        data_tests: [not_null]
+      - name: ProductNumber
+        description: Product business identifier.
+        data_tests: [not_null, unique]
+      - name: MakeFlag
+        description: Whether the product is manufactured in-house.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
+              quote: false
+      - name: FinishedGoodsFlag
+        description: Whether the product is a finished good.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
+              quote: false
+      - name: StandardCost
+        description: Current unit cost; zero is valid for some products.
+        data_tests: [not_null, positive_values]
+      - name: ListPrice
+        description: Current list price; zero-priced products are valid.
+        data_tests: [not_null, positive_values]
+      - name: Weight
+        description: Optional product weight, nonnegative when supplied.
+        data_tests: [positive_values]
+      - name: ProductSubcategoryID
+        description: Optional product subcategory key.
+        data_tests:
+          - relationships:
+              to: source('adventureworks_production', 'ProductSubcategory')
+              field: ProductSubcategoryID
+      - name: SubcategoryName
+        description: Optional subcategory name from the left join.
+      - name: ProductCategoryID
+        description: Optional category identifier from the subcategory.
+      - name: SellStartDate
+        description: Selling start date; a planned future date is permitted.
+        data_tests: [not_null]
+      - name: SellEndDate
+        description: Optional selling end date; future dates are permitted.
+      - name: DiscontinuedDate
+        description: Optional discontinuation date.
+      - name: last_modified_date
+        description: Source Product.ModifiedDate, interpreted as UTC.
+        data_tests: [not_null, no_future_dates]
+
   - name: brnz_sales_orders
-    description: Staging model combining sales order headers and details
+    description: >-
+      One sales line per (sales_order_id, order_detail_id). Header fields repeat
+      across lines, so sales_order_id alone is not unique. Required detail and
+      value tests validate unfiltered rows, including rows Silver excludes.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [sales_order_id, order_detail_id]
+      - line_total_matches:
+          quantity_column: order_qty
+          unit_price_column: unit_price
+          discount_column: unit_price_discount
+          line_total_column: line_total
+          tolerance: 0.01
     columns:
       - name: sales_order_id
-        description: Primary key for sales orders
-        tests:
-          - not_null
+        description: Order key shared by all lines of an order.
+        data_tests: [not_null]
       - name: order_detail_id
-        description: Primary key for sales order details
-        tests:
-          - not_null
+        description: Line identifier; required even though the source join is LEFT JOIN.
+        data_tests: [not_null]
       - name: order_date
-        description: Date when the order was placed
+        description: Order placement timestamp, interpreted as UTC.
+        data_tests: [not_null, no_future_dates]
       - name: due_date
-        description: Date when the order is due
+        description: Expected delivery date; a future date is valid.
+        data_tests: [not_null]
       - name: ship_date
-        description: Date when the order was shipped
+        description: Actual shipping timestamp; NULL before shipping.
+        data_tests: [no_future_dates]
       - name: status
-        description: Current status of the order
+        description: 'Order status: 1 in process, 2 approved, 3 backordered, 4 rejected, 5 shipped, 6 cancelled.'
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6]
+              quote: false
       - name: online_order_flag
-        description: Flag indicating if the order was placed online
+        description: Source channel flag, validated independently of Silver's Offline default.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
+              quote: false
       - name: sales_order_number
-        description: Unique sales order number
+        description: Business order number repeated for each line of the order.
+        data_tests: [not_null]
       - name: purchase_order_number
-        description: Customer purchase order number
+        description: Optional customer purchase order number.
       - name: customer_id
-        description: Foreign key reference to customer
+        description: Required customer dimension key.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('brnz_customers')
+              field: CustomerID
       - name: sales_person_id
-        description: ID of the sales person
+        description: Optional salesperson identifier.
       - name: territory_id
-        description: Sales territory ID
+        description: Optional sales territory identifier.
       - name: product_id
-        description: Foreign key reference to product
+        description: Required product dimension key.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('brnz_products')
+              field: ProductID
       - name: order_qty
-        description: Quantity ordered
+        description: Number of units on the line; strictly greater than zero.
+        data_tests:
+          - not_null
+          - positive_values:
+              allow_zero: false
       - name: unit_price
-        description: Unit price of the product
+        description: Unit price before discount; free products are permitted.
+        data_tests: [not_null, positive_values]
       - name: unit_price_discount
-        description: Discount amount
+        description: Fractional discount between 0 and 1 inclusive, not a currency amount.
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 1
+              inclusive: true
       - name: line_total
-        description: Total amount for this line item
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - sales_order_id
-            - order_detail_id
+        description: Quantity times unit price times (1 - discount), excluding tax and freight.
+        data_tests: [not_null, positive_values]
+
+  - name: brnz_example
+    description: Customer example view with no downstream models; one row per customer.
+    columns:
+      - name: id
+        description: Source CustomerID.
+        data_tests:
+          - not_null
+          - unique
+          - relationships:
+              to: source('adventureworks', 'Customer')
+              field: CustomerID
+      - name: name
+        description: Source AccountNumber, not the customer's personal name.
+        data_tests: [not_null]
+      - name: created_at
+        description: Alias of source ModifiedDate; this is not a true creation timestamp.
+        data_tests: [not_null, no_future_dates]
+      - name: updated_at
+        description: Source ModifiedDate, interpreted as UTC.
+        data_tests: [not_null, no_future_dates]

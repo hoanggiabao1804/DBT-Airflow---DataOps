@@ -1,0 +1,48 @@
+09:29:36  Running with dbt=1.8.7
+09:29:36  Registered adapter: sqlserver=1.8.7
+09:29:40  Found 2 models, 8 data tests, 507 macros
+09:29:40
+09:29:43  Concurrency: 1 threads (target='dev')
+09:29:43
+09:29:44  1 of 8 START test invalid_line_total ........................................... [RUN]
+09:29:52  1 of 8 FAIL 3 invalid_line_total ............................................... [FAIL 3 in 7.19s]
+09:29:52  2 of 8 START test invalid_no_future_dates ...................................... [RUN]
+09:29:52  2 of 8 FAIL 2 invalid_no_future_dates .......................................... [FAIL 2 in 0.23s]
+09:29:52  3 of 8 START test invalid_nonnegative .......................................... [RUN]
+09:29:52  3 of 8 FAIL 2 invalid_nonnegative .............................................. [FAIL 2 in 0.09s]
+09:29:52  4 of 8 START test invalid_strict_positive ...................................... [RUN]
+09:29:52  4 of 8 FAIL 3 invalid_strict_positive .......................................... [FAIL 3 in 0.16s]
+09:29:52  5 of 8 START test valid_line_total ............................................. [RUN]
+09:29:52  5 of 8 PASS valid_line_total ................................................... [PASS in 0.07s]
+09:29:52  6 of 8 START test valid_no_future_dates ........................................ [RUN]
+09:29:52  6 of 8 PASS valid_no_future_dates .............................................. [PASS in 0.11s]
+09:29:52  7 of 8 START test valid_nonnegative ............................................ [RUN]
+09:29:52  7 of 8 PASS valid_nonnegative .................................................. [PASS in 0.21s]
+09:29:52  8 of 8 START test valid_strict_positive ........................................ [RUN]
+09:29:53  8 of 8 PASS valid_strict_positive .............................................. [PASS in 0.23s]
+09:29:53
+09:29:53  Finished running 8 data tests in 0 hours 0 minutes and 12.73 seconds (12.73s).
+09:29:53
+09:29:53  Completed with 4 errors and 0 warnings:
+09:29:53
+09:29:53  Failure in test invalid_line_total (models/schema.yml)
+09:29:53    Got 3 results, configured to fail if != 0
+09:29:53
+09:29:53    compiled code at /tmp/tuan-dbt-test-contracts-j6jn27l0/target/compiled/tuan_test_contracts/models/schema.yml/invalid_line_total.sql
+09:29:53
+09:29:53  Failure in test invalid_no_future_dates (models/schema.yml)
+09:29:53    Got 2 results, configured to fail if != 0
+09:29:53
+09:29:53    compiled code at /tmp/tuan-dbt-test-contracts-j6jn27l0/target/compiled/tuan_test_contracts/models/schema.yml/invalid_no_future_dates.sql
+09:29:53
+09:29:53  Failure in test invalid_nonnegative (models/schema.yml)
+09:29:53    Got 2 results, configured to fail if != 0
+09:29:53
+09:29:53    compiled code at /tmp/tuan-dbt-test-contracts-j6jn27l0/target/compiled/tuan_test_contracts/models/schema.yml/invalid_nonnegative.sql
+09:29:53
+09:29:53  Failure in test invalid_strict_positive (models/schema.yml)
+09:29:53    Got 3 results, configured to fail if != 0
+09:29:53
+09:29:53    compiled code at /tmp/tuan-dbt-test-contracts-j6jn27l0/target/compiled/tuan_test_contracts/models/schema.yml/invalid_strict_positive.sql
+09:29:53
+09:29:53  Done. PASS=4 WARN=0 ERROR=4 SKIP=0 TOTAL=8
