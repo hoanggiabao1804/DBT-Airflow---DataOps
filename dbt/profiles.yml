@@ -20,3 +20,39 @@ dbt_airflow_project:
       keepalives_idle: 0  # Disable keepalive to prevent connection issues
       application_name: dbt_airflow_project  # Identify the application in SQL Server
       retry_on_error: True  # Enable automatic retries on transient errors
+
+    ci:
+      type: sqlserver
+      driver: 'ODBC Driver 17 for SQL Server'
+      server: localhost
+      port: 1433
+      database: AdventureWorks2014_CI
+      schema: dbo
+      user: sa
+      password: "{{ env_var('DBT_CI_PASSWORD', 'YourStrong@Passw0rd') }}"
+      threads: 2
+      trust_cert: true
+
+    staging:
+      type: sqlserver
+      driver: 'ODBC Driver 17 for SQL Server'
+      server: "{{ env_var('STAGING_SQL_SERVER', 'localhost') }}"
+      port: 1433
+      database: AdventureWorks2014_Staging
+      schema: dbo
+      user: "{{ env_var('STAGING_SQL_USER', 'sa') }}"
+      password: "{{ env_var('STAGING_SQL_PASSWORD', 'YourStrong@Passw0rd') }}"
+      threads: 8
+      trust_cert: true
+
+    prod:
+      type: sqlserver
+      driver: 'ODBC Driver 17 for SQL Server'
+      server: "{{ env_var('PROD_SQL_SERVER', 'localhost') }}"
+      port: 1433
+      database: AdventureWorks2014_Prod
+      schema: dbo
+      user: "{{ env_var('PROD_SQL_USER', 'sa') }}"
+      password: "{{ env_var('PROD_SQL_PASSWORD') }}"
+      threads: 16
+      trust_cert: true
