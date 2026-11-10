@@ -47,11 +47,15 @@ if ! run_dbt compile --target "$TARGET"; then
     exit 1
 fi
 
-# 2. Run tests on current state
-echo -e "${YELLOW}🧪 Running tests...${NC}"
-if ! run_dbt test --target "$TARGET"; then
-    echo -e "${RED}❌ Tests failed${NC}"
-    exit 1
+# 2. Run tests on current state when models already exist.
+if [[ "${SKIP_PRE_DEPLOY_TESTS:-0}" == "1" ]]; then
+    echo "Skipping pre-deployment tests for the initial staging deployment."
+else
+    echo -e "${YELLOW}🧪 Running tests...${NC}"
+    if ! run_dbt test --target "$TARGET"; then
+        echo -e "${RED}❌ Tests failed${NC}"
+        exit 1
+    fi
 fi
 
 # 3. Backup current state
