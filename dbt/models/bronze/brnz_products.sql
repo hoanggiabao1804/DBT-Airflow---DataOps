@@ -34,8 +34,8 @@ staged as (
         ps.Name as SubcategoryName,
         ps.ProductCategoryID,
         p.ModifiedDate as last_modified_date
-    from product p
-    left join product_subcategory ps
+    from product as p
+    left join product_subcategory as ps
         on p.ProductSubcategoryID = ps.ProductSubcategoryID
 )
 

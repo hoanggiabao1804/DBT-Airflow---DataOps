@@ -26,13 +26,14 @@ product_sales as (
         avg(s.unit_price) as avg_selling_price,
         sum(s.line_total) - (sum(s.order_qty) * p.standard_cost) as total_profit,
         case
-            when sum(s.order_qty) > 0 then
-                -- A sold product with zero revenue has an undefined margin.
-                (sum(s.line_total) - (sum(s.order_qty) * p.standard_cost)) / nullif(sum(s.line_total), 0) * 100
+            when sum(s.order_qty) > 0
+            then
+                    -- A sold product with zero revenue has an undefined margin.
+                    (sum(s.line_total) - (sum(s.order_qty) * p.standard_cost)) / nullif(sum(s.line_total), 0) * 100
             else 0
         end as profit_margin_pct
-    from products p
-    left join sales s
+    from products as p
+    left join sales as s
         on p.product_id = s.product_id
     group by
         p.product_id,
