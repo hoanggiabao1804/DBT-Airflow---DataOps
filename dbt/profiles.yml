@@ -38,7 +38,7 @@ dbt_airflow_project:
       driver: 'ODBC Driver 17 for SQL Server'
       server: "{{ env_var('STAGING_SQL_SERVER', 'localhost') }}"
       port: 1433
-      database: AdventureWorks2014_Staging
+      database: "{{ env_var('STAGING_SQL_DATABASE', 'AdventureWorks2014_Staging') }}"
       schema: dbo
       user: "{{ env_var('STAGING_SQL_USER', 'sa') }}"
       password: "{{ env_var('STAGING_SQL_PASSWORD', 'YourStrong@Passw0rd') }}"
