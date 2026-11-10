@@ -11,7 +11,7 @@ with source_data as (
 transformed as (
     select
         CustomerID as id,
-        AccountNumber as name,
+        AccountNumber as [name],
         ModifiedDate as created_at,
         ModifiedDate as updated_at
     from source_data
