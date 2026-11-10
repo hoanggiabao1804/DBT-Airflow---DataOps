@@ -27,7 +27,7 @@ product_sales as (
         sum(s.line_total) - (sum(s.order_qty) * p.standard_cost) as total_profit,
         case
             when sum(s.order_qty) > 0
-            then
+                then
                     -- A sold product with zero revenue has an undefined margin.
                     (sum(s.line_total) - (sum(s.order_qty) * p.standard_cost)) / nullif(sum(s.line_total), 0) * 100
             else 0
