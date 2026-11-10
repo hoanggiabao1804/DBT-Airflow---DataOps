@@ -3,16 +3,8 @@ name: Python Code Quality
 on:
   push:
     branches: [main, develop, 'feature/**']
-    paths:
-      - '**.py'
-      - 'airflow/**'
-      - '.github/workflows/python-quality.yml'
   pull_request:
     branches: [main, develop]
-    paths:
-      - '**.py'
-      - 'airflow/**'
-      - '.github/workflows/python-quality.yml'
 
 jobs:
   code-quality:
@@ -33,16 +25,10 @@ jobs:
           pip install flake8 black pylint
 
       - name: Run Black formatter check
-        run: |
-          black --check --line-length=120 airflow/dags/ || true
-        continue-on-error: true
+        run: black --check --line-length=120 airflow/dags/
 
       - name: Run Flake8
-        run: |
-          flake8 airflow/dags/ --max-line-length=120 --statistics || true
-        continue-on-error: true
+        run: flake8 airflow/dags/ --max-line-length=120 --statistics
 
       - name: Run Pylint
-        run: |
-          pylint airflow/dags/ --max-line-length=120 || true
-        continue-on-error: true
+        run: pylint airflow/dags/ --errors-only --disable=import-error

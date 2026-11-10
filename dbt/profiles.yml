@@ -26,7 +26,7 @@ dbt_airflow_project:
       driver: 'ODBC Driver 17 for SQL Server'
       server: localhost
       port: 1433
-      database: AdventureWorks2014_CI
+      database: "{{ env_var('DBT_CI_DATABASE', 'AdventureWorks2014_CI') }}"
       schema: dbo
       user: sa
       password: "{{ env_var('DBT_CI_PASSWORD', 'YourStrong@Passw0rd') }}"
