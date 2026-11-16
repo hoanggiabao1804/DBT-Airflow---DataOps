@@ -1,0 +1,15 @@
+{
+  "odbc_drivers": [
+    "ODBC Driver 17 for SQL Server"
+  ],
+  "packages": {
+    "Jinja2": "3.1.6",
+    "PyYAML": "6.0.2",
+    "SQLAlchemy": "1.4.54",
+    "great-expectations": "0.18.22",
+    "numpy": "1.26.4",
+    "pandas": "2.1.4",
+    "pyodbc": "5.2.0"
+  },
+  "python": "3.11.18"
+}

@@ -1,0 +1,50 @@
+# GX 0.18.22 configuration. The runner supplies environment-specific values.
+config_version: 3.0
+
+datasources:
+  adventureworks:
+    class_name: Datasource
+    execution_engine:
+      class_name: SqlAlchemyExecutionEngine
+      connection_string: ${GE_CONNECTION_STRING}
+      create_temp_table: false
+    data_connectors:
+      silver_tables:
+        class_name: ConfiguredAssetSqlDataConnector
+        assets:
+          customers:
+            table_name: slvr_customers
+            schema_name: ${GE_SILVER_SCHEMA}
+          orders:
+            table_name: slvr_sales_orders
+            schema_name: ${GE_SILVER_SCHEMA}
+
+stores:
+  expectations_store:
+    class_name: ExpectationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: expectations/
+  validations_store:
+    class_name: ValidationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/validations/
+  evaluation_parameter_store:
+    class_name: EvaluationParameterStore
+  checkpoint_store:
+    class_name: CheckpointStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: checkpoints/
+
+expectations_store_name: expectations_store
+validations_store_name: validations_store
+evaluation_parameter_store_name: evaluation_parameter_store
+checkpoint_store_name: checkpoint_store
+
+data_docs_sites: {}
+anonymous_usage_statistics:
+  enabled: false
+progress_bars:
+  globally: false

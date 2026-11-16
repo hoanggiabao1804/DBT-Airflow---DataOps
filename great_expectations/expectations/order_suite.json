@@ -1,0 +1,345 @@
+{
+  "expectation_suite_name": "order_suite",
+  "expectations": [
+    {
+      "expectation_type": "expect_table_columns_to_match_set",
+      "kwargs": {
+        "column_set": [
+          "sales_order_id",
+          "order_detail_id",
+          "order_date",
+          "due_date",
+          "ship_date",
+          "status",
+          "order_channel",
+          "sales_order_number",
+          "purchase_order_number",
+          "customer_id",
+          "sales_person_id",
+          "territory_id",
+          "product_id",
+          "order_qty",
+          "unit_price",
+          "unit_price_discount",
+          "line_total",
+          "gross_amount",
+          "effective_unit_price",
+          "has_discount"
+        ],
+        "exact_match": true
+      },
+      "meta": {
+        "rule_id": "order_columns"
+      }
+    },
+    {
+      "expectation_type": "expect_table_row_count_to_be_between",
+      "kwargs": {
+        "min_value": 1
+      },
+      "meta": {
+        "rule_id": "order_nonempty"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "sales_order_id"
+      },
+      "meta": {
+        "rule_id": "order_sales_order_id_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "order_detail_id"
+      },
+      "meta": {
+        "rule_id": "order_order_detail_id_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "order_date"
+      },
+      "meta": {
+        "rule_id": "order_order_date_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "due_date"
+      },
+      "meta": {
+        "rule_id": "order_due_date_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {
+        "rule_id": "order_status_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "order_channel"
+      },
+      "meta": {
+        "rule_id": "order_order_channel_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "sales_order_number"
+      },
+      "meta": {
+        "rule_id": "order_sales_order_number_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "customer_id"
+      },
+      "meta": {
+        "rule_id": "order_customer_id_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "product_id"
+      },
+      "meta": {
+        "rule_id": "order_product_id_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "order_qty"
+      },
+      "meta": {
+        "rule_id": "order_order_qty_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "unit_price"
+      },
+      "meta": {
+        "rule_id": "order_unit_price_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "unit_price_discount"
+      },
+      "meta": {
+        "rule_id": "order_unit_price_discount_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "line_total"
+      },
+      "meta": {
+        "rule_id": "order_line_total_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "gross_amount"
+      },
+      "meta": {
+        "rule_id": "order_gross_amount_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "effective_unit_price"
+      },
+      "meta": {
+        "rule_id": "order_effective_unit_price_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "has_discount"
+      },
+      "meta": {
+        "rule_id": "order_has_discount_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_compound_columns_to_be_unique",
+      "kwargs": {
+        "column_list": [
+          "sales_order_id",
+          "order_detail_id"
+        ],
+        "ignore_row_if": "never"
+      },
+      "meta": {
+        "rule_id": "order_key_unique",
+        "notes": "One order can have multiple lines; only the composite line key must be unique."
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "order_qty",
+        "min_value": 0,
+        "strict_min": true
+      },
+      "meta": {
+        "rule_id": "order_qty_positive"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "unit_price",
+        "min_value": 0
+      },
+      "meta": {
+        "rule_id": "order_unit_price_nonnegative",
+        "notes": "Zero is valid, including free items and fully discounted lines."
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "line_total",
+        "min_value": 0
+      },
+      "meta": {
+        "rule_id": "order_line_total_nonnegative",
+        "notes": "Zero is valid, including free items and fully discounted lines."
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "gross_amount",
+        "min_value": 0
+      },
+      "meta": {
+        "rule_id": "order_gross_amount_nonnegative",
+        "notes": "Zero is valid, including free items and fully discounted lines."
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "effective_unit_price",
+        "min_value": 0
+      },
+      "meta": {
+        "rule_id": "order_effective_unit_price_nonnegative",
+        "notes": "Zero is valid, including free items and fully discounted lines."
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "unit_price_discount",
+        "min_value": 0,
+        "max_value": 1
+      },
+      "meta": {
+        "rule_id": "order_discount_range",
+        "notes": "Discount is a fraction; both 0 and 1 are valid."
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "status",
+        "value_set": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "meta": {
+        "rule_id": "order_status_allowed"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "order_channel",
+        "value_set": [
+          "Online",
+          "Offline"
+        ]
+      },
+      "meta": {
+        "rule_id": "order_channel_allowed"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "has_discount",
+        "value_set": [
+          0,
+          1
+        ]
+      },
+      "meta": {
+        "rule_id": "order_has_discount_allowed"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "order_date",
+        "max_value": {
+          "$PARAMETER": "validation_time"
+        },
+        "parse_strings_as_datetimes": true
+      },
+      "meta": {
+        "rule_id": "order_order_date_not_future",
+        "notes": "Order timestamps are interpreted as UTC; due_date may be in the future."
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "ship_date",
+        "max_value": {
+          "$PARAMETER": "validation_time"
+        },
+        "parse_strings_as_datetimes": true
+      },
+      "meta": {
+        "rule_id": "order_ship_date_not_future",
+        "notes": "NULL is valid before shipping; non-NULL timestamps are interpreted as UTC."
+      }
+    }
+  ],
+  "meta": {
+    "great_expectations_version": "0.18.22",
+    "notes": "Full Silver sales order-line table. Composite line keys, free items, 100% discounts, nullable shipping dates and future due dates are valid. dbt covers formula reconciliation and foreign keys."
+  }
+}

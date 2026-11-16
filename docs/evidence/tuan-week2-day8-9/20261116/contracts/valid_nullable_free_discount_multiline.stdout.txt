@@ -1,0 +1,1 @@
+GX passed: 2 checkpoint(s), exit 0. Evidence: /evidence/contracts-20261116-01/valid_nullable_free_discount_multiline
