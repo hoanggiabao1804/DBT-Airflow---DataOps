@@ -1,0 +1,264 @@
+{
+  "elapsed_time": 0.29102277755737305,
+  "metadata": {
+    "dbt_schema_version": "https://schemas.getdbt.com/dbt/sources/v3.json",
+    "dbt_version": "1.8.7",
+    "env": {},
+    "generated_at": "2026-11-16T01:26:58.504968Z",
+    "invocation_id": "c13c9b6a-e222-434b-b18f-e4a37bef23e3"
+  },
+  "results": [
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "criteria": {
+        "error_after": {
+          "count": 48,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 24,
+          "period": "hour"
+        }
+      },
+      "execution_time": 0.04197955131530762,
+      "max_loaded_at": "0001-01-01T00:00:00+00:00",
+      "max_loaded_at_time_ago_in_s": 63930389218.35281,
+      "snapshotted_at": "2026-11-16T01:26:58.352810+00:00",
+      "status": "error",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:58.322761Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:58.322748Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:58.362054Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:58.323709Z"
+        }
+      ],
+      "unique_id": "source.tuan_freshness_contracts.fixture.empty"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "criteria": {
+        "error_after": {
+          "count": 48,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 24,
+          "period": "hour"
+        }
+      },
+      "execution_time": 0.017655134201049805,
+      "max_loaded_at": "2026-11-16T00:26:58.377739+00:00",
+      "max_loaded_at_time_ago_in_s": 3600.000001,
+      "snapshotted_at": "2026-11-16T01:26:58.377740+00:00",
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:58.370292Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:58.370281Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:58.384885Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:58.371241Z"
+        }
+      ],
+      "unique_id": "source.tuan_freshness_contracts.fixture.fresh"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "criteria": {
+        "error_after": {
+          "count": 48,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 24,
+          "period": "hour"
+        }
+      },
+      "execution_time": 0.017814159393310547,
+      "max_loaded_at": "2026-11-17T01:26:58.398463+00:00",
+      "max_loaded_at_time_ago_in_s": -86399.999999,
+      "snapshotted_at": "2026-11-16T01:26:58.398464+00:00",
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:58.391363Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:58.391357Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:58.406990Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:58.391817Z"
+        }
+      ],
+      "unique_id": "source.tuan_freshness_contracts.fixture.future"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "criteria": {
+        "error_after": {
+          "count": 48,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 24,
+          "period": "hour"
+        }
+      },
+      "execution_time": 0.022717714309692383,
+      "max_loaded_at": "0001-01-01T00:00:00+00:00",
+      "max_loaded_at_time_ago_in_s": 63930389218.4359,
+      "snapshotted_at": "2026-11-16T01:26:58.435895+00:00",
+      "status": "error",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:58.422723Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:58.422715Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:58.443635Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:58.423558Z"
+        }
+      ],
+      "unique_id": "source.tuan_freshness_contracts.fixture.missing"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "criteria": {
+        "error_after": {
+          "count": 48,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 24,
+          "period": "hour"
+        }
+      },
+      "execution_time": 0.018880128860473633,
+      "max_loaded_at": "2026-11-16T00:26:58.460551+00:00",
+      "max_loaded_at_time_ago_in_s": 3600.0,
+      "snapshotted_at": "2026-11-16T01:26:58.460551+00:00",
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:58.450730Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:58.450721Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:58.467897Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:58.452047Z"
+        }
+      ],
+      "unique_id": "source.tuan_freshness_contracts.fixture.mixed_null"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "criteria": {
+        "error_after": {
+          "count": 48,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 24,
+          "period": "hour"
+        }
+      },
+      "execution_time": 0.012935161590576172,
+      "max_loaded_at": "2026-11-13T01:26:58.476944+00:00",
+      "max_loaded_at_time_ago_in_s": 259200.000001,
+      "snapshotted_at": "2026-11-16T01:26:58.476945+00:00",
+      "status": "error",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:58.471744Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:58.471740Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:58.483559Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:58.472248Z"
+        }
+      ],
+      "unique_id": "source.tuan_freshness_contracts.fixture.stale"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "criteria": {
+        "error_after": {
+          "count": 48,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 24,
+          "period": "hour"
+        }
+      },
+      "execution_time": 0.013274908065795898,
+      "max_loaded_at": "2026-11-14T13:26:58.493421+00:00",
+      "max_loaded_at_time_ago_in_s": 129600.000001,
+      "snapshotted_at": "2026-11-16T01:26:58.493422+00:00",
+      "status": "warn",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:58.487379Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:58.487375Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:58.499545Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:58.487774Z"
+        }
+      ],
+      "unique_id": "source.tuan_freshness_contracts.fixture.warning"
+    }
+  ]
+}

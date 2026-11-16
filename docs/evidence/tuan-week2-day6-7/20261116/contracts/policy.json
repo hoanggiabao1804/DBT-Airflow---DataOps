@@ -1,0 +1,13 @@
+{
+  "freshness": {
+    "error_after": {
+      "count": 48,
+      "period": "hour"
+    },
+    "warn_after": {
+      "count": 24,
+      "period": "hour"
+    }
+  },
+  "loaded_at_field": "[ModifiedDate]"
+}

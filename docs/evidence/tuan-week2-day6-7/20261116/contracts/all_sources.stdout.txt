@@ -1,0 +1,27 @@
+01:26:54  Running with dbt=1.8.7
+01:26:54  Registered adapter: sqlserver=1.8.7
+01:26:55  Unable to do partial parsing because saved manifest not found. Starting full parse.
+01:26:58  Found 7 models, 14 data tests, 7 sources, 506 macros
+01:26:58
+01:26:58  Concurrency: 1 threads (target='dev')
+01:26:58
+01:26:58  1 of 7 START freshness of fixture.empty ........................................ [RUN]
+01:26:58  1 of 7 ERROR STALE freshness of fixture.empty .................................. [ERROR STALE in 0.04s]
+01:26:58  2 of 7 START freshness of fixture.fresh ........................................ [RUN]
+01:26:58  2 of 7 PASS freshness of fixture.fresh ......................................... [PASS in 0.02s]
+01:26:58  3 of 7 START freshness of fixture.future ....................................... [RUN]
+01:26:58  3 of 7 PASS freshness of fixture.future ........................................ [PASS in 0.02s]
+01:26:58  4 of 7 START freshness of fixture.missing ...................................... [RUN]
+01:26:58  4 of 7 ERROR STALE freshness of fixture.missing ................................ [ERROR STALE in 0.02s]
+01:26:58  5 of 7 START freshness of fixture.mixed_null ................................... [RUN]
+01:26:58  5 of 7 PASS freshness of fixture.mixed_null .................................... [PASS in 0.02s]
+01:26:58  6 of 7 START freshness of fixture.stale ........................................ [RUN]
+01:26:58  6 of 7 ERROR STALE freshness of fixture.stale .................................. [ERROR STALE in 0.01s]
+01:26:58  7 of 7 START freshness of fixture.warning ...................................... [RUN]
+01:26:58  7 of 7 WARN freshness of fixture.warning ....................................... [WARN in 0.01s]
+01:26:58
+01:26:58  Finished running 7 sources in 0 hours 0 minutes and 0.29 seconds (0.29s).
+01:26:58
+01:26:58
+01:26:58
+01:26:58  Done.
