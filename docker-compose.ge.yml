@@ -1,0 +1,14 @@
+# Optional quality runner. Use together with docker-compose.yml; no Airflow required.
+services:
+  ge:
+    build:
+      context: ./great_expectations
+    profiles: [quality]
+    volumes:
+      - ./great_expectations:/workspace/great_expectations:ro
+      - ./scripts:/workspace/scripts:ro
+      - ./dbt:/workspace/dbt:ro
+      - ./great_expectations/uncommitted:/evidence
+    networks:
+      - dbt_airflow_network
+    command: ["--help"]

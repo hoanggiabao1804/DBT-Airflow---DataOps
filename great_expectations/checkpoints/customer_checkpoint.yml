@@ -1,0 +1,19 @@
+name: customer_checkpoint
+config_version: 1.0
+class_name: Checkpoint
+validations:
+  - batch_request:
+      datasource_name: adventureworks
+      data_connector_name: silver_tables
+      data_asset_name: customers
+    expectation_suite_name: customer_suite
+action_list:
+  - name: store_validation_result
+    action:
+      class_name: StoreValidationResultAction
+runtime_configuration:
+  result_format:
+    result_format: SUMMARY
+    partial_unexpected_count: 0
+    include_unexpected_rows: false
+  catch_exceptions: false

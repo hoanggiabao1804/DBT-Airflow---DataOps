@@ -1,0 +1,2 @@
+GX error: 1 checkpoint(s), exit 2. Evidence: /evidence/contracts-20261116-01/missing_table_runtime_error
+CheckpointError: Check SQL connectivity, target/schema, model existence and GX configuration.
