@@ -17,7 +17,7 @@ Runtime đã kiểm chứng: Python 3.11.18, GX 0.18.22, SQLAlchemy 1.4.54, pyod
 
 ## Quy tắc dữ liệu
 
-- **Customer:** đủ 8 cột, bảng không rỗng, khóa không NULL/không trùng, các trường tên được chuẩn hóa, email preference thuộc 0/1/2 khi có giá trị, timestamp bắt buộc và không tương lai. `Unknown` và preference NULL hợp lệ.
+- **Customer:** đủ 8 cột, bảng không rỗng, khóa không NULL/không trùng, các trường tên không NULL, email preference thuộc 0/1/2 khi có giá trị, timestamp bắt buộc và không tương lai. `Unknown` và preference NULL hợp lệ; suite không kiểm tra định dạng/trim tên.
 - **Order:** đủ 20 cột, bảng không rỗng, 16 trường bắt buộc, khóa ghép `(sales_order_id, order_detail_id)`, quantity > 0, giá/doanh thu >= 0, discount trong `[0,1]`, status 1–6, channel Online/Offline, discount flag 0/1 và timestamp không tương lai.
 - Một order có nhiều dòng được chấp nhận. Giá bằng 0, discount 100%, ship date NULL và due date tương lai được giữ đúng theo semantics của dbt.
 

@@ -1,0 +1,27 @@
+10:05:34  Running with dbt=1.8.7
+10:05:34  Registered adapter: sqlserver=1.8.7
+10:05:37  Found 10 models, 200 data tests, 13 sources, 618 macros
+10:05:37
+10:05:37  Concurrency: 4 threads (target='dev')
+10:05:37
+10:05:37  1 of 6 START freshness of adventureworks.Customer .............................. [RUN]
+10:05:37  2 of 6 START freshness of adventureworks.SalesOrderDetail ...................... [RUN]
+10:05:37  3 of 6 START freshness of adventureworks.SalesOrderHeader ...................... [RUN]
+10:05:37  4 of 6 START freshness of adventureworks_person.Person ......................... [RUN]
+10:05:38  1 of 6 ERROR STALE freshness of adventureworks.Customer ........................ [ERROR STALE in 0.10s]
+10:05:38  5 of 6 START freshness of adventureworks_production.Product .................... [RUN]
+10:05:38  3 of 6 ERROR STALE freshness of adventureworks.SalesOrderHeader ................ [ERROR STALE in 0.11s]
+10:05:38  4 of 6 ERROR STALE freshness of adventureworks_person.Person ................... [ERROR STALE in 0.11s]
+10:05:38  6 of 6 START freshness of adventureworks_production.ProductSubcategory ......... [RUN]
+10:05:38  2 of 6 ERROR STALE freshness of adventureworks.SalesOrderDetail ................ [ERROR STALE in 0.14s]
+10:05:38  6 of 6 ERROR STALE freshness of adventureworks_production.ProductSubcategory ... [ERROR STALE in 0.08s]
+10:05:38  5 of 6 ERROR STALE freshness of adventureworks_production.Product .............. [ERROR STALE in 0.11s]
+10:05:38
+10:05:38  Finished running 6 sources in 0 hours 0 minutes and 0.67 seconds (0.67s).
+10:05:38
+10:05:38
+10:05:38
+10:05:38
+10:05:38
+10:05:38
+10:05:38  Done.

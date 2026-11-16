@@ -2,12 +2,14 @@
 
 Phần ngày 8–9 của Tuân: hai suites kiểm tra toàn bộ bảng Silver và hai checkpoint chạy bằng SQL Server. Great Expectations **0.18.22** sử dụng định dạng suites/checkpoints của bài lab; dependencies chạy trong container `ge` riêng. Không cài chung các phiên bản này vào dbt hoặc Airflow.
 
+[Báo cáo chất lượng kết thúc tuần 2](../docs/tuan_week2_quality_report.md) tổng hợp kết quả dbt, freshness, GE và bàn giao sang tuần 3.
+
 | Checkpoint | Suite | Bảng mặc định | Số điều kiện |
 | --- | --- | --- | --- |
 | `customer_checkpoint` | `customer_suite` | `silver.slvr_customers` | 10 |
 | `order_checkpoint` | `order_suite` | `silver.slvr_sales_orders` | 30 |
 
-Customer: đủ cột, bảng không rỗng, khóa không NULL/không trùng, tên đã được chuẩn hóa, miền `email_promotion`, timestamp không tương lai. `Unknown` và email preference NULL vẫn hợp lệ.
+Customer: đủ cột, bảng không rỗng, khóa không NULL/không trùng, các trường tên không NULL, miền `email_promotion`, timestamp không tương lai. `Unknown` và email preference NULL vẫn hợp lệ; suite không kiểm tra định dạng/trim tên.
 
 Order: đủ cột, bảng không rỗng, khóa ghép `(sales_order_id, order_detail_id)`, các cột bắt buộc, số lượng dương, giá/doanh thu không âm, discount trong `[0,1]`, miền status/channel/discount flag và timestamp. Một đơn có nhiều dòng là hợp lệ; giá 0, discount 100%, ngày giao dự kiến trong tương lai và ship date NULL đều hợp lệ.
 
