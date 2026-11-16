@@ -1,14 +1,34 @@
 version: 2
 
 sources:
+  # dbt Core 1.8: freshness/loaded_at_field are source properties, not config.
+  # ModifiedDate measures the latest business update, NOT ingestion/restore time.
+  # The static AdventureWorks2014 snapshot is expected to breach these demo SLAs.
   - name: adventureworks
     description: Used Sales tables in the AdventureWorks2014 sample database.
     database: AdventureWorks2014
     schema: Sales
+    loaded_at_field: "[ModifiedDate]"
+    freshness:
+      warn_after:
+        count: "{{ var('source_freshness_warn_hours', 24) | int }}"
+        period: hour
+      error_after:
+        count: "{{ var('source_freshness_error_hours', 48) | int }}"
+        period: hour
     tables:
       - name: SalesOrderHeader
         description: One row per order; distinct from the sales-line grain of Bronze and Silver.
         columns:
+          - name: ModifiedDate
+            description: Latest business modification timestamp, interpreted as UTC; not an ingestion timestamp.
+            data_tests:
+              - not_null:
+                  config:
+                    tags: [source_timestamp]
+              - no_future_dates:
+                  config:
+                    tags: [source_timestamp]
           - name: SalesOrderID
             description: Order primary key.
             data_tests: [not_null, unique]
@@ -48,6 +68,15 @@ sources:
           - dbt_utils.unique_combination_of_columns:
               combination_of_columns: [SalesOrderID, SalesOrderDetailID]
         columns:
+          - name: ModifiedDate
+            description: Business modification timestamp, interpreted as UTC; separate from the order date.
+            data_tests:
+              - not_null:
+                  config:
+                    tags: [source_timestamp]
+              - no_future_dates:
+                  config:
+                    tags: [source_timestamp]
           - name: SalesOrderID
             description: Parent order key.
             data_tests:
@@ -68,6 +97,15 @@ sources:
       - name: Customer
         description: One row per customer; person and store links are optional.
         columns:
+          - name: ModifiedDate
+            description: Business modification timestamp, interpreted as UTC; not an ingestion timestamp.
+            data_tests:
+              - not_null:
+                  config:
+                    tags: [source_timestamp]
+              - no_future_dates:
+                  config:
+                    tags: [source_timestamp]
           - name: CustomerID
             description: Customer primary key.
             data_tests: [not_null, unique]
@@ -82,10 +120,27 @@ sources:
     description: Used Production tables in AdventureWorks2014.
     database: AdventureWorks2014
     schema: Production
+    loaded_at_field: "[ModifiedDate]"
+    freshness:
+      warn_after:
+        count: "{{ var('source_freshness_warn_hours', 24) | int }}"
+        period: hour
+      error_after:
+        count: "{{ var('source_freshness_error_hours', 48) | int }}"
+        period: hour
     tables:
       - name: Product
         description: One row per product, including unsold and uncategorized products.
         columns:
+          - name: ModifiedDate
+            description: Business modification timestamp, interpreted as UTC; a quiet catalog can legitimately be old.
+            data_tests:
+              - not_null:
+                  config:
+                    tags: [source_timestamp]
+              - no_future_dates:
+                  config:
+                    tags: [source_timestamp]
           - name: ProductID
             description: Product primary key.
             data_tests: [not_null, unique]
@@ -98,6 +153,15 @@ sources:
       - name: ProductSubcategory
         description: One row per product subcategory.
         columns:
+          - name: ModifiedDate
+            description: Business modification timestamp, interpreted as UTC; a quiet catalog can legitimately be old.
+            data_tests:
+              - not_null:
+                  config:
+                    tags: [source_timestamp]
+              - no_future_dates:
+                  config:
+                    tags: [source_timestamp]
           - name: ProductSubcategoryID
             description: Subcategory primary key.
             data_tests: [not_null, unique]
@@ -106,10 +170,27 @@ sources:
     description: Used Person table in AdventureWorks2014.
     database: AdventureWorks2014
     schema: Person
+    loaded_at_field: "[ModifiedDate]"
+    freshness:
+      warn_after:
+        count: "{{ var('source_freshness_warn_hours', 24) | int }}"
+        period: hour
+      error_after:
+        count: "{{ var('source_freshness_error_hours', 48) | int }}"
+        period: hour
     tables:
       - name: Person
         description: One row per person; only some people are customers.
         columns:
+          - name: ModifiedDate
+            description: Business modification timestamp, interpreted as UTC; not an ingestion timestamp.
+            data_tests:
+              - not_null:
+                  config:
+                    tags: [source_timestamp]
+              - no_future_dates:
+                  config:
+                    tags: [source_timestamp]
           - name: BusinessEntityID
             description: Person primary key.
             data_tests: [not_null, unique]

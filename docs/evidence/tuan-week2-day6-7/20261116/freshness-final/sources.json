@@ -1,0 +1,228 @@
+{
+  "elapsed_time": 0.34555578231811523,
+  "metadata": {
+    "dbt_schema_version": "https://schemas.getdbt.com/dbt/sources/v3.json",
+    "dbt_version": "1.8.7",
+    "env": {},
+    "generated_at": "2026-11-16T01:29:56.592848Z",
+    "invocation_id": "2aaaff56-f31c-4693-8000-9007e98b512c"
+  },
+  "results": [
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "criteria": {
+        "error_after": {
+          "count": 48,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 24,
+          "period": "hour"
+        }
+      },
+      "execution_time": 0.1070101261138916,
+      "max_loaded_at": "2014-09-12T11:15:07.263000+00:00",
+      "max_loaded_at_time_ago_in_s": 384272089.21407,
+      "snapshotted_at": "2026-11-16T01:29:56.477070+00:00",
+      "status": "error",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:29:56.399020Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:29:56.399010Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:29:56.491628Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:29:56.402927Z"
+        }
+      ],
+      "unique_id": "source.dbt_sqlserver_project.adventureworks.Customer"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "criteria": {
+        "error_after": {
+          "count": 48,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 24,
+          "period": "hour"
+        }
+      },
+      "execution_time": 0.13657188415527344,
+      "max_loaded_at": "2014-07-07T00:00:00+00:00",
+      "max_loaded_at_time_ago_in_s": 390101396.481198,
+      "snapshotted_at": "2026-11-16T01:29:56.481198+00:00",
+      "status": "error",
+      "thread_id": "Thread-3",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:29:56.400955Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:29:56.400943Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:29:56.525019Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:29:56.405375Z"
+        }
+      ],
+      "unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "criteria": {
+        "error_after": {
+          "count": 48,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 24,
+          "period": "hour"
+        }
+      },
+      "execution_time": 0.13690829277038574,
+      "max_loaded_at": "2015-04-15T16:33:33.123000+00:00",
+      "max_loaded_at_time_ago_in_s": 365676983.370619,
+      "snapshotted_at": "2026-11-16T01:29:56.493619+00:00",
+      "status": "error",
+      "thread_id": "Thread-4",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:29:56.401985Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:29:56.401970Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:29:56.526960Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:29:56.406917Z"
+        }
+      ],
+      "unique_id": "source.dbt_sqlserver_project.adventureworks_person.Person"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "criteria": {
+        "error_after": {
+          "count": 48,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 24,
+          "period": "hour"
+        }
+      },
+      "execution_time": 0.15637946128845215,
+      "max_loaded_at": "2014-06-30T00:00:00+00:00",
+      "max_loaded_at_time_ago_in_s": 390706196.485343,
+      "snapshotted_at": "2026-11-16T01:29:56.485343+00:00",
+      "status": "error",
+      "thread_id": "Thread-2",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:29:56.400184Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:29:56.400174Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:29:56.543124Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:29:56.404277Z"
+        }
+      ],
+      "unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "criteria": {
+        "error_after": {
+          "count": 48,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 24,
+          "period": "hour"
+        }
+      },
+      "execution_time": 0.054595232009887695,
+      "max_loaded_at": "2014-02-08T10:03:55.510000+00:00",
+      "max_loaded_at_time_ago_in_s": 402938761.02903,
+      "snapshotted_at": "2026-11-16T01:29:56.539030+00:00",
+      "status": "error",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:29:56.507739Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:29:56.507728Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:29:56.556745Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:29:56.508844Z"
+        }
+      ],
+      "unique_id": "source.dbt_sqlserver_project.adventureworks_production.Product"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "criteria": {
+        "error_after": {
+          "count": 48,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 24,
+          "period": "hour"
+        }
+      },
+      "execution_time": 0.018208980560302734,
+      "max_loaded_at": "2008-04-30T00:00:00+00:00",
+      "max_loaded_at_time_ago_in_s": 585278996.576244,
+      "snapshotted_at": "2026-11-16T01:29:56.576244+00:00",
+      "status": "error",
+      "thread_id": "Thread-3",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:29:56.566741Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:29:56.566734Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:29:56.579283Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:29:56.567419Z"
+        }
+      ],
+      "unique_id": "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory"
+    }
+  ]
+}

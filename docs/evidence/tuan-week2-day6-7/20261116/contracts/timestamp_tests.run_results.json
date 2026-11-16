@@ -1,0 +1,434 @@
+{
+  "args": {
+    "cache_selected_only": false,
+    "defer": false,
+    "enable_legacy_logger": false,
+    "exclude": [],
+    "favor_state": false,
+    "indirect_selection": "eager",
+    "introspect": true,
+    "invocation_command": "dbt test --project-dir /tmp/tuan-freshness-v6j4dr6g --profiles-dir /tmp/tuan-freshness-v6j4dr6g",
+    "log_file_max_bytes": 10485760,
+    "log_format": "default",
+    "log_format_file": "debug",
+    "log_level": "info",
+    "log_level_file": "debug",
+    "log_path": "/tmp/tuan-freshness-v6j4dr6g/logs/timestamp_tests",
+    "macro_debugging": false,
+    "partial_parse": true,
+    "partial_parse_file_diff": true,
+    "populate_cache": true,
+    "print": true,
+    "printer_width": 80,
+    "profiles_dir": "/tmp/tuan-freshness-v6j4dr6g",
+    "project_dir": "/tmp/tuan-freshness-v6j4dr6g",
+    "quiet": false,
+    "require_explicit_package_overrides_for_builtin_materializations": true,
+    "require_resource_names_without_spaces": false,
+    "select": [],
+    "send_anonymous_usage_stats": false,
+    "show_resource_report": false,
+    "source_freshness_run_project_hooks": false,
+    "static_parser": true,
+    "strict_mode": false,
+    "target_path": "/tmp/tuan-freshness-v6j4dr6g/artifacts/timestamp_tests",
+    "use_colors": false,
+    "use_colors_file": false,
+    "vars": {},
+    "version_check": true,
+    "warn_error_options": {
+      "exclude": [],
+      "include": []
+    },
+    "which": "test",
+    "write_json": true
+  },
+  "elapsed_time": 3.482943534851074,
+  "metadata": {
+    "dbt_schema_version": "https://schemas.getdbt.com/dbt/run-results/v6.json",
+    "dbt_version": "1.8.7",
+    "env": {},
+    "generated_at": "2026-11-16T01:27:11.942746Z",
+    "invocation_id": "18e2b270-f157-4e09-b2e2-5a355e503417"
+  },
+  "results": [
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"ModifiedDate\"\nfrom \"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"empty\"\nwhere \"ModifiedDate\" is not null\n  and \"ModifiedDate\" > getutcdate()\n\n",
+      "execution_time": 0.1965956687927246,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:27:08.583062Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:27:08.552531Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:27:08.745681Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:27:08.584151Z"
+        }
+      ],
+      "unique_id": "test.tuan_freshness_contracts.empty_no_future_dates.574e2f5fe8"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n    \n    \n\n\n\nselect ModifiedDate\nfrom \"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"empty\"\nwhere ModifiedDate is null\n\n\n",
+      "execution_time": 0.11586666107177734,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:27:08.770171Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:27:08.751603Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:27:08.864539Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:27:08.771098Z"
+        }
+      ],
+      "unique_id": "test.tuan_freshness_contracts.empty_not_null.11d1132b45"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"ModifiedDate\"\nfrom \"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"fresh\"\nwhere \"ModifiedDate\" is not null\n  and \"ModifiedDate\" > getutcdate()\n\n",
+      "execution_time": 0.13208913803100586,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:27:08.882596Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:27:08.870808Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:27:08.998756Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:27:08.883651Z"
+        }
+      ],
+      "unique_id": "test.tuan_freshness_contracts.fresh_no_future_dates.20001a4556"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n    \n    \n\n\n\nselect ModifiedDate\nfrom \"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"fresh\"\nwhere ModifiedDate is null\n\n\n",
+      "execution_time": 0.0709543228149414,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:27:09.020991Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:27:09.009734Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:27:09.076529Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:27:09.021597Z"
+        }
+      ],
+      "unique_id": "test.tuan_freshness_contracts.fresh_not_null.39256eff2b"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"ModifiedDate\"\nfrom \"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"future\"\nwhere \"ModifiedDate\" is not null\n  and \"ModifiedDate\" > getutcdate()\n\n",
+      "execution_time": 0.11618304252624512,
+      "failures": 1,
+      "message": "Got 1 result, configured to fail if != 0",
+      "relation_name": null,
+      "status": "fail",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:27:09.093787Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:27:09.084767Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:27:09.198110Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:27:09.094760Z"
+        }
+      ],
+      "unique_id": "test.tuan_freshness_contracts.future_no_future_dates.0bf77d5aad"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n    \n    \n\n\n\nselect ModifiedDate\nfrom \"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"future\"\nwhere ModifiedDate is null\n\n\n",
+      "execution_time": 0.13922524452209473,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:27:09.217351Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:27:09.206130Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:27:09.341790Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:27:09.218269Z"
+        }
+      ],
+      "unique_id": "test.tuan_freshness_contracts.future_not_null.8e9b104767"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"ModifiedDate\"\nfrom \"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"missing\"\nwhere \"ModifiedDate\" is not null\n  and \"ModifiedDate\" > getutcdate()\n\n",
+      "execution_time": 0.13054585456848145,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:27:09.358069Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:27:09.347740Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:27:09.474804Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:27:09.358977Z"
+        }
+      ],
+      "unique_id": "test.tuan_freshness_contracts.missing_no_future_dates.a062c92c69"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n    \n    \n\n\n\nselect ModifiedDate\nfrom \"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"missing\"\nwhere ModifiedDate is null\n\n\n",
+      "execution_time": 0.14943671226501465,
+      "failures": 1,
+      "message": "Got 1 result, configured to fail if != 0",
+      "relation_name": null,
+      "status": "fail",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:27:09.494493Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:27:09.483993Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:27:09.629971Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:27:09.495492Z"
+        }
+      ],
+      "unique_id": "test.tuan_freshness_contracts.missing_not_null.2caea8d069"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"ModifiedDate\"\nfrom \"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"mixed_null\"\nwhere \"ModifiedDate\" is not null\n  and \"ModifiedDate\" > getutcdate()\n\n",
+      "execution_time": 0.1218256950378418,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:27:09.644131Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:27:09.636582Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:27:09.754832Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:27:09.644756Z"
+        }
+      ],
+      "unique_id": "test.tuan_freshness_contracts.mixed_null_no_future_dates.f964c5d2d6"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n    \n    \n\n\n\nselect ModifiedDate\nfrom \"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"mixed_null\"\nwhere ModifiedDate is null\n\n\n",
+      "execution_time": 0.1814098358154297,
+      "failures": 1,
+      "message": "Got 1 result, configured to fail if != 0",
+      "relation_name": null,
+      "status": "fail",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:27:09.772267Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:27:09.763978Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:27:09.940432Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:27:09.773294Z"
+        }
+      ],
+      "unique_id": "test.tuan_freshness_contracts.mixed_null_not_null.f76323b103"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"ModifiedDate\"\nfrom \"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"stale\"\nwhere \"ModifiedDate\" is not null\n  and \"ModifiedDate\" > getutcdate()\n\n",
+      "execution_time": 0.3992025852203369,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:27:10.001532Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:27:09.965285Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:27:10.358812Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:27:10.002984Z"
+        }
+      ],
+      "unique_id": "test.tuan_freshness_contracts.stale_no_future_dates.f8c4de2af5"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n    \n    \n\n\n\nselect ModifiedDate\nfrom \"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"stale\"\nwhere ModifiedDate is null\n\n\n",
+      "execution_time": 0.14930272102355957,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:27:10.386901Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:27:10.374874Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:27:10.518434Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:27:10.389195Z"
+        }
+      ],
+      "unique_id": "test.tuan_freshness_contracts.stale_not_null.cf20277652"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"ModifiedDate\"\nfrom \"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"warning\"\nwhere \"ModifiedDate\" is not null\n  and \"ModifiedDate\" > getutcdate()\n\n",
+      "execution_time": 0.958242654800415,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:27:10.543662Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:27:10.530685Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:27:11.484690Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:27:10.544701Z"
+        }
+      ],
+      "unique_id": "test.tuan_freshness_contracts.warning_no_future_dates.45219b03ea"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n    \n    \n\n\n\nselect ModifiedDate\nfrom \"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"warning\"\nwhere ModifiedDate is null\n\n\n",
+      "execution_time": 0.42313337326049805,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:27:11.522380Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:27:11.501378Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:27:11.916293Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:27:11.523944Z"
+        }
+      ],
+      "unique_id": "test.tuan_freshness_contracts.warning_not_null.5283f1b863"
+    }
+  ]
+}

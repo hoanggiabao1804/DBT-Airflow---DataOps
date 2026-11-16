@@ -1,0 +1,37 @@
+01:24:01  Running with dbt=1.8.7
+01:24:02  Registered adapter: sqlserver=1.8.7
+01:24:19  Unable to do partial parsing because saved manifest not found. Starting full parse.
+01:24:32  Found 10 models, 200 data tests, 13 sources, 617 macros
+01:24:32
+01:24:33  Concurrency: 4 threads (target='dev')
+01:24:33
+01:24:33  1 of 12 START test source_no_future_dates_adventureworks_Customer_ModifiedDate . [RUN]
+01:24:33  2 of 12 START test source_no_future_dates_adventureworks_SalesOrderDetail_ModifiedDate  [RUN]
+01:24:33  3 of 12 START test source_no_future_dates_adventureworks_SalesOrderHeader_ModifiedDate  [RUN]
+01:24:33  4 of 12 START test source_no_future_dates_adventureworks_person_Person_ModifiedDate  [RUN]
+01:24:34  1 of 12 PASS source_no_future_dates_adventureworks_Customer_ModifiedDate ....... [PASS in 0.63s]
+01:24:34  5 of 12 START test source_no_future_dates_adventureworks_production_ProductSubcategory_ModifiedDate  [RUN]
+01:24:34  3 of 12 PASS source_no_future_dates_adventureworks_SalesOrderHeader_ModifiedDate  [PASS in 0.96s]
+01:24:34  6 of 12 START test source_no_future_dates_adventureworks_production_Product_ModifiedDate  [RUN]
+01:24:35  5 of 12 PASS source_no_future_dates_adventureworks_production_ProductSubcategory_ModifiedDate  [PASS in 0.67s]
+01:24:35  7 of 12 START test source_not_null_adventureworks_Customer_ModifiedDate ........ [RUN]
+01:24:35  4 of 12 PASS source_no_future_dates_adventureworks_person_Person_ModifiedDate .. [PASS in 1.38s]
+01:24:35  6 of 12 PASS source_no_future_dates_adventureworks_production_Product_ModifiedDate  [PASS in 0.42s]
+01:24:35  8 of 12 START test source_not_null_adventureworks_SalesOrderDetail_ModifiedDate  [RUN]
+01:24:35  9 of 12 START test source_not_null_adventureworks_SalesOrderHeader_ModifiedDate  [RUN]
+01:24:35  2 of 12 PASS source_no_future_dates_adventureworks_SalesOrderDetail_ModifiedDate  [PASS in 1.49s]
+01:24:35  7 of 12 PASS source_not_null_adventureworks_Customer_ModifiedDate .............. [PASS in 0.18s]
+01:24:35  10 of 12 START test source_not_null_adventureworks_person_Person_ModifiedDate .. [RUN]
+01:24:35  11 of 12 START test source_not_null_adventureworks_production_ProductSubcategory_ModifiedDate  [RUN]
+01:24:35  8 of 12 PASS source_not_null_adventureworks_SalesOrderDetail_ModifiedDate ...... [PASS in 0.21s]
+01:24:35  9 of 12 PASS source_not_null_adventureworks_SalesOrderHeader_ModifiedDate ...... [PASS in 0.20s]
+01:24:35  12 of 12 START test source_not_null_adventureworks_production_Product_ModifiedDate  [RUN]
+01:24:35  11 of 12 PASS source_not_null_adventureworks_production_ProductSubcategory_ModifiedDate  [PASS in 0.18s]
+01:24:35  10 of 12 PASS source_not_null_adventureworks_person_Person_ModifiedDate ........ [PASS in 0.22s]
+01:24:35  12 of 12 PASS source_not_null_adventureworks_production_Product_ModifiedDate ... [PASS in 0.44s]
+01:24:35
+01:24:35  Finished running 12 data tests in 0 hours 0 minutes and 3.01 seconds (3.01s).
+01:24:36
+01:24:36  Completed successfully
+01:24:36
+01:24:36  Done. PASS=12 WARN=0 ERROR=0 SKIP=0 TOTAL=12

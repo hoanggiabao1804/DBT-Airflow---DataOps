@@ -1,0 +1,2 @@
+ dbt-airflow---dataops-dbt-1 Copying dbt-airflow---dataops-dbt-1:/tmp/tuan-source-freshness-20261116T012923468Z-b71a0e87/target/run_results.json to D:\DBT-Airflow---DataOps\docs\evidence\tuan-week2-day6-7\20261116\freshness-final\timestamp_tests.run_results.json
+ dbt-airflow---dataops-dbt-1 Copied dbt-airflow---dataops-dbt-1:/tmp/tuan-source-freshness-20261116T012923468Z-b71a0e87/target/run_results.json to D:\DBT-Airflow---DataOps\docs\evidence\tuan-week2-day6-7\20261116\freshness-final\timestamp_tests.run_results.json

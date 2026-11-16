@@ -1,0 +1,32 @@
+01:27:11  Running with dbt=1.8.7
+01:27:11  Encountered an error:
+[Errno 2] No such file or directory: 'test_safe_subtract.sql'
+01:27:11  Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/dbt/cli/requires.py", line 138, in wrapper
+    result, success = func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/dbt/cli/requires.py", line 101, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/dbt/cli/requires.py", line 201, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/dbt/cli/requires.py", line 247, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/dbt/cli/main.py", line 447, in deps
+    results = task.run()
+  File "/usr/local/lib/python3.9/site-packages/dbt/task/deps.py", line 233, in run
+    system.rmtree(self.project.packages_install_path)
+  File "/usr/local/lib/python3.9/site-packages/dbt_common/clients/system.py", line 715, in rmtree
+    return shutil.rmtree(path, onerror=chmod_and_retry)
+  File "/usr/local/lib/python3.9/shutil.py", line 734, in rmtree
+    _rmtree_safe_fd(fd, path, onerror)
+  File "/usr/local/lib/python3.9/shutil.py", line 667, in _rmtree_safe_fd
+    _rmtree_safe_fd(dirfd, fullname, onerror)
+  File "/usr/local/lib/python3.9/shutil.py", line 667, in _rmtree_safe_fd
+    _rmtree_safe_fd(dirfd, fullname, onerror)
+  File "/usr/local/lib/python3.9/shutil.py", line 667, in _rmtree_safe_fd
+    _rmtree_safe_fd(dirfd, fullname, onerror)
+  [Previous line repeated 1 more time]
+  File "/usr/local/lib/python3.9/shutil.py", line 690, in _rmtree_safe_fd
+    onerror(os.unlink, fullname, sys.exc_info())
+  File "/usr/local/lib/python3.9/shutil.py", line 688, in _rmtree_safe_fd
+    os.unlink(entry.name, dir_fd=topfd)
+FileNotFoundError: [Errno 2] No such file or directory: 'test_safe_subtract.sql'

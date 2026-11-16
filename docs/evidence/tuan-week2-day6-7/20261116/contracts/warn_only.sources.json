@@ -1,0 +1,48 @@
+{
+  "elapsed_time": 0.10432696342468262,
+  "metadata": {
+    "dbt_schema_version": "https://schemas.getdbt.com/dbt/sources/v3.json",
+    "dbt_version": "1.8.7",
+    "env": {},
+    "generated_at": "2026-11-16T01:26:52.168290Z",
+    "invocation_id": "6adbe445-dbb2-418f-a1ee-2fc878d3b5ff"
+  },
+  "results": [
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "criteria": {
+        "error_after": {
+          "count": 48,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 24,
+          "period": "hour"
+        }
+      },
+      "execution_time": 0.024071931838989258,
+      "max_loaded_at": "2026-11-14T13:26:52.157630+00:00",
+      "max_loaded_at_time_ago_in_s": 129600.0,
+      "snapshotted_at": "2026-11-16T01:26:52.157630+00:00",
+      "status": "warn",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:52.139836Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:52.139831Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:52.162649Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:52.140337Z"
+        }
+      ],
+      "unique_id": "source.tuan_freshness_contracts.fixture.warning"
+    }
+  ]
+}

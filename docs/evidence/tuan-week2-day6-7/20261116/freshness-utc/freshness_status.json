@@ -1,0 +1,27 @@
+{
+  "container_artifact_directory": "/tmp/tuan-source-freshness-20261116T012706465Z-a410ecda",
+  "error": "dbt deps failed.",
+  "error_after_hours": 48,
+  "exit_code": 2,
+  "finished_at_utc": "2026-11-16T01:27:13.6234362Z",
+  "freshness_counts": null,
+  "freshness_macro_sha256": "69a916e29ead4cdf35257a4ac24b124ce76f9777e2c8b25b4b8f1090b9f1f75a",
+  "loaded_at_meaning": "ModifiedDate is the latest business update, not ingestion or restore time; interpreted as UTC.",
+  "run_id": "20261116T012706465Z-a410ecda",
+  "source_definition_sha256": "76c846c0f97fffc4de76137a86ba2bf3277bf0e093a28a26ff1bc5235565dbfb",
+  "started_at_utc": "2026-11-16T01:27:06.5852866Z",
+  "status": "failed",
+  "steps": [
+    {
+      "command": "dbt deps",
+      "exit_code": 2,
+      "finished_at_utc": "2026-11-16T01:27:13.4808864Z",
+      "name": "deps",
+      "started_at_utc": "2026-11-16T01:27:07.1066380Z",
+      "stdout_file": "deps.stdout.txt"
+    }
+  ],
+  "target": "dev",
+  "timestamp_test_counts": null,
+  "warn_after_hours": 24
+}
