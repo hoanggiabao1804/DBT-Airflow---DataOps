@@ -1,0 +1,416 @@
+{
+  "active_sources": 6,
+  "artifact_sha256": {
+    "docs/evidence/tuan-week2-day10/20261116/baseline/test.run_results.json": "0acbeb1a5370ef3f6816680dacb659a5573e8e0554e47131ebd478c6b61f17d3",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_deps/try-1-53442706eeda4b5e9d95b48e2210a5e4/task_summary.json": "94d2ca82cad21366b89aa4f98f10f9c71376cf6b0c3111a303da99d59859ed0b",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_docs/try-1-d53f587234f943598f878424fd80d36d/catalog.json": "4c7e1e31acffdeffb8f34d7d921e4b7c8b61b7174638187b9e01070f199a58ce",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_docs/try-1-d53f587234f943598f878424fd80d36d/manifest.json": "4a0eb326db808555f69f1aca1c251a4c87f5b6f77dba407fe588890fc57480f9",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_docs/try-1-d53f587234f943598f878424fd80d36d/task_summary.json": "7e8d0885184934418d2a91a67dfe2058820509c451d2fc33a31f7b9382c9492f",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_run/try-1-43da6e6a682449e493807ef2f04ba21d/run_results.json": "3f0b834b3361f7a3ae999859680467c49e006d1d6df1b98c0cbb2e307602964c",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_run/try-1-43da6e6a682449e493807ef2f04ba21d/task_summary.json": "0f428f14fba7add6b3711bb10f40ce47a63a122f59ad3d1e17978221cc9af1b3",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_test/try-1-6372fe49b54341d995a7c0fafe305e60/run_results.json": "f242158ae04e6d78447cf8acde0e561f85d7f72602788cd42ec168ef2cf3eb80",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_test/try-1-6372fe49b54341d995a7c0fafe305e60/task_summary.json": "94acd82339a4792da0caa599e79850475d37add2ca73baa08e51fc3e27c3638e",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/ge_validate/try-1-1da7919a6cc84d498243c217bbd828b5/ge/customer_checkpoint.json": "00b3284f47a1e26e9d9efd03819f1cb3d7978e2af560b83a5ad8653afa4b1d56",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/ge_validate/try-1-1da7919a6cc84d498243c217bbd828b5/ge/order_checkpoint.json": "999ff67f71d53cf5ad2ce1dd101675683a576abc7cf93ec92be6455cc89683c8",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/ge_validate/try-1-1da7919a6cc84d498243c217bbd828b5/ge/summary.json": "0453e4d9b8375163f747cf6af7bf89b32c0aa3c9e8e848597a29a4bd7ea4eb45",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/ge_validate/try-1-1da7919a6cc84d498243c217bbd828b5/task_summary.json": "b8234eaaebd6491bb8f85f54cb3d763a79361cabcf9574d26265911da16f4f7f"
+  },
+  "audit_status": "passed",
+  "audited_at_utc": "2026-11-17T01:54:19.008916+00:00",
+  "catalog_errors": null,
+  "dag_id": "dbt_transform",
+  "dbt_models": {
+    "failed": 0,
+    "successful": 10
+  },
+  "dbt_tests": {
+    "added_test_ids": [],
+    "baseline_ids_sha256": "2699a08519c0e5ce895cc83e3cfc69aed57b0a7b630fc85dbe75fde5c82d78f5",
+    "baseline_test_results": "docs/evidence/tuan-week2-day10/20261116/baseline/test.run_results.json",
+    "baseline_unique_ids_equal": true,
+    "current_ids_sha256": "2699a08519c0e5ce895cc83e3cfc69aed57b0a7b630fc85dbe75fde5c82d78f5",
+    "failed": 0,
+    "ids_digest_encoding": "UTF-8 sorted unique IDs joined with LF plus final LF",
+    "nodes": 200,
+    "passed": 200,
+    "removed_test_ids": []
+  },
+  "docs_generated_at_utc": "2026-11-17T01:53:14.609919Z",
+  "documented_active_source_fields": 59,
+  "documented_model_columns": 131,
+  "documented_project_macros": [
+    "sqlserver__collect_freshness",
+    "test_line_total_matches",
+    "test_no_future_dates",
+    "test_positive_values"
+  ],
+  "evidence_root": "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25",
+  "freshness": "Not executed by this DAG; week2 DQ-W2-01 remains open for six historical sources.",
+  "ge": {
+    "checkpoints": {
+      "customer_checkpoint": {
+        "expectations": 10,
+        "passed": 10,
+        "row_count": 19820
+      },
+      "order_checkpoint": {
+        "expectations": 30,
+        "passed": 30,
+        "row_count": 121317
+      }
+    },
+    "evaluated_expectations": 40,
+    "successful_expectations": 40
+  },
+  "legacy_source_declarations": 7,
+  "model_catalog_columns": 131,
+  "model_count": 10,
+  "models": [
+    {
+      "catalog_columns": 7,
+      "description_present": true,
+      "documented_catalog_columns_match": true,
+      "documented_columns": [
+        "CustomerID",
+        "EmailPromotion",
+        "FirstName",
+        "LastName",
+        "StoreID",
+        "TerritoryID",
+        "last_modified_date"
+      ],
+      "model_name": "brnz_customers",
+      "unique_id": "model.dbt_sqlserver_project.brnz_customers"
+    },
+    {
+      "catalog_columns": 4,
+      "description_present": true,
+      "documented_catalog_columns_match": true,
+      "documented_columns": [
+        "created_at",
+        "id",
+        "name",
+        "updated_at"
+      ],
+      "model_name": "brnz_example",
+      "unique_id": "model.dbt_sqlserver_project.brnz_example"
+    },
+    {
+      "catalog_columns": 26,
+      "description_present": true,
+      "documented_catalog_columns_match": true,
+      "documented_columns": [
+        "Class",
+        "Color",
+        "DaysToManufacture",
+        "DiscontinuedDate",
+        "FinishedGoodsFlag",
+        "ListPrice",
+        "MakeFlag",
+        "ProductCategoryID",
+        "ProductID",
+        "ProductLine",
+        "ProductModelID",
+        "ProductName",
+        "ProductNumber",
+        "ProductSubcategoryID",
+        "ReorderPoint",
+        "SafetyStockLevel",
+        "SellEndDate",
+        "SellStartDate",
+        "Size",
+        "SizeUnitMeasureCode",
+        "StandardCost",
+        "Style",
+        "SubcategoryName",
+        "Weight",
+        "WeightUnitMeasureCode",
+        "last_modified_date"
+      ],
+      "model_name": "brnz_products",
+      "unique_id": "model.dbt_sqlserver_project.brnz_products"
+    },
+    {
+      "catalog_columns": 17,
+      "description_present": true,
+      "documented_catalog_columns_match": true,
+      "documented_columns": [
+        "customer_id",
+        "due_date",
+        "line_total",
+        "online_order_flag",
+        "order_date",
+        "order_detail_id",
+        "order_qty",
+        "product_id",
+        "purchase_order_number",
+        "sales_order_id",
+        "sales_order_number",
+        "sales_person_id",
+        "ship_date",
+        "status",
+        "territory_id",
+        "unit_price",
+        "unit_price_discount"
+      ],
+      "model_name": "brnz_sales_orders",
+      "unique_id": "model.dbt_sqlserver_project.brnz_sales_orders"
+    },
+    {
+      "catalog_columns": 10,
+      "description_present": true,
+      "documented_catalog_columns_match": true,
+      "documented_columns": [
+        "avg_order_value",
+        "customer_id",
+        "first_order_date",
+        "full_name",
+        "last_order_date",
+        "orders_with_discount",
+        "territory_id",
+        "total_items_purchased",
+        "total_orders",
+        "total_revenue"
+      ],
+      "model_name": "gld_customer_metrics",
+      "unique_id": "model.dbt_sqlserver_project.gld_customer_metrics"
+    },
+    {
+      "catalog_columns": 12,
+      "description_present": true,
+      "documented_catalog_columns_match": true,
+      "documented_columns": [
+        "avg_selling_price",
+        "color",
+        "list_price",
+        "product_id",
+        "product_name",
+        "profit_margin_pct",
+        "standard_cost",
+        "subcategory_name",
+        "total_orders",
+        "total_profit",
+        "total_quantity_sold",
+        "total_revenue"
+      ],
+      "model_name": "gld_product_performance",
+      "unique_id": "model.dbt_sqlserver_project.gld_product_performance"
+    },
+    {
+      "catalog_columns": 9,
+      "description_present": true,
+      "documented_catalog_columns_match": true,
+      "documented_columns": [
+        "avg_order_line_value",
+        "discounted_revenue",
+        "offline_orders",
+        "online_orders",
+        "order_date",
+        "total_items_sold",
+        "total_orders",
+        "total_revenue",
+        "unique_customers"
+      ],
+      "model_name": "gld_sales_summary",
+      "unique_id": "model.dbt_sqlserver_project.gld_sales_summary"
+    },
+    {
+      "catalog_columns": 8,
+      "description_present": true,
+      "documented_catalog_columns_match": true,
+      "documented_columns": [
+        "customer_id",
+        "email_promotion",
+        "first_name",
+        "full_name",
+        "last_modified_date",
+        "last_name",
+        "store_id",
+        "territory_id"
+      ],
+      "model_name": "slvr_customers",
+      "unique_id": "model.dbt_sqlserver_project.slvr_customers"
+    },
+    {
+      "catalog_columns": 18,
+      "description_present": true,
+      "documented_catalog_columns_match": true,
+      "documented_columns": [
+        "category_id",
+        "class",
+        "color",
+        "is_discontinued",
+        "last_modified_date",
+        "list_price",
+        "product_id",
+        "product_line",
+        "product_name",
+        "product_number",
+        "sell_end_date",
+        "sell_start_date",
+        "size",
+        "standard_cost",
+        "style",
+        "subcategory_id",
+        "subcategory_name",
+        "weight"
+      ],
+      "model_name": "slvr_products",
+      "unique_id": "model.dbt_sqlserver_project.slvr_products"
+    },
+    {
+      "catalog_columns": 20,
+      "description_present": true,
+      "documented_catalog_columns_match": true,
+      "documented_columns": [
+        "customer_id",
+        "due_date",
+        "effective_unit_price",
+        "gross_amount",
+        "has_discount",
+        "line_total",
+        "order_channel",
+        "order_date",
+        "order_detail_id",
+        "order_qty",
+        "product_id",
+        "purchase_order_number",
+        "sales_order_id",
+        "sales_order_number",
+        "sales_person_id",
+        "ship_date",
+        "status",
+        "territory_id",
+        "unit_price",
+        "unit_price_discount"
+      ],
+      "model_name": "slvr_sales_orders",
+      "unique_id": "model.dbt_sqlserver_project.slvr_sales_orders"
+    }
+  ],
+  "run_id": "tuan-week3-day11-12-20261117-01",
+  "schema_version": 1,
+  "source_documentation_scope": "Fields consumed by the current models or timestamp checks; not all physical AdventureWorks columns.",
+  "sources": [
+    {
+      "catalog_columns": 7,
+      "description_present": true,
+      "documented_fields": [
+        "AccountNumber",
+        "CustomerID",
+        "ModifiedDate",
+        "PersonID",
+        "StoreID",
+        "TerritoryID"
+      ],
+      "documented_fields_exist_in_catalog": true,
+      "source_name": "adventureworks.Customer",
+      "unique_id": "source.dbt_sqlserver_project.adventureworks.Customer"
+    },
+    {
+      "catalog_columns": 11,
+      "description_present": true,
+      "documented_fields": [
+        "LineTotal",
+        "ModifiedDate",
+        "OrderQty",
+        "ProductID",
+        "SalesOrderDetailID",
+        "SalesOrderID",
+        "UnitPrice",
+        "UnitPriceDiscount"
+      ],
+      "documented_fields_exist_in_catalog": true,
+      "source_name": "adventureworks.SalesOrderDetail",
+      "unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail"
+    },
+    {
+      "catalog_columns": 26,
+      "description_present": true,
+      "documented_fields": [
+        "CustomerID",
+        "DueDate",
+        "ModifiedDate",
+        "OnlineOrderFlag",
+        "OrderDate",
+        "PurchaseOrderNumber",
+        "SalesOrderID",
+        "SalesOrderNumber",
+        "SalesPersonID",
+        "ShipDate",
+        "Status",
+        "TerritoryID"
+      ],
+      "documented_fields_exist_in_catalog": true,
+      "source_name": "adventureworks.SalesOrderHeader",
+      "unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+    },
+    {
+      "catalog_columns": 13,
+      "description_present": true,
+      "documented_fields": [
+        "BusinessEntityID",
+        "EmailPromotion",
+        "FirstName",
+        "LastName",
+        "ModifiedDate"
+      ],
+      "documented_fields_exist_in_catalog": true,
+      "source_name": "adventureworks_person.Person",
+      "unique_id": "source.dbt_sqlserver_project.adventureworks_person.Person"
+    },
+    {
+      "catalog_columns": 25,
+      "description_present": true,
+      "documented_fields": [
+        "Class",
+        "Color",
+        "DaysToManufacture",
+        "DiscontinuedDate",
+        "FinishedGoodsFlag",
+        "ListPrice",
+        "MakeFlag",
+        "ModifiedDate",
+        "Name",
+        "ProductID",
+        "ProductLine",
+        "ProductModelID",
+        "ProductNumber",
+        "ProductSubcategoryID",
+        "ReorderPoint",
+        "SafetyStockLevel",
+        "SellEndDate",
+        "SellStartDate",
+        "Size",
+        "SizeUnitMeasureCode",
+        "StandardCost",
+        "Style",
+        "Weight",
+        "WeightUnitMeasureCode"
+      ],
+      "documented_fields_exist_in_catalog": true,
+      "source_name": "adventureworks_production.Product",
+      "unique_id": "source.dbt_sqlserver_project.adventureworks_production.Product"
+    },
+    {
+      "catalog_columns": 5,
+      "description_present": true,
+      "documented_fields": [
+        "ModifiedDate",
+        "Name",
+        "ProductCategoryID",
+        "ProductSubcategoryID"
+      ],
+      "documented_fields_exist_in_catalog": true,
+      "source_name": "adventureworks_production.ProductSubcategory",
+      "unique_id": "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory"
+    }
+  ],
+  "task_native_exit_codes": {
+    "dbt_deps": 0,
+    "dbt_docs": 0,
+    "dbt_run": 0,
+    "dbt_test": 0,
+    "ge_validate": 0
+  }
+}

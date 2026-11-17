@@ -1,0 +1,73 @@
+{
+  "checkpoint": "customer_checkpoint",
+  "checks": [
+    {
+      "rule_id": "customer_columns",
+      "success": true
+    },
+    {
+      "observed_value": 19820,
+      "rule_id": "customer_nonempty",
+      "success": true
+    },
+    {
+      "element_count": 19820,
+      "rule_id": "customer_id_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 19820,
+      "missing_count": 0,
+      "rule_id": "customer_id_unique",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 19820,
+      "rule_id": "customer_first_name_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 19820,
+      "rule_id": "customer_last_name_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 19820,
+      "rule_id": "customer_full_name_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 19820,
+      "rule_id": "customer_last_modified_date_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 19820,
+      "missing_count": 0,
+      "rule_id": "customer_last_modified_date_not_future",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 19820,
+      "missing_count": 701,
+      "rule_id": "customer_email_promotion_allowed",
+      "success": true,
+      "unexpected_count": 0
+    }
+  ],
+  "statistics": {
+    "evaluated_expectations": 10,
+    "success_percent": 100.0,
+    "successful_expectations": 10,
+    "unsuccessful_expectations": 0
+  },
+  "success": true,
+  "suite": "customer_suite"
+}

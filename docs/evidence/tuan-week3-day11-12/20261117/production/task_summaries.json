@@ -1,0 +1,85 @@
+{
+  "dbt_deps": {
+    "action": "deps",
+    "attempt": 1,
+    "dag_id": "dbt_transform",
+    "exit_code": 0,
+    "finished_at_utc": "2026-11-17T01:49:06.136111+00:00",
+    "native_exit_code": 0,
+    "run_id": "tuan-week3-day11-12-20261117-01",
+    "runner_sha256": "62bfc92c52ce13ef0b61c9e4d0cb79b7f15b4275f393f10574fc0e7cb8c79221",
+    "schema": "silver",
+    "started_at_utc": "2026-11-17T01:48:21.020228+00:00",
+    "status": "passed",
+    "target": "dev",
+    "task_id": "dbt_deps"
+  },
+  "dbt_docs": {
+    "action": "docs",
+    "attempt": 1,
+    "dag_id": "dbt_transform",
+    "exit_code": 0,
+    "finished_at_utc": "2026-11-17T01:53:21.190269+00:00",
+    "native_exit_code": 0,
+    "run_id": "tuan-week3-day11-12-20261117-01",
+    "runner_sha256": "62bfc92c52ce13ef0b61c9e4d0cb79b7f15b4275f393f10574fc0e7cb8c79221",
+    "schema": "silver",
+    "started_at_utc": "2026-11-17T01:52:55.721885+00:00",
+    "status": "passed",
+    "target": "dev",
+    "task_id": "dbt_docs"
+  },
+  "dbt_run": {
+    "action": "run",
+    "attempt": 1,
+    "dag_id": "dbt_transform",
+    "dbt_results": {
+      "success": 10
+    },
+    "exit_code": 0,
+    "finished_at_utc": "2026-11-17T01:50:26.473725+00:00",
+    "native_exit_code": 0,
+    "run_id": "tuan-week3-day11-12-20261117-01",
+    "runner_sha256": "62bfc92c52ce13ef0b61c9e4d0cb79b7f15b4275f393f10574fc0e7cb8c79221",
+    "schema": "silver",
+    "started_at_utc": "2026-11-17T01:49:09.753636+00:00",
+    "status": "passed",
+    "target": "dev",
+    "task_id": "dbt_run"
+  },
+  "dbt_test": {
+    "action": "test",
+    "attempt": 1,
+    "dag_id": "dbt_transform",
+    "dbt_results": {
+      "pass": 200
+    },
+    "exit_code": 0,
+    "finished_at_utc": "2026-11-17T01:52:11.133327+00:00",
+    "native_exit_code": 0,
+    "run_id": "tuan-week3-day11-12-20261117-01",
+    "runner_sha256": "62bfc92c52ce13ef0b61c9e4d0cb79b7f15b4275f393f10574fc0e7cb8c79221",
+    "schema": "silver",
+    "started_at_utc": "2026-11-17T01:50:30.324226+00:00",
+    "status": "passed",
+    "target": "dev",
+    "task_id": "dbt_test"
+  },
+  "ge_validate": {
+    "action": "ge",
+    "attempt": 1,
+    "dag_id": "dbt_transform",
+    "exit_code": 0,
+    "finished_at_utc": "2026-11-17T01:52:52.591944+00:00",
+    "ge_expectations": 40,
+    "ge_status": "passed",
+    "native_exit_code": 0,
+    "run_id": "tuan-week3-day11-12-20261117-01",
+    "runner_sha256": "62bfc92c52ce13ef0b61c9e4d0cb79b7f15b4275f393f10574fc0e7cb8c79221",
+    "schema": "silver",
+    "started_at_utc": "2026-11-17T01:52:14.424305+00:00",
+    "status": "passed",
+    "target": "dev",
+    "task_id": "ge_validate"
+  }
+}

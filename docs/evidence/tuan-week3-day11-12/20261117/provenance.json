@@ -1,0 +1,102 @@
+{
+  "newline_note": "Runtime bind mounts used Windows working-tree bytes. Git normalizes CRLF to LF; compare Git blobs with canonical_lf_sha256. Published JSON is parsed and formatted as UTF-8 LF; raw source hashes refer to ignored originals.",
+  "raw_source_artifact_sha256": {
+    "great_expectations/uncommitted/airflow-contracts-20261117-01/invalid_data/assertion.json": "f59ea3147b7446cc9442cbd736710355997856464afe6a44a07e3d04edc93b5d",
+    "great_expectations/uncommitted/airflow-contracts-20261117-01/invalid_data/ge_summary.json": "fe56f5263c56311d7d0f66a38c46b320bd41a4022276f3097ed431d6415ee51e",
+    "great_expectations/uncommitted/airflow-contracts-20261117-01/invalid_data/ge_task_summary.json": "c14e382832c59234bec384ef613fc450c02d2c626dc659efe006c5980b18423b",
+    "great_expectations/uncommitted/airflow-contracts-20261117-01/missing_table/assertion.json": "e121b9faeb96ed86a8068161df2077f8c2a672d37ca4dfce1aa0d2ae17a5a50c",
+    "great_expectations/uncommitted/airflow-contracts-20261117-01/missing_table/ge_summary.json": "17483bc1f0538e5fdfcb7352b75c3b81a028744810a6df72e70233a437fccf33",
+    "great_expectations/uncommitted/airflow-contracts-20261117-01/missing_table/ge_task_summary.json": "af8c3ba0afee550d002a31099319759a579c4f3a6b3e1a7ad37c4c7cfe9b8478",
+    "great_expectations/uncommitted/airflow-contracts-20261117-01/repeat_failed_attempt/assertion.json": "7b4ef7ede657cb4a134a871d2451f2e785cc3d820cef67cfaecd3c8015ca5828",
+    "great_expectations/uncommitted/airflow-contracts-20261117-01/repeat_failed_attempt/ge_summary.json": "65e926aca82837ce663ebe815fc8fa261ae5b51fd3bacd900eabe02fba3b0bf0",
+    "great_expectations/uncommitted/airflow-contracts-20261117-01/repeat_failed_attempt/ge_task_summary.json": "622cbbc21fad9753b6d654e3a5d7a183151b4d305125595cf060f85044440447",
+    "great_expectations/uncommitted/airflow-contracts-20261117-01/summary.json": "4d4dabac815b58d59715a82ce917395e737e32d598c751a4076db36d149bd8e1",
+    "great_expectations/uncommitted/airflow-contracts-20261117-01/valid_data/assertion.json": "52e347bfe4cc89e055de29239bb0baa3c281360b8ff0f3f07cc45e3c3a8b8882",
+    "great_expectations/uncommitted/airflow-contracts-20261117-01/valid_data/docs_task_summary.json": "53a51d469abc59e70c0587ab6066e108fa6c7bd6076683f7bbd137cbfe73e27c",
+    "great_expectations/uncommitted/airflow-contracts-20261117-01/valid_data/ge_summary.json": "fef3f3101bb1828a8146d691d3d87750d2ead9f83a7d1a490ac906670eb99293",
+    "great_expectations/uncommitted/airflow-contracts-20261117-01/valid_data/ge_task_summary.json": "aa5bb637fd2bb6870346ff5e488d00204ec5c2a8dcf19befd79b7551414589d4",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_deps/try-1-53442706eeda4b5e9d95b48e2210a5e4/task_summary.json": "94d2ca82cad21366b89aa4f98f10f9c71376cf6b0c3111a303da99d59859ed0b",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_docs/try-1-d53f587234f943598f878424fd80d36d/catalog.json": "4c7e1e31acffdeffb8f34d7d921e4b7c8b61b7174638187b9e01070f199a58ce",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_docs/try-1-d53f587234f943598f878424fd80d36d/index.html": "23fa3656d8004cd0427eb81d6230d2ea8221dfd2758e832a08026bad471c4544",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_docs/try-1-d53f587234f943598f878424fd80d36d/manifest.json": "4a0eb326db808555f69f1aca1c251a4c87f5b6f77dba407fe588890fc57480f9",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_docs/try-1-d53f587234f943598f878424fd80d36d/task_summary.json": "7e8d0885184934418d2a91a67dfe2058820509c451d2fc33a31f7b9382c9492f",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_run/try-1-43da6e6a682449e493807ef2f04ba21d/run_results.json": "3f0b834b3361f7a3ae999859680467c49e006d1d6df1b98c0cbb2e307602964c",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_run/try-1-43da6e6a682449e493807ef2f04ba21d/task_summary.json": "0f428f14fba7add6b3711bb10f40ce47a63a122f59ad3d1e17978221cc9af1b3",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_test/try-1-6372fe49b54341d995a7c0fafe305e60/run_results.json": "f242158ae04e6d78447cf8acde0e561f85d7f72602788cd42ec168ef2cf3eb80",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/dbt_test/try-1-6372fe49b54341d995a7c0fafe305e60/task_summary.json": "94acd82339a4792da0caa599e79850475d37add2ca73baa08e51fc3e27c3638e",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/ge_validate/try-1-1da7919a6cc84d498243c217bbd828b5/ge/customer_checkpoint.json": "00b3284f47a1e26e9d9efd03819f1cb3d7978e2af560b83a5ad8653afa4b1d56",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/ge_validate/try-1-1da7919a6cc84d498243c217bbd828b5/ge/order_checkpoint.json": "999ff67f71d53cf5ad2ce1dd101675683a576abc7cf93ec92be6455cc89683c8",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/ge_validate/try-1-1da7919a6cc84d498243c217bbd828b5/ge/summary.json": "0453e4d9b8375163f747cf6af7bf89b32c0aa3c9e8e848597a29a4bd7ea4eb45",
+    "great_expectations/uncommitted/airflow/6c09a9980aff0cf8ba25/ge_validate/try-1-1da7919a6cc84d498243c217bbd828b5/task_summary.json": "b8234eaaebd6491bb8f85f54cb3d763a79361cabcf9574d26265911da16f4f7f",
+    "great_expectations/uncommitted/docs_coverage_week3.json": "8c0d5ea66f3f28fa6b3efb008f4412c8811da101476d76bd0ca2d4c8b89dd3a9",
+    "great_expectations/uncommitted/full_dag_week3.json": "ee4d31fff7389bb00487721f94b56e390255359b1662f5a8da21a22c197b2455",
+    "great_expectations/uncommitted/runtime-week3-services.json": "7f4a709434f968af35dc1d406707a37e243b12a9db120cca39d19fb118f06ccd",
+    "great_expectations/uncommitted/runtime_week3_versions.json": "60807ac6b07ae24d8dce69b4bc7a209d6cbd0a753fd1f74c27f7ee7df0b8f34c"
+  },
+  "runtime_input_sha256": {
+    "airflow/Dockerfile": {
+      "canonical_lf_sha256": "956238333a8525b619de9ab5a163dee6f567f82e1a61f86978c6b82912c394b2",
+      "executed_worktree_sha256": "956238333a8525b619de9ab5a163dee6f567f82e1a61f86978c6b82912c394b2"
+    },
+    "airflow/dags/dbt_dag.py": {
+      "canonical_lf_sha256": "e8f3484f7d723912a1224f0840e4112817973bbbd6032c003a0b3730c553ee6a",
+      "executed_worktree_sha256": "5b75db6d3b00cb8184cb76fd778f8c6a73699eacf7c249897032c5249fb90d51"
+    },
+    "airflow/requirements.txt": {
+      "canonical_lf_sha256": "544e83a395cc10561004c578529f4319979d745ce780f3cae95a2a042f3bb829",
+      "executed_worktree_sha256": "544e83a395cc10561004c578529f4319979d745ce780f3cae95a2a042f3bb829"
+    },
+    "dbt/macros/schema.yml": {
+      "canonical_lf_sha256": "7bd5eb3fb8f93b3d54ed8aa7c6fc35f3fd854b7db34db75b89802a30e28f0336",
+      "executed_worktree_sha256": "7bd5eb3fb8f93b3d54ed8aa7c6fc35f3fd854b7db34db75b89802a30e28f0336"
+    },
+    "dbt/models/bronze/schema.yml": {
+      "canonical_lf_sha256": "be9e3664636c8d6e043975b051d303189ee68128e99b2124542b547d52990458",
+      "executed_worktree_sha256": "be9e3664636c8d6e043975b051d303189ee68128e99b2124542b547d52990458"
+    },
+    "dbt/models/bronze/src_adventureworks.yml": {
+      "canonical_lf_sha256": "2fd9300bde41c59ab82eaaa31ab3f57a18b06bb763d8f299683651cae0763264",
+      "executed_worktree_sha256": "2fd9300bde41c59ab82eaaa31ab3f57a18b06bb763d8f299683651cae0763264"
+    },
+    "dbt/models/gold/schema.yml": {
+      "canonical_lf_sha256": "7c7a7cf983357b35a1f534ab9bdfe6de6f62021a18fb3537875a356064d1ab4e",
+      "executed_worktree_sha256": "7c7a7cf983357b35a1f534ab9bdfe6de6f62021a18fb3537875a356064d1ab4e"
+    },
+    "dbt/models/silver/schema.yml": {
+      "canonical_lf_sha256": "a6e46ca006864ebfae03560e69b052d20d27058f1a58eb19d1401902940e2f20",
+      "executed_worktree_sha256": "a6e46ca006864ebfae03560e69b052d20d27058f1a58eb19d1401902940e2f20"
+    },
+    "dbt/models/sources.yml": {
+      "canonical_lf_sha256": "ff176c8c96797f34617c6710e65d6b6a527659ceca7d3a616bc8de91e4b076d6",
+      "executed_worktree_sha256": "ff176c8c96797f34617c6710e65d6b6a527659ceca7d3a616bc8de91e4b076d6"
+    },
+    "docker-compose.airflow-quality.yml": {
+      "canonical_lf_sha256": "173c69bbb86ff8afa473ef77fa614ebe39576630d889dd99586c867a3fd771c5",
+      "executed_worktree_sha256": "173c69bbb86ff8afa473ef77fa614ebe39576630d889dd99586c867a3fd771c5"
+    },
+    "docker-compose.yml": {
+      "canonical_lf_sha256": "d047476b7e4bccb1db40a9e67d87e5f614ab862b1b6ccf3dd2d79fa27cbce82f",
+      "executed_worktree_sha256": "c631350ed71feef46feac068ac311668e7ba9641b4391635157aceff71804af3"
+    },
+    "scripts/manage_airflow_fixtures.py": {
+      "canonical_lf_sha256": "c62d943bf7bf06185995ebf528e235cc8fd9a9fa560a139fc4aad2c817a75414",
+      "executed_worktree_sha256": "c62d943bf7bf06185995ebf528e235cc8fd9a9fa560a139fc4aad2c817a75414"
+    },
+    "scripts/run_airflow_quality_task.py": {
+      "canonical_lf_sha256": "62bfc92c52ce13ef0b61c9e4d0cb79b7f15b4275f393f10574fc0e7cb8c79221",
+      "executed_worktree_sha256": "62bfc92c52ce13ef0b61c9e4d0cb79b7f15b4275f393f10574fc0e7cb8c79221"
+    },
+    "scripts/run_ge_checkpoints.py": {
+      "canonical_lf_sha256": "ef94d0ad6cf3c984bc9d697e6846e87a9c1347dabe3c6a0fd5eabae57d34cc84",
+      "executed_worktree_sha256": "ef94d0ad6cf3c984bc9d697e6846e87a9c1347dabe3c6a0fd5eabae57d34cc84"
+    },
+    "scripts/verify_airflow_quality.py": {
+      "canonical_lf_sha256": "cc436a73129f038c370cf121a495e35a6a360394c1087f459406020cfdf97ae5",
+      "executed_worktree_sha256": "cc436a73129f038c370cf121a495e35a6a360394c1087f459406020cfdf97ae5"
+    },
+    "scripts/verify_ge_contracts.py": {
+      "canonical_lf_sha256": "145fea9f201ec672a0d8fc37b4ac6a18e57cbfe9e9b970616629368ac5cbf5aa",
+      "executed_worktree_sha256": "145fea9f201ec672a0d8fc37b4ac6a18e57cbfe9e9b970616629368ac5cbf5aa"
+    }
+  }
+}

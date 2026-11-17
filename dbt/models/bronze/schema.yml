@@ -53,21 +53,43 @@ models:
           - accepted_values:
               values: [0, 1]
               quote: false
+      - name: Color
+        description: Optional source color; preserved as NULL until Silver supplies N/A.
+      - name: SafetyStockLevel
+        description: Source inventory threshold at which stock is considered low.
+      - name: ReorderPoint
+        description: Source stock level at which replenishment should be ordered.
       - name: StandardCost
         description: Current unit cost; zero is valid for some products.
         data_tests: [not_null, positive_values]
       - name: ListPrice
         description: Current list price; zero-priced products are valid.
         data_tests: [not_null, positive_values]
+      - name: Size
+        description: Optional source size label; Silver supplies N/A when absent.
+      - name: SizeUnitMeasureCode
+        description: Optional unit code associated with the source size.
+      - name: WeightUnitMeasureCode
+        description: Optional unit code for Weight; weights can use different units.
       - name: Weight
         description: Optional product weight, nonnegative when supplied.
         data_tests: [positive_values]
+      - name: DaysToManufacture
+        description: Source number of days required to manufacture the product.
+      - name: ProductLine
+        description: Optional source product line code, preserved without recoding.
+      - name: Class
+        description: Optional source product class code, preserved without recoding.
+      - name: Style
+        description: Optional source product style code, preserved without recoding.
       - name: ProductSubcategoryID
         description: Optional product subcategory key.
         data_tests:
           - relationships:
               to: source('adventureworks_production', 'ProductSubcategory')
               field: ProductSubcategoryID
+      - name: ProductModelID
+        description: Optional source product model identifier; no product-model dimension is built here.
       - name: SubcategoryName
         description: Optional subcategory name from the left join.
       - name: ProductCategoryID
