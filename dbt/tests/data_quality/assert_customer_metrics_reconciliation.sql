@@ -13,7 +13,13 @@ select
     expected.total_revenue as expected_total_revenue,
     actual.total_revenue as actual_total_revenue,
     expected.avg_order_value as expected_avg_order_value,
-    actual.avg_order_value as actual_avg_order_value
+    actual.avg_order_value as actual_avg_order_value,
+    expected.total_items_purchased as expected_total_items_purchased,
+    actual.total_items_purchased as actual_total_items_purchased,
+    expected.first_order_date as expected_first_order_date,
+    actual.first_order_date as actual_first_order_date,
+    expected.last_order_date as expected_last_order_date,
+    actual.last_order_date as actual_last_order_date
 from (
     select
         customers.customer_id,
@@ -21,6 +27,9 @@ from (
         count(orders.sales_order_id) as total_orders,
         sum(orders.order_revenue) as total_revenue,
         avg(orders.order_revenue) as avg_order_value,
+        sum(orders.order_quantity) as total_items_purchased,
+        min(orders.first_order_date) as first_order_date,
+        max(orders.last_order_date) as last_order_date,
         count(case when orders.discounted = 1 then orders.sales_order_id end) as orders_with_discount
     from {{ ref('slvr_customers') }} as customers
     left join (
@@ -28,6 +37,9 @@ from (
             customer_id,
             sales_order_id,
             sum(line_total) as order_revenue,
+            sum(order_qty) as order_quantity,
+            min(order_date) as first_order_date,
+            max(order_date) as last_order_date,
             max(has_discount) as discounted
         from {{ ref('slvr_sales_orders') }}
         group by customer_id, sales_order_id
@@ -41,9 +53,13 @@ full outer join (
 where expected.expected_present is null
     or actual.actual_present is null
     or exists (
-        select expected.total_orders, expected.orders_with_discount
+        select
+            expected.total_orders, expected.orders_with_discount,
+            expected.total_items_purchased, expected.first_order_date, expected.last_order_date
         except
-        select actual.total_orders, actual.orders_with_discount
+        select
+            actual.total_orders, actual.orders_with_discount,
+            actual.total_items_purchased, actual.first_order_date, actual.last_order_date
     )
     or (expected.total_revenue is null and actual.total_revenue is not null)
     or (expected.total_revenue is not null and actual.total_revenue is null)

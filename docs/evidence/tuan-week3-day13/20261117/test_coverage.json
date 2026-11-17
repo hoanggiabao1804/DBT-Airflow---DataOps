@@ -1,0 +1,3790 @@
+{
+  "artifacts": {
+    "baseline_results": {
+      "bytes": 211587,
+      "path": "docs/evidence/tuan-week3-day11-12/20261117/production/dbt_test.run_results.json",
+      "sha256": "866e82838b62cfd2a94b51bf059b4be52181ecd5c811dd4e075717fd006093b0"
+    },
+    "manifest": {
+      "bytes": 1421541,
+      "path": "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_test/try-1-0ae852098a4845df98fef4f8e67c0eed/manifest.json",
+      "sha256": "97c58137678c6accd5a4396a47c25a9cf39645fcc60a5ec089fc163b9aa122dc"
+    },
+    "run_results": {
+      "bytes": 175907,
+      "path": "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_test/try-1-0ae852098a4845df98fef4f8e67c0eed/run_results.json",
+      "sha256": "f4b7c837d62b07bd9ef3d58056f3638828d6bf34eade8f7383531b11deaeb362"
+    }
+  },
+  "baseline_comparison": {
+    "added_test_ids": [
+      "test.dbt_sqlserver_project.assert_silver_customer_preservation",
+      "test.dbt_sqlserver_project.assert_silver_product_preservation"
+    ],
+    "baseline_status_counts": {
+      "pass": 200
+    },
+    "baseline_unique_test_nodes": 200,
+    "removed_test_ids": []
+  },
+  "execution": {
+    "duplicate_result_ids": [],
+    "enabled_test_nodes": 202,
+    "exact_enabled_test_set_executed": true,
+    "extra_result_ids": [],
+    "missing_result_ids": [],
+    "result_rows": 202,
+    "status_counts": {
+      "pass": 202
+    },
+    "unique_result_nodes": 202
+  },
+  "generated_at_utc": "2026-11-17T07:31:14.844750+00:00",
+  "inventory": {
+    "active_source_declared_columns": 59,
+    "active_source_nodes": 6,
+    "generic_test_nodes": 196,
+    "model_columns_with_direct_generic_tests": 86,
+    "model_declared_columns": 131,
+    "model_documented_columns": 131,
+    "model_nodes": 10,
+    "models_with_direct_generic_tests": 10,
+    "singular_test_nodes": 6,
+    "test_type_counts": {
+      "accepted_range": 2,
+      "accepted_values": 13,
+      "line_total_matches": 2,
+      "no_future_dates": 21,
+      "not_null": 92,
+      "positive_values": 33,
+      "relationships": 15,
+      "singular": 6,
+      "unique": 15,
+      "unique_combination_of_columns": 3
+    },
+    "unused_source_nodes": 7
+  },
+  "invocation": {
+    "manifest": "873993fc-a1e3-4db2-b8be-c0b5b56cd9bf",
+    "run_results": "873993fc-a1e3-4db2-b8be-c0b5b56cd9bf"
+  },
+  "limitations": [
+    "A passed report proves inventory/result consistency and passing configured tests, not complete data quality.",
+    "Direct column coverage counts only column-level generic tests attached to that tested relation.",
+    "Relationships targets are distinguished from referenced parents; dependencies alone do not prove coverage.",
+    "Table-level and singular tests can cover more columns; their semantic coverage is not inferred from SQL.",
+    "No direct generic test can be intentional for nullable/descriptive fields or fields covered by GE/singular tests.",
+    "Declared source columns may be a subset of the physical source schema.",
+    "Baseline IDs detect additions/removals, not changes to existing SQL or generic test semantics.",
+    "GE expectations and source freshness are separate validations and are not counted as dbt test coverage."
+  ],
+  "models": [
+    {
+      "column_test_ids": {
+        "CustomerID": [
+          "test.dbt_sqlserver_project.not_null_brnz_customers_CustomerID.4fe5ff54ea",
+          "test.dbt_sqlserver_project.unique_brnz_customers_CustomerID.f30ed9f6a8"
+        ],
+        "EmailPromotion": [
+          "test.dbt_sqlserver_project.accepted_values_brnz_customers_EmailPromotion__False__0__1__2.bc0fd2815d"
+        ],
+        "last_modified_date": [
+          "test.dbt_sqlserver_project.no_future_dates_brnz_customers_last_modified_date.3f15f3dfc7",
+          "test.dbt_sqlserver_project.not_null_brnz_customers_last_modified_date.bd39e2da77"
+        ]
+      },
+      "columns_without_direct_generic_tests": [
+        "FirstName",
+        "LastName",
+        "StoreID",
+        "TerritoryID"
+      ],
+      "declared_column_count": 7,
+      "directly_tested_columns": [
+        "CustomerID",
+        "EmailPromotion",
+        "last_modified_date"
+      ],
+      "directly_tested_declared_column_count": 3,
+      "directly_tested_documented_column_count": 3,
+      "documented_column_count": 7,
+      "generic_table_test_ids": [],
+      "generic_test_count": 5,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.accepted_values_brnz_customers_EmailPromotion__False__0__1__2.bc0fd2815d",
+        "test.dbt_sqlserver_project.no_future_dates_brnz_customers_last_modified_date.3f15f3dfc7",
+        "test.dbt_sqlserver_project.not_null_brnz_customers_CustomerID.4fe5ff54ea",
+        "test.dbt_sqlserver_project.not_null_brnz_customers_last_modified_date.bd39e2da77",
+        "test.dbt_sqlserver_project.unique_brnz_customers_CustomerID.f30ed9f6a8"
+      ],
+      "name": "brnz_customers",
+      "resource_type": "model",
+      "tested_columns_not_declared": [],
+      "unique_id": "model.dbt_sqlserver_project.brnz_customers"
+    },
+    {
+      "column_test_ids": {
+        "created_at": [
+          "test.dbt_sqlserver_project.no_future_dates_brnz_example_created_at.f095200519",
+          "test.dbt_sqlserver_project.not_null_brnz_example_created_at.6fe38c1ab6"
+        ],
+        "id": [
+          "test.dbt_sqlserver_project.not_null_brnz_example_id.b224909cf4",
+          "test.dbt_sqlserver_project.relationships_brnz_example_id__CustomerID__source_adventureworks_Customer_.3bb9210071",
+          "test.dbt_sqlserver_project.unique_brnz_example_id.8f994bf610"
+        ],
+        "name": [
+          "test.dbt_sqlserver_project.not_null_brnz_example_name.b5dc5bd70b"
+        ],
+        "updated_at": [
+          "test.dbt_sqlserver_project.no_future_dates_brnz_example_updated_at.44dd82a662",
+          "test.dbt_sqlserver_project.not_null_brnz_example_updated_at.764aa40e51"
+        ]
+      },
+      "columns_without_direct_generic_tests": [],
+      "declared_column_count": 4,
+      "directly_tested_columns": [
+        "created_at",
+        "id",
+        "name",
+        "updated_at"
+      ],
+      "directly_tested_declared_column_count": 4,
+      "directly_tested_documented_column_count": 4,
+      "documented_column_count": 4,
+      "generic_table_test_ids": [],
+      "generic_test_count": 8,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.no_future_dates_brnz_example_created_at.f095200519",
+        "test.dbt_sqlserver_project.no_future_dates_brnz_example_updated_at.44dd82a662",
+        "test.dbt_sqlserver_project.not_null_brnz_example_created_at.6fe38c1ab6",
+        "test.dbt_sqlserver_project.not_null_brnz_example_id.b224909cf4",
+        "test.dbt_sqlserver_project.not_null_brnz_example_name.b5dc5bd70b",
+        "test.dbt_sqlserver_project.not_null_brnz_example_updated_at.764aa40e51",
+        "test.dbt_sqlserver_project.relationships_brnz_example_id__CustomerID__source_adventureworks_Customer_.3bb9210071",
+        "test.dbt_sqlserver_project.unique_brnz_example_id.8f994bf610"
+      ],
+      "name": "brnz_example",
+      "resource_type": "model",
+      "tested_columns_not_declared": [],
+      "unique_id": "model.dbt_sqlserver_project.brnz_example"
+    },
+    {
+      "column_test_ids": {
+        "FinishedGoodsFlag": [
+          "test.dbt_sqlserver_project.accepted_values_brnz_products_FinishedGoodsFlag__False__0__1.3e31f044af",
+          "test.dbt_sqlserver_project.not_null_brnz_products_FinishedGoodsFlag.f54577f0e9"
+        ],
+        "ListPrice": [
+          "test.dbt_sqlserver_project.not_null_brnz_products_ListPrice.a3a60d9f3f",
+          "test.dbt_sqlserver_project.positive_values_brnz_products_ListPrice.3abc1b2a84"
+        ],
+        "MakeFlag": [
+          "test.dbt_sqlserver_project.accepted_values_brnz_products_MakeFlag__False__0__1.e50a6b586b",
+          "test.dbt_sqlserver_project.not_null_brnz_products_MakeFlag.1733c7ca7a"
+        ],
+        "ProductID": [
+          "test.dbt_sqlserver_project.not_null_brnz_products_ProductID.5dc1d8c2d1",
+          "test.dbt_sqlserver_project.unique_brnz_products_ProductID.5a0cc35c4c"
+        ],
+        "ProductName": [
+          "test.dbt_sqlserver_project.not_null_brnz_products_ProductName.9b0084026d"
+        ],
+        "ProductNumber": [
+          "test.dbt_sqlserver_project.not_null_brnz_products_ProductNumber.35d8a151a6",
+          "test.dbt_sqlserver_project.unique_brnz_products_ProductNumber.c195ca97f1"
+        ],
+        "ProductSubcategoryID": [
+          "test.dbt_sqlserver_project.relationships_brnz_products_ProductSubcategoryID__ProductSubcategoryID__source_adventureworks_production_ProductSubcategory_.c0307253c8"
+        ],
+        "SellStartDate": [
+          "test.dbt_sqlserver_project.not_null_brnz_products_SellStartDate.b83f042f3a"
+        ],
+        "StandardCost": [
+          "test.dbt_sqlserver_project.not_null_brnz_products_StandardCost.b7bdb0d949",
+          "test.dbt_sqlserver_project.positive_values_brnz_products_StandardCost.571fa3189e"
+        ],
+        "Weight": [
+          "test.dbt_sqlserver_project.positive_values_brnz_products_Weight.129aa0a798"
+        ],
+        "last_modified_date": [
+          "test.dbt_sqlserver_project.no_future_dates_brnz_products_last_modified_date.9ec9da4a0f",
+          "test.dbt_sqlserver_project.not_null_brnz_products_last_modified_date.3ed861f6de"
+        ]
+      },
+      "columns_without_direct_generic_tests": [
+        "Class",
+        "Color",
+        "DaysToManufacture",
+        "DiscontinuedDate",
+        "ProductCategoryID",
+        "ProductLine",
+        "ProductModelID",
+        "ReorderPoint",
+        "SafetyStockLevel",
+        "SellEndDate",
+        "Size",
+        "SizeUnitMeasureCode",
+        "Style",
+        "SubcategoryName",
+        "WeightUnitMeasureCode"
+      ],
+      "declared_column_count": 26,
+      "directly_tested_columns": [
+        "FinishedGoodsFlag",
+        "ListPrice",
+        "MakeFlag",
+        "ProductID",
+        "ProductName",
+        "ProductNumber",
+        "ProductSubcategoryID",
+        "SellStartDate",
+        "StandardCost",
+        "Weight",
+        "last_modified_date"
+      ],
+      "directly_tested_declared_column_count": 11,
+      "directly_tested_documented_column_count": 11,
+      "documented_column_count": 26,
+      "generic_table_test_ids": [],
+      "generic_test_count": 18,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.accepted_values_brnz_products_FinishedGoodsFlag__False__0__1.3e31f044af",
+        "test.dbt_sqlserver_project.accepted_values_brnz_products_MakeFlag__False__0__1.e50a6b586b",
+        "test.dbt_sqlserver_project.no_future_dates_brnz_products_last_modified_date.9ec9da4a0f",
+        "test.dbt_sqlserver_project.not_null_brnz_products_FinishedGoodsFlag.f54577f0e9",
+        "test.dbt_sqlserver_project.not_null_brnz_products_ListPrice.a3a60d9f3f",
+        "test.dbt_sqlserver_project.not_null_brnz_products_MakeFlag.1733c7ca7a",
+        "test.dbt_sqlserver_project.not_null_brnz_products_ProductID.5dc1d8c2d1",
+        "test.dbt_sqlserver_project.not_null_brnz_products_ProductName.9b0084026d",
+        "test.dbt_sqlserver_project.not_null_brnz_products_ProductNumber.35d8a151a6",
+        "test.dbt_sqlserver_project.not_null_brnz_products_SellStartDate.b83f042f3a",
+        "test.dbt_sqlserver_project.not_null_brnz_products_StandardCost.b7bdb0d949",
+        "test.dbt_sqlserver_project.not_null_brnz_products_last_modified_date.3ed861f6de",
+        "test.dbt_sqlserver_project.positive_values_brnz_products_ListPrice.3abc1b2a84",
+        "test.dbt_sqlserver_project.positive_values_brnz_products_StandardCost.571fa3189e",
+        "test.dbt_sqlserver_project.positive_values_brnz_products_Weight.129aa0a798",
+        "test.dbt_sqlserver_project.relationships_brnz_products_ProductSubcategoryID__ProductSubcategoryID__source_adventureworks_production_ProductSubcategory_.c0307253c8",
+        "test.dbt_sqlserver_project.unique_brnz_products_ProductID.5a0cc35c4c",
+        "test.dbt_sqlserver_project.unique_brnz_products_ProductNumber.c195ca97f1"
+      ],
+      "name": "brnz_products",
+      "resource_type": "model",
+      "tested_columns_not_declared": [],
+      "unique_id": "model.dbt_sqlserver_project.brnz_products"
+    },
+    {
+      "column_test_ids": {
+        "customer_id": [
+          "test.dbt_sqlserver_project.not_null_brnz_sales_orders_customer_id.1f96dbc92f",
+          "test.dbt_sqlserver_project.relationships_brnz_sales_orders_customer_id__CustomerID__ref_brnz_customers_.d2ef2cff87"
+        ],
+        "due_date": [
+          "test.dbt_sqlserver_project.not_null_brnz_sales_orders_due_date.5affddaec9"
+        ],
+        "line_total": [
+          "test.dbt_sqlserver_project.not_null_brnz_sales_orders_line_total.de68d138b9",
+          "test.dbt_sqlserver_project.positive_values_brnz_sales_orders_line_total.ba52d97483"
+        ],
+        "online_order_flag": [
+          "test.dbt_sqlserver_project.accepted_values_brnz_sales_orders_online_order_flag__False__0__1.d3a29226a2",
+          "test.dbt_sqlserver_project.not_null_brnz_sales_orders_online_order_flag.3f8b99f5ff"
+        ],
+        "order_date": [
+          "test.dbt_sqlserver_project.no_future_dates_brnz_sales_orders_order_date.4de84ecb06",
+          "test.dbt_sqlserver_project.not_null_brnz_sales_orders_order_date.1b000db518"
+        ],
+        "order_detail_id": [
+          "test.dbt_sqlserver_project.not_null_brnz_sales_orders_order_detail_id.8dbed006ac"
+        ],
+        "order_qty": [
+          "test.dbt_sqlserver_project.not_null_brnz_sales_orders_order_qty.eee7b0964e",
+          "test.dbt_sqlserver_project.positive_values_brnz_sales_orders_False__order_qty.97bf2df611"
+        ],
+        "product_id": [
+          "test.dbt_sqlserver_project.not_null_brnz_sales_orders_product_id.f668be0ad6",
+          "test.dbt_sqlserver_project.relationships_brnz_sales_orders_product_id__ProductID__ref_brnz_products_.018095e787"
+        ],
+        "sales_order_id": [
+          "test.dbt_sqlserver_project.not_null_brnz_sales_orders_sales_order_id.c364a4c6ca"
+        ],
+        "sales_order_number": [
+          "test.dbt_sqlserver_project.not_null_brnz_sales_orders_sales_order_number.96b6a62860"
+        ],
+        "ship_date": [
+          "test.dbt_sqlserver_project.no_future_dates_brnz_sales_orders_ship_date.2c046ccfc9"
+        ],
+        "status": [
+          "test.dbt_sqlserver_project.accepted_values_brnz_sales_orders_status__False__1__2__3__4__5__6.3a4a5be910",
+          "test.dbt_sqlserver_project.not_null_brnz_sales_orders_status.19d94ddfa7"
+        ],
+        "unit_price": [
+          "test.dbt_sqlserver_project.not_null_brnz_sales_orders_unit_price.f7bd337515",
+          "test.dbt_sqlserver_project.positive_values_brnz_sales_orders_unit_price.f9785e866a"
+        ],
+        "unit_price_discount": [
+          "test.dbt_sqlserver_project.dbt_utils_accepted_range_brnz_sales_orders_unit_price_discount__True__1__0.215790be80",
+          "test.dbt_sqlserver_project.not_null_brnz_sales_orders_unit_price_discount.a7ca924338"
+        ]
+      },
+      "columns_without_direct_generic_tests": [
+        "purchase_order_number",
+        "sales_person_id",
+        "territory_id"
+      ],
+      "declared_column_count": 17,
+      "directly_tested_columns": [
+        "customer_id",
+        "due_date",
+        "line_total",
+        "online_order_flag",
+        "order_date",
+        "order_detail_id",
+        "order_qty",
+        "product_id",
+        "sales_order_id",
+        "sales_order_number",
+        "ship_date",
+        "status",
+        "unit_price",
+        "unit_price_discount"
+      ],
+      "directly_tested_declared_column_count": 14,
+      "directly_tested_documented_column_count": 14,
+      "documented_column_count": 17,
+      "generic_table_test_ids": [
+        "test.dbt_sqlserver_project.dbt_utils_unique_combination_of_columns_brnz_sales_orders_sales_order_id__order_detail_id.c176823902",
+        "test.dbt_sqlserver_project.line_total_matches_brnz_sales_orders_unit_price_discount__line_total__order_qty__0_01__unit_price.97123d372e"
+      ],
+      "generic_test_count": 25,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.accepted_values_brnz_sales_orders_online_order_flag__False__0__1.d3a29226a2",
+        "test.dbt_sqlserver_project.accepted_values_brnz_sales_orders_status__False__1__2__3__4__5__6.3a4a5be910",
+        "test.dbt_sqlserver_project.dbt_utils_accepted_range_brnz_sales_orders_unit_price_discount__True__1__0.215790be80",
+        "test.dbt_sqlserver_project.dbt_utils_unique_combination_of_columns_brnz_sales_orders_sales_order_id__order_detail_id.c176823902",
+        "test.dbt_sqlserver_project.line_total_matches_brnz_sales_orders_unit_price_discount__line_total__order_qty__0_01__unit_price.97123d372e",
+        "test.dbt_sqlserver_project.no_future_dates_brnz_sales_orders_order_date.4de84ecb06",
+        "test.dbt_sqlserver_project.no_future_dates_brnz_sales_orders_ship_date.2c046ccfc9",
+        "test.dbt_sqlserver_project.not_null_brnz_sales_orders_customer_id.1f96dbc92f",
+        "test.dbt_sqlserver_project.not_null_brnz_sales_orders_due_date.5affddaec9",
+        "test.dbt_sqlserver_project.not_null_brnz_sales_orders_line_total.de68d138b9",
+        "test.dbt_sqlserver_project.not_null_brnz_sales_orders_online_order_flag.3f8b99f5ff",
+        "test.dbt_sqlserver_project.not_null_brnz_sales_orders_order_date.1b000db518",
+        "test.dbt_sqlserver_project.not_null_brnz_sales_orders_order_detail_id.8dbed006ac",
+        "test.dbt_sqlserver_project.not_null_brnz_sales_orders_order_qty.eee7b0964e",
+        "test.dbt_sqlserver_project.not_null_brnz_sales_orders_product_id.f668be0ad6",
+        "test.dbt_sqlserver_project.not_null_brnz_sales_orders_sales_order_id.c364a4c6ca",
+        "test.dbt_sqlserver_project.not_null_brnz_sales_orders_sales_order_number.96b6a62860",
+        "test.dbt_sqlserver_project.not_null_brnz_sales_orders_status.19d94ddfa7",
+        "test.dbt_sqlserver_project.not_null_brnz_sales_orders_unit_price.f7bd337515",
+        "test.dbt_sqlserver_project.not_null_brnz_sales_orders_unit_price_discount.a7ca924338",
+        "test.dbt_sqlserver_project.positive_values_brnz_sales_orders_False__order_qty.97bf2df611",
+        "test.dbt_sqlserver_project.positive_values_brnz_sales_orders_line_total.ba52d97483",
+        "test.dbt_sqlserver_project.positive_values_brnz_sales_orders_unit_price.f9785e866a",
+        "test.dbt_sqlserver_project.relationships_brnz_sales_orders_customer_id__CustomerID__ref_brnz_customers_.d2ef2cff87",
+        "test.dbt_sqlserver_project.relationships_brnz_sales_orders_product_id__ProductID__ref_brnz_products_.018095e787"
+      ],
+      "name": "brnz_sales_orders",
+      "resource_type": "model",
+      "tested_columns_not_declared": [],
+      "unique_id": "model.dbt_sqlserver_project.brnz_sales_orders"
+    },
+    {
+      "column_test_ids": {
+        "avg_order_value": [
+          "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_avg_order_value.b33cbe428a"
+        ],
+        "customer_id": [
+          "test.dbt_sqlserver_project.not_null_gld_customer_metrics_customer_id.d4a2f89a39",
+          "test.dbt_sqlserver_project.relationships_gld_customer_metrics_customer_id__customer_id__ref_slvr_customers_.9e893f3437",
+          "test.dbt_sqlserver_project.unique_gld_customer_metrics_customer_id.33651a4cdd"
+        ],
+        "first_order_date": [
+          "test.dbt_sqlserver_project.no_future_dates_gld_customer_metrics_first_order_date.d40bb88c69"
+        ],
+        "last_order_date": [
+          "test.dbt_sqlserver_project.no_future_dates_gld_customer_metrics_last_order_date.c8203afe8a"
+        ],
+        "orders_with_discount": [
+          "test.dbt_sqlserver_project.not_null_gld_customer_metrics_orders_with_discount.1e59e434f5",
+          "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_orders_with_discount.8bd248225c"
+        ],
+        "total_items_purchased": [
+          "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_False__total_items_purchased.dd75a73551"
+        ],
+        "total_orders": [
+          "test.dbt_sqlserver_project.not_null_gld_customer_metrics_total_orders.10ab2e6520",
+          "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_total_orders.2b36186405"
+        ],
+        "total_revenue": [
+          "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_total_revenue.6138ae749e"
+        ]
+      },
+      "columns_without_direct_generic_tests": [
+        "full_name",
+        "territory_id"
+      ],
+      "declared_column_count": 10,
+      "directly_tested_columns": [
+        "avg_order_value",
+        "customer_id",
+        "first_order_date",
+        "last_order_date",
+        "orders_with_discount",
+        "total_items_purchased",
+        "total_orders",
+        "total_revenue"
+      ],
+      "directly_tested_declared_column_count": 8,
+      "directly_tested_documented_column_count": 8,
+      "documented_column_count": 10,
+      "generic_table_test_ids": [],
+      "generic_test_count": 12,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.no_future_dates_gld_customer_metrics_first_order_date.d40bb88c69",
+        "test.dbt_sqlserver_project.no_future_dates_gld_customer_metrics_last_order_date.c8203afe8a",
+        "test.dbt_sqlserver_project.not_null_gld_customer_metrics_customer_id.d4a2f89a39",
+        "test.dbt_sqlserver_project.not_null_gld_customer_metrics_orders_with_discount.1e59e434f5",
+        "test.dbt_sqlserver_project.not_null_gld_customer_metrics_total_orders.10ab2e6520",
+        "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_False__total_items_purchased.dd75a73551",
+        "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_avg_order_value.b33cbe428a",
+        "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_orders_with_discount.8bd248225c",
+        "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_total_orders.2b36186405",
+        "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_total_revenue.6138ae749e",
+        "test.dbt_sqlserver_project.relationships_gld_customer_metrics_customer_id__customer_id__ref_slvr_customers_.9e893f3437",
+        "test.dbt_sqlserver_project.unique_gld_customer_metrics_customer_id.33651a4cdd"
+      ],
+      "name": "gld_customer_metrics",
+      "resource_type": "model",
+      "tested_columns_not_declared": [],
+      "unique_id": "model.dbt_sqlserver_project.gld_customer_metrics"
+    },
+    {
+      "column_test_ids": {
+        "avg_selling_price": [
+          "test.dbt_sqlserver_project.positive_values_gld_product_performance_avg_selling_price.e3a3f5ca81"
+        ],
+        "list_price": [
+          "test.dbt_sqlserver_project.not_null_gld_product_performance_list_price.40e9cdd4fb",
+          "test.dbt_sqlserver_project.positive_values_gld_product_performance_list_price.05f6e2ce88"
+        ],
+        "product_id": [
+          "test.dbt_sqlserver_project.not_null_gld_product_performance_product_id.df0c190397",
+          "test.dbt_sqlserver_project.relationships_gld_product_performance_product_id__product_id__ref_slvr_products_.0ee2f5f758",
+          "test.dbt_sqlserver_project.unique_gld_product_performance_product_id.d1cccc0db8"
+        ],
+        "standard_cost": [
+          "test.dbt_sqlserver_project.not_null_gld_product_performance_standard_cost.c820be9291",
+          "test.dbt_sqlserver_project.positive_values_gld_product_performance_standard_cost.596ca35a58"
+        ],
+        "total_orders": [
+          "test.dbt_sqlserver_project.not_null_gld_product_performance_total_orders.7fb3f79b10",
+          "test.dbt_sqlserver_project.positive_values_gld_product_performance_total_orders.cb25bfce5f"
+        ],
+        "total_quantity_sold": [
+          "test.dbt_sqlserver_project.positive_values_gld_product_performance_False__total_quantity_sold.b8b7e60204"
+        ],
+        "total_revenue": [
+          "test.dbt_sqlserver_project.positive_values_gld_product_performance_total_revenue.89b7c1d628"
+        ]
+      },
+      "columns_without_direct_generic_tests": [
+        "color",
+        "product_name",
+        "profit_margin_pct",
+        "subcategory_name",
+        "total_profit"
+      ],
+      "declared_column_count": 12,
+      "directly_tested_columns": [
+        "avg_selling_price",
+        "list_price",
+        "product_id",
+        "standard_cost",
+        "total_orders",
+        "total_quantity_sold",
+        "total_revenue"
+      ],
+      "directly_tested_declared_column_count": 7,
+      "directly_tested_documented_column_count": 7,
+      "documented_column_count": 12,
+      "generic_table_test_ids": [],
+      "generic_test_count": 12,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.not_null_gld_product_performance_list_price.40e9cdd4fb",
+        "test.dbt_sqlserver_project.not_null_gld_product_performance_product_id.df0c190397",
+        "test.dbt_sqlserver_project.not_null_gld_product_performance_standard_cost.c820be9291",
+        "test.dbt_sqlserver_project.not_null_gld_product_performance_total_orders.7fb3f79b10",
+        "test.dbt_sqlserver_project.positive_values_gld_product_performance_False__total_quantity_sold.b8b7e60204",
+        "test.dbt_sqlserver_project.positive_values_gld_product_performance_avg_selling_price.e3a3f5ca81",
+        "test.dbt_sqlserver_project.positive_values_gld_product_performance_list_price.05f6e2ce88",
+        "test.dbt_sqlserver_project.positive_values_gld_product_performance_standard_cost.596ca35a58",
+        "test.dbt_sqlserver_project.positive_values_gld_product_performance_total_orders.cb25bfce5f",
+        "test.dbt_sqlserver_project.positive_values_gld_product_performance_total_revenue.89b7c1d628",
+        "test.dbt_sqlserver_project.relationships_gld_product_performance_product_id__product_id__ref_slvr_products_.0ee2f5f758",
+        "test.dbt_sqlserver_project.unique_gld_product_performance_product_id.d1cccc0db8"
+      ],
+      "name": "gld_product_performance",
+      "resource_type": "model",
+      "tested_columns_not_declared": [],
+      "unique_id": "model.dbt_sqlserver_project.gld_product_performance"
+    },
+    {
+      "column_test_ids": {
+        "avg_order_line_value": [
+          "test.dbt_sqlserver_project.not_null_gld_sales_summary_avg_order_line_value.2ae2b094ab",
+          "test.dbt_sqlserver_project.positive_values_gld_sales_summary_avg_order_line_value.416092ef95"
+        ],
+        "discounted_revenue": [
+          "test.dbt_sqlserver_project.not_null_gld_sales_summary_discounted_revenue.c3a5346dde",
+          "test.dbt_sqlserver_project.positive_values_gld_sales_summary_discounted_revenue.c3330ee9e3"
+        ],
+        "offline_orders": [
+          "test.dbt_sqlserver_project.not_null_gld_sales_summary_offline_orders.22c6980c7b",
+          "test.dbt_sqlserver_project.positive_values_gld_sales_summary_offline_orders.dd94a1e9fb"
+        ],
+        "online_orders": [
+          "test.dbt_sqlserver_project.not_null_gld_sales_summary_online_orders.25addb062e",
+          "test.dbt_sqlserver_project.positive_values_gld_sales_summary_online_orders.cdd9dfa066"
+        ],
+        "order_date": [
+          "test.dbt_sqlserver_project.no_future_dates_gld_sales_summary_order_date.d14f7f5431",
+          "test.dbt_sqlserver_project.not_null_gld_sales_summary_order_date.d540726f7e",
+          "test.dbt_sqlserver_project.unique_gld_sales_summary_order_date.bb9cac975b"
+        ],
+        "total_items_sold": [
+          "test.dbt_sqlserver_project.not_null_gld_sales_summary_total_items_sold.a07a3a6811",
+          "test.dbt_sqlserver_project.positive_values_gld_sales_summary_False__total_items_sold.3f515fba0b"
+        ],
+        "total_orders": [
+          "test.dbt_sqlserver_project.not_null_gld_sales_summary_total_orders.9b061be9af",
+          "test.dbt_sqlserver_project.positive_values_gld_sales_summary_False__total_orders.bebf850c0a"
+        ],
+        "total_revenue": [
+          "test.dbt_sqlserver_project.not_null_gld_sales_summary_total_revenue.5d28595f39",
+          "test.dbt_sqlserver_project.positive_values_gld_sales_summary_total_revenue.fad48e42e7"
+        ],
+        "unique_customers": [
+          "test.dbt_sqlserver_project.not_null_gld_sales_summary_unique_customers.8acc1ed8b1",
+          "test.dbt_sqlserver_project.positive_values_gld_sales_summary_False__unique_customers.4fd03c2f0a"
+        ]
+      },
+      "columns_without_direct_generic_tests": [],
+      "declared_column_count": 9,
+      "directly_tested_columns": [
+        "avg_order_line_value",
+        "discounted_revenue",
+        "offline_orders",
+        "online_orders",
+        "order_date",
+        "total_items_sold",
+        "total_orders",
+        "total_revenue",
+        "unique_customers"
+      ],
+      "directly_tested_declared_column_count": 9,
+      "directly_tested_documented_column_count": 9,
+      "documented_column_count": 9,
+      "generic_table_test_ids": [],
+      "generic_test_count": 19,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.no_future_dates_gld_sales_summary_order_date.d14f7f5431",
+        "test.dbt_sqlserver_project.not_null_gld_sales_summary_avg_order_line_value.2ae2b094ab",
+        "test.dbt_sqlserver_project.not_null_gld_sales_summary_discounted_revenue.c3a5346dde",
+        "test.dbt_sqlserver_project.not_null_gld_sales_summary_offline_orders.22c6980c7b",
+        "test.dbt_sqlserver_project.not_null_gld_sales_summary_online_orders.25addb062e",
+        "test.dbt_sqlserver_project.not_null_gld_sales_summary_order_date.d540726f7e",
+        "test.dbt_sqlserver_project.not_null_gld_sales_summary_total_items_sold.a07a3a6811",
+        "test.dbt_sqlserver_project.not_null_gld_sales_summary_total_orders.9b061be9af",
+        "test.dbt_sqlserver_project.not_null_gld_sales_summary_total_revenue.5d28595f39",
+        "test.dbt_sqlserver_project.not_null_gld_sales_summary_unique_customers.8acc1ed8b1",
+        "test.dbt_sqlserver_project.positive_values_gld_sales_summary_False__total_items_sold.3f515fba0b",
+        "test.dbt_sqlserver_project.positive_values_gld_sales_summary_False__total_orders.bebf850c0a",
+        "test.dbt_sqlserver_project.positive_values_gld_sales_summary_False__unique_customers.4fd03c2f0a",
+        "test.dbt_sqlserver_project.positive_values_gld_sales_summary_avg_order_line_value.416092ef95",
+        "test.dbt_sqlserver_project.positive_values_gld_sales_summary_discounted_revenue.c3330ee9e3",
+        "test.dbt_sqlserver_project.positive_values_gld_sales_summary_offline_orders.dd94a1e9fb",
+        "test.dbt_sqlserver_project.positive_values_gld_sales_summary_online_orders.cdd9dfa066",
+        "test.dbt_sqlserver_project.positive_values_gld_sales_summary_total_revenue.fad48e42e7",
+        "test.dbt_sqlserver_project.unique_gld_sales_summary_order_date.bb9cac975b"
+      ],
+      "name": "gld_sales_summary",
+      "resource_type": "model",
+      "tested_columns_not_declared": [],
+      "unique_id": "model.dbt_sqlserver_project.gld_sales_summary"
+    },
+    {
+      "column_test_ids": {
+        "customer_id": [
+          "test.dbt_sqlserver_project.not_null_slvr_customers_customer_id.f907cb8275",
+          "test.dbt_sqlserver_project.relationships_slvr_customers_customer_id__CustomerID__ref_brnz_customers_.f19857803d",
+          "test.dbt_sqlserver_project.unique_slvr_customers_customer_id.cdbb647600"
+        ],
+        "email_promotion": [
+          "test.dbt_sqlserver_project.accepted_values_slvr_customers_email_promotion__False__0__1__2.40b3571cc0"
+        ],
+        "full_name": [
+          "test.dbt_sqlserver_project.not_null_slvr_customers_full_name.ba07d7650d"
+        ],
+        "last_modified_date": [
+          "test.dbt_sqlserver_project.no_future_dates_slvr_customers_last_modified_date.5a0181c767",
+          "test.dbt_sqlserver_project.not_null_slvr_customers_last_modified_date.06ea238716"
+        ]
+      },
+      "columns_without_direct_generic_tests": [
+        "first_name",
+        "last_name",
+        "store_id",
+        "territory_id"
+      ],
+      "declared_column_count": 8,
+      "directly_tested_columns": [
+        "customer_id",
+        "email_promotion",
+        "full_name",
+        "last_modified_date"
+      ],
+      "directly_tested_declared_column_count": 4,
+      "directly_tested_documented_column_count": 4,
+      "documented_column_count": 8,
+      "generic_table_test_ids": [],
+      "generic_test_count": 7,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.accepted_values_slvr_customers_email_promotion__False__0__1__2.40b3571cc0",
+        "test.dbt_sqlserver_project.no_future_dates_slvr_customers_last_modified_date.5a0181c767",
+        "test.dbt_sqlserver_project.not_null_slvr_customers_customer_id.f907cb8275",
+        "test.dbt_sqlserver_project.not_null_slvr_customers_full_name.ba07d7650d",
+        "test.dbt_sqlserver_project.not_null_slvr_customers_last_modified_date.06ea238716",
+        "test.dbt_sqlserver_project.relationships_slvr_customers_customer_id__CustomerID__ref_brnz_customers_.f19857803d",
+        "test.dbt_sqlserver_project.unique_slvr_customers_customer_id.cdbb647600"
+      ],
+      "name": "slvr_customers",
+      "resource_type": "model",
+      "tested_columns_not_declared": [],
+      "unique_id": "model.dbt_sqlserver_project.slvr_customers"
+    },
+    {
+      "column_test_ids": {
+        "is_discontinued": [
+          "test.dbt_sqlserver_project.accepted_values_slvr_products_is_discontinued__False__0__1.6564af0d02",
+          "test.dbt_sqlserver_project.not_null_slvr_products_is_discontinued.013bbf468d"
+        ],
+        "last_modified_date": [
+          "test.dbt_sqlserver_project.no_future_dates_slvr_products_last_modified_date.7e4c8e04ed",
+          "test.dbt_sqlserver_project.not_null_slvr_products_last_modified_date.b127467eff"
+        ],
+        "list_price": [
+          "test.dbt_sqlserver_project.not_null_slvr_products_list_price.7131a73076",
+          "test.dbt_sqlserver_project.positive_values_slvr_products_list_price.2ba4c5e4de"
+        ],
+        "product_id": [
+          "test.dbt_sqlserver_project.not_null_slvr_products_product_id.e754cc1551",
+          "test.dbt_sqlserver_project.relationships_slvr_products_product_id__ProductID__ref_brnz_products_.3f39920534",
+          "test.dbt_sqlserver_project.unique_slvr_products_product_id.5ff76b9e3f"
+        ],
+        "product_name": [
+          "test.dbt_sqlserver_project.not_null_slvr_products_product_name.2a749932be"
+        ],
+        "product_number": [
+          "test.dbt_sqlserver_project.not_null_slvr_products_product_number.8f84315cd4",
+          "test.dbt_sqlserver_project.unique_slvr_products_product_number.f469a7ea7f"
+        ],
+        "sell_start_date": [
+          "test.dbt_sqlserver_project.not_null_slvr_products_sell_start_date.272abaacd4"
+        ],
+        "standard_cost": [
+          "test.dbt_sqlserver_project.not_null_slvr_products_standard_cost.f556c376b2",
+          "test.dbt_sqlserver_project.positive_values_slvr_products_standard_cost.95d0f3494a"
+        ],
+        "weight": [
+          "test.dbt_sqlserver_project.not_null_slvr_products_weight.6ff791e39b",
+          "test.dbt_sqlserver_project.positive_values_slvr_products_weight.3f8f6904e5"
+        ]
+      },
+      "columns_without_direct_generic_tests": [
+        "category_id",
+        "class",
+        "color",
+        "product_line",
+        "sell_end_date",
+        "size",
+        "style",
+        "subcategory_id",
+        "subcategory_name"
+      ],
+      "declared_column_count": 18,
+      "directly_tested_columns": [
+        "is_discontinued",
+        "last_modified_date",
+        "list_price",
+        "product_id",
+        "product_name",
+        "product_number",
+        "sell_start_date",
+        "standard_cost",
+        "weight"
+      ],
+      "directly_tested_declared_column_count": 9,
+      "directly_tested_documented_column_count": 9,
+      "documented_column_count": 18,
+      "generic_table_test_ids": [],
+      "generic_test_count": 17,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.accepted_values_slvr_products_is_discontinued__False__0__1.6564af0d02",
+        "test.dbt_sqlserver_project.no_future_dates_slvr_products_last_modified_date.7e4c8e04ed",
+        "test.dbt_sqlserver_project.not_null_slvr_products_is_discontinued.013bbf468d",
+        "test.dbt_sqlserver_project.not_null_slvr_products_last_modified_date.b127467eff",
+        "test.dbt_sqlserver_project.not_null_slvr_products_list_price.7131a73076",
+        "test.dbt_sqlserver_project.not_null_slvr_products_product_id.e754cc1551",
+        "test.dbt_sqlserver_project.not_null_slvr_products_product_name.2a749932be",
+        "test.dbt_sqlserver_project.not_null_slvr_products_product_number.8f84315cd4",
+        "test.dbt_sqlserver_project.not_null_slvr_products_sell_start_date.272abaacd4",
+        "test.dbt_sqlserver_project.not_null_slvr_products_standard_cost.f556c376b2",
+        "test.dbt_sqlserver_project.not_null_slvr_products_weight.6ff791e39b",
+        "test.dbt_sqlserver_project.positive_values_slvr_products_list_price.2ba4c5e4de",
+        "test.dbt_sqlserver_project.positive_values_slvr_products_standard_cost.95d0f3494a",
+        "test.dbt_sqlserver_project.positive_values_slvr_products_weight.3f8f6904e5",
+        "test.dbt_sqlserver_project.relationships_slvr_products_product_id__ProductID__ref_brnz_products_.3f39920534",
+        "test.dbt_sqlserver_project.unique_slvr_products_product_id.5ff76b9e3f",
+        "test.dbt_sqlserver_project.unique_slvr_products_product_number.f469a7ea7f"
+      ],
+      "name": "slvr_products",
+      "resource_type": "model",
+      "tested_columns_not_declared": [],
+      "unique_id": "model.dbt_sqlserver_project.slvr_products"
+    },
+    {
+      "column_test_ids": {
+        "customer_id": [
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_customer_id.d09d341c56",
+          "test.dbt_sqlserver_project.relationships_slvr_sales_orders_customer_id__customer_id__ref_slvr_customers_.b24b2a6499"
+        ],
+        "due_date": [
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_due_date.3b1a20c08a"
+        ],
+        "effective_unit_price": [
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_effective_unit_price.0061faf431",
+          "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_effective_unit_price.9b81e5d447"
+        ],
+        "gross_amount": [
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_gross_amount.0e5f8dd4f1",
+          "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_gross_amount.cf94cf2ced"
+        ],
+        "has_discount": [
+          "test.dbt_sqlserver_project.accepted_values_slvr_sales_orders_has_discount__False__0__1.faa2bc9bc6",
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_has_discount.4246668617"
+        ],
+        "line_total": [
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_line_total.1365eff03d",
+          "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_line_total.8277dc9759"
+        ],
+        "order_channel": [
+          "test.dbt_sqlserver_project.accepted_values_slvr_sales_orders_order_channel__Online__Offline.ee997dc884",
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_order_channel.ce5ee35910"
+        ],
+        "order_date": [
+          "test.dbt_sqlserver_project.no_future_dates_slvr_sales_orders_order_date.7980683803",
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_order_date.128179f335"
+        ],
+        "order_detail_id": [
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_order_detail_id.71e8a48f53"
+        ],
+        "order_qty": [
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_order_qty.cba24a0757",
+          "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_False__order_qty.b6d1b36f8a"
+        ],
+        "product_id": [
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_product_id.104bd2e395",
+          "test.dbt_sqlserver_project.relationships_slvr_sales_orders_product_id__product_id__ref_slvr_products_.4c5a809111"
+        ],
+        "sales_order_id": [
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_sales_order_id.0f82d3dab4"
+        ],
+        "sales_order_number": [
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_sales_order_number.96366642aa"
+        ],
+        "ship_date": [
+          "test.dbt_sqlserver_project.no_future_dates_slvr_sales_orders_ship_date.0ade2f6ef6"
+        ],
+        "status": [
+          "test.dbt_sqlserver_project.accepted_values_slvr_sales_orders_status__False__1__2__3__4__5__6.65dfb0c708",
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_status.a575cbcf4a"
+        ],
+        "unit_price": [
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_unit_price.9f95ca9319",
+          "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_unit_price.bc80402074"
+        ],
+        "unit_price_discount": [
+          "test.dbt_sqlserver_project.dbt_utils_accepted_range_slvr_sales_orders_unit_price_discount__True__1__0.f519480dd6",
+          "test.dbt_sqlserver_project.not_null_slvr_sales_orders_unit_price_discount.b767a902ff"
+        ]
+      },
+      "columns_without_direct_generic_tests": [
+        "purchase_order_number",
+        "sales_person_id",
+        "territory_id"
+      ],
+      "declared_column_count": 20,
+      "directly_tested_columns": [
+        "customer_id",
+        "due_date",
+        "effective_unit_price",
+        "gross_amount",
+        "has_discount",
+        "line_total",
+        "order_channel",
+        "order_date",
+        "order_detail_id",
+        "order_qty",
+        "product_id",
+        "sales_order_id",
+        "sales_order_number",
+        "ship_date",
+        "status",
+        "unit_price",
+        "unit_price_discount"
+      ],
+      "directly_tested_declared_column_count": 17,
+      "directly_tested_documented_column_count": 17,
+      "documented_column_count": 20,
+      "generic_table_test_ids": [
+        "test.dbt_sqlserver_project.dbt_utils_unique_combination_of_columns_slvr_sales_orders_sales_order_id__order_detail_id.9ffe017cfc",
+        "test.dbt_sqlserver_project.line_total_matches_slvr_sales_orders_unit_price_discount__line_total__order_qty__0_01__unit_price.d537dfc8b2"
+      ],
+      "generic_test_count": 31,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.accepted_values_slvr_sales_orders_has_discount__False__0__1.faa2bc9bc6",
+        "test.dbt_sqlserver_project.accepted_values_slvr_sales_orders_order_channel__Online__Offline.ee997dc884",
+        "test.dbt_sqlserver_project.accepted_values_slvr_sales_orders_status__False__1__2__3__4__5__6.65dfb0c708",
+        "test.dbt_sqlserver_project.dbt_utils_accepted_range_slvr_sales_orders_unit_price_discount__True__1__0.f519480dd6",
+        "test.dbt_sqlserver_project.dbt_utils_unique_combination_of_columns_slvr_sales_orders_sales_order_id__order_detail_id.9ffe017cfc",
+        "test.dbt_sqlserver_project.line_total_matches_slvr_sales_orders_unit_price_discount__line_total__order_qty__0_01__unit_price.d537dfc8b2",
+        "test.dbt_sqlserver_project.no_future_dates_slvr_sales_orders_order_date.7980683803",
+        "test.dbt_sqlserver_project.no_future_dates_slvr_sales_orders_ship_date.0ade2f6ef6",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_customer_id.d09d341c56",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_due_date.3b1a20c08a",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_effective_unit_price.0061faf431",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_gross_amount.0e5f8dd4f1",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_has_discount.4246668617",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_line_total.1365eff03d",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_order_channel.ce5ee35910",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_order_date.128179f335",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_order_detail_id.71e8a48f53",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_order_qty.cba24a0757",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_product_id.104bd2e395",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_sales_order_id.0f82d3dab4",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_sales_order_number.96366642aa",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_status.a575cbcf4a",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_unit_price.9f95ca9319",
+        "test.dbt_sqlserver_project.not_null_slvr_sales_orders_unit_price_discount.b767a902ff",
+        "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_False__order_qty.b6d1b36f8a",
+        "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_effective_unit_price.9b81e5d447",
+        "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_gross_amount.cf94cf2ced",
+        "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_line_total.8277dc9759",
+        "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_unit_price.bc80402074",
+        "test.dbt_sqlserver_project.relationships_slvr_sales_orders_customer_id__customer_id__ref_slvr_customers_.b24b2a6499",
+        "test.dbt_sqlserver_project.relationships_slvr_sales_orders_product_id__product_id__ref_slvr_products_.4c5a809111"
+      ],
+      "name": "slvr_sales_orders",
+      "resource_type": "model",
+      "tested_columns_not_declared": [],
+      "unique_id": "model.dbt_sqlserver_project.slvr_sales_orders"
+    }
+  ],
+  "problems": [],
+  "schema_version": 1,
+  "sources": [
+    {
+      "column_test_ids": {
+        "CustomerID": [
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_Customer_CustomerID.4992864888",
+          "test.dbt_sqlserver_project.source_unique_adventureworks_Customer_CustomerID.d07a9e0ff5"
+        ],
+        "ModifiedDate": [
+          "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_Customer_ModifiedDate.7a1c750a56",
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_Customer_ModifiedDate.52b6a323f7"
+        ],
+        "PersonID": [
+          "test.dbt_sqlserver_project.source_relationships_adventureworks_Customer_PersonID__BusinessEntityID__source_adventureworks_person_Person_.3f1c564b2b"
+        ]
+      },
+      "columns_without_direct_generic_tests": [
+        "AccountNumber",
+        "StoreID",
+        "TerritoryID"
+      ],
+      "declared_column_count": 6,
+      "directly_tested_columns": [
+        "CustomerID",
+        "ModifiedDate",
+        "PersonID"
+      ],
+      "directly_tested_declared_column_count": 3,
+      "directly_tested_documented_column_count": 3,
+      "documented_column_count": 6,
+      "generic_table_test_ids": [],
+      "generic_test_count": 5,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_Customer_ModifiedDate.7a1c750a56",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_Customer_CustomerID.4992864888",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_Customer_ModifiedDate.52b6a323f7",
+        "test.dbt_sqlserver_project.source_relationships_adventureworks_Customer_PersonID__BusinessEntityID__source_adventureworks_person_Person_.3f1c564b2b",
+        "test.dbt_sqlserver_project.source_unique_adventureworks_Customer_CustomerID.d07a9e0ff5"
+      ],
+      "name": "Customer",
+      "resource_type": "source",
+      "source_name": "adventureworks",
+      "tested_columns_not_declared": [],
+      "unique_id": "source.dbt_sqlserver_project.adventureworks.Customer",
+      "used_by_model_ancestry": true
+    },
+    {
+      "column_test_ids": {
+        "ModifiedDate": [
+          "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_SalesOrderDetail_ModifiedDate.5809c56e4d",
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderDetail_ModifiedDate.26292b8558"
+        ],
+        "ProductID": [
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderDetail_ProductID.864143d4c1",
+          "test.dbt_sqlserver_project.source_relationships_adventureworks_SalesOrderDetail_ProductID__ProductID__source_adventureworks_production_Product_.68d8c420ab"
+        ],
+        "SalesOrderDetailID": [
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderDetail_SalesOrderDetailID.4ae7748454"
+        ],
+        "SalesOrderID": [
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderDetail_SalesOrderID.a2371e5e5b",
+          "test.dbt_sqlserver_project.source_relationships_adventureworks_SalesOrderDetail_SalesOrderID__SalesOrderID__source_adventureworks_SalesOrderHeader_.236706fef7"
+        ]
+      },
+      "columns_without_direct_generic_tests": [
+        "LineTotal",
+        "OrderQty",
+        "UnitPrice",
+        "UnitPriceDiscount"
+      ],
+      "declared_column_count": 8,
+      "directly_tested_columns": [
+        "ModifiedDate",
+        "ProductID",
+        "SalesOrderDetailID",
+        "SalesOrderID"
+      ],
+      "directly_tested_declared_column_count": 4,
+      "directly_tested_documented_column_count": 4,
+      "documented_column_count": 8,
+      "generic_table_test_ids": [
+        "test.dbt_sqlserver_project.dbt_utils_source_unique_combination_of_columns_adventureworks_SalesOrderDetail_SalesOrderID__SalesOrderDetailID.50e26e4a28"
+      ],
+      "generic_test_count": 8,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.dbt_utils_source_unique_combination_of_columns_adventureworks_SalesOrderDetail_SalesOrderID__SalesOrderDetailID.50e26e4a28",
+        "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_SalesOrderDetail_ModifiedDate.5809c56e4d",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderDetail_ModifiedDate.26292b8558",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderDetail_ProductID.864143d4c1",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderDetail_SalesOrderDetailID.4ae7748454",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderDetail_SalesOrderID.a2371e5e5b",
+        "test.dbt_sqlserver_project.source_relationships_adventureworks_SalesOrderDetail_ProductID__ProductID__source_adventureworks_production_Product_.68d8c420ab",
+        "test.dbt_sqlserver_project.source_relationships_adventureworks_SalesOrderDetail_SalesOrderID__SalesOrderID__source_adventureworks_SalesOrderHeader_.236706fef7"
+      ],
+      "name": "SalesOrderDetail",
+      "resource_type": "source",
+      "source_name": "adventureworks",
+      "tested_columns_not_declared": [],
+      "unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail",
+      "used_by_model_ancestry": true
+    },
+    {
+      "column_test_ids": {
+        "CustomerID": [
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_CustomerID.0d6722170e",
+          "test.dbt_sqlserver_project.source_relationships_adventureworks_SalesOrderHeader_CustomerID__CustomerID__source_adventureworks_Customer_.5b94e10bfb"
+        ],
+        "DueDate": [
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_DueDate.80ee23a4fa"
+        ],
+        "ModifiedDate": [
+          "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_SalesOrderHeader_ModifiedDate.c21d965600",
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_ModifiedDate.efae4c2419"
+        ],
+        "OnlineOrderFlag": [
+          "test.dbt_sqlserver_project.source_accepted_values_adventureworks_SalesOrderHeader_OnlineOrderFlag__False__0__1.a721981e68",
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_OnlineOrderFlag.4f5b376933"
+        ],
+        "OrderDate": [
+          "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_SalesOrderHeader_OrderDate.7c92217313",
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_OrderDate.09c2d60867"
+        ],
+        "SalesOrderID": [
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_SalesOrderID.e8bd02805d",
+          "test.dbt_sqlserver_project.source_unique_adventureworks_SalesOrderHeader_SalesOrderID.d273e9a8a1"
+        ],
+        "ShipDate": [
+          "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_SalesOrderHeader_ShipDate.9edcc7cf3e"
+        ],
+        "Status": [
+          "test.dbt_sqlserver_project.source_accepted_values_adventureworks_SalesOrderHeader_Status__False__1__2__3__4__5__6.8ee0791735",
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_Status.aea243da19"
+        ]
+      },
+      "columns_without_direct_generic_tests": [
+        "PurchaseOrderNumber",
+        "SalesOrderNumber",
+        "SalesPersonID",
+        "TerritoryID"
+      ],
+      "declared_column_count": 12,
+      "directly_tested_columns": [
+        "CustomerID",
+        "DueDate",
+        "ModifiedDate",
+        "OnlineOrderFlag",
+        "OrderDate",
+        "SalesOrderID",
+        "ShipDate",
+        "Status"
+      ],
+      "directly_tested_declared_column_count": 8,
+      "directly_tested_documented_column_count": 8,
+      "documented_column_count": 12,
+      "generic_table_test_ids": [],
+      "generic_test_count": 14,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.source_accepted_values_adventureworks_SalesOrderHeader_OnlineOrderFlag__False__0__1.a721981e68",
+        "test.dbt_sqlserver_project.source_accepted_values_adventureworks_SalesOrderHeader_Status__False__1__2__3__4__5__6.8ee0791735",
+        "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_SalesOrderHeader_ModifiedDate.c21d965600",
+        "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_SalesOrderHeader_OrderDate.7c92217313",
+        "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_SalesOrderHeader_ShipDate.9edcc7cf3e",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_CustomerID.0d6722170e",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_DueDate.80ee23a4fa",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_ModifiedDate.efae4c2419",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_OnlineOrderFlag.4f5b376933",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_OrderDate.09c2d60867",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_SalesOrderID.e8bd02805d",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_Status.aea243da19",
+        "test.dbt_sqlserver_project.source_relationships_adventureworks_SalesOrderHeader_CustomerID__CustomerID__source_adventureworks_Customer_.5b94e10bfb",
+        "test.dbt_sqlserver_project.source_unique_adventureworks_SalesOrderHeader_SalesOrderID.d273e9a8a1"
+      ],
+      "name": "SalesOrderHeader",
+      "resource_type": "source",
+      "source_name": "adventureworks",
+      "tested_columns_not_declared": [],
+      "unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "used_by_model_ancestry": true
+    },
+    {
+      "column_test_ids": {
+        "BusinessEntityID": [
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_person_Person_BusinessEntityID.df1f9ef21d",
+          "test.dbt_sqlserver_project.source_unique_adventureworks_person_Person_BusinessEntityID.f421c700f0"
+        ],
+        "EmailPromotion": [
+          "test.dbt_sqlserver_project.source_accepted_values_adventureworks_person_Person_EmailPromotion__False__0__1__2.1d7a195306",
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_person_Person_EmailPromotion.e8f94a1104"
+        ],
+        "ModifiedDate": [
+          "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_person_Person_ModifiedDate.702fce38cc",
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_person_Person_ModifiedDate.1eb6bf8422"
+        ]
+      },
+      "columns_without_direct_generic_tests": [
+        "FirstName",
+        "LastName"
+      ],
+      "declared_column_count": 5,
+      "directly_tested_columns": [
+        "BusinessEntityID",
+        "EmailPromotion",
+        "ModifiedDate"
+      ],
+      "directly_tested_declared_column_count": 3,
+      "directly_tested_documented_column_count": 3,
+      "documented_column_count": 5,
+      "generic_table_test_ids": [],
+      "generic_test_count": 6,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.source_accepted_values_adventureworks_person_Person_EmailPromotion__False__0__1__2.1d7a195306",
+        "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_person_Person_ModifiedDate.702fce38cc",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_person_Person_BusinessEntityID.df1f9ef21d",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_person_Person_EmailPromotion.e8f94a1104",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_person_Person_ModifiedDate.1eb6bf8422",
+        "test.dbt_sqlserver_project.source_unique_adventureworks_person_Person_BusinessEntityID.f421c700f0"
+      ],
+      "name": "Person",
+      "resource_type": "source",
+      "source_name": "adventureworks_person",
+      "tested_columns_not_declared": [],
+      "unique_id": "source.dbt_sqlserver_project.adventureworks_person.Person",
+      "used_by_model_ancestry": true
+    },
+    {
+      "column_test_ids": {
+        "ModifiedDate": [
+          "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_production_Product_ModifiedDate.5790f4f5aa",
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_production_Product_ModifiedDate.e1b882561b"
+        ],
+        "ProductID": [
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_production_Product_ProductID.18310eef70",
+          "test.dbt_sqlserver_project.source_unique_adventureworks_production_Product_ProductID.c3e23bf4b2"
+        ],
+        "ProductSubcategoryID": [
+          "test.dbt_sqlserver_project.source_relationships_adventureworks_production_Product_ProductSubcategoryID__ProductSubcategoryID__source_adventureworks_production_ProductSubcategory_.94018a74ad"
+        ]
+      },
+      "columns_without_direct_generic_tests": [
+        "Class",
+        "Color",
+        "DaysToManufacture",
+        "DiscontinuedDate",
+        "FinishedGoodsFlag",
+        "ListPrice",
+        "MakeFlag",
+        "Name",
+        "ProductLine",
+        "ProductModelID",
+        "ProductNumber",
+        "ReorderPoint",
+        "SafetyStockLevel",
+        "SellEndDate",
+        "SellStartDate",
+        "Size",
+        "SizeUnitMeasureCode",
+        "StandardCost",
+        "Style",
+        "Weight",
+        "WeightUnitMeasureCode"
+      ],
+      "declared_column_count": 24,
+      "directly_tested_columns": [
+        "ModifiedDate",
+        "ProductID",
+        "ProductSubcategoryID"
+      ],
+      "directly_tested_declared_column_count": 3,
+      "directly_tested_documented_column_count": 3,
+      "documented_column_count": 24,
+      "generic_table_test_ids": [],
+      "generic_test_count": 5,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_production_Product_ModifiedDate.5790f4f5aa",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_production_Product_ModifiedDate.e1b882561b",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_production_Product_ProductID.18310eef70",
+        "test.dbt_sqlserver_project.source_relationships_adventureworks_production_Product_ProductSubcategoryID__ProductSubcategoryID__source_adventureworks_production_ProductSubcategory_.94018a74ad",
+        "test.dbt_sqlserver_project.source_unique_adventureworks_production_Product_ProductID.c3e23bf4b2"
+      ],
+      "name": "Product",
+      "resource_type": "source",
+      "source_name": "adventureworks_production",
+      "tested_columns_not_declared": [],
+      "unique_id": "source.dbt_sqlserver_project.adventureworks_production.Product",
+      "used_by_model_ancestry": true
+    },
+    {
+      "column_test_ids": {
+        "ModifiedDate": [
+          "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_production_ProductSubcategory_ModifiedDate.e0783d3783",
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_production_ProductSubcategory_ModifiedDate.3f5b251a47"
+        ],
+        "ProductSubcategoryID": [
+          "test.dbt_sqlserver_project.source_not_null_adventureworks_production_ProductSubcategory_ProductSubcategoryID.3dabbc9b31",
+          "test.dbt_sqlserver_project.source_unique_adventureworks_production_ProductSubcategory_ProductSubcategoryID.b495e63d23"
+        ]
+      },
+      "columns_without_direct_generic_tests": [
+        "Name",
+        "ProductCategoryID"
+      ],
+      "declared_column_count": 4,
+      "directly_tested_columns": [
+        "ModifiedDate",
+        "ProductSubcategoryID"
+      ],
+      "directly_tested_declared_column_count": 2,
+      "directly_tested_documented_column_count": 2,
+      "documented_column_count": 4,
+      "generic_table_test_ids": [],
+      "generic_test_count": 4,
+      "generic_test_ids": [
+        "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_production_ProductSubcategory_ModifiedDate.e0783d3783",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_production_ProductSubcategory_ModifiedDate.3f5b251a47",
+        "test.dbt_sqlserver_project.source_not_null_adventureworks_production_ProductSubcategory_ProductSubcategoryID.3dabbc9b31",
+        "test.dbt_sqlserver_project.source_unique_adventureworks_production_ProductSubcategory_ProductSubcategoryID.b495e63d23"
+      ],
+      "name": "ProductSubcategory",
+      "resource_type": "source",
+      "source_name": "adventureworks_production",
+      "tested_columns_not_declared": [],
+      "unique_id": "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory",
+      "used_by_model_ancestry": true
+    },
+    {
+      "column_test_ids": {},
+      "columns_without_direct_generic_tests": [],
+      "declared_column_count": 0,
+      "directly_tested_columns": [],
+      "directly_tested_declared_column_count": 0,
+      "directly_tested_documented_column_count": 0,
+      "documented_column_count": 0,
+      "generic_table_test_ids": [],
+      "generic_test_count": 0,
+      "generic_test_ids": [],
+      "name": "Customer",
+      "resource_type": "source",
+      "source_name": "raw",
+      "tested_columns_not_declared": [],
+      "unique_id": "source.dbt_sqlserver_project.raw.Customer",
+      "used_by_model_ancestry": false
+    },
+    {
+      "column_test_ids": {},
+      "columns_without_direct_generic_tests": [],
+      "declared_column_count": 0,
+      "directly_tested_columns": [],
+      "directly_tested_declared_column_count": 0,
+      "directly_tested_documented_column_count": 0,
+      "documented_column_count": 0,
+      "generic_table_test_ids": [],
+      "generic_test_count": 0,
+      "generic_test_ids": [],
+      "name": "Person",
+      "resource_type": "source",
+      "source_name": "raw",
+      "tested_columns_not_declared": [],
+      "unique_id": "source.dbt_sqlserver_project.raw.Person",
+      "used_by_model_ancestry": false
+    },
+    {
+      "column_test_ids": {},
+      "columns_without_direct_generic_tests": [],
+      "declared_column_count": 0,
+      "directly_tested_columns": [],
+      "directly_tested_declared_column_count": 0,
+      "directly_tested_documented_column_count": 0,
+      "documented_column_count": 0,
+      "generic_table_test_ids": [],
+      "generic_test_count": 0,
+      "generic_test_ids": [],
+      "name": "Product",
+      "resource_type": "source",
+      "source_name": "raw",
+      "tested_columns_not_declared": [],
+      "unique_id": "source.dbt_sqlserver_project.raw.Product",
+      "used_by_model_ancestry": false
+    },
+    {
+      "column_test_ids": {},
+      "columns_without_direct_generic_tests": [],
+      "declared_column_count": 0,
+      "directly_tested_columns": [],
+      "directly_tested_declared_column_count": 0,
+      "directly_tested_documented_column_count": 0,
+      "documented_column_count": 0,
+      "generic_table_test_ids": [],
+      "generic_test_count": 0,
+      "generic_test_ids": [],
+      "name": "ProductCategory",
+      "resource_type": "source",
+      "source_name": "raw",
+      "tested_columns_not_declared": [],
+      "unique_id": "source.dbt_sqlserver_project.raw.ProductCategory",
+      "used_by_model_ancestry": false
+    },
+    {
+      "column_test_ids": {},
+      "columns_without_direct_generic_tests": [],
+      "declared_column_count": 0,
+      "directly_tested_columns": [],
+      "directly_tested_declared_column_count": 0,
+      "directly_tested_documented_column_count": 0,
+      "documented_column_count": 0,
+      "generic_table_test_ids": [],
+      "generic_test_count": 0,
+      "generic_test_ids": [],
+      "name": "ProductSubcategory",
+      "resource_type": "source",
+      "source_name": "raw",
+      "tested_columns_not_declared": [],
+      "unique_id": "source.dbt_sqlserver_project.raw.ProductSubcategory",
+      "used_by_model_ancestry": false
+    },
+    {
+      "column_test_ids": {},
+      "columns_without_direct_generic_tests": [],
+      "declared_column_count": 0,
+      "directly_tested_columns": [],
+      "directly_tested_declared_column_count": 0,
+      "directly_tested_documented_column_count": 0,
+      "documented_column_count": 0,
+      "generic_table_test_ids": [],
+      "generic_test_count": 0,
+      "generic_test_ids": [],
+      "name": "SalesOrderDetail",
+      "resource_type": "source",
+      "source_name": "raw",
+      "tested_columns_not_declared": [],
+      "unique_id": "source.dbt_sqlserver_project.raw.SalesOrderDetail",
+      "used_by_model_ancestry": false
+    },
+    {
+      "column_test_ids": {},
+      "columns_without_direct_generic_tests": [],
+      "declared_column_count": 0,
+      "directly_tested_columns": [],
+      "directly_tested_declared_column_count": 0,
+      "directly_tested_documented_column_count": 0,
+      "documented_column_count": 0,
+      "generic_table_test_ids": [],
+      "generic_test_count": 0,
+      "generic_test_ids": [],
+      "name": "SalesOrderHeader",
+      "resource_type": "source",
+      "source_name": "raw",
+      "tested_columns_not_declared": [],
+      "unique_id": "source.dbt_sqlserver_project.raw.SalesOrderHeader",
+      "used_by_model_ancestry": false
+    }
+  ],
+  "status": "passed",
+  "tests": [
+    {
+      "column_name": "EmailPromotion",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_customers"
+      ],
+      "kind": "generic",
+      "name": "accepted_values_brnz_customers_EmailPromotion__False__0__1__2",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_customers",
+      "test_type": "accepted_values",
+      "unique_id": "test.dbt_sqlserver_project.accepted_values_brnz_customers_EmailPromotion__False__0__1__2.bc0fd2815d"
+    },
+    {
+      "column_name": "FinishedGoodsFlag",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "accepted_values_brnz_products_FinishedGoodsFlag__False__0__1",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "accepted_values",
+      "unique_id": "test.dbt_sqlserver_project.accepted_values_brnz_products_FinishedGoodsFlag__False__0__1.3e31f044af"
+    },
+    {
+      "column_name": "MakeFlag",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "accepted_values_brnz_products_MakeFlag__False__0__1",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "accepted_values",
+      "unique_id": "test.dbt_sqlserver_project.accepted_values_brnz_products_MakeFlag__False__0__1.e50a6b586b"
+    },
+    {
+      "column_name": "online_order_flag",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "accepted_values_brnz_sales_orders_online_order_flag__False__0__1",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "accepted_values",
+      "unique_id": "test.dbt_sqlserver_project.accepted_values_brnz_sales_orders_online_order_flag__False__0__1.d3a29226a2"
+    },
+    {
+      "column_name": "status",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "accepted_values_brnz_sales_orders_status__False__1__2__3__4__5__6",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "accepted_values",
+      "unique_id": "test.dbt_sqlserver_project.accepted_values_brnz_sales_orders_status__False__1__2__3__4__5__6.3a4a5be910"
+    },
+    {
+      "column_name": "email_promotion",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_customers"
+      ],
+      "kind": "generic",
+      "name": "accepted_values_slvr_customers_email_promotion__False__0__1__2",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_customers",
+      "test_type": "accepted_values",
+      "unique_id": "test.dbt_sqlserver_project.accepted_values_slvr_customers_email_promotion__False__0__1__2.40b3571cc0"
+    },
+    {
+      "column_name": "is_discontinued",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "accepted_values_slvr_products_is_discontinued__False__0__1",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "accepted_values",
+      "unique_id": "test.dbt_sqlserver_project.accepted_values_slvr_products_is_discontinued__False__0__1.6564af0d02"
+    },
+    {
+      "column_name": "has_discount",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "accepted_values_slvr_sales_orders_has_discount__False__0__1",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "accepted_values",
+      "unique_id": "test.dbt_sqlserver_project.accepted_values_slvr_sales_orders_has_discount__False__0__1.faa2bc9bc6"
+    },
+    {
+      "column_name": "order_channel",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "accepted_values_slvr_sales_orders_order_channel__Online__Offline",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "accepted_values",
+      "unique_id": "test.dbt_sqlserver_project.accepted_values_slvr_sales_orders_order_channel__Online__Offline.ee997dc884"
+    },
+    {
+      "column_name": "status",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "accepted_values_slvr_sales_orders_status__False__1__2__3__4__5__6",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "accepted_values",
+      "unique_id": "test.dbt_sqlserver_project.accepted_values_slvr_sales_orders_status__False__1__2__3__4__5__6.65dfb0c708"
+    },
+    {
+      "column_name": null,
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_customers",
+        "model.dbt_sqlserver_project.slvr_sales_orders",
+        "model.dbt_sqlserver_project.gld_customer_metrics"
+      ],
+      "kind": "singular",
+      "name": "assert_customer_metrics_reconciliation",
+      "target_unique_id": null,
+      "test_type": null,
+      "unique_id": "test.dbt_sqlserver_project.assert_customer_metrics_reconciliation"
+    },
+    {
+      "column_name": null,
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders",
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "singular",
+      "name": "assert_daily_sales_reconciliation",
+      "target_unique_id": null,
+      "test_type": null,
+      "unique_id": "test.dbt_sqlserver_project.assert_daily_sales_reconciliation"
+    },
+    {
+      "column_name": null,
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products",
+        "model.dbt_sqlserver_project.slvr_sales_orders",
+        "model.dbt_sqlserver_project.gld_product_performance"
+      ],
+      "kind": "singular",
+      "name": "assert_product_metrics_reconciliation",
+      "target_unique_id": null,
+      "test_type": null,
+      "unique_id": "test.dbt_sqlserver_project.assert_product_metrics_reconciliation"
+    },
+    {
+      "column_name": null,
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_customers",
+        "model.dbt_sqlserver_project.slvr_customers"
+      ],
+      "kind": "singular",
+      "name": "assert_silver_customer_preservation",
+      "target_unique_id": null,
+      "test_type": null,
+      "unique_id": "test.dbt_sqlserver_project.assert_silver_customer_preservation"
+    },
+    {
+      "column_name": null,
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders",
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "singular",
+      "name": "assert_silver_eligible_order_lines",
+      "target_unique_id": null,
+      "test_type": null,
+      "unique_id": "test.dbt_sqlserver_project.assert_silver_eligible_order_lines"
+    },
+    {
+      "column_name": null,
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products",
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "singular",
+      "name": "assert_silver_product_preservation",
+      "target_unique_id": null,
+      "test_type": null,
+      "unique_id": "test.dbt_sqlserver_project.assert_silver_product_preservation"
+    },
+    {
+      "column_name": "unit_price_discount",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "dbt_utils_accepted_range_brnz_sales_orders_unit_price_discount__True__1__0",
+      "namespace": "dbt_utils",
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "accepted_range",
+      "unique_id": "test.dbt_sqlserver_project.dbt_utils_accepted_range_brnz_sales_orders_unit_price_discount__True__1__0.215790be80"
+    },
+    {
+      "column_name": "unit_price_discount",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "dbt_utils_accepted_range_slvr_sales_orders_unit_price_discount__True__1__0",
+      "namespace": "dbt_utils",
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "accepted_range",
+      "unique_id": "test.dbt_sqlserver_project.dbt_utils_accepted_range_slvr_sales_orders_unit_price_discount__True__1__0.f519480dd6"
+    },
+    {
+      "column_name": null,
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail"
+      ],
+      "kind": "generic",
+      "name": "dbt_utils_source_unique_combination_of_columns_adventureworks_SalesOrderDetail_SalesOrderID__SalesOrderDetailID",
+      "namespace": "dbt_utils",
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail",
+      "test_type": "unique_combination_of_columns",
+      "unique_id": "test.dbt_sqlserver_project.dbt_utils_source_unique_combination_of_columns_adventureworks_SalesOrderDetail_SalesOrderID__SalesOrderDetailID.50e26e4a28"
+    },
+    {
+      "column_name": null,
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "dbt_utils_unique_combination_of_columns_brnz_sales_orders_sales_order_id__order_detail_id",
+      "namespace": "dbt_utils",
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "unique_combination_of_columns",
+      "unique_id": "test.dbt_sqlserver_project.dbt_utils_unique_combination_of_columns_brnz_sales_orders_sales_order_id__order_detail_id.c176823902"
+    },
+    {
+      "column_name": null,
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "dbt_utils_unique_combination_of_columns_slvr_sales_orders_sales_order_id__order_detail_id",
+      "namespace": "dbt_utils",
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "unique_combination_of_columns",
+      "unique_id": "test.dbt_sqlserver_project.dbt_utils_unique_combination_of_columns_slvr_sales_orders_sales_order_id__order_detail_id.9ffe017cfc"
+    },
+    {
+      "column_name": null,
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "line_total_matches_brnz_sales_orders_unit_price_discount__line_total__order_qty__0_01__unit_price",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "line_total_matches",
+      "unique_id": "test.dbt_sqlserver_project.line_total_matches_brnz_sales_orders_unit_price_discount__line_total__order_qty__0_01__unit_price.97123d372e"
+    },
+    {
+      "column_name": null,
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "line_total_matches_slvr_sales_orders_unit_price_discount__line_total__order_qty__0_01__unit_price",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "line_total_matches",
+      "unique_id": "test.dbt_sqlserver_project.line_total_matches_slvr_sales_orders_unit_price_discount__line_total__order_qty__0_01__unit_price.d537dfc8b2"
+    },
+    {
+      "column_name": "last_modified_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_customers"
+      ],
+      "kind": "generic",
+      "name": "no_future_dates_brnz_customers_last_modified_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_customers",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.no_future_dates_brnz_customers_last_modified_date.3f15f3dfc7"
+    },
+    {
+      "column_name": "created_at",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_example"
+      ],
+      "kind": "generic",
+      "name": "no_future_dates_brnz_example_created_at",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_example",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.no_future_dates_brnz_example_created_at.f095200519"
+    },
+    {
+      "column_name": "updated_at",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_example"
+      ],
+      "kind": "generic",
+      "name": "no_future_dates_brnz_example_updated_at",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_example",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.no_future_dates_brnz_example_updated_at.44dd82a662"
+    },
+    {
+      "column_name": "last_modified_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "no_future_dates_brnz_products_last_modified_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.no_future_dates_brnz_products_last_modified_date.9ec9da4a0f"
+    },
+    {
+      "column_name": "order_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "no_future_dates_brnz_sales_orders_order_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.no_future_dates_brnz_sales_orders_order_date.4de84ecb06"
+    },
+    {
+      "column_name": "ship_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "no_future_dates_brnz_sales_orders_ship_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.no_future_dates_brnz_sales_orders_ship_date.2c046ccfc9"
+    },
+    {
+      "column_name": "first_order_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_customer_metrics"
+      ],
+      "kind": "generic",
+      "name": "no_future_dates_gld_customer_metrics_first_order_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.no_future_dates_gld_customer_metrics_first_order_date.d40bb88c69"
+    },
+    {
+      "column_name": "last_order_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_customer_metrics"
+      ],
+      "kind": "generic",
+      "name": "no_future_dates_gld_customer_metrics_last_order_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.no_future_dates_gld_customer_metrics_last_order_date.c8203afe8a"
+    },
+    {
+      "column_name": "order_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "no_future_dates_gld_sales_summary_order_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.no_future_dates_gld_sales_summary_order_date.d14f7f5431"
+    },
+    {
+      "column_name": "last_modified_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_customers"
+      ],
+      "kind": "generic",
+      "name": "no_future_dates_slvr_customers_last_modified_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_customers",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.no_future_dates_slvr_customers_last_modified_date.5a0181c767"
+    },
+    {
+      "column_name": "last_modified_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "no_future_dates_slvr_products_last_modified_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.no_future_dates_slvr_products_last_modified_date.7e4c8e04ed"
+    },
+    {
+      "column_name": "order_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "no_future_dates_slvr_sales_orders_order_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.no_future_dates_slvr_sales_orders_order_date.7980683803"
+    },
+    {
+      "column_name": "ship_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "no_future_dates_slvr_sales_orders_ship_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.no_future_dates_slvr_sales_orders_ship_date.0ade2f6ef6"
+    },
+    {
+      "column_name": "CustomerID",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_customers"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_customers_CustomerID",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_customers",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_customers_CustomerID.4fe5ff54ea"
+    },
+    {
+      "column_name": "last_modified_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_customers"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_customers_last_modified_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_customers",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_customers_last_modified_date.bd39e2da77"
+    },
+    {
+      "column_name": "created_at",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_example"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_example_created_at",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_example",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_example_created_at.6fe38c1ab6"
+    },
+    {
+      "column_name": "id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_example"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_example_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_example",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_example_id.b224909cf4"
+    },
+    {
+      "column_name": "name",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_example"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_example_name",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_example",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_example_name.b5dc5bd70b"
+    },
+    {
+      "column_name": "updated_at",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_example"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_example_updated_at",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_example",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_example_updated_at.764aa40e51"
+    },
+    {
+      "column_name": "FinishedGoodsFlag",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_products_FinishedGoodsFlag",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_products_FinishedGoodsFlag.f54577f0e9"
+    },
+    {
+      "column_name": "ListPrice",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_products_ListPrice",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_products_ListPrice.a3a60d9f3f"
+    },
+    {
+      "column_name": "MakeFlag",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_products_MakeFlag",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_products_MakeFlag.1733c7ca7a"
+    },
+    {
+      "column_name": "ProductID",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_products_ProductID",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_products_ProductID.5dc1d8c2d1"
+    },
+    {
+      "column_name": "ProductName",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_products_ProductName",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_products_ProductName.9b0084026d"
+    },
+    {
+      "column_name": "ProductNumber",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_products_ProductNumber",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_products_ProductNumber.35d8a151a6"
+    },
+    {
+      "column_name": "SellStartDate",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_products_SellStartDate",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_products_SellStartDate.b83f042f3a"
+    },
+    {
+      "column_name": "StandardCost",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_products_StandardCost",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_products_StandardCost.b7bdb0d949"
+    },
+    {
+      "column_name": "last_modified_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_products_last_modified_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_products_last_modified_date.3ed861f6de"
+    },
+    {
+      "column_name": "customer_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_sales_orders_customer_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_sales_orders_customer_id.1f96dbc92f"
+    },
+    {
+      "column_name": "due_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_sales_orders_due_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_sales_orders_due_date.5affddaec9"
+    },
+    {
+      "column_name": "line_total",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_sales_orders_line_total",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_sales_orders_line_total.de68d138b9"
+    },
+    {
+      "column_name": "online_order_flag",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_sales_orders_online_order_flag",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_sales_orders_online_order_flag.3f8b99f5ff"
+    },
+    {
+      "column_name": "order_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_sales_orders_order_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_sales_orders_order_date.1b000db518"
+    },
+    {
+      "column_name": "order_detail_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_sales_orders_order_detail_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_sales_orders_order_detail_id.8dbed006ac"
+    },
+    {
+      "column_name": "order_qty",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_sales_orders_order_qty",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_sales_orders_order_qty.eee7b0964e"
+    },
+    {
+      "column_name": "product_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_sales_orders_product_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_sales_orders_product_id.f668be0ad6"
+    },
+    {
+      "column_name": "sales_order_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_sales_orders_sales_order_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_sales_orders_sales_order_id.c364a4c6ca"
+    },
+    {
+      "column_name": "sales_order_number",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_sales_orders_sales_order_number",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_sales_orders_sales_order_number.96b6a62860"
+    },
+    {
+      "column_name": "status",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_sales_orders_status",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_sales_orders_status.19d94ddfa7"
+    },
+    {
+      "column_name": "unit_price",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_sales_orders_unit_price",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_sales_orders_unit_price.f7bd337515"
+    },
+    {
+      "column_name": "unit_price_discount",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_brnz_sales_orders_unit_price_discount",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_brnz_sales_orders_unit_price_discount.a7ca924338"
+    },
+    {
+      "column_name": "customer_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_customer_metrics"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_customer_metrics_customer_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_customer_metrics_customer_id.d4a2f89a39"
+    },
+    {
+      "column_name": "orders_with_discount",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_customer_metrics"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_customer_metrics_orders_with_discount",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_customer_metrics_orders_with_discount.1e59e434f5"
+    },
+    {
+      "column_name": "total_orders",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_customer_metrics"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_customer_metrics_total_orders",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_customer_metrics_total_orders.10ab2e6520"
+    },
+    {
+      "column_name": "list_price",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_product_performance"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_product_performance_list_price",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_product_performance",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_product_performance_list_price.40e9cdd4fb"
+    },
+    {
+      "column_name": "product_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_product_performance"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_product_performance_product_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_product_performance",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_product_performance_product_id.df0c190397"
+    },
+    {
+      "column_name": "standard_cost",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_product_performance"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_product_performance_standard_cost",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_product_performance",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_product_performance_standard_cost.c820be9291"
+    },
+    {
+      "column_name": "total_orders",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_product_performance"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_product_performance_total_orders",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_product_performance",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_product_performance_total_orders.7fb3f79b10"
+    },
+    {
+      "column_name": "avg_order_line_value",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_sales_summary_avg_order_line_value",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_sales_summary_avg_order_line_value.2ae2b094ab"
+    },
+    {
+      "column_name": "discounted_revenue",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_sales_summary_discounted_revenue",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_sales_summary_discounted_revenue.c3a5346dde"
+    },
+    {
+      "column_name": "offline_orders",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_sales_summary_offline_orders",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_sales_summary_offline_orders.22c6980c7b"
+    },
+    {
+      "column_name": "online_orders",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_sales_summary_online_orders",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_sales_summary_online_orders.25addb062e"
+    },
+    {
+      "column_name": "order_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_sales_summary_order_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_sales_summary_order_date.d540726f7e"
+    },
+    {
+      "column_name": "total_items_sold",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_sales_summary_total_items_sold",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_sales_summary_total_items_sold.a07a3a6811"
+    },
+    {
+      "column_name": "total_orders",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_sales_summary_total_orders",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_sales_summary_total_orders.9b061be9af"
+    },
+    {
+      "column_name": "total_revenue",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_sales_summary_total_revenue",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_sales_summary_total_revenue.5d28595f39"
+    },
+    {
+      "column_name": "unique_customers",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "not_null_gld_sales_summary_unique_customers",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_gld_sales_summary_unique_customers.8acc1ed8b1"
+    },
+    {
+      "column_name": "customer_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_customers"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_customers_customer_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_customers",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_customers_customer_id.f907cb8275"
+    },
+    {
+      "column_name": "full_name",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_customers"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_customers_full_name",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_customers",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_customers_full_name.ba07d7650d"
+    },
+    {
+      "column_name": "last_modified_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_customers"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_customers_last_modified_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_customers",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_customers_last_modified_date.06ea238716"
+    },
+    {
+      "column_name": "is_discontinued",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_products_is_discontinued",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_products_is_discontinued.013bbf468d"
+    },
+    {
+      "column_name": "last_modified_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_products_last_modified_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_products_last_modified_date.b127467eff"
+    },
+    {
+      "column_name": "list_price",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_products_list_price",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_products_list_price.7131a73076"
+    },
+    {
+      "column_name": "product_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_products_product_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_products_product_id.e754cc1551"
+    },
+    {
+      "column_name": "product_name",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_products_product_name",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_products_product_name.2a749932be"
+    },
+    {
+      "column_name": "product_number",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_products_product_number",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_products_product_number.8f84315cd4"
+    },
+    {
+      "column_name": "sell_start_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_products_sell_start_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_products_sell_start_date.272abaacd4"
+    },
+    {
+      "column_name": "standard_cost",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_products_standard_cost",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_products_standard_cost.f556c376b2"
+    },
+    {
+      "column_name": "weight",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_products_weight",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_products_weight.6ff791e39b"
+    },
+    {
+      "column_name": "customer_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_customer_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_customer_id.d09d341c56"
+    },
+    {
+      "column_name": "due_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_due_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_due_date.3b1a20c08a"
+    },
+    {
+      "column_name": "effective_unit_price",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_effective_unit_price",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_effective_unit_price.0061faf431"
+    },
+    {
+      "column_name": "gross_amount",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_gross_amount",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_gross_amount.0e5f8dd4f1"
+    },
+    {
+      "column_name": "has_discount",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_has_discount",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_has_discount.4246668617"
+    },
+    {
+      "column_name": "line_total",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_line_total",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_line_total.1365eff03d"
+    },
+    {
+      "column_name": "order_channel",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_order_channel",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_order_channel.ce5ee35910"
+    },
+    {
+      "column_name": "order_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_order_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_order_date.128179f335"
+    },
+    {
+      "column_name": "order_detail_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_order_detail_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_order_detail_id.71e8a48f53"
+    },
+    {
+      "column_name": "order_qty",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_order_qty",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_order_qty.cba24a0757"
+    },
+    {
+      "column_name": "product_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_product_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_product_id.104bd2e395"
+    },
+    {
+      "column_name": "sales_order_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_sales_order_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_sales_order_id.0f82d3dab4"
+    },
+    {
+      "column_name": "sales_order_number",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_sales_order_number",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_sales_order_number.96366642aa"
+    },
+    {
+      "column_name": "status",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_status",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_status.a575cbcf4a"
+    },
+    {
+      "column_name": "unit_price",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_unit_price",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_unit_price.9f95ca9319"
+    },
+    {
+      "column_name": "unit_price_discount",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "not_null_slvr_sales_orders_unit_price_discount",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.not_null_slvr_sales_orders_unit_price_discount.b767a902ff"
+    },
+    {
+      "column_name": "ListPrice",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "positive_values_brnz_products_ListPrice",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_brnz_products_ListPrice.3abc1b2a84"
+    },
+    {
+      "column_name": "StandardCost",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "positive_values_brnz_products_StandardCost",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_brnz_products_StandardCost.571fa3189e"
+    },
+    {
+      "column_name": "Weight",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "positive_values_brnz_products_Weight",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_brnz_products_Weight.129aa0a798"
+    },
+    {
+      "column_name": "order_qty",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "positive_values_brnz_sales_orders_False__order_qty",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_brnz_sales_orders_False__order_qty.97bf2df611"
+    },
+    {
+      "column_name": "line_total",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "positive_values_brnz_sales_orders_line_total",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_brnz_sales_orders_line_total.ba52d97483"
+    },
+    {
+      "column_name": "unit_price",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "positive_values_brnz_sales_orders_unit_price",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_brnz_sales_orders_unit_price.f9785e866a"
+    },
+    {
+      "column_name": "total_items_purchased",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_customer_metrics"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_customer_metrics_False__total_items_purchased",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_False__total_items_purchased.dd75a73551"
+    },
+    {
+      "column_name": "avg_order_value",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_customer_metrics"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_customer_metrics_avg_order_value",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_avg_order_value.b33cbe428a"
+    },
+    {
+      "column_name": "orders_with_discount",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_customer_metrics"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_customer_metrics_orders_with_discount",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_orders_with_discount.8bd248225c"
+    },
+    {
+      "column_name": "total_orders",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_customer_metrics"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_customer_metrics_total_orders",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_total_orders.2b36186405"
+    },
+    {
+      "column_name": "total_revenue",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_customer_metrics"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_customer_metrics_total_revenue",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_customer_metrics_total_revenue.6138ae749e"
+    },
+    {
+      "column_name": "total_quantity_sold",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_product_performance"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_product_performance_False__total_quantity_sold",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_product_performance",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_product_performance_False__total_quantity_sold.b8b7e60204"
+    },
+    {
+      "column_name": "avg_selling_price",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_product_performance"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_product_performance_avg_selling_price",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_product_performance",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_product_performance_avg_selling_price.e3a3f5ca81"
+    },
+    {
+      "column_name": "list_price",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_product_performance"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_product_performance_list_price",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_product_performance",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_product_performance_list_price.05f6e2ce88"
+    },
+    {
+      "column_name": "standard_cost",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_product_performance"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_product_performance_standard_cost",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_product_performance",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_product_performance_standard_cost.596ca35a58"
+    },
+    {
+      "column_name": "total_orders",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_product_performance"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_product_performance_total_orders",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_product_performance",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_product_performance_total_orders.cb25bfce5f"
+    },
+    {
+      "column_name": "total_revenue",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_product_performance"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_product_performance_total_revenue",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_product_performance",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_product_performance_total_revenue.89b7c1d628"
+    },
+    {
+      "column_name": "total_items_sold",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_sales_summary_False__total_items_sold",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_sales_summary_False__total_items_sold.3f515fba0b"
+    },
+    {
+      "column_name": "total_orders",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_sales_summary_False__total_orders",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_sales_summary_False__total_orders.bebf850c0a"
+    },
+    {
+      "column_name": "unique_customers",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_sales_summary_False__unique_customers",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_sales_summary_False__unique_customers.4fd03c2f0a"
+    },
+    {
+      "column_name": "avg_order_line_value",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_sales_summary_avg_order_line_value",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_sales_summary_avg_order_line_value.416092ef95"
+    },
+    {
+      "column_name": "discounted_revenue",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_sales_summary_discounted_revenue",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_sales_summary_discounted_revenue.c3330ee9e3"
+    },
+    {
+      "column_name": "offline_orders",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_sales_summary_offline_orders",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_sales_summary_offline_orders.dd94a1e9fb"
+    },
+    {
+      "column_name": "online_orders",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_sales_summary_online_orders",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_sales_summary_online_orders.cdd9dfa066"
+    },
+    {
+      "column_name": "total_revenue",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "positive_values_gld_sales_summary_total_revenue",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_gld_sales_summary_total_revenue.fad48e42e7"
+    },
+    {
+      "column_name": "list_price",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "positive_values_slvr_products_list_price",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_slvr_products_list_price.2ba4c5e4de"
+    },
+    {
+      "column_name": "standard_cost",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "positive_values_slvr_products_standard_cost",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_slvr_products_standard_cost.95d0f3494a"
+    },
+    {
+      "column_name": "weight",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "positive_values_slvr_products_weight",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_slvr_products_weight.3f8f6904e5"
+    },
+    {
+      "column_name": "order_qty",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "positive_values_slvr_sales_orders_False__order_qty",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_False__order_qty.b6d1b36f8a"
+    },
+    {
+      "column_name": "effective_unit_price",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "positive_values_slvr_sales_orders_effective_unit_price",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_effective_unit_price.9b81e5d447"
+    },
+    {
+      "column_name": "gross_amount",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "positive_values_slvr_sales_orders_gross_amount",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_gross_amount.cf94cf2ced"
+    },
+    {
+      "column_name": "line_total",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "positive_values_slvr_sales_orders_line_total",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_line_total.8277dc9759"
+    },
+    {
+      "column_name": "unit_price",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "positive_values_slvr_sales_orders_unit_price",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "positive_values",
+      "unique_id": "test.dbt_sqlserver_project.positive_values_slvr_sales_orders_unit_price.bc80402074"
+    },
+    {
+      "column_name": "id",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.Customer",
+        "model.dbt_sqlserver_project.brnz_example"
+      ],
+      "kind": "generic",
+      "name": "relationships_brnz_example_id__CustomerID__source_adventureworks_Customer_",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_example",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.relationships_brnz_example_id__CustomerID__source_adventureworks_Customer_.3bb9210071"
+    },
+    {
+      "column_name": "ProductSubcategoryID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory",
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "relationships_brnz_products_ProductSubcategoryID__ProductSubcategoryID__source_adventureworks_production_ProductSubcategory_",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.relationships_brnz_products_ProductSubcategoryID__ProductSubcategoryID__source_adventureworks_production_ProductSubcategory_.c0307253c8"
+    },
+    {
+      "column_name": "customer_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_customers",
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "relationships_brnz_sales_orders_customer_id__CustomerID__ref_brnz_customers_",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.relationships_brnz_sales_orders_customer_id__CustomerID__ref_brnz_customers_.d2ef2cff87"
+    },
+    {
+      "column_name": "product_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products",
+        "model.dbt_sqlserver_project.brnz_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "relationships_brnz_sales_orders_product_id__ProductID__ref_brnz_products_",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.relationships_brnz_sales_orders_product_id__ProductID__ref_brnz_products_.018095e787"
+    },
+    {
+      "column_name": "customer_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_customers",
+        "model.dbt_sqlserver_project.gld_customer_metrics"
+      ],
+      "kind": "generic",
+      "name": "relationships_gld_customer_metrics_customer_id__customer_id__ref_slvr_customers_",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.relationships_gld_customer_metrics_customer_id__customer_id__ref_slvr_customers_.9e893f3437"
+    },
+    {
+      "column_name": "product_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products",
+        "model.dbt_sqlserver_project.gld_product_performance"
+      ],
+      "kind": "generic",
+      "name": "relationships_gld_product_performance_product_id__product_id__ref_slvr_products_",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_product_performance",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.relationships_gld_product_performance_product_id__product_id__ref_slvr_products_.0ee2f5f758"
+    },
+    {
+      "column_name": "customer_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_customers",
+        "model.dbt_sqlserver_project.slvr_customers"
+      ],
+      "kind": "generic",
+      "name": "relationships_slvr_customers_customer_id__CustomerID__ref_brnz_customers_",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_customers",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.relationships_slvr_customers_customer_id__CustomerID__ref_brnz_customers_.f19857803d"
+    },
+    {
+      "column_name": "product_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products",
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "relationships_slvr_products_product_id__ProductID__ref_brnz_products_",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.relationships_slvr_products_product_id__ProductID__ref_brnz_products_.3f39920534"
+    },
+    {
+      "column_name": "customer_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_customers",
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "relationships_slvr_sales_orders_customer_id__customer_id__ref_slvr_customers_",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.relationships_slvr_sales_orders_customer_id__customer_id__ref_slvr_customers_.b24b2a6499"
+    },
+    {
+      "column_name": "product_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products",
+        "model.dbt_sqlserver_project.slvr_sales_orders"
+      ],
+      "kind": "generic",
+      "name": "relationships_slvr_sales_orders_product_id__product_id__ref_slvr_products_",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.relationships_slvr_sales_orders_product_id__product_id__ref_slvr_products_.4c5a809111"
+    },
+    {
+      "column_name": "OnlineOrderFlag",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      ],
+      "kind": "generic",
+      "name": "source_accepted_values_adventureworks_SalesOrderHeader_OnlineOrderFlag__False__0__1",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "test_type": "accepted_values",
+      "unique_id": "test.dbt_sqlserver_project.source_accepted_values_adventureworks_SalesOrderHeader_OnlineOrderFlag__False__0__1.a721981e68"
+    },
+    {
+      "column_name": "Status",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      ],
+      "kind": "generic",
+      "name": "source_accepted_values_adventureworks_SalesOrderHeader_Status__False__1__2__3__4__5__6",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "test_type": "accepted_values",
+      "unique_id": "test.dbt_sqlserver_project.source_accepted_values_adventureworks_SalesOrderHeader_Status__False__1__2__3__4__5__6.8ee0791735"
+    },
+    {
+      "column_name": "EmailPromotion",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_person.Person"
+      ],
+      "kind": "generic",
+      "name": "source_accepted_values_adventureworks_person_Person_EmailPromotion__False__0__1__2",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_person.Person",
+      "test_type": "accepted_values",
+      "unique_id": "test.dbt_sqlserver_project.source_accepted_values_adventureworks_person_Person_EmailPromotion__False__0__1__2.1d7a195306"
+    },
+    {
+      "column_name": "ModifiedDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.Customer"
+      ],
+      "kind": "generic",
+      "name": "source_no_future_dates_adventureworks_Customer_ModifiedDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.Customer",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_Customer_ModifiedDate.7a1c750a56"
+    },
+    {
+      "column_name": "ModifiedDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail"
+      ],
+      "kind": "generic",
+      "name": "source_no_future_dates_adventureworks_SalesOrderDetail_ModifiedDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_SalesOrderDetail_ModifiedDate.5809c56e4d"
+    },
+    {
+      "column_name": "ModifiedDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      ],
+      "kind": "generic",
+      "name": "source_no_future_dates_adventureworks_SalesOrderHeader_ModifiedDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_SalesOrderHeader_ModifiedDate.c21d965600"
+    },
+    {
+      "column_name": "OrderDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      ],
+      "kind": "generic",
+      "name": "source_no_future_dates_adventureworks_SalesOrderHeader_OrderDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_SalesOrderHeader_OrderDate.7c92217313"
+    },
+    {
+      "column_name": "ShipDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      ],
+      "kind": "generic",
+      "name": "source_no_future_dates_adventureworks_SalesOrderHeader_ShipDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_SalesOrderHeader_ShipDate.9edcc7cf3e"
+    },
+    {
+      "column_name": "ModifiedDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_person.Person"
+      ],
+      "kind": "generic",
+      "name": "source_no_future_dates_adventureworks_person_Person_ModifiedDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_person.Person",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_person_Person_ModifiedDate.702fce38cc"
+    },
+    {
+      "column_name": "ModifiedDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory"
+      ],
+      "kind": "generic",
+      "name": "source_no_future_dates_adventureworks_production_ProductSubcategory_ModifiedDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_production_ProductSubcategory_ModifiedDate.e0783d3783"
+    },
+    {
+      "column_name": "ModifiedDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_production.Product"
+      ],
+      "kind": "generic",
+      "name": "source_no_future_dates_adventureworks_production_Product_ModifiedDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_production.Product",
+      "test_type": "no_future_dates",
+      "unique_id": "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_production_Product_ModifiedDate.5790f4f5aa"
+    },
+    {
+      "column_name": "CustomerID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.Customer"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_Customer_CustomerID",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.Customer",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_Customer_CustomerID.4992864888"
+    },
+    {
+      "column_name": "ModifiedDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.Customer"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_Customer_ModifiedDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.Customer",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_Customer_ModifiedDate.52b6a323f7"
+    },
+    {
+      "column_name": "ModifiedDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_SalesOrderDetail_ModifiedDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderDetail_ModifiedDate.26292b8558"
+    },
+    {
+      "column_name": "ProductID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_SalesOrderDetail_ProductID",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderDetail_ProductID.864143d4c1"
+    },
+    {
+      "column_name": "SalesOrderDetailID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_SalesOrderDetail_SalesOrderDetailID",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderDetail_SalesOrderDetailID.4ae7748454"
+    },
+    {
+      "column_name": "SalesOrderID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_SalesOrderDetail_SalesOrderID",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderDetail_SalesOrderID.a2371e5e5b"
+    },
+    {
+      "column_name": "CustomerID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_SalesOrderHeader_CustomerID",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_CustomerID.0d6722170e"
+    },
+    {
+      "column_name": "DueDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_SalesOrderHeader_DueDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_DueDate.80ee23a4fa"
+    },
+    {
+      "column_name": "ModifiedDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_SalesOrderHeader_ModifiedDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_ModifiedDate.efae4c2419"
+    },
+    {
+      "column_name": "OnlineOrderFlag",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_SalesOrderHeader_OnlineOrderFlag",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_OnlineOrderFlag.4f5b376933"
+    },
+    {
+      "column_name": "OrderDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_SalesOrderHeader_OrderDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_OrderDate.09c2d60867"
+    },
+    {
+      "column_name": "SalesOrderID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_SalesOrderHeader_SalesOrderID",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_SalesOrderID.e8bd02805d"
+    },
+    {
+      "column_name": "Status",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_SalesOrderHeader_Status",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_Status.aea243da19"
+    },
+    {
+      "column_name": "BusinessEntityID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_person.Person"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_person_Person_BusinessEntityID",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_person.Person",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_person_Person_BusinessEntityID.df1f9ef21d"
+    },
+    {
+      "column_name": "EmailPromotion",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_person.Person"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_person_Person_EmailPromotion",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_person.Person",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_person_Person_EmailPromotion.e8f94a1104"
+    },
+    {
+      "column_name": "ModifiedDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_person.Person"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_person_Person_ModifiedDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_person.Person",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_person_Person_ModifiedDate.1eb6bf8422"
+    },
+    {
+      "column_name": "ModifiedDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_production_ProductSubcategory_ModifiedDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_production_ProductSubcategory_ModifiedDate.3f5b251a47"
+    },
+    {
+      "column_name": "ProductSubcategoryID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_production_ProductSubcategory_ProductSubcategoryID",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_production_ProductSubcategory_ProductSubcategoryID.3dabbc9b31"
+    },
+    {
+      "column_name": "ModifiedDate",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_production.Product"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_production_Product_ModifiedDate",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_production.Product",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_production_Product_ModifiedDate.e1b882561b"
+    },
+    {
+      "column_name": "ProductID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_production.Product"
+      ],
+      "kind": "generic",
+      "name": "source_not_null_adventureworks_production_Product_ProductID",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_production.Product",
+      "test_type": "not_null",
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_production_Product_ProductID.18310eef70"
+    },
+    {
+      "column_name": "PersonID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_person.Person",
+        "source.dbt_sqlserver_project.adventureworks.Customer"
+      ],
+      "kind": "generic",
+      "name": "source_relationships_adventureworks_Customer_PersonID__BusinessEntityID__source_adventureworks_person_Person_",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.Customer",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.source_relationships_adventureworks_Customer_PersonID__BusinessEntityID__source_adventureworks_person_Person_.3f1c564b2b"
+    },
+    {
+      "column_name": "ProductID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_production.Product",
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail"
+      ],
+      "kind": "generic",
+      "name": "source_relationships_adventureworks_SalesOrderDetail_ProductID__ProductID__source_adventureworks_production_Product_",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.source_relationships_adventureworks_SalesOrderDetail_ProductID__ProductID__source_adventureworks_production_Product_.68d8c420ab"
+    },
+    {
+      "column_name": "SalesOrderID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail"
+      ],
+      "kind": "generic",
+      "name": "source_relationships_adventureworks_SalesOrderDetail_SalesOrderID__SalesOrderID__source_adventureworks_SalesOrderHeader_",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.source_relationships_adventureworks_SalesOrderDetail_SalesOrderID__SalesOrderID__source_adventureworks_SalesOrderHeader_.236706fef7"
+    },
+    {
+      "column_name": "CustomerID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.Customer",
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      ],
+      "kind": "generic",
+      "name": "source_relationships_adventureworks_SalesOrderHeader_CustomerID__CustomerID__source_adventureworks_Customer_",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.source_relationships_adventureworks_SalesOrderHeader_CustomerID__CustomerID__source_adventureworks_Customer_.5b94e10bfb"
+    },
+    {
+      "column_name": "ProductSubcategoryID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory",
+        "source.dbt_sqlserver_project.adventureworks_production.Product"
+      ],
+      "kind": "generic",
+      "name": "source_relationships_adventureworks_production_Product_ProductSubcategoryID__ProductSubcategoryID__source_adventureworks_production_ProductSubcategory_",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_production.Product",
+      "test_type": "relationships",
+      "unique_id": "test.dbt_sqlserver_project.source_relationships_adventureworks_production_Product_ProductSubcategoryID__ProductSubcategoryID__source_adventureworks_production_ProductSubcategory_.94018a74ad"
+    },
+    {
+      "column_name": "CustomerID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.Customer"
+      ],
+      "kind": "generic",
+      "name": "source_unique_adventureworks_Customer_CustomerID",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.Customer",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.source_unique_adventureworks_Customer_CustomerID.d07a9e0ff5"
+    },
+    {
+      "column_name": "SalesOrderID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      ],
+      "kind": "generic",
+      "name": "source_unique_adventureworks_SalesOrderHeader_SalesOrderID",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.source_unique_adventureworks_SalesOrderHeader_SalesOrderID.d273e9a8a1"
+    },
+    {
+      "column_name": "BusinessEntityID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_person.Person"
+      ],
+      "kind": "generic",
+      "name": "source_unique_adventureworks_person_Person_BusinessEntityID",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_person.Person",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.source_unique_adventureworks_person_Person_BusinessEntityID.f421c700f0"
+    },
+    {
+      "column_name": "ProductSubcategoryID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory"
+      ],
+      "kind": "generic",
+      "name": "source_unique_adventureworks_production_ProductSubcategory_ProductSubcategoryID",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.source_unique_adventureworks_production_ProductSubcategory_ProductSubcategoryID.b495e63d23"
+    },
+    {
+      "column_name": "ProductID",
+      "dependencies": [
+        "source.dbt_sqlserver_project.adventureworks_production.Product"
+      ],
+      "kind": "generic",
+      "name": "source_unique_adventureworks_production_Product_ProductID",
+      "namespace": null,
+      "target_unique_id": "source.dbt_sqlserver_project.adventureworks_production.Product",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.source_unique_adventureworks_production_Product_ProductID.c3e23bf4b2"
+    },
+    {
+      "column_name": "CustomerID",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_customers"
+      ],
+      "kind": "generic",
+      "name": "unique_brnz_customers_CustomerID",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_customers",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.unique_brnz_customers_CustomerID.f30ed9f6a8"
+    },
+    {
+      "column_name": "id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_example"
+      ],
+      "kind": "generic",
+      "name": "unique_brnz_example_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_example",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.unique_brnz_example_id.8f994bf610"
+    },
+    {
+      "column_name": "ProductID",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "unique_brnz_products_ProductID",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.unique_brnz_products_ProductID.5a0cc35c4c"
+    },
+    {
+      "column_name": "ProductNumber",
+      "dependencies": [
+        "model.dbt_sqlserver_project.brnz_products"
+      ],
+      "kind": "generic",
+      "name": "unique_brnz_products_ProductNumber",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.unique_brnz_products_ProductNumber.c195ca97f1"
+    },
+    {
+      "column_name": "customer_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_customer_metrics"
+      ],
+      "kind": "generic",
+      "name": "unique_gld_customer_metrics_customer_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.unique_gld_customer_metrics_customer_id.33651a4cdd"
+    },
+    {
+      "column_name": "product_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_product_performance"
+      ],
+      "kind": "generic",
+      "name": "unique_gld_product_performance_product_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_product_performance",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.unique_gld_product_performance_product_id.d1cccc0db8"
+    },
+    {
+      "column_name": "order_date",
+      "dependencies": [
+        "model.dbt_sqlserver_project.gld_sales_summary"
+      ],
+      "kind": "generic",
+      "name": "unique_gld_sales_summary_order_date",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.unique_gld_sales_summary_order_date.bb9cac975b"
+    },
+    {
+      "column_name": "customer_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_customers"
+      ],
+      "kind": "generic",
+      "name": "unique_slvr_customers_customer_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_customers",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.unique_slvr_customers_customer_id.cdbb647600"
+    },
+    {
+      "column_name": "product_id",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "unique_slvr_products_product_id",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.unique_slvr_products_product_id.5ff76b9e3f"
+    },
+    {
+      "column_name": "product_number",
+      "dependencies": [
+        "model.dbt_sqlserver_project.slvr_products"
+      ],
+      "kind": "generic",
+      "name": "unique_slvr_products_product_number",
+      "namespace": null,
+      "target_unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "test_type": "unique",
+      "unique_id": "test.dbt_sqlserver_project.unique_slvr_products_product_number.f469a7ea7f"
+    }
+  ]
+}

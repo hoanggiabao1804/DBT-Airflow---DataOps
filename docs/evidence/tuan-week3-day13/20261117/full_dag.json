@@ -1,0 +1,48 @@
+{
+  "dag_id": "dbt_transform",
+  "end_date": "2026-11-17T07:32:13.179779+00:00",
+  "execution_date": "2026-11-17T07:27:15+00:00",
+  "execution_method": "Airflow scheduler with LocalExecutor; manual DAG trigger",
+  "external_trigger": true,
+  "run_id": "tuan-week3-day13-20261117-01",
+  "run_type": "manual",
+  "start_date": "2026-11-17T07:27:15.697355+00:00",
+  "state": "success",
+  "tasks": [
+    {
+      "end_date": "2026-11-17T07:27:47.269315+00:00",
+      "start_date": "2026-11-17T07:27:20.569947+00:00",
+      "state": "success",
+      "task_id": "dbt_deps",
+      "try_number": 1
+    },
+    {
+      "end_date": "2026-11-17T07:32:11.903690+00:00",
+      "start_date": "2026-11-17T07:31:31.743061+00:00",
+      "state": "success",
+      "task_id": "dbt_docs",
+      "try_number": 1
+    },
+    {
+      "end_date": "2026-11-17T07:28:31.540306+00:00",
+      "start_date": "2026-11-17T07:27:50.159489+00:00",
+      "state": "success",
+      "task_id": "dbt_run",
+      "try_number": 1
+    },
+    {
+      "end_date": "2026-11-17T07:30:51.513902+00:00",
+      "start_date": "2026-11-17T07:28:40.637915+00:00",
+      "state": "success",
+      "task_id": "dbt_test",
+      "try_number": 1
+    },
+    {
+      "end_date": "2026-11-17T07:31:29.918338+00:00",
+      "start_date": "2026-11-17T07:30:53.359953+00:00",
+      "state": "success",
+      "task_id": "ge_validate",
+      "try_number": 1
+    }
+  ]
+}

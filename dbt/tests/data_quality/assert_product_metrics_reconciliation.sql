@@ -15,7 +15,9 @@ select
     expected.total_profit as expected_profit,
     actual.total_profit as actual_profit,
     expected.profit_margin_pct as expected_margin,
-    actual.profit_margin_pct as actual_margin
+    actual.profit_margin_pct as actual_margin,
+    expected.avg_selling_price as expected_avg_selling_price,
+    actual.avg_selling_price as actual_avg_selling_price
 from (
     select
         products.product_id,
@@ -23,6 +25,7 @@ from (
         coalesce(sales.total_orders, 0) as total_orders,
         sales.total_quantity_sold,
         sales.total_revenue,
+        sales.avg_selling_price,
         sales.total_revenue - sales.total_quantity_sold * products.standard_cost as total_profit,
         case
             when sales.total_quantity_sold > 0 then
@@ -36,7 +39,8 @@ from (
             product_id,
             count(distinct sales_order_id) as total_orders,
             sum(order_qty) as total_quantity_sold,
-            sum(line_total) as total_revenue
+            sum(line_total) as total_revenue,
+            sum(unit_price) / nullif(count(unit_price), 0) as avg_selling_price
         from {{ ref('slvr_sales_orders') }}
         group by product_id
     ) as sales on sales.product_id = products.product_id
@@ -61,3 +65,6 @@ where expected.expected_present is null
     or (expected.profit_margin_pct is null and actual.profit_margin_pct is not null)
     or (expected.profit_margin_pct is not null and actual.profit_margin_pct is null)
     or abs(expected.profit_margin_pct - actual.profit_margin_pct) > 0.0001
+    or (expected.avg_selling_price is null and actual.avg_selling_price is not null)
+    or (expected.avg_selling_price is not null and actual.avg_selling_price is null)
+    or abs(expected.avg_selling_price - actual.avg_selling_price) > 0.0001
