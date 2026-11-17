@@ -1,0 +1,28 @@
+{
+  "dag_run_id": "tuan-week3-day13-20261117-01",
+  "dbt_models_success": 10,
+  "dbt_tests_pass": 202,
+  "fixture_cases_pass": 27,
+  "fixture_cleanup_verified": true,
+  "freshness": {
+    "executed": false,
+    "issue": "DQ-W2-01",
+    "status": "open"
+  },
+  "ge_expectations_pass": 40,
+  "limits": [
+    "Reconciliation queries share a SERIALIZABLE transaction after the DAG; not the earlier dbt snapshot.",
+    "Direct generic column counts do not measure semantic/business-rule coverage.",
+    "Two new dimension tests prove key-set preservation, not all dimension attribute transformations.",
+    "Source row counts are diagnostic, not a complete source-to-Bronze value reconciliation.",
+    "GE covers Silver customer/order. Historical freshness was not rerun.",
+    "Scheduler retry/alert/forced-timeout handling and team release acceptance remain outside Tuan day13 scope."
+  ],
+  "model_columns_documented": 131,
+  "model_columns_with_direct_generic_tests": 86,
+  "packaged_at_utc": "2026-11-17T07:33:57.675971+00:00",
+  "reconciliation_checks_pass": 20,
+  "reconciliation_sql_tests": 6,
+  "scheduler_tasks_success": 5,
+  "status": "passed_for_tuan_day13_scope"
+}

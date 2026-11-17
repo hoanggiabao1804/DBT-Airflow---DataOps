@@ -1,0 +1,213 @@
+{
+  "baseline_cases": "Multiple lines/order, discounts, free sale, customer/product with no sales.",
+  "case_count": 27,
+  "checks": [
+    {
+      "actual_mismatch_rows": 0,
+      "case": "baseline customers",
+      "expected_mismatch_rows": 0,
+      "status": "passed",
+      "test": "assert_silver_customer_preservation"
+    },
+    {
+      "actual_mismatch_rows": 0,
+      "case": "baseline products",
+      "expected_mismatch_rows": 0,
+      "status": "passed",
+      "test": "assert_silver_product_preservation"
+    },
+    {
+      "actual_mismatch_rows": 0,
+      "case": "baseline customer_metrics",
+      "expected_mismatch_rows": 0,
+      "status": "passed",
+      "test": "assert_customer_metrics_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 0,
+      "case": "baseline daily_sales",
+      "expected_mismatch_rows": 0,
+      "status": "passed",
+      "test": "assert_daily_sales_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 0,
+      "case": "baseline product_metrics",
+      "expected_mismatch_rows": 0,
+      "status": "passed",
+      "test": "assert_product_metrics_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 1,
+      "case": "missing_customer",
+      "expected_mismatch_rows": 1,
+      "status": "passed",
+      "test": "assert_silver_customer_preservation"
+    },
+    {
+      "actual_mismatch_rows": 1,
+      "case": "extra_customer",
+      "expected_mismatch_rows": 1,
+      "status": "passed",
+      "test": "assert_silver_customer_preservation"
+    },
+    {
+      "actual_mismatch_rows": 2,
+      "case": "replaced_customer_key",
+      "expected_mismatch_rows": 2,
+      "status": "passed",
+      "test": "assert_silver_customer_preservation"
+    },
+    {
+      "actual_mismatch_rows": 1,
+      "case": "missing_product",
+      "expected_mismatch_rows": 1,
+      "status": "passed",
+      "test": "assert_silver_product_preservation"
+    },
+    {
+      "actual_mismatch_rows": 1,
+      "case": "extra_product",
+      "expected_mismatch_rows": 1,
+      "status": "passed",
+      "test": "assert_silver_product_preservation"
+    },
+    {
+      "actual_mismatch_rows": 2,
+      "case": "replaced_product_key",
+      "expected_mismatch_rows": 2,
+      "status": "passed",
+      "test": "assert_silver_product_preservation"
+    },
+    {
+      "actual_mismatch_rows": 1,
+      "case": "customer_items",
+      "expected_mismatch_rows": 1,
+      "status": "passed",
+      "test": "assert_customer_metrics_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 1,
+      "case": "customer_first_date",
+      "expected_mismatch_rows": 1,
+      "status": "passed",
+      "test": "assert_customer_metrics_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 1,
+      "case": "customer_last_date",
+      "expected_mismatch_rows": 1,
+      "status": "passed",
+      "test": "assert_customer_metrics_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 1,
+      "case": "daily_customers",
+      "expected_mismatch_rows": 1,
+      "status": "passed",
+      "test": "assert_daily_sales_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 1,
+      "case": "daily_items",
+      "expected_mismatch_rows": 1,
+      "status": "passed",
+      "test": "assert_daily_sales_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 1,
+      "case": "daily_line_average",
+      "expected_mismatch_rows": 1,
+      "status": "passed",
+      "test": "assert_daily_sales_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 1,
+      "case": "daily_discount_revenue",
+      "expected_mismatch_rows": 1,
+      "status": "passed",
+      "test": "assert_daily_sales_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 1,
+      "case": "product_selling_price",
+      "expected_mismatch_rows": 1,
+      "status": "passed",
+      "test": "assert_product_metrics_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 1,
+      "case": "no_sales_customer_null_items",
+      "expected_mismatch_rows": 1,
+      "status": "passed",
+      "test": "assert_customer_metrics_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 1,
+      "case": "no_sales_product_null_price",
+      "expected_mismatch_rows": 1,
+      "status": "passed",
+      "test": "assert_product_metrics_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 2,
+      "case": "offsetting_daily_revenue",
+      "expected_mismatch_rows": 2,
+      "status": "passed",
+      "test": "assert_daily_sales_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 0,
+      "case": "restored customers",
+      "expected_mismatch_rows": 0,
+      "status": "passed",
+      "test": "assert_silver_customer_preservation"
+    },
+    {
+      "actual_mismatch_rows": 0,
+      "case": "restored products",
+      "expected_mismatch_rows": 0,
+      "status": "passed",
+      "test": "assert_silver_product_preservation"
+    },
+    {
+      "actual_mismatch_rows": 0,
+      "case": "restored customer_metrics",
+      "expected_mismatch_rows": 0,
+      "status": "passed",
+      "test": "assert_customer_metrics_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 0,
+      "case": "restored daily_sales",
+      "expected_mismatch_rows": 0,
+      "status": "passed",
+      "test": "assert_daily_sales_reconciliation"
+    },
+    {
+      "actual_mismatch_rows": 0,
+      "case": "restored product_metrics",
+      "expected_mismatch_rows": 0,
+      "status": "passed",
+      "test": "assert_product_metrics_reconciliation"
+    }
+  ],
+  "cleanup_verified": true,
+  "finished_at_utc": "2026-11-17T07:17:23.046061+00:00",
+  "fixture_helper_sha256": "c3535c0ab1a09302d7636c879f74a7975a36cd6aa43eead9cd15292320950f1d",
+  "fixture_scope": "Connection-local temporary tables; each mutation rolled back; no business writes.",
+  "input_sha256": {
+    "models/gold/gld_customer_metrics.sql": "c615c528e5833e6679015980820716c598dfbd13816e1aca98320b0d21c84351",
+    "models/gold/gld_product_performance.sql": "f9867115113773e52b1dc8deea03e2c7e7578686e39909db61152ad1d6702e9e",
+    "models/gold/gld_sales_summary.sql": "3b904bd9066dd07b284539a24c898acddaf5e78d8e86ea2fa1c29a514d898134",
+    "tests/data_quality/assert_customer_metrics_reconciliation.sql": "e2bde49d7cf78b9db8bcd961130507cd0bd7ea510290633d2c84af21a48228fd",
+    "tests/data_quality/assert_daily_sales_reconciliation.sql": "917e45aaf31268974c508c8183c5ec1eed7c5016081a2e055ba462391d30ed4d",
+    "tests/data_quality/assert_product_metrics_reconciliation.sql": "7dad0f8eb52f022235beda2581f7ef1caec2e958cfbfbcca91eb9e592e4c2857",
+    "tests/data_quality/assert_silver_customer_preservation.sql": "7cd4f0571634399e55208bc4ed6a8c024d9311dc28682968e0124628b8239b10",
+    "tests/data_quality/assert_silver_product_preservation.sql": "bfed7d388a5a864c9addbad5f5f1fff30efc70beb9a44ab64aaa2ffb5b2d7989"
+  },
+  "passed_cases": 27,
+  "runner_sha256": "02fb83dc6e5f5e847d85e30fc61e2264ea303c2a3cb908b353c7f08f1a44b4d7",
+  "started_at_utc": "2026-11-17T07:17:07.600886+00:00",
+  "status": "passed"
+}

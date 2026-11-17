@@ -1,0 +1,124 @@
+{
+  "baseline_commit": "602d8b9",
+  "newline_note": "Raw hashes identify original ignored files and Windows working-tree bytes. Published JSON is reformatted UTF-8 LF. Canonical LF hashes allow comparison with Git blobs after CRLF normalization.",
+  "raw_source_artifact_sha256": {
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_deps/try-1-9634562d34ad4675a1c541859cd9dc2a/task_summary.json": "5a9e3f747fa421f4aa450562eb181cad3f60e6913186a4686f3d95b4025af79b",
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_docs/try-1-6b5c9f67466b44a3be9c0324f06a6e72/catalog.json": "c2badfa97b0f5d641f4fbe4e623a5f195f1edab8968d52f4d738a5b6bbab853b",
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_docs/try-1-6b5c9f67466b44a3be9c0324f06a6e72/index.html": "23fa3656d8004cd0427eb81d6230d2ea8221dfd2758e832a08026bad471c4544",
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_docs/try-1-6b5c9f67466b44a3be9c0324f06a6e72/manifest.json": "fb185223d296e3f78278b516b0bb2bf3357073aa0a5b10af71f9c2744a80fd92",
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_docs/try-1-6b5c9f67466b44a3be9c0324f06a6e72/task_summary.json": "ba317fc7d29af155a5a608e504ac4ea5d842b1ab51963b2ebfcacfe410a7c8cc",
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_run/try-1-30acdcccbc3145f5b1f7fef33a7f6019/manifest.json": "c382f0c04032a6f73455bb2b32f36401e81f3514edc3376fe9f709aa52c2e604",
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_run/try-1-30acdcccbc3145f5b1f7fef33a7f6019/run_results.json": "ce1ad4d3044aeecf0715605743d56366e8f343cee5742af0f8c5420399566421",
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_run/try-1-30acdcccbc3145f5b1f7fef33a7f6019/task_summary.json": "598b80a776d73860ccb3ccc376af36bd14585464fec2860b8d525263f0b50493",
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_test/try-1-0ae852098a4845df98fef4f8e67c0eed/manifest.json": "97c58137678c6accd5a4396a47c25a9cf39645fcc60a5ec089fc163b9aa122dc",
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_test/try-1-0ae852098a4845df98fef4f8e67c0eed/run_results.json": "f4b7c837d62b07bd9ef3d58056f3638828d6bf34eade8f7383531b11deaeb362",
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_test/try-1-0ae852098a4845df98fef4f8e67c0eed/task_summary.json": "730a42472c6b37f65ed5bf3ef2c1449994f32d1dd709f38c472928104b1743c5",
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/ge_validate/try-1-e100ee75e4874bd2ae0a89db566ffd2b/ge/customer_checkpoint.json": "00b3284f47a1e26e9d9efd03819f1cb3d7978e2af560b83a5ad8653afa4b1d56",
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/ge_validate/try-1-e100ee75e4874bd2ae0a89db566ffd2b/ge/order_checkpoint.json": "999ff67f71d53cf5ad2ce1dd101675683a576abc7cf93ec92be6455cc89683c8",
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/ge_validate/try-1-e100ee75e4874bd2ae0a89db566ffd2b/ge/summary.json": "65cede2de030c4b37bf335fd46bfb0067b26355c8b583709e4d58b3c14173781",
+    "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/ge_validate/try-1-e100ee75e4874bd2ae0a89db566ffd2b/task_summary.json": "aa7a477eaa19a6c7686d7131c9c28c58bf35238a80f07defe8709a9b58c7a5e8",
+    "great_expectations/uncommitted/day13-contracts-20261117-01.json": "05acf0db3d91c2f5069d4971f8ce49cb19f1958864e10466f2ca2b7b356a4062",
+    "great_expectations/uncommitted/day13-coverage-20261117-01.json": "531d352f284e0450605f10ef04c6d55250e1071b80d231a2c796f2bfdf29f2c2",
+    "great_expectations/uncommitted/day13-reconciliation-20261117-01/summary.json": "80f1363f6c3730d245a1f8bd20a572b965da2e19b73e882f7f6fbfb9694ecbce",
+    "great_expectations/uncommitted/day13-runtime.json": "453247cf61fe9ec9378a6b166d63470dfa7e8fdfb0f44671a644080eff6d9dc5",
+    "great_expectations/uncommitted/full_dag_day13.json": "040d4cb347a4ae01198e5046ca8c0a2144fe7601c8a5e4376117090326f719ad"
+  },
+  "runtime_input_sha256": {
+    "airflow/dags/dbt_dag.py": {
+      "canonical_lf_sha256": "e8f3484f7d723912a1224f0840e4112817973bbbd6032c003a0b3730c553ee6a",
+      "executed_worktree_sha256": "5b75db6d3b00cb8184cb76fd778f8c6a73699eacf7c249897032c5249fb90d51"
+    },
+    "dbt/models/bronze/brnz_customers.sql": {
+      "canonical_lf_sha256": "33abbcbfca6470995305e6ebbbd59d1bb67c15287f3c96f4e818a52f37b6b0cd",
+      "executed_worktree_sha256": "b184d2488fc8635b004ff6654e463e75170965d72bebc6ae81abc53b91637286"
+    },
+    "dbt/models/bronze/brnz_example.sql": {
+      "canonical_lf_sha256": "bb5cfe68602fe12e1e7aed2ee0fd7b638a6c4547fb32648726a99842258bcdbe",
+      "executed_worktree_sha256": "980a39126614011444660b4b91154b02ba4432febf8fac48aa7a6f126b7b8a1e"
+    },
+    "dbt/models/bronze/brnz_products.sql": {
+      "canonical_lf_sha256": "75b41d1d032bc2adcbdf9883342376f19b59fdeb61d4b95e5ec3a446dc153576",
+      "executed_worktree_sha256": "d5c8730b69d5f12de621f4341ec708e86d1bb0c44c2c6211ee112f71d64334cd"
+    },
+    "dbt/models/bronze/brnz_sales_orders.sql": {
+      "canonical_lf_sha256": "93cb69302aff908dbc8d0e2dcefe6748be1c3dfec446ff4ca031585847d0d5f7",
+      "executed_worktree_sha256": "727463c8e8be6a48734cbf904a5ced6e6d27459bec98f8ba036dd214d2454be9"
+    },
+    "dbt/models/gold/gld_customer_metrics.sql": {
+      "canonical_lf_sha256": "aa6fc777f17f889a06e2eca1adc96b722ceddad0d5e093207c3a9c740f4a8e87",
+      "executed_worktree_sha256": "c615c528e5833e6679015980820716c598dfbd13816e1aca98320b0d21c84351"
+    },
+    "dbt/models/gold/gld_product_performance.sql": {
+      "canonical_lf_sha256": "3be59078316a1f36904407104cda5d21538e3470a87e44ad0760793d72a9775d",
+      "executed_worktree_sha256": "f9867115113773e52b1dc8deea03e2c7e7578686e39909db61152ad1d6702e9e"
+    },
+    "dbt/models/gold/gld_sales_summary.sql": {
+      "canonical_lf_sha256": "0b11291abc809b9d09c7bbb80ed984b70bcc0e7bc9fc194f87bed656daa49921",
+      "executed_worktree_sha256": "3b904bd9066dd07b284539a24c898acddaf5e78d8e86ea2fa1c29a514d898134"
+    },
+    "dbt/models/silver/slvr_customers.sql": {
+      "canonical_lf_sha256": "d89643809e2c7ca3fd9bd8021dbc4c9c24fa4b50426150fdbbe21a2be0cb88c5",
+      "executed_worktree_sha256": "7bacaf8b0da9222224cf37dfc74843f98ee123c572275db500644410f08bf8f7"
+    },
+    "dbt/models/silver/slvr_products.sql": {
+      "canonical_lf_sha256": "d24b8bd0da3477cccec89731b8b13d2889a6f88b7fb80a4b3831e44fa087d802",
+      "executed_worktree_sha256": "76d839c10fa9823e3164290b3e94e48f7318ee8d745ad3fe0443b7d2e1ca502a"
+    },
+    "dbt/models/silver/slvr_sales_orders.sql": {
+      "canonical_lf_sha256": "e0916e3c2ecad1b8bd22c4387f999a2d198d857541864718b2b5ca44df5a7d3c",
+      "executed_worktree_sha256": "a1840155a57934586ccecb391499db886f449f6ab2f9c2d97e3554753789945c"
+    },
+    "dbt/tests/data_quality/assert_customer_metrics_reconciliation.sql": {
+      "canonical_lf_sha256": "e2bde49d7cf78b9db8bcd961130507cd0bd7ea510290633d2c84af21a48228fd",
+      "executed_worktree_sha256": "e2bde49d7cf78b9db8bcd961130507cd0bd7ea510290633d2c84af21a48228fd"
+    },
+    "dbt/tests/data_quality/assert_daily_sales_reconciliation.sql": {
+      "canonical_lf_sha256": "917e45aaf31268974c508c8183c5ec1eed7c5016081a2e055ba462391d30ed4d",
+      "executed_worktree_sha256": "917e45aaf31268974c508c8183c5ec1eed7c5016081a2e055ba462391d30ed4d"
+    },
+    "dbt/tests/data_quality/assert_product_metrics_reconciliation.sql": {
+      "canonical_lf_sha256": "7dad0f8eb52f022235beda2581f7ef1caec2e958cfbfbcca91eb9e592e4c2857",
+      "executed_worktree_sha256": "7dad0f8eb52f022235beda2581f7ef1caec2e958cfbfbcca91eb9e592e4c2857"
+    },
+    "dbt/tests/data_quality/assert_silver_customer_preservation.sql": {
+      "canonical_lf_sha256": "7cd4f0571634399e55208bc4ed6a8c024d9311dc28682968e0124628b8239b10",
+      "executed_worktree_sha256": "7cd4f0571634399e55208bc4ed6a8c024d9311dc28682968e0124628b8239b10"
+    },
+    "dbt/tests/data_quality/assert_silver_eligible_order_lines.sql": {
+      "canonical_lf_sha256": "00c95793953c2c10633db80e8f9fdadb9ce8a7a69b31cbb060af643208d20a63",
+      "executed_worktree_sha256": "00c95793953c2c10633db80e8f9fdadb9ce8a7a69b31cbb060af643208d20a63"
+    },
+    "dbt/tests/data_quality/assert_silver_product_preservation.sql": {
+      "canonical_lf_sha256": "bfed7d388a5a864c9addbad5f5f1fff30efc70beb9a44ab64aaa2ffb5b2d7989",
+      "executed_worktree_sha256": "bfed7d388a5a864c9addbad5f5f1fff30efc70beb9a44ab64aaa2ffb5b2d7989"
+    },
+    "docker-compose.airflow-quality.yml": {
+      "canonical_lf_sha256": "173c69bbb86ff8afa473ef77fa614ebe39576630d889dd99586c867a3fd771c5",
+      "executed_worktree_sha256": "173c69bbb86ff8afa473ef77fa614ebe39576630d889dd99586c867a3fd771c5"
+    },
+    "scripts/reconcile_dbt_layers.py": {
+      "canonical_lf_sha256": "8cba649708bfaea04584588bdc2f1e59730e443e6a4a9a3256c331a4725c5cd9",
+      "executed_worktree_sha256": "8cba649708bfaea04584588bdc2f1e59730e443e6a4a9a3256c331a4725c5cd9"
+    },
+    "scripts/report_dbt_test_coverage.py": {
+      "canonical_lf_sha256": "a8d0d4f429b59c34083211080c084bd92b71791632f676309ad41a614ce698c9",
+      "executed_worktree_sha256": "a8d0d4f429b59c34083211080c084bd92b71791632f676309ad41a614ce698c9"
+    },
+    "scripts/run_airflow_quality_task.py": {
+      "canonical_lf_sha256": "62bfc92c52ce13ef0b61c9e4d0cb79b7f15b4275f393f10574fc0e7cb8c79221",
+      "executed_worktree_sha256": "62bfc92c52ce13ef0b61c9e4d0cb79b7f15b4275f393f10574fc0e7cb8c79221"
+    },
+    "scripts/run_ge_checkpoints.py": {
+      "canonical_lf_sha256": "ef94d0ad6cf3c984bc9d697e6846e87a9c1347dabe3c6a0fd5eabae57d34cc84",
+      "executed_worktree_sha256": "ef94d0ad6cf3c984bc9d697e6846e87a9c1347dabe3c6a0fd5eabae57d34cc84"
+    },
+    "scripts/verify_dbt_gold_contracts.py": {
+      "canonical_lf_sha256": "c3535c0ab1a09302d7636c879f74a7975a36cd6aa43eead9cd15292320950f1d",
+      "executed_worktree_sha256": "c3535c0ab1a09302d7636c879f74a7975a36cd6aa43eead9cd15292320950f1d"
+    },
+    "scripts/verify_dbt_reconciliation_contracts.py": {
+      "canonical_lf_sha256": "02fb83dc6e5f5e847d85e30fc61e2264ea303c2a3cb908b353c7f08f1a44b4d7",
+      "executed_worktree_sha256": "02fb83dc6e5f5e847d85e30fc61e2264ea303c2a3cb908b353c7f08f1a44b4d7"
+    }
+  }
+}
