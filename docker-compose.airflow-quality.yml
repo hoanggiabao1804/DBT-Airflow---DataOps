@@ -1,0 +1,114 @@
+# Local Tuan week 3 runtime. Combine with docker-compose.yml.
+# Build: docker compose -f docker-compose.yml -f docker-compose.airflow-quality.yml build
+# Start: docker compose -f docker-compose.yml -f docker-compose.airflow-quality.yml up -d
+x-airflow-quality: &airflow-quality
+  image: ${COMPOSE_PROJECT_NAME}-airflow-quality:2.7.1
+  build:
+    context: ./airflow
+    dockerfile: Dockerfile
+  user: "${AIRFLOW_UID:-1000}:0"
+  # Docker Desktop exposes the socket to group 0. On Linux set DOCKER_GID to
+  # the host socket's group ID (stat -c '%g' /var/run/docker.sock).
+  group_add:
+    - "${DOCKER_GID:-0}"
+  environment: &airflow-quality-environment
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+    # Keep this local verification stack small enough for Docker Desktop.
+    AIRFLOW__CORE__PARALLELISM: "2"
+    AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG: "2"
+    AIRFLOW__WEBSERVER__WORKERS: "1"
+    AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT: "300"
+    AIRFLOW__WEBSERVER__SECRET_KEY: ${AIRFLOW_WEBSERVER_SECRET_KEY:-local-airflow-quality-only}
+    AIRFLOW__SCHEDULER__PARSING_PROCESSES: "1"
+    AIRFLOW__SCHEDULER__MAX_TIS_PER_QUERY: "2"
+    AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: "true"
+    DATAOPS_COMPOSE_PROJECT: ${COMPOSE_PROJECT_NAME}
+    DATAOPS_DBT_TARGET: dev
+    DATAOPS_GE_SCHEMA: silver
+  volumes:
+    - ./airflow/dags:/opt/airflow/dags:ro
+    - ./airflow/logs:/opt/airflow/logs
+    - ./airflow/plugins:/opt/airflow/plugins:ro
+    - ./dbt:/opt/airflow/dbt:ro
+    - ./scripts:/opt/airflow/scripts:ro
+    - ./great_expectations:/opt/airflow/great_expectations:ro
+    - ./great_expectations/uncommitted:/opt/airflow/quality_evidence
+    - /var/run/docker.sock:/var/run/docker.sock
+  networks:
+    - dbt_airflow_network
+
+services:
+  airflow-init:
+    <<: *airflow-quality
+    environment:
+      <<: *airflow-quality-environment
+      AIRFLOW_ADMIN_USERNAME: ${AIRFLOW_ADMIN_USERNAME:-admin}
+      AIRFLOW_ADMIN_PASSWORD: ${AIRFLOW_ADMIN_PASSWORD:-admin}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command:
+      - bash
+      - -ec
+      - |
+        set -o pipefail
+        airflow db migrate
+        if ! airflow users list --output json | python -c 'import json, os, sys; sys.exit(not any(user["username"] == os.environ["AIRFLOW_ADMIN_USERNAME"] for user in json.load(sys.stdin)))'; then
+          airflow users create --username "$${AIRFLOW_ADMIN_USERNAME}" --password "$${AIRFLOW_ADMIN_PASSWORD}" --firstname Local --lastname Admin --role Admin --email admin@example.com
+        fi
+    restart: "no"
+
+  airflow-webserver:
+    <<: *airflow-quality
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+    command: webserver
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+      start_period: 300s
+
+  airflow-scheduler:
+    <<: *airflow-quality
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+      airflow-webserver:
+        condition: service_healthy
+      ge-worker:
+        condition: service_healthy
+      dbt:
+        condition: service_started
+    command: scheduler
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+      start_period: 30s
+
+  ge-worker:
+    image: ${COMPOSE_PROJECT_NAME}-ge
+    build:
+      context: ./great_expectations
+    entrypoint: ["sleep", "infinity"]
+    command: []
+    volumes:
+      - ./scripts:/workspace/scripts:ro
+      - ./dbt:/workspace/dbt:ro
+      - ./great_expectations:/workspace/great_expectations:ro
+      - ./great_expectations/uncommitted:/evidence
+    healthcheck:
+      test: ["CMD", "python", "-c", "from importlib.metadata import version; assert version('great-expectations') == '0.18.22'"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 15s
+    networks:
+      - dbt_airflow_network

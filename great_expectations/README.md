@@ -4,6 +4,8 @@ Phần ngày 8–9 của Tuân: hai suites kiểm tra toàn bộ bảng Silver v
 
 [Báo cáo chất lượng kết thúc tuần 2](../docs/tuan_week2_quality_report.md) tổng hợp kết quả dbt, freshness, GE và bàn giao sang tuần 3.
 
+[Tích hợp Airflow ngày 11–12](../docs/tuan_week3_day11_12.md) dùng cùng suites/checkpoints trong service `ge-worker`, nối sau dbt tests và chặn bước docs nếu validation không đạt. Hướng dẫn bên dưới vẫn dùng được để chạy GE độc lập.
+
 | Checkpoint | Suite | Bảng mặc định | Số điều kiện |
 | --- | --- | --- | --- |
 | `customer_checkpoint` | `customer_suite` | `silver.slvr_customers` | 10 |
@@ -58,6 +60,6 @@ Fixture dùng bảng tổng hợp trong schema UUID `ge_contracts_*`; không c�
 
 Native GX validation store tồn tại trong context tạm của mỗi lần chạy; sau đó runner giữ lại kết quả tổng hợp cần thiết trong output và xóa context tạm. Báo cáo không chứa tên khách, các dòng lỗi, connection string hay mật khẩu. Telemetry và progress bars đã tắt. Chưa dựng Data Docs HTML ở bước này.
 
-Container mặc định chạy theo yêu cầu, không chạy nền. Airflow/CI có thể gọi runner và dùng exit code 0/1/2; việc tích hợp DAG thuộc phần tiếp theo theo kế hoạch nhóm. Chưa thay đổi các workflow hay DAG hiện tại.
+Service `ge` ở hướng dẫn độc lập chạy theo yêu cầu. Overlay Airflow ngày 11–12 dùng service `ge-worker` chờ lệnh để DAG `dbt_transform` tự động chạy cả hai checkpoints sau dbt tests; exit 1/2 làm task thất bại và chặn bước dbt docs. DAG mặc định được trigger thủ công, chưa bật lịch định kỳ. Các workflow CI chưa chạy GE/Airflow; xem [hướng dẫn tích hợp](../docs/tuan_week3_day11_12.md) để biết cách chạy, bằng chứng và giới hạn vận hành.
 
 Tham khảo API được dùng: [GX 0.18 SQL datasource](https://docs.greatexpectations.io/docs/0.18/oss/guides/connecting_to_your_data/fluent/database/connect_sql_source_data/), [GX 0.18 checkpoints](https://docs.greatexpectations.io/docs/0.18/oss/get_started/get_started_with_gx_and_sql/), [package 0.18.22](https://pypi.org/project/great-expectations/0.18.22/). Đây là phiên bản tương thích bài lab, không phải tuyên bố về phiên bản GX mới nhất.

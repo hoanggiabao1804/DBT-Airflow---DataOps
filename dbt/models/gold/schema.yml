@@ -16,7 +16,7 @@ models:
               to: ref('slvr_customers')
               field: customer_id
       - name: full_name
-        description: Normalized customer name from Silver.
+        description: Silver full_name with Unknown substitutions; no additional name normalization.
       - name: territory_id
         description: Optional sales territory identifier.
       - name: total_orders

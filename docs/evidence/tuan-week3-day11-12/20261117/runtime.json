@@ -1,0 +1,72 @@
+{
+  "airflow_image_id": "sha256:458e946cd22b083c672bd9f8773048d4cb606511624120e4c77a3cb4d117556a",
+  "compose_files": [
+    "docker-compose.yml",
+    "docker-compose.airflow-quality.yml"
+  ],
+  "services_before_production_run": {
+    "airflow-init": {
+      "ExitCode": 0,
+      "FinishedAt": "2026-11-17T01:42:40.413689509Z",
+      "Health": null,
+      "OOMKilled": false,
+      "StartedAt": "2026-11-17T01:42:12.947125267Z",
+      "Status": "exited"
+    },
+    "airflow-scheduler": {
+      "ExitCode": 0,
+      "FinishedAt": "0001-01-01T00:00:00Z",
+      "Health": "healthy",
+      "OOMKilled": false,
+      "StartedAt": "2026-11-17T01:46:37.286299953Z",
+      "Status": "running"
+    },
+    "airflow-webserver": {
+      "ExitCode": 0,
+      "FinishedAt": "0001-01-01T00:00:00Z",
+      "Health": "healthy",
+      "OOMKilled": false,
+      "StartedAt": "2026-11-17T01:46:06.298825083Z",
+      "Status": "running"
+    },
+    "dbt": {
+      "ExitCode": 0,
+      "FinishedAt": "2026-11-17T00:55:11.591698606Z",
+      "Health": null,
+      "OOMKilled": false,
+      "StartedAt": "2026-11-17T01:18:50.787083841Z",
+      "Status": "running"
+    },
+    "ge-worker": {
+      "ExitCode": 0,
+      "FinishedAt": "0001-01-01T00:00:00Z",
+      "Health": "healthy",
+      "OOMKilled": false,
+      "StartedAt": "2026-11-17T01:46:30.564461385Z",
+      "Status": "running"
+    },
+    "postgres": {
+      "ExitCode": 0,
+      "FinishedAt": "0001-01-01T00:00:00Z",
+      "Health": "healthy",
+      "OOMKilled": false,
+      "StartedAt": "2026-11-17T01:18:55.353323485Z",
+      "Status": "running"
+    },
+    "sqlserver": {
+      "ExitCode": 0,
+      "FinishedAt": "2026-11-17T00:55:11.591725706Z",
+      "Health": null,
+      "OOMKilled": false,
+      "StartedAt": "2026-11-17T01:18:48.713968827Z",
+      "Status": "running"
+    }
+  },
+  "versions": {
+    "airflow": "2.7.1",
+    "docker_client_server": "27.5.1 / 29.9.2",
+    "executor": "LocalExecutor",
+    "psycopg2": "2.9.7",
+    "python": "3.9.18"
+  }
+}

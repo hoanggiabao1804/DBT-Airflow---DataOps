@@ -1,0 +1,117 @@
+{
+  "cleanup_verified": true,
+  "contracts": [
+    {
+      "actual_failures": {},
+      "actual_native_exit_code": 0,
+      "actual_task_states": {
+        "dbt_docs": "success",
+        "ge_validate": "success"
+      },
+      "airflow_dag_state": "success",
+      "attempt_evidence_relative_path": "airflow/e24c95ff27d3380edc5c",
+      "case": "valid_data",
+      "checks_evaluated": 40,
+      "dag_id": "quality_contract_valid_data_2818d865ba19477a8ca6facd851871cb",
+      "downstream_docs_executed": true,
+      "expected_exit_code": 0,
+      "expected_failures": {},
+      "expected_task_states": {
+        "dbt_docs": "success",
+        "ge_validate": "success"
+      },
+      "ge_status": "passed",
+      "matched": true,
+      "run_id": "manual__2026-11-17T01:55:23.034534+00:00"
+    },
+    {
+      "actual_failures": {
+        "customer_email_promotion_allowed": 1,
+        "order_channel_allowed": 1,
+        "order_has_discount_allowed": 1,
+        "order_status_allowed": 1
+      },
+      "actual_native_exit_code": 1,
+      "actual_task_states": {
+        "dbt_docs": "upstream_failed",
+        "ge_validate": "failed"
+      },
+      "airflow_dag_state": "failed",
+      "attempt_evidence_relative_path": "airflow/cc6a56fa55e38ef5e909",
+      "case": "invalid_data",
+      "checks_evaluated": 40,
+      "dag_id": "quality_contract_invalid_data_052c41312fdc46f991c7bc1799173cfc",
+      "downstream_docs_executed": false,
+      "expected_exit_code": 1,
+      "expected_failures": {
+        "customer_email_promotion_allowed": 1,
+        "order_channel_allowed": 1,
+        "order_has_discount_allowed": 1,
+        "order_status_allowed": 1
+      },
+      "expected_task_states": {
+        "dbt_docs": "upstream_failed",
+        "ge_validate": "failed"
+      },
+      "ge_status": "failed",
+      "matched": true,
+      "run_id": "manual__2026-11-17T01:58:35.863244+00:00"
+    },
+    {
+      "case": "repeat_failed_attempt",
+      "execution_method": "real helper with identical DAG/run/task/try context",
+      "matched": true,
+      "native_exit_code": 1,
+      "new_attempt_directories": 1,
+      "previous_evidence_sha256": {
+        "try-1-6ff12fecd6d64ee69911a11b0604ab63/ge/customer_checkpoint.json": "06f6579cc198042a38c2dff8c134d83ab95f227b5b3eb8af392634ef6e8b1957",
+        "try-1-6ff12fecd6d64ee69911a11b0604ab63/ge/order_checkpoint.json": "736e1491f95c46483e427b28620a3fa20e3a400cd7fa44827ba2e9484ae1b46b",
+        "try-1-6ff12fecd6d64ee69911a11b0604ab63/ge/summary.json": "fe56f5263c56311d7d0f66a38c46b320bd41a4022276f3097ed431d6415ee51e",
+        "try-1-6ff12fecd6d64ee69911a11b0604ab63/stdout.log": "9b037434aad33a291123b12a7106e415246b5bf544d0a256f6b4f4674255d021",
+        "try-1-6ff12fecd6d64ee69911a11b0604ab63/task_summary.json": "c14e382832c59234bec384ef613fc450c02d2c626dc659efe006c5980b18423b"
+      },
+      "previous_evidence_unchanged": true
+    },
+    {
+      "actual_failures": {},
+      "actual_native_exit_code": 2,
+      "actual_task_states": {
+        "dbt_docs": "upstream_failed",
+        "ge_validate": "failed"
+      },
+      "airflow_dag_state": "failed",
+      "attempt_evidence_relative_path": "airflow/1e04a5b6df6664d9ddcf",
+      "case": "missing_table",
+      "checks_evaluated": 10,
+      "dag_id": "quality_contract_missing_table_f8f88aecfed64e43817123cd8bb1eede",
+      "downstream_docs_executed": false,
+      "expected_exit_code": 2,
+      "expected_failures": null,
+      "expected_task_states": {
+        "dbt_docs": "upstream_failed",
+        "ge_validate": "failed"
+      },
+      "ge_status": "error",
+      "matched": true,
+      "run_id": "manual__2026-11-17T01:59:16.371126+00:00"
+    }
+  ],
+  "execution_method": "Airflow DAG.test with actual GE/docs operators; isolated fixture schema; retries=0",
+  "finished_at_utc": "2026-11-17T01:59:37.490031+00:00",
+  "fixture_manager_sha256": "c62d943bf7bf06185995ebf528e235cc8fd9a9fa560a139fc4aad2c817a75414",
+  "fixture_process_exit_code": 0,
+  "fixture_schema": "ge_airflow_712b35b954d04c2dbfd98c53921269a7",
+  "full_production_dag_executed": false,
+  "last_operation": "airflow_missing_table",
+  "production_dag_sha256": "5b75db6d3b00cb8184cb76fd778f8c6a73699eacf7c249897032c5249fb90d51",
+  "production_task_chain": [
+    "dbt_deps",
+    "dbt_run",
+    "dbt_test",
+    "ge_validate",
+    "dbt_docs"
+  ],
+  "started_at_utc": "2026-11-17T01:55:08.602233+00:00",
+  "status": "passed",
+  "verifier_sha256": "cc436a73129f038c370cf121a495e35a6a360394c1087f459406020cfdf97ae5"
+}

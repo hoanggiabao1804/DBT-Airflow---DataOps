@@ -17,7 +17,7 @@ models:
       - name: last_name
         description: Last name or Unknown for missing person data.
       - name: full_name
-        description: Concatenated normalized first and last names.
+        description: First and last names joined with a space after replacing NULL with Unknown; no trimming or case normalization.
         data_tests: [not_null]
       - name: email_promotion
         description: Person email preference; NULL remains valid for store customers.
@@ -61,7 +61,7 @@ models:
       - name: size
         description: Product size, or N/A when absent.
       - name: weight
-        description: Source weight, with missing values replaced by zero.
+        description: Source weight, with missing values replaced by zero; no unit conversion is applied.
         data_tests: [not_null, positive_values]
       - name: product_line
         description: Optional source product line.

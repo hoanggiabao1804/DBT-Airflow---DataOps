@@ -2,20 +2,26 @@ version: 2
 
 sources:
   - name: raw
+    description: >-
+      Legacy dbo source declarations retained from the starter project. None of
+      the current models references this source, and these relations are not
+      part of the six-source validation or freshness scope. The active inputs
+      are the adventureworks, adventureworks_person and adventureworks_production
+      sources in Sales, Person and Production schemas; see bronze/src_adventureworks.yml.
     database: AdventureWorks2014
     schema: dbo
     tables:
       - name: Customer
-        description: "Raw customer data from AdventureWorks"
+        description: Legacy dbo.Customer declaration; unused by the current model lineage and not validated.
       - name: Person
-        description: "Raw person data from AdventureWorks"
+        description: Legacy dbo.Person declaration; unused by the current model lineage and not validated.
       - name: SalesOrderHeader
-        description: "Raw sales order header data from AdventureWorks"
+        description: Legacy dbo.SalesOrderHeader declaration; unused by the current model lineage and not validated.
       - name: SalesOrderDetail
-        description: "Raw sales order detail data from AdventureWorks"
+        description: Legacy dbo.SalesOrderDetail declaration; unused by the current model lineage and not validated.
       - name: Product
-        description: "Raw product data from AdventureWorks"
+        description: Legacy dbo.Product declaration; unused by the current model lineage and not validated.
       - name: ProductCategory
-        description: "Raw product category data from AdventureWorks"
+        description: Legacy dbo.ProductCategory declaration; no category-name lookup or validation uses this relation.
       - name: ProductSubcategory
-        description: "Raw product subcategory data from AdventureWorks"
+        description: Legacy dbo.ProductSubcategory declaration; unused by the current model lineage and not validated.
