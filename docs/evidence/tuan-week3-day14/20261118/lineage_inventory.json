@@ -1,0 +1,383 @@
+{
+  "evidence_type": "documentation_inventory_from_prior_runtime_manifest",
+  "review_date_local": "2026-11-18",
+  "timezone": "Asia/Saigon",
+  "review_base_commit": "7a5ca1916954771445e2153735482eaf84879a91",
+  "runtime_reference": {
+    "code_commit": "315fcdd0fe8e504d385625b6734143e572014ea7",
+    "dag_run_id": "tuan-week3-day13-20261117-01",
+    "executed_date_local": "2026-11-17",
+    "manifest_path": "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_test/try-1-0ae852098a4845df98fef4f8e67c0eed/manifest.json",
+    "manifest_sha256": "97c58137678c6accd5a4396a47c25a9cf39645fcc60a5ec089fc163b9aa122dc",
+    "invocation_id": "873993fc-a1e3-4db2-b8be-c0b5b56cd9bf",
+    "rerun_for_day14_documentation_review": false
+  },
+  "counts": {
+    "active_sources": 6,
+    "unused_sources": 7,
+    "models": 10,
+    "model_dependency_edges": 15,
+    "model_documented_columns": 131,
+    "active_source_declared_columns": 59
+  },
+  "nodes": [
+    {
+      "name": "brnz_customers",
+      "resource_type": "model",
+      "database": "AdventureWorks2014",
+      "schema": "bronze",
+      "relation_name": "\"AdventureWorks2014\".\"bronze\".\"brnz_customers\"",
+      "unique_id": "model.dbt_sqlserver_project.brnz_customers",
+      "code_path": "dbt/models/bronze/brnz_customers.sql",
+      "declared_columns": 7,
+      "documented_columns": 7,
+      "alias": "brnz_customers",
+      "materialization": "view"
+    },
+    {
+      "name": "brnz_example",
+      "resource_type": "model",
+      "database": "AdventureWorks2014",
+      "schema": "bronze",
+      "relation_name": "\"AdventureWorks2014\".\"bronze\".\"brnz_example\"",
+      "unique_id": "model.dbt_sqlserver_project.brnz_example",
+      "code_path": "dbt/models/bronze/brnz_example.sql",
+      "declared_columns": 4,
+      "documented_columns": 4,
+      "alias": "brnz_example",
+      "materialization": "view"
+    },
+    {
+      "name": "brnz_products",
+      "resource_type": "model",
+      "database": "AdventureWorks2014",
+      "schema": "bronze",
+      "relation_name": "\"AdventureWorks2014\".\"bronze\".\"brnz_products\"",
+      "unique_id": "model.dbt_sqlserver_project.brnz_products",
+      "code_path": "dbt/models/bronze/brnz_products.sql",
+      "declared_columns": 26,
+      "documented_columns": 26,
+      "alias": "brnz_products",
+      "materialization": "view"
+    },
+    {
+      "name": "brnz_sales_orders",
+      "resource_type": "model",
+      "database": "AdventureWorks2014",
+      "schema": "bronze",
+      "relation_name": "\"AdventureWorks2014\".\"bronze\".\"brnz_sales_orders\"",
+      "unique_id": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "code_path": "dbt/models/bronze/brnz_sales_orders.sql",
+      "declared_columns": 17,
+      "documented_columns": 17,
+      "alias": "brnz_sales_orders",
+      "materialization": "view"
+    },
+    {
+      "name": "gld_customer_metrics",
+      "resource_type": "model",
+      "database": "AdventureWorks2014",
+      "schema": "gold",
+      "relation_name": "\"AdventureWorks2014\".\"gold\".\"gld_customer_metrics\"",
+      "unique_id": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "code_path": "dbt/models/gold/gld_customer_metrics.sql",
+      "declared_columns": 10,
+      "documented_columns": 10,
+      "alias": "gld_customer_metrics",
+      "materialization": "table"
+    },
+    {
+      "name": "gld_product_performance",
+      "resource_type": "model",
+      "database": "AdventureWorks2014",
+      "schema": "gold",
+      "relation_name": "\"AdventureWorks2014\".\"gold\".\"gld_product_performance\"",
+      "unique_id": "model.dbt_sqlserver_project.gld_product_performance",
+      "code_path": "dbt/models/gold/gld_product_performance.sql",
+      "declared_columns": 12,
+      "documented_columns": 12,
+      "alias": "gld_product_performance",
+      "materialization": "table"
+    },
+    {
+      "name": "gld_sales_summary",
+      "resource_type": "model",
+      "database": "AdventureWorks2014",
+      "schema": "gold",
+      "relation_name": "\"AdventureWorks2014\".\"gold\".\"gld_sales_summary\"",
+      "unique_id": "model.dbt_sqlserver_project.gld_sales_summary",
+      "code_path": "dbt/models/gold/gld_sales_summary.sql",
+      "declared_columns": 9,
+      "documented_columns": 9,
+      "alias": "gld_sales_summary",
+      "materialization": "table"
+    },
+    {
+      "name": "slvr_customers",
+      "resource_type": "model",
+      "database": "AdventureWorks2014",
+      "schema": "silver",
+      "relation_name": "\"AdventureWorks2014\".\"silver\".\"slvr_customers\"",
+      "unique_id": "model.dbt_sqlserver_project.slvr_customers",
+      "code_path": "dbt/models/silver/slvr_customers.sql",
+      "declared_columns": 8,
+      "documented_columns": 8,
+      "alias": "slvr_customers",
+      "materialization": "table"
+    },
+    {
+      "name": "slvr_products",
+      "resource_type": "model",
+      "database": "AdventureWorks2014",
+      "schema": "silver",
+      "relation_name": "\"AdventureWorks2014\".\"silver\".\"slvr_products\"",
+      "unique_id": "model.dbt_sqlserver_project.slvr_products",
+      "code_path": "dbt/models/silver/slvr_products.sql",
+      "declared_columns": 18,
+      "documented_columns": 18,
+      "alias": "slvr_products",
+      "materialization": "table"
+    },
+    {
+      "name": "slvr_sales_orders",
+      "resource_type": "model",
+      "database": "AdventureWorks2014",
+      "schema": "silver",
+      "relation_name": "\"AdventureWorks2014\".\"silver\".\"slvr_sales_orders\"",
+      "unique_id": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "code_path": "dbt/models/silver/slvr_sales_orders.sql",
+      "declared_columns": 20,
+      "documented_columns": 20,
+      "alias": "slvr_sales_orders",
+      "materialization": "table"
+    },
+    {
+      "name": "Customer",
+      "resource_type": "source",
+      "database": "AdventureWorks2014",
+      "schema": "Sales",
+      "relation_name": "\"AdventureWorks2014\".\"Sales\".\"Customer\"",
+      "unique_id": "source.dbt_sqlserver_project.adventureworks.Customer",
+      "code_path": "dbt/models/bronze/src_adventureworks.yml",
+      "declared_columns": 6,
+      "documented_columns": 6,
+      "source_name": "adventureworks",
+      "identifier": "Customer"
+    },
+    {
+      "name": "SalesOrderDetail",
+      "resource_type": "source",
+      "database": "AdventureWorks2014",
+      "schema": "Sales",
+      "relation_name": "\"AdventureWorks2014\".\"Sales\".\"SalesOrderDetail\"",
+      "unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail",
+      "code_path": "dbt/models/bronze/src_adventureworks.yml",
+      "declared_columns": 8,
+      "documented_columns": 8,
+      "source_name": "adventureworks",
+      "identifier": "SalesOrderDetail"
+    },
+    {
+      "name": "SalesOrderHeader",
+      "resource_type": "source",
+      "database": "AdventureWorks2014",
+      "schema": "Sales",
+      "relation_name": "\"AdventureWorks2014\".\"Sales\".\"SalesOrderHeader\"",
+      "unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "code_path": "dbt/models/bronze/src_adventureworks.yml",
+      "declared_columns": 12,
+      "documented_columns": 12,
+      "source_name": "adventureworks",
+      "identifier": "SalesOrderHeader"
+    },
+    {
+      "name": "Person",
+      "resource_type": "source",
+      "database": "AdventureWorks2014",
+      "schema": "Person",
+      "relation_name": "\"AdventureWorks2014\".\"Person\".\"Person\"",
+      "unique_id": "source.dbt_sqlserver_project.adventureworks_person.Person",
+      "code_path": "dbt/models/bronze/src_adventureworks.yml",
+      "declared_columns": 5,
+      "documented_columns": 5,
+      "source_name": "adventureworks_person",
+      "identifier": "Person"
+    },
+    {
+      "name": "Product",
+      "resource_type": "source",
+      "database": "AdventureWorks2014",
+      "schema": "Production",
+      "relation_name": "\"AdventureWorks2014\".\"Production\".\"Product\"",
+      "unique_id": "source.dbt_sqlserver_project.adventureworks_production.Product",
+      "code_path": "dbt/models/bronze/src_adventureworks.yml",
+      "declared_columns": 24,
+      "documented_columns": 24,
+      "source_name": "adventureworks_production",
+      "identifier": "Product"
+    },
+    {
+      "name": "ProductSubcategory",
+      "resource_type": "source",
+      "database": "AdventureWorks2014",
+      "schema": "Production",
+      "relation_name": "\"AdventureWorks2014\".\"Production\".\"ProductSubcategory\"",
+      "unique_id": "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory",
+      "code_path": "dbt/models/bronze/src_adventureworks.yml",
+      "declared_columns": 4,
+      "documented_columns": 4,
+      "source_name": "adventureworks_production",
+      "identifier": "ProductSubcategory"
+    }
+  ],
+  "edges": [
+    {
+      "from": "model.dbt_sqlserver_project.brnz_customers",
+      "to": "model.dbt_sqlserver_project.slvr_customers",
+      "kind": "ref"
+    },
+    {
+      "from": "model.dbt_sqlserver_project.brnz_products",
+      "to": "model.dbt_sqlserver_project.slvr_products",
+      "kind": "ref"
+    },
+    {
+      "from": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "to": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "kind": "ref"
+    },
+    {
+      "from": "model.dbt_sqlserver_project.slvr_customers",
+      "to": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "kind": "ref"
+    },
+    {
+      "from": "model.dbt_sqlserver_project.slvr_products",
+      "to": "model.dbt_sqlserver_project.gld_product_performance",
+      "kind": "ref"
+    },
+    {
+      "from": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "to": "model.dbt_sqlserver_project.gld_customer_metrics",
+      "kind": "ref"
+    },
+    {
+      "from": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "to": "model.dbt_sqlserver_project.gld_product_performance",
+      "kind": "ref"
+    },
+    {
+      "from": "model.dbt_sqlserver_project.slvr_sales_orders",
+      "to": "model.dbt_sqlserver_project.gld_sales_summary",
+      "kind": "ref"
+    },
+    {
+      "from": "source.dbt_sqlserver_project.adventureworks.Customer",
+      "to": "model.dbt_sqlserver_project.brnz_customers",
+      "kind": "source"
+    },
+    {
+      "from": "source.dbt_sqlserver_project.adventureworks.Customer",
+      "to": "model.dbt_sqlserver_project.brnz_example",
+      "kind": "source"
+    },
+    {
+      "from": "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail",
+      "to": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "kind": "source"
+    },
+    {
+      "from": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader",
+      "to": "model.dbt_sqlserver_project.brnz_sales_orders",
+      "kind": "source"
+    },
+    {
+      "from": "source.dbt_sqlserver_project.adventureworks_person.Person",
+      "to": "model.dbt_sqlserver_project.brnz_customers",
+      "kind": "source"
+    },
+    {
+      "from": "source.dbt_sqlserver_project.adventureworks_production.Product",
+      "to": "model.dbt_sqlserver_project.brnz_products",
+      "kind": "source"
+    },
+    {
+      "from": "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory",
+      "to": "model.dbt_sqlserver_project.brnz_products",
+      "kind": "source"
+    }
+  ],
+  "unused_source_ids": [
+    "source.dbt_sqlserver_project.raw.Customer",
+    "source.dbt_sqlserver_project.raw.Person",
+    "source.dbt_sqlserver_project.raw.Product",
+    "source.dbt_sqlserver_project.raw.ProductCategory",
+    "source.dbt_sqlserver_project.raw.ProductSubcategory",
+    "source.dbt_sqlserver_project.raw.SalesOrderDetail",
+    "source.dbt_sqlserver_project.raw.SalesOrderHeader"
+  ],
+  "models_without_downstream_models": [
+    "model.dbt_sqlserver_project.brnz_example",
+    "model.dbt_sqlserver_project.gld_customer_metrics",
+    "model.dbt_sqlserver_project.gld_product_performance",
+    "model.dbt_sqlserver_project.gld_sales_summary"
+  ],
+  "tests": {
+    "enabled": 202,
+    "generic": 196,
+    "singular": 6,
+    "type_counts": {
+      "accepted_range": 2,
+      "accepted_values": 13,
+      "line_total_matches": 2,
+      "no_future_dates": 21,
+      "not_null": 92,
+      "positive_values": 33,
+      "relationships": 15,
+      "singular": 6,
+      "unique": 15,
+      "unique_combination_of_columns": 3
+    },
+    "coverage_report": "docs/evidence/tuan-week3-day13/20261117/test_coverage.json"
+  },
+  "verification": {
+    "sql_comparison_normalization": "LF newlines; terminal newlines ignored because dbt strips them from raw_code",
+    "model_sql_matches_manifest_raw_code": 10,
+    "model_sql_dependencies_match_manifest": 10,
+    "singular_sql_matches_manifest_raw_code": 6,
+    "tracked_changes_outside_docs_since_runtime_commit": [],
+    "runtime_input_canonical_lf_sha256": {
+      "airflow/dags/dbt_dag.py": "e8f3484f7d723912a1224f0840e4112817973bbbd6032c003a0b3730c553ee6a",
+      "dbt/models/bronze/brnz_customers.sql": "33abbcbfca6470995305e6ebbbd59d1bb67c15287f3c96f4e818a52f37b6b0cd",
+      "dbt/models/bronze/brnz_example.sql": "bb5cfe68602fe12e1e7aed2ee0fd7b638a6c4547fb32648726a99842258bcdbe",
+      "dbt/models/bronze/brnz_products.sql": "75b41d1d032bc2adcbdf9883342376f19b59fdeb61d4b95e5ec3a446dc153576",
+      "dbt/models/bronze/brnz_sales_orders.sql": "93cb69302aff908dbc8d0e2dcefe6748be1c3dfec446ff4ca031585847d0d5f7",
+      "dbt/models/gold/gld_customer_metrics.sql": "aa6fc777f17f889a06e2eca1adc96b722ceddad0d5e093207c3a9c740f4a8e87",
+      "dbt/models/gold/gld_product_performance.sql": "3be59078316a1f36904407104cda5d21538e3470a87e44ad0760793d72a9775d",
+      "dbt/models/gold/gld_sales_summary.sql": "0b11291abc809b9d09c7bbb80ed984b70bcc0e7bc9fc194f87bed656daa49921",
+      "dbt/models/silver/slvr_customers.sql": "d89643809e2c7ca3fd9bd8021dbc4c9c24fa4b50426150fdbbe21a2be0cb88c5",
+      "dbt/models/silver/slvr_products.sql": "d24b8bd0da3477cccec89731b8b13d2889a6f88b7fb80a4b3831e44fa087d802",
+      "dbt/models/silver/slvr_sales_orders.sql": "e0916e3c2ecad1b8bd22c4387f999a2d198d857541864718b2b5ca44df5a7d3c",
+      "dbt/tests/data_quality/assert_customer_metrics_reconciliation.sql": "e2bde49d7cf78b9db8bcd961130507cd0bd7ea510290633d2c84af21a48228fd",
+      "dbt/tests/data_quality/assert_daily_sales_reconciliation.sql": "917e45aaf31268974c508c8183c5ec1eed7c5016081a2e055ba462391d30ed4d",
+      "dbt/tests/data_quality/assert_product_metrics_reconciliation.sql": "7dad0f8eb52f022235beda2581f7ef1caec2e958cfbfbcca91eb9e592e4c2857",
+      "dbt/tests/data_quality/assert_silver_customer_preservation.sql": "7cd4f0571634399e55208bc4ed6a8c024d9311dc28682968e0124628b8239b10",
+      "dbt/tests/data_quality/assert_silver_eligible_order_lines.sql": "00c95793953c2c10633db80e8f9fdadb9ce8a7a69b31cbb060af643208d20a63",
+      "dbt/tests/data_quality/assert_silver_product_preservation.sql": "bfed7d388a5a864c9addbad5f5f1fff30efc70beb9a44ab64aaa2ffb5b2d7989",
+      "docker-compose.airflow-quality.yml": "173c69bbb86ff8afa473ef77fa614ebe39576630d889dd99586c867a3fd771c5",
+      "scripts/reconcile_dbt_layers.py": "8cba649708bfaea04584588bdc2f1e59730e443e6a4a9a3256c331a4725c5cd9",
+      "scripts/report_dbt_test_coverage.py": "a8d0d4f429b59c34083211080c084bd92b71791632f676309ad41a614ce698c9",
+      "scripts/run_airflow_quality_task.py": "62bfc92c52ce13ef0b61c9e4d0cb79b7f15b4275f393f10574fc0e7cb8c79221",
+      "scripts/run_ge_checkpoints.py": "ef94d0ad6cf3c984bc9d697e6846e87a9c1347dabe3c6a0fd5eabae57d34cc84",
+      "scripts/verify_dbt_gold_contracts.py": "c3535c0ab1a09302d7636c879f74a7975a36cd6aa43eead9cd15292320950f1d",
+      "scripts/verify_dbt_reconciliation_contracts.py": "02fb83dc6e5f5e847d85e30fc61e2264ea303c2a3cb908b353c7f08f1a44b4d7"
+    }
+  },
+  "limitations": [
+    "Source/model dependency edges are not foreign-key or Airflow task edges.",
+    "Column transformations are manually documented for selected metrics, not parsed as complete column lineage.",
+    "Physical relation names describe the referenced dev target.",
+    "No database queries or Airflow/GE rerun were performed for this documentation review.",
+    "Freshness DQ-W2-01 remains open."
+  ]
+}

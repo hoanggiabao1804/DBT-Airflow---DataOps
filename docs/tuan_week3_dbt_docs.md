@@ -1,6 +1,6 @@
-# Tuân — dbt docs, tuần 3 ngày 11–12
+# Tuân — hướng dẫn đọc và tạo dbt docs
 
-Phần này hoàn thiện mô tả dữ liệu và cách đọc kết quả kiểm tra để dùng cùng bước tích hợp GE–Airflow. SQL chuyển đổi, ngưỡng và tập 200 dbt tests được giữ nguyên. Bằng chứng tổng hợp gần nhất trước tích hợp nằm trong [báo cáo tuần 2](tuan_week2_quality_report.md); việc tạo docs không thay thế một lần chạy tests.
+Tài liệu được khởi tạo ngày 11–12 và cập nhật ngày **18/11/2026** cho ngày 14. Phạm vi hiện tại là **202 dbt tests** sau khi ngày 13 thêm hai kiểm tra bảo toàn tập khóa customer/product; bằng chứng ngày 11–12 có 200 tests là số liệu lịch sử. Xem [lineage và công thức](tuan_data_lineage.md), [danh mục tests và cách xử lý lỗi](tuan_test_catalog.md), [nghiệm thu ngày 13](tuan_week3_day13.md) và [bàn giao ngày 14](tuan_week3_day14.md). Tạo docs không thay thế một lần chạy tests.
 
 ## Phạm vi tài liệu
 
@@ -44,12 +44,12 @@ Tên customer chỉ thay NULL bằng `Unknown`, rồi ghép bằng một dấu c
 | `positive_values` | Mặc định chấp nhận 0; `allow_zero: false` yêu cầu lớn hơn 0. Bỏ qua NULL; cần `not_null` riêng nếu bắt buộc. |
 | `no_future_dates` | Timestamp không được lớn hơn đồng hồ UTC hiện tại, tính cả giờ. Bỏ qua NULL; dữ liệu rất cũ vẫn có thể PASS. Không áp dụng cho ngày dự kiến như due date. |
 | `line_total_matches` | Kiểm tra `quantity × unit_price × (1 − discount)`, sai lệch tối đa 0,01 đơn vị tiền tệ; đúng bằng ngưỡng vẫn PASS. NULL, dấu và khoảng discount dùng tests riêng. |
-| 4 singular reconciliation tests | So sánh từng khóa/ngày giữa các tầng, phát hiện dòng thiếu/thừa và số liệu lệch; không chỉ đối chiếu tổng toàn bảng. |
-| Source timestamp tests | 12 tests `not_null`/`no_future_dates` cho ModifiedDate của 6 nguồn; **đã nằm trong 200 dbt tests**. |
+| 6 singular reconciliation tests | Hai kiểm tra tập khóa dimension, một kiểm tra dòng sales đủ điều kiện, ba kiểm tra chỉ số Gold; xem phạm vi từng test trong danh mục. Hai kiểm tra dimension không chứng minh toàn bộ thuộc tính đã được chuyển đổi đúng. |
+| Source timestamp tests | 12 tests `not_null`/`no_future_dates` cho ModifiedDate của 6 nguồn; **đã nằm trong 202 dbt tests**. |
 | Source freshness | 6 phép đo độc lập, dùng `MAX(ModifiedDate)` so với UTC; mặc định WARN sau 24 giờ, ERROR sau 48 giờ. |
 
-Hai trăm tests và 40 GE expectations có phần kiểm tra trùng nhau, không phải 240 quy tắc nghiệp vụ độc lập. GE kiểm tra hai tập dữ liệu Silver customer/order; mô tả ở đây không mở rộng phạm vi GE sang toàn bộ Bronze/Gold.
+202 dbt tests và 40 GE expectations có phần kiểm tra trùng nhau, không phải 242 quy tắc nghiệp vụ độc lập. GE kiểm tra hai tập dữ liệu Silver customer/order; mô tả ở đây không mở rộng phạm vi GE sang toàn bộ Bronze/Gold.
 
 AdventureWorks2014 là snapshot lịch sử: 6 nguồn stale trong bằng chứng tuần 2 là kết quả thật và vẫn cần được báo lỗi. ModifiedDate là lúc cập nhật nghiệp vụ, không phải lúc restore/ingest. Không đổi timestamp hoặc tăng SLA chỉ để xanh. Khi chạy `scripts/verify_dbt_freshness.ps1`, exit 1 biểu thị dữ liệu stale; exit 2 là lỗi kiểm tra/thực thi cần xử lý. Đọc [hướng dẫn freshness](tuan_week2_day6_7.md) trước khi diễn giải kết quả; PASS tests hoặc GE không xóa kết luận freshness này.
 
-Phần ngày 13 tiếp tục kiểm tra số liệu và test coverage; ngày 14 hoàn thiện tài liệu lineage và bộ tests. Những phần đó cần bằng chứng của lần chạy tương ứng, không tự coi đã hoàn tất từ việc bổ sung mô tả hôm nay.
+Bằng chứng runtime tham chiếu là lượt Airflow ngày **17/11/2026**: 10 models, 202 tests, 40 GE expectations và 5 tasks thành công. Ngày 14 rà soát tài liệu trên code không đổi so với lượt đó; không có lượt chạy Airflow mới chỉ vì cập nhật Markdown. [Bộ bằng chứng ngày 14](evidence/tuan-week3-day14/20261118/README.md) tách kiểm tra tài liệu khỏi kết quả runtime được tham chiếu.
