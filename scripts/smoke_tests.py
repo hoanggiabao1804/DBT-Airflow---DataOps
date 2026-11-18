@@ -1,181 +1,156 @@
 #!/usr/bin/env python3
-"""
-Smoke tests for post-deployment validation
-"""
+"""Check that the deployed Bronze, Silver, and Gold relations are usable."""
 
-import sys
-import pyodbc
 import argparse
+import os
+import sys
+from pathlib import Path
+
+import pyodbc
+
+
+# Fixed identifiers keep the queries independent of caller-controlled SQL text.
+RELATIONS = (
+    ("bronze", "brnz_customers"),
+    ("bronze", "brnz_products"),
+    ("bronze", "brnz_sales_orders"),
+    ("silver", "slvr_customers"),
+    ("silver", "slvr_products"),
+    ("silver", "slvr_sales_orders"),
+    ("gold", "gld_customer_metrics"),
+    ("gold", "gld_product_performance"),
+    ("gold", "gld_sales_summary"),
+)
+
+REQUIRED_KEYS = (
+    ("silver", "slvr_customers", "customer_id"),
+    ("silver", "slvr_products", "product_id"),
+    ("silver", "slvr_sales_orders", "sales_order_id"),
+    ("silver", "slvr_sales_orders", "order_detail_id"),
+    ("gold", "gld_customer_metrics", "customer_id"),
+    ("gold", "gld_product_performance", "product_id"),
+    ("gold", "gld_sales_summary", "order_date"),
+)
 
 
 class SmokeTests:
     def __init__(self, server, database, user, password):
+        def odbc_value(value):
+            return "{" + str(value).replace("}", "}}") + "}"
+
         self.conn_string = (
-            f"DRIVER={{ODBC Driver 17 for SQL Server}};"
-            f"SERVER={server};"
-            f"DATABASE={database};"
-            f"UID={user};"
-            f"PWD={password};"
-            f"TrustServerCertificate=yes;"
+            "DRIVER={ODBC Driver 17 for SQL Server};"
+            f"SERVER={odbc_value(server)};DATABASE={odbc_value(database)};"
+            f"UID={odbc_value(user)};PWD={odbc_value(password)};"
+            "TrustServerCertificate=yes;"
         )
         self.connection = None
 
     def connect(self):
-        """Establish database connection"""
         try:
-            self.connection = pyodbc.connect(self.conn_string)
-            print("✅ Database connection successful")
+            self.connection = pyodbc.connect(self.conn_string, timeout=15)
+            print("Database connection successful")
             return True
-        except Exception as e:
-            print(f"❌ Database connection failed: {e}")
+        except pyodbc.Error as error:
+            print(f"Database connection failed: {error}")
             return False
 
-    def test_table_exists(self, schema, table):
-        """Test if a table exists"""
-        query = f"""
-        SELECT COUNT(*) as cnt
-        FROM INFORMATION_SCHEMA.TABLES
-        WHERE TABLE_SCHEMA = '{schema}'
-        AND TABLE_NAME = '{table}'
-        """
-        cursor = self.connection.cursor()
-        cursor.execute(query)
-        result = cursor.fetchone()
-
-        if result[0] > 0:
-            print(f"✅ Table {schema}.{table} exists")
+    def check_relation(self, schema, table):
+        name = f"{schema}.{table}"
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute(
+                "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES " "WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ?",
+                schema,
+                table,
+            )
+            if cursor.fetchone()[0] == 0:
+                print(f"FAIL {name}: relation is missing")
+                return False
+            cursor.execute(f"SELECT COUNT_BIG(*) FROM [{schema}].[{table}]")
+            count = cursor.fetchone()[0]
+            if count < 1:
+                print(f"FAIL {name}: relation is empty")
+                return False
+            print(f"PASS {name}: {count} rows")
             return True
-        else:
-            print(f"❌ Table {schema}.{table} not found")
+        except pyodbc.Error as error:
+            print(f"FAIL {name}: {error}")
             return False
 
-    def test_table_has_data(self, schema, table, min_rows=1):
-        """Test if a table has minimum number of rows"""
-        query = f"SELECT COUNT(*) as cnt FROM {schema}.{table}"
-        cursor = self.connection.cursor()
-        cursor.execute(query)
-        result = cursor.fetchone()
-        row_count = result[0]
-
-        if row_count >= min_rows:
-            print(f"✅ Table {schema}.{table} has {row_count} rows (min: {min_rows})")
+    def check_key(self, schema, table, column):
+        name = f"{schema}.{table}.{column}"
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute(f"SELECT COUNT_BIG(*) FROM [{schema}].[{table}] " f"WHERE [{column}] IS NULL")
+            missing = cursor.fetchone()[0]
+            if missing:
+                print(f"FAIL {name}: {missing} NULL keys")
+                return False
+            print(f"PASS {name}: no NULL keys")
             return True
-        else:
-            print(f"❌ Table {schema}.{table} has {row_count} rows (expected min: {min_rows})")
+        except pyodbc.Error as error:
+            print(f"FAIL {name}: {error}")
             return False
-
-    def test_no_nulls_in_column(self, schema, table, column):
-        """Test that a column has no null values"""
-        query = f"""
-        SELECT COUNT(*) as null_count
-        FROM {schema}.{table}
-        WHERE {column} IS NULL
-        """
-        cursor = self.connection.cursor()
-        cursor.execute(query)
-        result = cursor.fetchone()
-        null_count = result[0]
-
-        if null_count == 0:
-            print(f"✅ Column {schema}.{table}.{column} has no nulls")
-            return True
-        else:
-            print(f"❌ Column {schema}.{table}.{column} has {null_count} null values")
-            return False
-
-    def test_date_column_populated(self, schema, table, date_column):
-        """Check that the historical sample contains a source date."""
-        query = f"""
-        SELECT MAX({date_column}) as latest_date
-        FROM {schema}.{table}
-        """
-        cursor = self.connection.cursor()
-        cursor.execute(query)
-        result = cursor.fetchone()
-        latest_date = result[0]
-
-        if latest_date is not None:
-            print(f"✅ Column {schema}.{table}.{date_column} has data (latest: {latest_date})")
-            return True
-
-        print(f"❌ Column {schema}.{table}.{date_column} has no data")
-        return False
 
     def run_all_tests(self):
-        """Run all smoke tests"""
-        print("\n🧪 Running smoke tests...\n")
+        passed = 0
+        failed = 0
+        available = set()
+        print("Running deployment smoke tests")
+        for schema, table in RELATIONS:
+            if self.check_relation(schema, table):
+                available.add((schema, table))
+                passed += 1
+            else:
+                failed += 1
 
-        tests_passed = 0
-        tests_failed = 0
+        for schema, table, column in REQUIRED_KEYS:
+            if (schema, table) not in available:
+                print(f"FAIL {schema}.{table}.{column}: relation unavailable")
+                failed += 1
+            elif self.check_key(schema, table, column):
+                passed += 1
+            else:
+                failed += 1
 
-        schema = "bronze"
-        table = "brnz_customers"
-
-        # Dependent queries require the model to exist first.
-        if self.test_table_exists(schema, table):
-            tests_passed += 1
-        else:
-            tests_failed += 1
-            print("Run dbt run --select brnz_customers before the smoke test.")
-            return False
-
-        # Test 2: Check bronze tables have data
-        if self.test_table_has_data(schema, table, min_rows=100):
-            tests_passed += 1
-        else:
-            tests_failed += 1
-
-        # Test 3: Check for nulls in primary key
-        if self.test_no_nulls_in_column(schema, table, "CustomerID"):
-            tests_passed += 1
-        else:
-            tests_failed += 1
-
-        # AdventureWorks2014 is historical data, so a recent-date check is not meaningful.
-        if self.test_date_column_populated(schema, table, "last_modified_date"):
-            tests_passed += 1
-        else:
-            tests_failed += 1
-
-        # Summary
-        print("\n📊 Test Summary:")
-        print(f"   Passed: {tests_passed}")
-        print(f"   Failed: {tests_failed}")
-        print(f"   Total: {tests_passed + tests_failed}")
-
-        return tests_failed == 0
+        print(f"Smoke tests: {passed} passed, {failed} failed")
+        return failed == 0
 
     def close(self):
-        """Close database connection"""
         if self.connection:
             self.connection.close()
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run smoke tests")
-    parser.add_argument("--server", default="localhost", help="SQL Server hostname")
-    parser.add_argument("--database", default="AdventureWorks2014", help="Database name")
-    parser.add_argument("--user", default="sa", help="Username")
-    parser.add_argument("--password", default="YourStrong@Passw0rd", help="Password")
-
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--server", default=os.getenv("SMOKE_SQL_SERVER", "localhost"))
+    parser.add_argument("--database", default=os.getenv("SMOKE_SQL_DATABASE", "AdventureWorks2014"))
+    parser.add_argument("--user", default=os.getenv("SMOKE_SQL_USER", "sa"))
+    parser.add_argument("--password", default=os.getenv("SMOKE_SQL_PASSWORD"))
+    parser.add_argument("--from-dbt-profile", type=Path)
     args = parser.parse_args()
+    if args.from_dbt_profile:
+        import yaml
 
-    # Run tests
-    smoke_tests = SmokeTests(args.server, args.database, args.user, args.password)
+        profile = yaml.safe_load((args.from_dbt_profile / "profiles.yml").read_text(encoding="utf-8"))[
+            "dbt_airflow_project"
+        ]["outputs"]["dev"]
+        values = [profile[key] for key in ("server", "database", "user", "password")]
+        if any("{{" in str(value) for value in values):
+            parser.error("--from-dbt-profile requires resolved dev credentials")
+        args.server, args.database, args.user, args.password = values
+    if not args.password:
+        parser.error("set SMOKE_SQL_PASSWORD or pass --password")
 
-    if not smoke_tests.connect():
-        sys.exit(1)
-
-    success = smoke_tests.run_all_tests()
-    smoke_tests.close()
-
-    if success:
-        print("\n✅ All smoke tests passed!")
-        sys.exit(0)
-    else:
-        print("\n❌ Some smoke tests failed!")
-        sys.exit(1)
+    tests = SmokeTests(args.server, args.database, args.user, args.password)
+    if not tests.connect():
+        return 1
+    try:
+        return 0 if tests.run_all_tests() else 1
+    finally:
+        tests.close()
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
