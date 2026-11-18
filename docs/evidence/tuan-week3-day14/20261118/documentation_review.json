@@ -1,0 +1,413 @@
+{
+  "status": "passed_for_documentation_scope",
+  "evidence_type": "static_documentation_review",
+  "reviewed_at_utc": "2026-11-18T03:40:27.164564+00:00",
+  "review_date_local": "2026-11-18",
+  "review_base_commit": "7a5ca1916954771445e2153735482eaf84879a91",
+  "runtime_rerun": false,
+  "runtime_reference": {
+    "code_commit": "315fcdd0fe8e504d385625b6734143e572014ea7",
+    "dag_run_id": "tuan-week3-day13-20261117-01",
+    "executed_date_local": "2026-11-17",
+    "manifest_path": "great_expectations/uncommitted/airflow/d679e31b4e77affd8496/dbt_test/try-1-0ae852098a4845df98fef4f8e67c0eed/manifest.json",
+    "manifest_sha256": "97c58137678c6accd5a4396a47c25a9cf39645fcc60a5ec089fc163b9aa122dc",
+    "invocation_id": "873993fc-a1e3-4db2-b8be-c0b5b56cd9bf",
+    "rerun_for_day14_documentation_review": false
+  },
+  "automated_checks": {
+    "mermaid_nodes_match_manifest": 16,
+    "mermaid_dependency_edges_match_manifest": 15,
+    "current_model_sql_matches_manifest": 10,
+    "current_model_sql_dependencies_match_manifest": 10,
+    "current_singular_sql_matches_manifest": 6,
+    "test_type_counts_match_coverage_and_manifest": {
+      "not_null": 92,
+      "unique": 15,
+      "relationships": 15,
+      "accepted_values": 13,
+      "accepted_range": 2,
+      "unique_combination_of_columns": 3,
+      "positive_values": 33,
+      "no_future_dates": 21,
+      "line_total_matches": 2,
+      "singular": 6
+    },
+    "singular_catalog_entries_match_sql_files": [
+      "assert_customer_metrics_reconciliation",
+      "assert_daily_sales_reconciliation",
+      "assert_product_metrics_reconciliation",
+      "assert_silver_customer_preservation",
+      "assert_silver_eligible_order_lines",
+      "assert_silver_product_preservation"
+    ],
+    "ge_catalog_entries_match_suite_json": [
+      {
+        "path": "great_expectations/expectations/customer_suite.json",
+        "rule_ids": [
+          "customer_columns",
+          "customer_email_promotion_allowed",
+          "customer_first_name_not_null",
+          "customer_full_name_not_null",
+          "customer_id_not_null",
+          "customer_id_unique",
+          "customer_last_modified_date_not_future",
+          "customer_last_modified_date_not_null",
+          "customer_last_name_not_null",
+          "customer_nonempty"
+        ],
+        "count": 10
+      },
+      {
+        "path": "great_expectations/expectations/order_suite.json",
+        "rule_ids": [
+          "order_channel_allowed",
+          "order_columns",
+          "order_customer_id_not_null",
+          "order_discount_range",
+          "order_due_date_not_null",
+          "order_effective_unit_price_nonnegative",
+          "order_effective_unit_price_not_null",
+          "order_gross_amount_nonnegative",
+          "order_gross_amount_not_null",
+          "order_has_discount_allowed",
+          "order_has_discount_not_null",
+          "order_key_unique",
+          "order_line_total_nonnegative",
+          "order_line_total_not_null",
+          "order_nonempty",
+          "order_order_channel_not_null",
+          "order_order_date_not_future",
+          "order_order_date_not_null",
+          "order_order_detail_id_not_null",
+          "order_order_qty_not_null",
+          "order_product_id_not_null",
+          "order_qty_positive",
+          "order_sales_order_id_not_null",
+          "order_sales_order_number_not_null",
+          "order_ship_date_not_future",
+          "order_status_allowed",
+          "order_status_not_null",
+          "order_unit_price_discount_not_null",
+          "order_unit_price_nonnegative",
+          "order_unit_price_not_null"
+        ],
+        "count": 30
+      }
+    ],
+    "local_markdown_links_resolve": 71,
+    "markdown_files_with_balanced_fences": 5,
+    "runtime_input_hashes_match_day13_provenance": 24,
+    "tracked_changes_outside_docs_since_runtime_commit": []
+  },
+  "manual_review": [
+    "All ten model SQL files: grain, joins, filters, defaults, metric formulas and nullable no-sales behavior.",
+    "Selected critical column lineage; category_id ends at Silver, while product_id and subcategory_name reach Gold.",
+    "Six singular tests and three custom generic tests: thresholds, NULLs and key-set-only dimension preservation.",
+    "GE suite definitions, Docker mounts, runner CLI options, dbt selectors and existing CI artifact configuration.",
+    "Commands reviewed against project configuration; not executed as part of this documentation review."
+  ],
+  "canonical_lf_document_sha256": {
+    "docs/tuan_data_lineage.md": "e1db741f70d2534fdc682a79d36f0c556147c3585ed672a4dfef3bd965b5a5e7",
+    "docs/tuan_test_catalog.md": "6d51b1972de96092b213ac403efadcc30592683d57245e67bd9bd3eb708bf37b",
+    "docs/tuan_week3_dbt_docs.md": "8d0bd8d8ef01ebe4c51a21c96fe8d0f71863c753ca891c4a2c32e76c33bad0e5",
+    "docs/tuan_week3_day14.md": "271ce8df302218eacd48462907eebf25b2ccdca326e61addff31d009516c7e05",
+    "docs/evidence/tuan-week3-day14/20261118/README.md": "979ff1225e477bbc2b829b5d8d5b6ae23086ffef4514b77b6fa28ef7f8a95000",
+    "docs/evidence/tuan-week3-day14/20261118/lineage_inventory.json": "7b9265e51a319f0a88ed3228d400f33c7c1c95bd315759f52df651726f96207c"
+  },
+  "local_markdown_links": [
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "evidence/tuan-week3-day14/20261118/lineage_inventory.json"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "evidence/tuan-week3-day14/20261118/lineage_inventory.json"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "../dbt/models/bronze/brnz_customers.sql"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "../dbt/models/bronze/brnz_example.sql"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "../dbt/models/bronze/brnz_products.sql"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "../dbt/models/bronze/brnz_sales_orders.sql"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "../dbt/models/silver/slvr_customers.sql"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "../dbt/models/silver/slvr_products.sql"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "../dbt/models/silver/slvr_sales_orders.sql"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "../dbt/models/gold/gld_customer_metrics.sql"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "../dbt/models/gold/gld_product_performance.sql"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "../dbt/models/gold/gld_sales_summary.sql"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "tuan_week3_dbt_docs.md"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "evidence/tuan-week3-day13/20261117/layer_reconciliation.json"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "tuan_week3_day11_12.md"
+    },
+    {
+      "from": "docs/tuan_data_lineage.md",
+      "target": "tuan_test_catalog.md"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "evidence/tuan-week3-day13/20261117/README.md"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "tuan_data_lineage.md"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "evidence/tuan-week3-day13/20261117/test_coverage.json"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../dbt/models/bronze/schema.yml"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../dbt/models/silver/schema.yml"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../dbt/models/gold/schema.yml"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../dbt/models/bronze/src_adventureworks.yml"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../dbt/tests/generic/positive_values.sql"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../dbt/tests/generic/no_future_dates.sql"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../dbt/tests/generic/line_total_matches.sql"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../dbt/macros/schema.yml"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../dbt/tests/data_quality/assert_silver_customer_preservation.sql"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../dbt/tests/data_quality/assert_silver_product_preservation.sql"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../dbt/tests/data_quality/assert_silver_eligible_order_lines.sql"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../dbt/tests/data_quality/assert_customer_metrics_reconciliation.sql"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../dbt/tests/data_quality/assert_product_metrics_reconciliation.sql"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../dbt/tests/data_quality/assert_daily_sales_reconciliation.sql"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "evidence/tuan-week3-day13/20261117/reconciliation_contracts.json"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "evidence/tuan-week3-day13/20261117/layer_reconciliation.json"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../great_expectations/checkpoints/customer_checkpoint.yml"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../great_expectations/expectations/customer_suite.json"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../great_expectations/checkpoints/order_checkpoint.yml"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../great_expectations/expectations/order_suite.json"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "evidence/tuan-week3-day13/20261117/production/ge/customer_checkpoint.json"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "evidence/tuan-week3-day13/20261117/production/ge/order_checkpoint.json"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "evidence/tuan-week3-day13/20261117/production/ge/summary.json"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "tuan_week3_day11_12.md"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "tuan_week3_day11_12.md"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "../great_expectations/README.md"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "tuan_week3_day13.md"
+    },
+    {
+      "from": "docs/tuan_test_catalog.md",
+      "target": "tuan_week2_quality_report.md"
+    },
+    {
+      "from": "docs/tuan_week3_dbt_docs.md",
+      "target": "tuan_data_lineage.md"
+    },
+    {
+      "from": "docs/tuan_week3_dbt_docs.md",
+      "target": "tuan_test_catalog.md"
+    },
+    {
+      "from": "docs/tuan_week3_dbt_docs.md",
+      "target": "tuan_week3_day13.md"
+    },
+    {
+      "from": "docs/tuan_week3_dbt_docs.md",
+      "target": "tuan_week3_day14.md"
+    },
+    {
+      "from": "docs/tuan_week3_dbt_docs.md",
+      "target": "../dbt/models/bronze/schema.yml"
+    },
+    {
+      "from": "docs/tuan_week3_dbt_docs.md",
+      "target": "../dbt/models/silver/schema.yml"
+    },
+    {
+      "from": "docs/tuan_week3_dbt_docs.md",
+      "target": "../dbt/models/gold/schema.yml"
+    },
+    {
+      "from": "docs/tuan_week3_dbt_docs.md",
+      "target": "../dbt/models/bronze/src_adventureworks.yml"
+    },
+    {
+      "from": "docs/tuan_week3_dbt_docs.md",
+      "target": "../dbt/macros/schema.yml"
+    },
+    {
+      "from": "docs/tuan_week3_dbt_docs.md",
+      "target": "tuan_week2_day6_7.md"
+    },
+    {
+      "from": "docs/tuan_week3_dbt_docs.md",
+      "target": "evidence/tuan-week3-day14/20261118/README.md"
+    },
+    {
+      "from": "docs/tuan_week3_day14.md",
+      "target": "tuan_data_lineage.md"
+    },
+    {
+      "from": "docs/tuan_week3_day14.md",
+      "target": "tuan_data_lineage.md#grain-joins-và-bộ-lọc"
+    },
+    {
+      "from": "docs/tuan_week3_day14.md",
+      "target": "tuan_test_catalog.md"
+    },
+    {
+      "from": "docs/tuan_week3_day14.md",
+      "target": "tuan_test_catalog.md"
+    },
+    {
+      "from": "docs/tuan_week3_day14.md",
+      "target": "tuan_week3_dbt_docs.md"
+    },
+    {
+      "from": "docs/tuan_week3_day14.md",
+      "target": "evidence/tuan-week3-day14/20261118/README.md"
+    },
+    {
+      "from": "docs/tuan_week3_day14.md",
+      "target": "evidence/tuan-week3-day13/20261117/README.md"
+    },
+    {
+      "from": "docs/tuan_week3_day14.md",
+      "target": "tuan_week3_day13.md"
+    },
+    {
+      "from": "docs/evidence/tuan-week3-day14/20261118/README.md",
+      "target": "lineage_inventory.json"
+    },
+    {
+      "from": "docs/evidence/tuan-week3-day14/20261118/README.md",
+      "target": "documentation_review.json"
+    },
+    {
+      "from": "docs/evidence/tuan-week3-day14/20261118/README.md",
+      "target": "../../tuan-week3-day13/20261117/README.md"
+    },
+    {
+      "from": "docs/evidence/tuan-week3-day14/20261118/README.md",
+      "target": "../../../tuan_week3_day14.md"
+    },
+    {
+      "from": "docs/evidence/tuan-week3-day14/20261118/README.md",
+      "target": "../../../tuan_data_lineage.md"
+    }
+  ],
+  "freshness": {
+    "issue": "DQ-W2-01",
+    "status": "open",
+    "rerun": false
+  },
+  "limitations": [
+    "Static review does not prove live data quality or complete semantic test coverage.",
+    "CI on the eventual documentation commit is a separate run, not included as an Airflow/GE rerun in this report.",
+    "Raw manifest is local ignored evidence; the committed inventory and day13 reports preserve a reviewable summary."
+  ]
+}
