@@ -1,0 +1,49 @@
+{
+  "bootstrap_deploy": {
+    "exit_code": 0,
+    "models_passed": 10,
+    "post_tests_passed": 202,
+    "pretest_skipped": true,
+    "release": "backups/dev_20261118T075626Z_zgkhvcm1",
+    "smoke_checks_passed": 16
+  },
+  "date_local": "2026-11-18",
+  "environment": "dev",
+  "github_actions_after_changes": "pending commit and push",
+  "initial_pretest": {
+    "errors": 160,
+    "exit_code": 1,
+    "passed": 42,
+    "reason": "dbt relations were absent before first deployment"
+  },
+  "negative_smoke": {
+    "method": "Rebuild only gold.gld_sales_summary from an isolated temporary project with WHERE 1 = 0",
+    "smoke_checks_failed": 2,
+    "smoke_checks_passed": 14,
+    "smoke_exit_code": 1,
+    "tracked_source_changed": false
+  },
+  "normal_deploy": {
+    "exit_code": 0,
+    "models_passed": 10,
+    "post_tests_passed": 202,
+    "pre_tests_passed": 202,
+    "release": "backups/dev_20261118T080205Z_c2me16wx",
+    "smoke_checks_passed": 16
+  },
+  "preflight_rejections": [
+    "Missing production secrets",
+    "Release environment mismatch",
+    "Tampered release",
+    "Source changed during deployment"
+  ],
+  "production_runtime": "not tested; no production database configured",
+  "rollback": {
+    "exit_code": 0,
+    "models_passed": 10,
+    "release": "backups/dev_20261118T075626Z_zgkhvcm1",
+    "smoke_checks_passed": 16,
+    "tests_passed": 202
+  },
+  "scope": "Local deployment and version rollback"
+}
