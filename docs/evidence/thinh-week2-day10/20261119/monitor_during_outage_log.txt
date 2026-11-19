@@ -1,0 +1,5 @@
+services  CRITICAL sqlserver: not running
+pipeline  CRITICAL last run thinh-week2-day10-infra-drill-01 failed
+metrics   OK       task success rate 90%
+disk      OK       277.9 GB free
+OVERALL   CRITICAL | alert: none

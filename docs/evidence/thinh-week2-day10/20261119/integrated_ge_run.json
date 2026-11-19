@@ -1,0 +1,55 @@
+{
+  "dag_id": "ge_data_quality",
+  "duration_seconds": 14.077,
+  "end_date": "2026-11-19T09:06:40.047115+00:00",
+  "queued_at": "2026-11-19T09:06:25.465251+00:00",
+  "run_id": "thinh-week2-day10-integrated-ge-01",
+  "run_type": "manual",
+  "start_date": "2026-11-19T09:06:25.970471+00:00",
+  "state": "success",
+  "task_state_counts": {
+    "success": 4
+  },
+  "tasks": [
+    {
+      "attempts": 1,
+      "duration_seconds": 0.134,
+      "end_date": "2026-11-19T09:06:26.485805+00:00",
+      "max_tries": 0,
+      "operator": "PythonSensor",
+      "start_date": "2026-11-19T09:06:26.351538+00:00",
+      "state": "success",
+      "task_id": "wait_for_transform_idle"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 2.614,
+      "end_date": "2026-11-19T09:06:30.119131+00:00",
+      "max_tries": 2,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T09:06:27.504951+00:00",
+      "state": "success",
+      "task_id": "check_runtime"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 7.25,
+      "end_date": "2026-11-19T09:06:38.642688+00:00",
+      "max_tries": 1,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T09:06:31.392647+00:00",
+      "state": "success",
+      "task_id": "ge_validate"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 0.137,
+      "end_date": "2026-11-19T09:06:39.735815+00:00",
+      "max_tries": 0,
+      "operator": "PythonOperator",
+      "start_date": "2026-11-19T09:06:39.598990+00:00",
+      "state": "success",
+      "task_id": "publish_quality_report"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "dag_id": "dataops_monitoring",
+  "duration_seconds": 5.133,
+  "end_date": "2026-11-19T09:06:59.354540+00:00",
+  "queued_at": "2026-11-19T09:06:53.757260+00:00",
+  "run_id": "thinh-week2-day10-monitor-after-recovery",
+  "run_type": "manual",
+  "start_date": "2026-11-19T09:06:54.221059+00:00",
+  "state": "success",
+  "task_state_counts": {
+    "success": 5
+  },
+  "tasks": [
+    {
+      "attempts": 1,
+      "duration_seconds": 0.143,
+      "end_date": "2026-11-19T09:06:54.745905+00:00",
+      "max_tries": 0,
+      "operator": "PythonOperator",
+      "start_date": "2026-11-19T09:06:54.603378+00:00",
+      "state": "success",
+      "task_id": "check_pipeline"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 0.166,
+      "end_date": "2026-11-19T09:06:54.769379+00:00",
+      "max_tries": 0,
+      "operator": "PythonOperator",
+      "start_date": "2026-11-19T09:06:54.603549+00:00",
+      "state": "success",
+      "task_id": "check_services"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 0.121,
+      "end_date": "2026-11-19T09:06:56.680063+00:00",
+      "max_tries": 0,
+      "operator": "PythonOperator",
+      "start_date": "2026-11-19T09:06:56.558782+00:00",
+      "state": "success",
+      "task_id": "check_disk"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 0.118,
+      "end_date": "2026-11-19T09:06:56.678281+00:00",
+      "max_tries": 0,
+      "operator": "PythonOperator",
+      "start_date": "2026-11-19T09:06:56.560492+00:00",
+      "state": "success",
+      "task_id": "check_metrics"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 0.142,
+      "end_date": "2026-11-19T09:06:58.799471+00:00",
+      "max_tries": 0,
+      "operator": "PythonOperator",
+      "start_date": "2026-11-19T09:06:58.657537+00:00",
+      "state": "success",
+      "task_id": "publish_report"
+    }
+  ]
+}

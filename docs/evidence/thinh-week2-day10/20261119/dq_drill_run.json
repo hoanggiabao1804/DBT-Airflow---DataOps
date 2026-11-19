@@ -1,0 +1,56 @@
+{
+  "dag_id": "ge_data_quality",
+  "duration_seconds": 143.066,
+  "end_date": "2026-11-19T08:58:22.341126+00:00",
+  "queued_at": "2026-11-19T08:55:58.621260+00:00",
+  "run_id": "thinh-week2-day10-dq-drill-01",
+  "run_type": "manual",
+  "start_date": "2026-11-19T08:55:59.275614+00:00",
+  "state": "failed",
+  "task_state_counts": {
+    "failed": 2,
+    "success": 2
+  },
+  "tasks": [
+    {
+      "attempts": 1,
+      "duration_seconds": 0.134,
+      "end_date": "2026-11-19T08:55:59.805413+00:00",
+      "max_tries": 0,
+      "operator": "PythonSensor",
+      "start_date": "2026-11-19T08:55:59.671799+00:00",
+      "state": "success",
+      "task_id": "wait_for_transform_idle"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 2.79,
+      "end_date": "2026-11-19T08:56:03.367829+00:00",
+      "max_tries": 2,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:56:00.577919+00:00",
+      "state": "success",
+      "task_id": "check_runtime"
+    },
+    {
+      "attempts": 2,
+      "duration_seconds": 8.381,
+      "end_date": "2026-11-19T08:58:20.987205+00:00",
+      "max_tries": 1,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:58:12.606038+00:00",
+      "state": "failed",
+      "task_id": "ge_validate"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 0.126,
+      "end_date": "2026-11-19T08:58:21.748335+00:00",
+      "max_tries": 0,
+      "operator": "PythonOperator",
+      "start_date": "2026-11-19T08:58:21.622438+00:00",
+      "state": "failed",
+      "task_id": "publish_quality_report"
+    }
+  ]
+}
