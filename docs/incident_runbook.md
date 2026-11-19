@@ -116,7 +116,9 @@ $DC exec dbt kill <pid>                         # dừng tiến trình mồ côi
 ```
 
 Sau đó mới clear/retry task. Từ ngày 13, runner tự dừng tiến trình trong container khi task bị
-kill (xem [thinh_week3_day13.md](thinh_week3_day13.md)), mục này là phương án dự phòng.
+kill (`task_summary.json`: `status: killed`, `killed_container_processes`) — xem
+[thinh_week3_day13.md](thinh_week3_day13.md); các lệnh trên là phương án dự phòng khi runner bị
+`SIGKILL` (không kịp dọn).
 
 ### 2.6 Pipeline không chạy theo lịch
 
@@ -171,7 +173,9 @@ Lỗi import thường do commit DAG chưa qua CI. Revert commit hoặc sửa nh
 ## 3. Kết thúc sự cố
 
 1. Pipeline chạy lại thành công: `dbt_transform` 6/6 success, `ge_data_quality` success.
-2. `python3 scripts/health_check.py` → `OVERALL: OK`; monitor gửi alert `recovered`.
+2. `python3 scripts/health_check.py` → `OVERALL: OK`; monitor gửi alert `recovered`. Nếu sự cố không
+   do monitor phát hiện (ví dụ lỗi dữ liệu, timeout), đóng chính thức để `alerts_24h` hết WARN:
+   `python3 scripts/health_check.py --resolve "INC-YYYYMMDD-NN <tóm tắt>"`.
 3. Unpause các DAG đã pause; báo nhóm dữ liệu dùng lại được.
 4. Hoàn thành [incident template](incident_template.md): timeline, nguyên nhân gốc (5 Whys),
    hành động phòng ngừa có người phụ trách + hạn. Viết **blameless** — mô tả hệ thống, không đổ lỗi người.
