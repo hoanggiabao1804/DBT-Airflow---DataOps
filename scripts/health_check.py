@@ -4,6 +4,7 @@
     python3 scripts/health_check.py                    # human readable table
     python3 scripts/health_check.py --json             # machine readable
     python3 scripts/health_check.py --skip-dbt         # faster, no dbt debug
+    python3 scripts/health_check.py --resolve "INC-20261119-01 SQL Server restarted"
 
 Exit code: 0 = healthy, 1 = warning, 2 = critical. Usable in cron, CI smoke
 steps and as the first command of every incident (docs/incident_runbook.md).
@@ -29,6 +30,8 @@ RANK = {OK: 0, SKIPPED: 0, WARNING: 1, CRITICAL: 2}
 REQUIRED = ("sqlserver", "postgres", "airflow-webserver", "airflow-scheduler", "dbt", "ge-worker")
 REPO = Path(__file__).resolve().parents[1]
 PIPELINE_DAG = "dbt_transform"
+ALERTS = REPO / "airflow/logs/dataops_alerts/alerts.jsonl"
+RESET_TITLES = ("DataOps recovered", "Incident resolved")
 
 
 class Checker:
@@ -270,7 +273,7 @@ class Checker:
 
     def check_alerts(self):
         """Critical alerts in 24 h; WARN only if one is still unresolved (no later recovery)."""
-        path = REPO / "airflow/logs/dataops_alerts/alerts.jsonl"
+        path = ALERTS
         since = datetime.now(timezone.utc) - timedelta(hours=24)
         total, open_alerts, last = 0, 0, None
         if path.is_file():
@@ -283,14 +286,14 @@ class Checker:
                     continue
                 if alert.get("severity") == "critical":
                     total, open_alerts, last = total + 1, open_alerts + 1, alert.get("title")
-                elif alert.get("title", "").startswith("DataOps recovered"):
+                elif alert.get("title", "").startswith(RESET_TITLES):
                     open_alerts = 0
         if open_alerts:
             return self.add(
                 "alerts_24h",
                 WARNING,
                 "{} critical alert(s) since last recovery; last: {}".format(open_alerts, last),
-                "follow docs/incident_runbook.md",
+                "follow docs/incident_runbook.md, then: health_check.py --resolve '<incident note>'",
             )
         if total:
             return self.add("alerts_24h", OK, "{} critical alert(s) in 24 h, all followed by recovery".format(total))
@@ -307,6 +310,22 @@ class Checker:
         return self.add("disk", OK, "{:.1f} GB free".format(free_gb))
 
 
+def resolve(note):
+    """Close open incidents: append an info alert that resets the alerts_24h check."""
+    record = {
+        "event": "alert",
+        "severity": "info",
+        "title": "Incident resolved: " + note,
+        "message": "Closed manually with scripts/health_check.py --resolve",
+        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "resolved_by": os.environ.get("USER", "unknown"),
+    }
+    ALERTS.parent.mkdir(parents=True, exist_ok=True)
+    with ALERTS.open("a", encoding="utf-8") as stream:
+        stream.write(json.dumps(record, sort_keys=True) + "\n")
+    print("Recorded: " + record["title"])
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--project", default=os.environ.get("COMPOSE_PROJECT_NAME", "dbt_airflow_project"))
@@ -314,7 +333,10 @@ def main():
     parser.add_argument("--skip-dbt", action="store_true", help="skip dbt debug (saves ~5 s)")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--timeout", type=int, default=60)
+    parser.add_argument("--resolve", metavar="NOTE", help="record that open incidents are resolved, then check")
     args = parser.parse_args()
+    if args.resolve:
+        resolve(args.resolve)
 
     checker = Checker(args.project, args.airflow_url, args.timeout)
     if checker.check_docker() == OK:
