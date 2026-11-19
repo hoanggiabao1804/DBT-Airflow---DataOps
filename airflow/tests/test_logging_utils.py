@@ -22,6 +22,8 @@ from utils import callbacks, logging_utils  # noqa: E402
 @pytest.fixture(autouse=True)
 def metrics_dir(tmp_path, monkeypatch):
     monkeypatch.setenv("DATAOPS_METRICS_DIR", str(tmp_path / "metrics"))
+    monkeypatch.setenv("DATAOPS_ALERT_DIR", str(tmp_path / "alerts"))
+    monkeypatch.delenv("DATAOPS_ALERT_WEBHOOK_URL", raising=False)
     return tmp_path / "metrics"
 
 
