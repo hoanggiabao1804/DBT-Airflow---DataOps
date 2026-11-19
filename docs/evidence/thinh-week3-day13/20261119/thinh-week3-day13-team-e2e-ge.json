@@ -1,0 +1,55 @@
+{
+  "dag_id": "ge_data_quality",
+  "duration_seconds": 14.786,
+  "end_date": "2026-11-19T09:20:03.021708+00:00",
+  "queued_at": "2026-11-19T09:19:47.853382+00:00",
+  "run_id": "thinh-week3-day13-team-e2e-ge",
+  "run_type": "manual",
+  "start_date": "2026-11-19T09:19:48.235812+00:00",
+  "state": "success",
+  "task_state_counts": {
+    "success": 4
+  },
+  "tasks": [
+    {
+      "attempts": 1,
+      "duration_seconds": 0.139,
+      "end_date": "2026-11-19T09:19:48.755684+00:00",
+      "max_tries": 0,
+      "operator": "PythonSensor",
+      "start_date": "2026-11-19T09:19:48.616753+00:00",
+      "state": "success",
+      "task_id": "wait_for_transform_idle"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 2.713,
+      "end_date": "2026-11-19T09:19:52.610451+00:00",
+      "max_tries": 2,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T09:19:49.897758+00:00",
+      "state": "success",
+      "task_id": "check_runtime"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 7.539,
+      "end_date": "2026-11-19T09:20:01.431569+00:00",
+      "max_tries": 1,
+      "operator": "QualityStepOperator",
+      "start_date": "2026-11-19T09:19:53.892140+00:00",
+      "state": "success",
+      "task_id": "ge_validate"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 0.126,
+      "end_date": "2026-11-19T09:20:02.821323+00:00",
+      "max_tries": 0,
+      "operator": "PythonOperator",
+      "start_date": "2026-11-19T09:20:02.695315+00:00",
+      "state": "success",
+      "task_id": "publish_quality_report"
+    }
+  ]
+}

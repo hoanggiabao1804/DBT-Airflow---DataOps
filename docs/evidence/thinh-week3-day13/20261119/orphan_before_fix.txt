@@ -1,0 +1,3 @@
+before kill: 1 dbt test process(es)
+after kill+3s: 1 dbt test process(es)
+runner output:

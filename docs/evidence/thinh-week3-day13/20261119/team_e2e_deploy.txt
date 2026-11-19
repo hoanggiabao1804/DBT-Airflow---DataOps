@@ -1,0 +1,12 @@
+Running dbt deps for dev
+Running dbt debug for dev
+Running dbt compile for dev
+Running dbt test for dev
+09:18:29  Done. PASS=202 WARN=0 ERROR=0 SKIP=0 TOTAL=202
+Running dbt run for dev
+09:18:33  Done. PASS=10 WARN=0 ERROR=0 SKIP=0 TOTAL=10
+Running dbt test for dev
+09:18:40  Done. PASS=202 WARN=0 ERROR=0 SKIP=0 TOTAL=202
+Smoke tests: 16 passed, 0 failed
+Running dbt docs for dev
+Deployment passed. Release: backups/dev_20261119T091846Z_iuav5wgh

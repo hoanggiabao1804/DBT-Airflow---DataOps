@@ -1,0 +1,16 @@
+{
+  "action": "test",
+  "attempt": 1,
+  "dag_id": "dataops_timeout_drill",
+  "error_type": "Terminated",
+  "exit_code": 143,
+  "finished_at_utc": "2026-11-19T09:15:46.093207+00:00",
+  "killed_container_processes": 2,
+  "native_exit_code": null,
+  "run_id": "thinh-week3-day13-timeout-drill-01",
+  "schema": "silver",
+  "started_at_utc": "2026-11-19T09:15:41.167888+00:00",
+  "status": "killed",
+  "target": "dev",
+  "task_id": "dbt_test_with_timeout"
+}

@@ -1,0 +1,15 @@
+DataOps health check - project thinh_dataops - 2026-11-19T09:20:26.848169+00:00
+[OK  ] docker       server 29.6.2
+[OK  ] services     6/6 running
+[OK  ] sqlserver    AdventureWorks2014 ONLINE
+[OK  ] dbt          dbt debug: all checks passed
+[OK  ] airflow      metadata DB and scheduler healthy
+[OK  ] dag_imports  no DAG import errors
+[OK  ] last_run     thinh-week3-day13-team-e2e success at 2026-11-19T09:19:42.182005+00:00
+[OK  ] orphans      0 dbt/GX process(es), 0 active run(s)
+[OK  ] monitoring   dataops_monitoring says ok (0 min ago)
+[WARN] alerts_24h   2 critical alert(s) since last recovery; last: Data quality FAILED on dq_drill
+                    -> follow docs/incident_runbook.md
+[OK  ] disk         277.5 GB free
+OVERALL: WARNING
+exit=1

@@ -1,0 +1,25 @@
+{
+  "dag_id": "dataops_timeout_drill",
+  "duration_seconds": 6.065,
+  "end_date": "2026-11-19T09:15:46.561480+00:00",
+  "queued_at": "2026-11-19T09:15:39.564992+00:00",
+  "run_id": "thinh-week3-day13-timeout-drill-01",
+  "run_type": "manual",
+  "start_date": "2026-11-19T09:15:40.496654+00:00",
+  "state": "failed",
+  "task_state_counts": {
+    "failed": 1
+  },
+  "tasks": [
+    {
+      "attempts": 1,
+      "duration_seconds": 5.129,
+      "end_date": "2026-11-19T09:15:45.997812+00:00",
+      "max_tries": 0,
+      "operator": "QualityStepOperator",
+      "start_date": "2026-11-19T09:15:40.869294+00:00",
+      "state": "failed",
+      "task_id": "dbt_test_with_timeout"
+    }
+  ]
+}
