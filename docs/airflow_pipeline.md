@@ -16,7 +16,7 @@ check_runtime → dbt_deps → dbt_run → dbt_test → ge_validate → dbt_docs
 | `dbt_deps` | Cài package dbt (`dbt_utils`) — cần mạng | 3 | 10 phút |
 | `dbt_run` | Build 10 models Bronze → Silver → Gold | 2 | 30 phút |
 | `dbt_test` | Toàn bộ schema/generic/singular tests | 2 | 20 phút |
-| `ge_validate` | 2 checkpoint GX (customer, order) trên schema Silver | 1 | 20 phút |
+| `ge_validate` | 2 checkpoint GX (customer, order) trên schema Silver | 1 (chỉ lỗi thực thi; expectation fail = fail ngay) | 20 phút |
 | `dbt_docs` | `dbt docs generate` — chỉ chạy khi mọi kiểm tra chất lượng đạt | 1 | 10 phút |
 
 Mọi cạnh là `all_success`: một task fail thì mọi task phía sau thành
@@ -31,8 +31,10 @@ trước và in thông báo rõ ràng:
 
 ```text
 Service ge-worker: expected 1 running container, found 0
-dbt debug: FAILED (target dev) - SQL Server down or profile invalid
+dbt debug: FAILED or >30 s (target dev) - SQL Server down or profile invalid
 ```
+
+Script: `scripts/check_runtime.sh` (dùng chung cho `dbt_transform` và `ge_data_quality`).
 
 Đã kiểm chứng cả hai trường hợp: [ge-worker dừng](evidence/thinh-week1-day3-4/20261119/check_runtime_ge_worker_down.txt),
 [SQL Server dừng](evidence/thinh-week1-day3-4/20261119/check_runtime_sqlserver_down.txt).
@@ -43,7 +45,10 @@ dbt debug: FAILED (target dev) - SQL Server down or profile invalid
   lần thử lại cách nhau khoảng 1 → 2 → 4 phút (Airflow cộng thêm jitter). Lỗi tạm
   thời (SQL Server khởi động lại, mất mạng ngắn) có thời gian tự phục hồi.
 - Lỗi **dữ liệu** (dbt test fail, GX fail) không tự hết khi retry. Retries ở `dbt_test`
-  và `ge_validate` để chống lỗi hạ tầng, không phải để "thử may". Vì vậy GX chỉ có 1 retry.
+  và `ge_validate` để chống lỗi hạ tầng, không phải để "thử may". Từ ngày 13, `ge_validate` dùng
+  `QualityStepOperator`: exit 1 (expectation fail) fail ngay không retry; exit 2 mới retry.
+- Khi Airflow hủy task (timeout/clear/mark failed), runner dừng luôn tiến trình dbt/GX bên trong
+  container (`task_summary.json`: `status: killed`).
 - `execution_timeout` cho từng task ≈ 3–5 lần thời gian thực tế (cả DAG ~45 giây trên máy
   dev) nhưng tối thiểu vài phút: timeout nghĩa là **treo**, không phải **chậm**.
 - `dagrun_timeout=2h`: một run treo không giữ mãi slot duy nhất (`max_active_runs=1`).
@@ -115,3 +120,4 @@ và email là tùy chọn qua biến `DATAOPS_ALERT_*`. Chi tiết: [thinh_week2
 | 19/11/2026 | `feature/thinh-week2-day8-9` | `utils/alerting.py`, `dataops_monitoring`, `ge_data_quality`, SLA, webhook receiver |
 | 19/11/2026 | `feature/thinh-week2-day10` | Diễn tập alert: lỗi dữ liệu (`scripts/dq_drill.sh`) và mất SQL Server; pipeline tích hợp xanh |
 | 19/11/2026 | `feature/thinh-week3-day11-12` | `docs/incident_runbook.md`, `docs/incident_template.md`, `scripts/health_check.py` |
+| 19/11/2026 | `feature/thinh-week3-day13` | runner dọn tiến trình khi bị kill, `QualityStepOperator` (GX exit 1 không retry), `scripts/check_runtime.sh`, `dataops_timeout_drill`, `--resolve`, E2E cả nhóm |
