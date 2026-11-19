@@ -1,0 +1,237 @@
+{
+  "baseline_commit": "2971267df716f220f78ab047f9a91c0428effa66",
+  "newline_note": "Raw hashes identify original ignored artifact bytes. Published JSON is UTF-8/LF. Canonical LF code hashes match baseline Git blobs after the same LF normalization (some legacy Git blobs store CRLF); no profiles or credentials are published.",
+  "published_artifact_sha256_excluding_provenance": {
+    "acceptance.json": "2150fe84628155c11f472c1c4ce366e63181f6cd83d491fd6a75f3292c74d9b3",
+    "docs_coverage.json": "206d5359877e88406faabaae10916aef4cc7ecfcc4aff9fd7b1f033be11ebc45",
+    "ge_contracts/empty_tables.json": "2142908e8b14b8a587a58c868f57924727373423c6d43eb75321beae6c98448e",
+    "ge_contracts/missing_table_runtime_error.json": "311da6238788c76b6debf8e9b6622d06745265657102ef75ef2f387378d85632",
+    "ge_contracts/summary.json": "7d1e090f214b94c52f02118c358eedf3e273ec28062844151dc01eec93340c27",
+    "ge_contracts/valid_nullable_free_discount_multiline.json": "343666deb0a4ca324648113dcffa8f7ee2afcb75d4573ebdc3206be7f88f685f",
+    "generic_contracts/summary.json": "0b2bd7486023874865b0a9aa2d2e710012a7745bfd5d0b72af1c137f6b8ec184",
+    "generic_contracts/test.run_results.json": "ee0b7b822f5a01bfcd87874044b5542c14df823406b3af4b3cb05dcb23a5d10b",
+    "layer_reconciliation.json": "b516421f08c32eb6d640803b3203ad0c77669443373c124145fbf04486d45bf6",
+    "production/dbt_run.run_results.json": "a2187eead02802df69792131b094c42f63db2c4a5f86c648333bde686f9d6fc2",
+    "production/dbt_test.run_results.json": "2a74e7ad56c423a358abe43ef6cf0360db5d7fd3352462fc8533f2db816546e3",
+    "production/ge/customer_checkpoint.json": "00b3284f47a1e26e9d9efd03819f1cb3d7978e2af560b83a5ad8653afa4b1d56",
+    "production/ge/order_checkpoint.json": "999ff67f71d53cf5ad2ce1dd101675683a576abc7cf93ec92be6455cc89683c8",
+    "production/ge/summary.json": "3fa792412e6d4f4163ad371d8d0841858b67b19a88eeeb23bf16bc0945659f42",
+    "reconciliation_contracts.json": "69f448de560104295c0c381541fce4e299e8f1710d68f2fe0c9b4e72ac99323c",
+    "rehearsal.json": "e3e3469a9fd6baf96a98135c1d24abea50b059ab84029de8ded32c17f79791c7",
+    "runtime.json": "0b5d512b720ceae42907f27e26b4df910053c0a40ca047763a2f2cdb87f79d4f",
+    "test_coverage.json": "3a459ca141a05135f5eebd616c8080ef64507678c13b5110051b5ae48c63f500"
+  },
+  "raw_source_artifact_sha256": {
+    "dbt/target/tuan-day15-20261119-01/docs/catalog.json": "3aa7c8742ed41885ad388cbd67e9bd19ecc30ea9a8c4faa6ff76e35697517356",
+    "dbt/target/tuan-day15-20261119-01/docs/index.html": "23fa3656d8004cd0427eb81d6230d2ea8221dfd2758e832a08026bad471c4544",
+    "dbt/target/tuan-day15-20261119-01/docs/manifest.json": "54227a3572df34998ad4b522ff4ba74511e413034bc9ecee00cfc923c939f7fd",
+    "dbt/target/tuan-day15-20261119-01/generic-contracts/summary.json": "38860e3ac9a93a84f649a22e8e2122cc74a8d38bb7e1f1ae947c596c1c4cdec7",
+    "dbt/target/tuan-day15-20261119-01/generic-contracts/test.run_results.json": "877b835e35c6fb33d57c8076255bf16f671724fb1692f2d03aba3f56b28021bc",
+    "dbt/target/tuan-day15-20261119-01/run/manifest.json": "566f9c63b5ffc6d447c3a87e1af197e7e727cdc3f3d5a2235c89bc6107e9b1d5",
+    "dbt/target/tuan-day15-20261119-01/run/run_results.json": "69cfca5f37a3552ee28c937c0d6ac1f99629850a47786e7013498664b9faebcd",
+    "dbt/target/tuan-day15-20261119-01/test/manifest.json": "5da04a8b1aa1a6c531abbf5b98a76148dfde45c71aeaa81df057ee498384634c",
+    "dbt/target/tuan-day15-20261119-01/test/run_results.json": "e86be315ef344e2e11bccdb9b645ccf026cfd386e7bbd8d93f32389bcf84b620",
+    "great_expectations/uncommitted/day15-20261119-01/ge_contracts/empty_tables/summary.json": "2142908e8b14b8a587a58c868f57924727373423c6d43eb75321beae6c98448e",
+    "great_expectations/uncommitted/day15-20261119-01/ge_contracts/missing_table_runtime_error/summary.json": "311da6238788c76b6debf8e9b6622d06745265657102ef75ef2f387378d85632",
+    "great_expectations/uncommitted/day15-20261119-01/ge_contracts/summary.json": "7d1e090f214b94c52f02118c358eedf3e273ec28062844151dc01eec93340c27",
+    "great_expectations/uncommitted/day15-20261119-01/ge_contracts/valid_nullable_free_discount_multiline/summary.json": "343666deb0a4ca324648113dcffa8f7ee2afcb75d4573ebdc3206be7f88f685f",
+    "great_expectations/uncommitted/day15-20261119-01/production/ge/customer_checkpoint.json": "00b3284f47a1e26e9d9efd03819f1cb3d7978e2af560b83a5ad8653afa4b1d56",
+    "great_expectations/uncommitted/day15-20261119-01/production/ge/order_checkpoint.json": "999ff67f71d53cf5ad2ce1dd101675683a576abc7cf93ec92be6455cc89683c8",
+    "great_expectations/uncommitted/day15-20261119-01/production/ge/summary.json": "3fa792412e6d4f4163ad371d8d0841858b67b19a88eeeb23bf16bc0945659f42",
+    "great_expectations/uncommitted/day15-20261119-01/reconciliation/summary.json": "b516421f08c32eb6d640803b3203ad0c77669443373c124145fbf04486d45bf6",
+    "great_expectations/uncommitted/day15-20261119-01/reconciliation_contracts.json": "62a1c21d3ea50364c60c3732bb66ac47d47d55ba23bf9f3ebdb0675f08ac166b",
+    "great_expectations/uncommitted/day15-20261119-01/rehearsal.json": "2f3c07ba92598ac5f84272002f782fe3db1a1f83b835f74be0c0f6819cd71ecf",
+    "great_expectations/uncommitted/day15-20261119-01/runtime.json": "b6aa2419de21fe7e5eaf7c6ebf968dcbc41f64ef6854f942e71811de5ac50340",
+    "great_expectations/uncommitted/day15-20261119-01/test_coverage.json": "1937ae5b8e1996965ec6f8ad47a759422c78351f6880d6ebad7aad3574d160ad"
+  },
+  "runtime_input_sha256": {
+    "dbt/Dockerfile": {
+      "canonical_lf_sha256": "f4c8e2461a41579789708c513f10b2c5d31254557c21afd3fff978cc892666cd",
+      "executed_worktree_sha256": "1afd24f76e3472b437da42b55cf9e0e0f1316737b9dc918aa42c9de8cac7a9e2"
+    },
+    "dbt/dbt_project.yml": {
+      "canonical_lf_sha256": "50d9d727d0727735481b78b369c6db89cc1a3e40129e9c34a80c66358b8a9deb",
+      "executed_worktree_sha256": "1089f091de064c79b040f28885396f97a58d96ebbe5b39a42b347ebd18f21ce8"
+    },
+    "dbt/macros/schema.yml": {
+      "canonical_lf_sha256": "7bd5eb3fb8f93b3d54ed8aa7c6fc35f3fd854b7db34db75b89802a30e28f0336",
+      "executed_worktree_sha256": "7bd5eb3fb8f93b3d54ed8aa7c6fc35f3fd854b7db34db75b89802a30e28f0336"
+    },
+    "dbt/macros/sqlserver__collect_freshness.sql": {
+      "canonical_lf_sha256": "69a916e29ead4cdf35257a4ac24b124ce76f9777e2c8b25b4b8f1090b9f1f75a",
+      "executed_worktree_sha256": "69a916e29ead4cdf35257a4ac24b124ce76f9777e2c8b25b4b8f1090b9f1f75a"
+    },
+    "dbt/models/bronze/brnz_customers.sql": {
+      "canonical_lf_sha256": "33abbcbfca6470995305e6ebbbd59d1bb67c15287f3c96f4e818a52f37b6b0cd",
+      "executed_worktree_sha256": "b184d2488fc8635b004ff6654e463e75170965d72bebc6ae81abc53b91637286"
+    },
+    "dbt/models/bronze/brnz_example.sql": {
+      "canonical_lf_sha256": "bb5cfe68602fe12e1e7aed2ee0fd7b638a6c4547fb32648726a99842258bcdbe",
+      "executed_worktree_sha256": "980a39126614011444660b4b91154b02ba4432febf8fac48aa7a6f126b7b8a1e"
+    },
+    "dbt/models/bronze/brnz_products.sql": {
+      "canonical_lf_sha256": "75b41d1d032bc2adcbdf9883342376f19b59fdeb61d4b95e5ec3a446dc153576",
+      "executed_worktree_sha256": "d5c8730b69d5f12de621f4341ec708e86d1bb0c44c2c6211ee112f71d64334cd"
+    },
+    "dbt/models/bronze/brnz_sales_orders.sql": {
+      "canonical_lf_sha256": "93cb69302aff908dbc8d0e2dcefe6748be1c3dfec446ff4ca031585847d0d5f7",
+      "executed_worktree_sha256": "727463c8e8be6a48734cbf904a5ced6e6d27459bec98f8ba036dd214d2454be9"
+    },
+    "dbt/models/bronze/schema.yml": {
+      "canonical_lf_sha256": "be9e3664636c8d6e043975b051d303189ee68128e99b2124542b547d52990458",
+      "executed_worktree_sha256": "be9e3664636c8d6e043975b051d303189ee68128e99b2124542b547d52990458"
+    },
+    "dbt/models/bronze/src_adventureworks.yml": {
+      "canonical_lf_sha256": "2fd9300bde41c59ab82eaaa31ab3f57a18b06bb763d8f299683651cae0763264",
+      "executed_worktree_sha256": "2fd9300bde41c59ab82eaaa31ab3f57a18b06bb763d8f299683651cae0763264"
+    },
+    "dbt/models/gold/gld_customer_metrics.sql": {
+      "canonical_lf_sha256": "aa6fc777f17f889a06e2eca1adc96b722ceddad0d5e093207c3a9c740f4a8e87",
+      "executed_worktree_sha256": "c615c528e5833e6679015980820716c598dfbd13816e1aca98320b0d21c84351"
+    },
+    "dbt/models/gold/gld_product_performance.sql": {
+      "canonical_lf_sha256": "3be59078316a1f36904407104cda5d21538e3470a87e44ad0760793d72a9775d",
+      "executed_worktree_sha256": "f9867115113773e52b1dc8deea03e2c7e7578686e39909db61152ad1d6702e9e"
+    },
+    "dbt/models/gold/gld_sales_summary.sql": {
+      "canonical_lf_sha256": "0b11291abc809b9d09c7bbb80ed984b70bcc0e7bc9fc194f87bed656daa49921",
+      "executed_worktree_sha256": "3b904bd9066dd07b284539a24c898acddaf5e78d8e86ea2fa1c29a514d898134"
+    },
+    "dbt/models/gold/schema.yml": {
+      "canonical_lf_sha256": "7c7a7cf983357b35a1f534ab9bdfe6de6f62021a18fb3537875a356064d1ab4e",
+      "executed_worktree_sha256": "7c7a7cf983357b35a1f534ab9bdfe6de6f62021a18fb3537875a356064d1ab4e"
+    },
+    "dbt/models/silver/schema.yml": {
+      "canonical_lf_sha256": "a6e46ca006864ebfae03560e69b052d20d27058f1a58eb19d1401902940e2f20",
+      "executed_worktree_sha256": "a6e46ca006864ebfae03560e69b052d20d27058f1a58eb19d1401902940e2f20"
+    },
+    "dbt/models/silver/slvr_customers.sql": {
+      "canonical_lf_sha256": "d89643809e2c7ca3fd9bd8021dbc4c9c24fa4b50426150fdbbe21a2be0cb88c5",
+      "executed_worktree_sha256": "7bacaf8b0da9222224cf37dfc74843f98ee123c572275db500644410f08bf8f7"
+    },
+    "dbt/models/silver/slvr_products.sql": {
+      "canonical_lf_sha256": "d24b8bd0da3477cccec89731b8b13d2889a6f88b7fb80a4b3831e44fa087d802",
+      "executed_worktree_sha256": "76d839c10fa9823e3164290b3e94e48f7318ee8d745ad3fe0443b7d2e1ca502a"
+    },
+    "dbt/models/silver/slvr_sales_orders.sql": {
+      "canonical_lf_sha256": "e0916e3c2ecad1b8bd22c4387f999a2d198d857541864718b2b5ca44df5a7d3c",
+      "executed_worktree_sha256": "a1840155a57934586ccecb391499db886f449f6ab2f9c2d97e3554753789945c"
+    },
+    "dbt/models/sources.yml": {
+      "canonical_lf_sha256": "ff176c8c96797f34617c6710e65d6b6a527659ceca7d3a616bc8de91e4b076d6",
+      "executed_worktree_sha256": "ff176c8c96797f34617c6710e65d6b6a527659ceca7d3a616bc8de91e4b076d6"
+    },
+    "dbt/package-lock.yml": {
+      "canonical_lf_sha256": "c3b209cf204c24a1b43c6b3d8edd5dfabf0dc4972f0488d45fa8b6c57bcebff1",
+      "executed_worktree_sha256": "5eba3c943b60eabe682e6dd3f40fbb3cfadc528adbb48b11c7e82ce7ffde763b"
+    },
+    "dbt/packages.yml": {
+      "canonical_lf_sha256": "a7d065d82e3881d0ba8984d4933ff5e72ab7c5a85225fd8803758e5cb17f6a10",
+      "executed_worktree_sha256": "a66bb01cfea7655c6a5f63e934500c11c03b3a7096516cf4a96610a1a6bcc3ad"
+    },
+    "dbt/requirements.txt": {
+      "canonical_lf_sha256": "a540e72fda627053c46d03f2e044b693476100f5d210af2fe82c38ef9914abc8",
+      "executed_worktree_sha256": "e44c2e394853cd61790aa289296eb2c861b2795ff53ee93565746c3a728976e0"
+    },
+    "dbt/tests/data_quality/assert_customer_metrics_reconciliation.sql": {
+      "canonical_lf_sha256": "e2bde49d7cf78b9db8bcd961130507cd0bd7ea510290633d2c84af21a48228fd",
+      "executed_worktree_sha256": "e2bde49d7cf78b9db8bcd961130507cd0bd7ea510290633d2c84af21a48228fd"
+    },
+    "dbt/tests/data_quality/assert_daily_sales_reconciliation.sql": {
+      "canonical_lf_sha256": "917e45aaf31268974c508c8183c5ec1eed7c5016081a2e055ba462391d30ed4d",
+      "executed_worktree_sha256": "917e45aaf31268974c508c8183c5ec1eed7c5016081a2e055ba462391d30ed4d"
+    },
+    "dbt/tests/data_quality/assert_product_metrics_reconciliation.sql": {
+      "canonical_lf_sha256": "7dad0f8eb52f022235beda2581f7ef1caec2e958cfbfbcca91eb9e592e4c2857",
+      "executed_worktree_sha256": "7dad0f8eb52f022235beda2581f7ef1caec2e958cfbfbcca91eb9e592e4c2857"
+    },
+    "dbt/tests/data_quality/assert_silver_customer_preservation.sql": {
+      "canonical_lf_sha256": "7cd4f0571634399e55208bc4ed6a8c024d9311dc28682968e0124628b8239b10",
+      "executed_worktree_sha256": "7cd4f0571634399e55208bc4ed6a8c024d9311dc28682968e0124628b8239b10"
+    },
+    "dbt/tests/data_quality/assert_silver_eligible_order_lines.sql": {
+      "canonical_lf_sha256": "00c95793953c2c10633db80e8f9fdadb9ce8a7a69b31cbb060af643208d20a63",
+      "executed_worktree_sha256": "00c95793953c2c10633db80e8f9fdadb9ce8a7a69b31cbb060af643208d20a63"
+    },
+    "dbt/tests/data_quality/assert_silver_product_preservation.sql": {
+      "canonical_lf_sha256": "bfed7d388a5a864c9addbad5f5f1fff30efc70beb9a44ab64aaa2ffb5b2d7989",
+      "executed_worktree_sha256": "bfed7d388a5a864c9addbad5f5f1fff30efc70beb9a44ab64aaa2ffb5b2d7989"
+    },
+    "dbt/tests/generic/line_total_matches.sql": {
+      "canonical_lf_sha256": "29fbb0caf39c9e0f23db44902c4d3585caf791faad06e72fa45230f0f8626f92",
+      "executed_worktree_sha256": "29fbb0caf39c9e0f23db44902c4d3585caf791faad06e72fa45230f0f8626f92"
+    },
+    "dbt/tests/generic/no_future_dates.sql": {
+      "canonical_lf_sha256": "f9c03131062422baa1959de73f736d6f173c91a9708e99dc6cff5652a8191ff1",
+      "executed_worktree_sha256": "f9c03131062422baa1959de73f736d6f173c91a9708e99dc6cff5652a8191ff1"
+    },
+    "dbt/tests/generic/positive_values.sql": {
+      "canonical_lf_sha256": "a050006dab5b735abba90f67eac9f515275bf12253d8edaa7d078a9ffa44808b",
+      "executed_worktree_sha256": "a050006dab5b735abba90f67eac9f515275bf12253d8edaa7d078a9ffa44808b"
+    },
+    "docker-compose.airflow-quality.yml": {
+      "canonical_lf_sha256": "173c69bbb86ff8afa473ef77fa614ebe39576630d889dd99586c867a3fd771c5",
+      "executed_worktree_sha256": "173c69bbb86ff8afa473ef77fa614ebe39576630d889dd99586c867a3fd771c5"
+    },
+    "docker-compose.yml": {
+      "canonical_lf_sha256": "d047476b7e4bccb1db40a9e67d87e5f614ab862b1b6ccf3dd2d79fa27cbce82f",
+      "executed_worktree_sha256": "c631350ed71feef46feac068ac311668e7ba9641b4391635157aceff71804af3"
+    },
+    "great_expectations/Dockerfile": {
+      "canonical_lf_sha256": "ae90179036cba3caeeb769089f7d0d19a340e879e06fd22a215b143400729ef8",
+      "executed_worktree_sha256": "ae90179036cba3caeeb769089f7d0d19a340e879e06fd22a215b143400729ef8"
+    },
+    "great_expectations/checkpoints/customer_checkpoint.yml": {
+      "canonical_lf_sha256": "c7c6dc8403513d224100f778c08c006175252102cdce51ad4237af1cb1925023",
+      "executed_worktree_sha256": "c7c6dc8403513d224100f778c08c006175252102cdce51ad4237af1cb1925023"
+    },
+    "great_expectations/checkpoints/order_checkpoint.yml": {
+      "canonical_lf_sha256": "10f567997bfad46b0f321e98856cfec117e92d746b0421c6da02d6eac10062e0",
+      "executed_worktree_sha256": "10f567997bfad46b0f321e98856cfec117e92d746b0421c6da02d6eac10062e0"
+    },
+    "great_expectations/expectations/customer_suite.json": {
+      "canonical_lf_sha256": "30650d6e3eeffc0034b16a633d151b1397a7af619511230ade29bbeb7983673c",
+      "executed_worktree_sha256": "30650d6e3eeffc0034b16a633d151b1397a7af619511230ade29bbeb7983673c"
+    },
+    "great_expectations/expectations/order_suite.json": {
+      "canonical_lf_sha256": "3dcb2fc51214b56a50c500fa644d35b0e0d528cd429cff2895257584eb8035ec",
+      "executed_worktree_sha256": "3dcb2fc51214b56a50c500fa644d35b0e0d528cd429cff2895257584eb8035ec"
+    },
+    "great_expectations/great_expectations.yml": {
+      "canonical_lf_sha256": "135cb629b1b0a791427a6cd7293e05c9570ad73cd5f24e2a55572e7a67b5ce55",
+      "executed_worktree_sha256": "135cb629b1b0a791427a6cd7293e05c9570ad73cd5f24e2a55572e7a67b5ce55"
+    },
+    "great_expectations/requirements.txt": {
+      "canonical_lf_sha256": "0a5dcdfec1ae6699ccb891507406db87fb30d763c60171a69d42af8023dfe41d",
+      "executed_worktree_sha256": "0a5dcdfec1ae6699ccb891507406db87fb30d763c60171a69d42af8023dfe41d"
+    },
+    "scripts/reconcile_dbt_layers.py": {
+      "canonical_lf_sha256": "8cba649708bfaea04584588bdc2f1e59730e443e6a4a9a3256c331a4725c5cd9",
+      "executed_worktree_sha256": "8cba649708bfaea04584588bdc2f1e59730e443e6a4a9a3256c331a4725c5cd9"
+    },
+    "scripts/report_dbt_test_coverage.py": {
+      "canonical_lf_sha256": "a8d0d4f429b59c34083211080c084bd92b71791632f676309ad41a614ce698c9",
+      "executed_worktree_sha256": "a8d0d4f429b59c34083211080c084bd92b71791632f676309ad41a614ce698c9"
+    },
+    "scripts/run_ge_checkpoints.py": {
+      "canonical_lf_sha256": "ef94d0ad6cf3c984bc9d697e6846e87a9c1347dabe3c6a0fd5eabae57d34cc84",
+      "executed_worktree_sha256": "ef94d0ad6cf3c984bc9d697e6846e87a9c1347dabe3c6a0fd5eabae57d34cc84"
+    },
+    "scripts/verify_dbt_gold_contracts.py": {
+      "canonical_lf_sha256": "c3535c0ab1a09302d7636c879f74a7975a36cd6aa43eead9cd15292320950f1d",
+      "executed_worktree_sha256": "c3535c0ab1a09302d7636c879f74a7975a36cd6aa43eead9cd15292320950f1d"
+    },
+    "scripts/verify_dbt_reconciliation_contracts.py": {
+      "canonical_lf_sha256": "02fb83dc6e5f5e847d85e30fc61e2264ea303c2a3cb908b353c7f08f1a44b4d7",
+      "executed_worktree_sha256": "02fb83dc6e5f5e847d85e30fc61e2264ea303c2a3cb908b353c7f08f1a44b4d7"
+    },
+    "scripts/verify_dbt_test_contracts.py": {
+      "canonical_lf_sha256": "402cb7d447f423d485c6ed4e7ee73be689cc3c520f8b9a3e56d1ecd5f627bf25",
+      "executed_worktree_sha256": "402cb7d447f423d485c6ed4e7ee73be689cc3c520f8b9a3e56d1ecd5f627bf25"
+    },
+    "scripts/verify_ge_contracts.py": {
+      "canonical_lf_sha256": "145fea9f201ec672a0d8fc37b4ac6a18e57cbfe9e9b970616629368ac5cbf5aa",
+      "executed_worktree_sha256": "145fea9f201ec672a0d8fc37b4ac6a18e57cbfe9e9b970616629368ac5cbf5aa"
+    }
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "active_source_rows": {
+    "source.dbt_sqlserver_project.adventureworks.Customer": 19820,
+    "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail": 121317,
+    "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader": 31465,
+    "source.dbt_sqlserver_project.adventureworks_person.Person": 19972,
+    "source.dbt_sqlserver_project.adventureworks_production.Product": 504,
+    "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory": 37
+  },
+  "bronze_eligibility": {
+    "eligible": 121317
+  },
+  "checks": [
+    {
+      "actual": 19820,
+      "check": "brnz_customers_rows_preserved",
+      "expected": 19820,
+      "passed": true
+    },
+    {
+      "actual": 504,
+      "check": "brnz_products_rows_preserved",
+      "expected": 504,
+      "passed": true
+    },
+    {
+      "actual": 121317,
+      "check": "eligible_bronze_to_silver.lines",
+      "expected": 121317,
+      "passed": true
+    },
+    {
+      "actual": 31465,
+      "check": "eligible_bronze_to_silver.orders",
+      "expected": 31465,
+      "passed": true
+    },
+    {
+      "actual": 274914,
+      "check": "eligible_bronze_to_silver.quantity",
+      "expected": 274914,
+      "passed": true
+    },
+    {
+      "actual": "109846381.399888",
+      "check": "eligible_bronze_to_silver.net_revenue",
+      "expected": "109846381.399888",
+      "passed": true
+    },
+    {
+      "actual": 274914,
+      "check": "silver_to_gld_customer_metrics.quantity",
+      "expected": 274914,
+      "passed": true
+    },
+    {
+      "actual": "109846381.399888",
+      "check": "silver_to_gld_customer_metrics.net_revenue",
+      "expected": "109846381.399888",
+      "passed": true
+    },
+    {
+      "actual": 31465,
+      "check": "silver_to_gld_customer_metrics.orders",
+      "expected": 31465,
+      "passed": true
+    },
+    {
+      "actual": 274914,
+      "check": "silver_to_gld_product_performance.quantity",
+      "expected": 274914,
+      "passed": true
+    },
+    {
+      "actual": "109846381.399888",
+      "check": "silver_to_gld_product_performance.net_revenue",
+      "expected": "109846381.399888",
+      "passed": true
+    },
+    {
+      "actual": 274914,
+      "check": "silver_to_gld_sales_summary.quantity",
+      "expected": 274914,
+      "passed": true
+    },
+    {
+      "actual": "109846381.399888",
+      "check": "silver_to_gld_sales_summary.net_revenue",
+      "expected": "109846381.399888",
+      "passed": true
+    },
+    {
+      "actual": 31465,
+      "check": "silver_to_gld_sales_summary.orders",
+      "expected": 31465,
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "check": "assert_customer_metrics_reconciliation",
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "check": "assert_daily_sales_reconciliation",
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "check": "assert_product_metrics_reconciliation",
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "check": "assert_silver_customer_preservation",
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "check": "assert_silver_eligible_order_lines",
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "check": "assert_silver_product_preservation",
+      "expected": 0,
+      "passed": true
+    }
+  ],
+  "consistency": "Read-only queries in one SERIALIZABLE transaction after dbt; not a snapshot shared with the earlier dbt run.",
+  "database": "AdventureWorks2014",
+  "dbt_test_count": 202,
+  "dbt_test_invocation_id": "d74b8565-4c65-4c1a-bab1-f815c9c5b38e",
+  "dimensions_without_sales": {
+    "gld_customer_metrics": 701,
+    "gld_product_performance": 238
+  },
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-19T13:09:00.715587+00:00",
+  "freshness": "Not executed; historical-source issue DQ-W2-01 remains open.",
+  "gold_totals": {
+    "gld_customer_metrics": {
+      "net_revenue": "109846381.399888",
+      "quantity": 274914,
+      "summed_order_counts": 31465
+    },
+    "gld_product_performance": {
+      "net_revenue": "109846381.399888",
+      "quantity": 274914,
+      "summed_order_counts": 121317
+    },
+    "gld_sales_summary": {
+      "net_revenue": "109846381.399888",
+      "quantity": 274914,
+      "summed_order_counts": 31465
+    }
+  },
+  "input_sha256": {
+    "manifest": "5da04a8b1aa1a6c531abbf5b98a76148dfde45c71aeaa81df057ee498384634c",
+    "run_results": "e86be315ef344e2e11bccdb9b645ccf026cfd386e7bbd8d93f32389bcf84b620"
+  },
+  "model_rows": {
+    "brnz_customers": 19820,
+    "brnz_example": 19820,
+    "brnz_products": 504,
+    "brnz_sales_orders": 121317,
+    "gld_customer_metrics": 19820,
+    "gld_product_performance": 504,
+    "gld_sales_summary": 1124,
+    "slvr_customers": 19820,
+    "slvr_products": 504,
+    "slvr_sales_orders": 121317
+  },
+  "monetary_tolerance": "0.01",
+  "nonadditive_metrics": {
+    "gld_product_performance.summed_order_counts": "Diagnostic only: an order may contain multiple products; never compare this sum to global distinct orders.",
+    "gld_sales_summary.unique_customers": "Per-date distinct counts are not additive across dates."
+  },
+  "reconciliation_violations": {
+    "assert_customer_metrics_reconciliation": 0,
+    "assert_daily_sales_reconciliation": 0,
+    "assert_product_metrics_reconciliation": 0,
+    "assert_silver_customer_preservation": 0,
+    "assert_silver_eligible_order_lines": 0,
+    "assert_silver_product_preservation": 0
+  },
+  "runner_sha256": "8cba649708bfaea04584588bdc2f1e59730e443e6a4a9a3256c331a4725c5cd9",
+  "sales": {
+    "bronze_all": {
+      "first_order_date": "2011-05-31 00:00:00",
+      "last_order_date": "2014-06-30 00:00:00",
+      "lines": 121317,
+      "net_revenue": "109846381.399888",
+      "orders": 31465,
+      "quantity": 274914
+    },
+    "bronze_eligible": {
+      "first_order_date": "2011-05-31 00:00:00",
+      "last_order_date": "2014-06-30 00:00:00",
+      "lines": 121317,
+      "net_revenue": "109846381.399888",
+      "orders": 31465,
+      "quantity": 274914
+    },
+    "silver": {
+      "first_order_date": "2011-05-31 00:00:00",
+      "last_order_date": "2014-06-30 00:00:00",
+      "lines": 121317,
+      "net_revenue": "109846381.399888",
+      "orders": 31465,
+      "quantity": 274914
+    }
+  },
+  "snapshot_finished_at_utc": "2026-11-19T13:09:00.713211+00:00",
+  "snapshot_started_at_utc": "2026-11-19T13:08:58.153184+00:00",
+  "sql_sha256": {
+    "models/bronze/brnz_customers.sql": "b184d2488fc8635b004ff6654e463e75170965d72bebc6ae81abc53b91637286",
+    "models/bronze/brnz_example.sql": "980a39126614011444660b4b91154b02ba4432febf8fac48aa7a6f126b7b8a1e",
+    "models/bronze/brnz_products.sql": "d5c8730b69d5f12de621f4341ec708e86d1bb0c44c2c6211ee112f71d64334cd",
+    "models/bronze/brnz_sales_orders.sql": "727463c8e8be6a48734cbf904a5ced6e6d27459bec98f8ba036dd214d2454be9",
+    "models/gold/gld_customer_metrics.sql": "c615c528e5833e6679015980820716c598dfbd13816e1aca98320b0d21c84351",
+    "models/gold/gld_product_performance.sql": "f9867115113773e52b1dc8deea03e2c7e7578686e39909db61152ad1d6702e9e",
+    "models/gold/gld_sales_summary.sql": "3b904bd9066dd07b284539a24c898acddaf5e78d8e86ea2fa1c29a514d898134",
+    "models/silver/slvr_customers.sql": "7bacaf8b0da9222224cf37dfc74843f98ee123c572275db500644410f08bf8f7",
+    "models/silver/slvr_products.sql": "76d839c10fa9823e3164290b3e94e48f7318ee8d745ad3fe0443b7d2e1ca502a",
+    "models/silver/slvr_sales_orders.sql": "a1840155a57934586ccecb391499db886f449f6ab2f9c2d97e3554753789945c",
+    "tests/data_quality/assert_customer_metrics_reconciliation.sql": "e2bde49d7cf78b9db8bcd961130507cd0bd7ea510290633d2c84af21a48228fd",
+    "tests/data_quality/assert_daily_sales_reconciliation.sql": "917e45aaf31268974c508c8183c5ec1eed7c5016081a2e055ba462391d30ed4d",
+    "tests/data_quality/assert_product_metrics_reconciliation.sql": "7dad0f8eb52f022235beda2581f7ef1caec2e958cfbfbcca91eb9e592e4c2857",
+    "tests/data_quality/assert_silver_customer_preservation.sql": "7cd4f0571634399e55208bc4ed6a8c024d9311dc28682968e0124628b8239b10",
+    "tests/data_quality/assert_silver_eligible_order_lines.sql": "00c95793953c2c10633db80e8f9fdadb9ce8a7a69b31cbb060af643208d20a63",
+    "tests/data_quality/assert_silver_product_preservation.sql": "bfed7d388a5a864c9addbad5f5f1fff30efc70beb9a44ab64aaa2ffb5b2d7989"
+  },
+  "started_at_utc": "2026-11-19T13:08:57.715781+00:00",
+  "status": "passed",
+  "target": "dev"
+}

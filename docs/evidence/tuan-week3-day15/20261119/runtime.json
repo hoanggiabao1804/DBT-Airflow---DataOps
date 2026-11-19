@@ -1,0 +1,51 @@
+{
+  "captured_at_utc": "2026-11-19T13:23:38.515528+00:00",
+  "execution_method": "Manual sequential dbt and GE commands; not an Airflow scheduler run",
+  "services": [
+    {
+      "container_id": "356af5ed1fd1fa22fbbf11a4b721f386d2e4f4cb2baa0212e006beac6b5f3b46",
+      "health": null,
+      "image_id": "sha256:46827821765749a68e0a379421c66dec98f2928ddd4bcd6cf55b4d5e1e0b4a56",
+      "image_name": "dbt-airflow---dataops-sqlserver",
+      "service": "sqlserver",
+      "started_at": "2026-11-19T12:58:17.670392666Z",
+      "state": "running"
+    },
+    {
+      "container_id": "1e2abcc168be80e015bef777cb622d34d7ae55049abddab70a1a0dce55a2e586",
+      "health": null,
+      "image_id": "sha256:2eb0f8cb41e0a4489047f5af8d147b1f173a0359dbff3655c5782d4d8405480c",
+      "image_name": "dbt-airflow---dataops-dbt",
+      "service": "dbt",
+      "started_at": "2026-11-19T12:58:19.213884703Z",
+      "state": "running"
+    },
+    {
+      "container_id": "e980f64ab0f19165803e50529d840f0da12401c05a24c831f0c85dc6838561a0",
+      "health": "healthy",
+      "image_id": "sha256:e5aaac82e30a08a932d75cf0568e73fe2eeadd1f5f12a948e3382575f9c3651d",
+      "image_name": "dbt-airflow---dataops-ge",
+      "service": "ge-worker",
+      "started_at": "2026-11-19T12:59:00.892768691Z",
+      "state": "running"
+    },
+    {
+      "container_id": "a0df6da129b47056b2a40dde5e119eed93c944687fe3694d5ed65d05f92f078b",
+      "health": "starting",
+      "image_id": "sha256:458e946cd22b083c672bd9f8773048d4cb606511624120e4c77a3cb4d117556a",
+      "image_name": "dbt-airflow---dataops-airflow-quality:2.7.1",
+      "service": "airflow-scheduler",
+      "started_at": "2026-11-17T07:18:36.097716054Z",
+      "state": "exited"
+    },
+    {
+      "container_id": "eb02a63fd398193ac3d043de41ad4e9f19ba8c483e59600c148c4a722b588094",
+      "health": "starting",
+      "image_id": "sha256:458e946cd22b083c672bd9f8773048d4cb606511624120e4c77a3cb4d117556a",
+      "image_name": "dbt-airflow---dataops-airflow-quality:2.7.1",
+      "service": "airflow-webserver",
+      "started_at": "2026-11-17T07:17:58.560989127Z",
+      "state": "exited"
+    }
+  ]
+}
