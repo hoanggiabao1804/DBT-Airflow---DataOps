@@ -178,6 +178,20 @@ def test_decide_alert_on_change_only():
     assert monitoring.decide_alert(ok, {"status": "critical"}, now=NOW)[0] == "info"
 
 
+def test_alert_title_lists_failing_checks_and_message_has_details():
+    report = monitoring.build_report(
+        [
+            monitoring.result("services", "critical", "sqlserver: not running"),
+            monitoring.result("pipeline", "critical", "last run x failed"),
+            monitoring.result("disk", "ok", "200 GB free"),
+        ],
+        now=NOW,
+    )
+    severity, title = monitoring.decide_alert(report, {"status": "ok"}, now=NOW)
+    assert (severity, title) == ("critical", "DataOps health CRITICAL: services, pipeline")
+    assert monitoring.failing_summary(report) == "services=sqlserver: not running; pipeline=last run x failed"
+
+
 def test_publish_writes_status_and_alerts_once(isolated_dirs):
     first = monitoring.publish(report_with("critical"))
     second = monitoring.publish(report_with("critical"))

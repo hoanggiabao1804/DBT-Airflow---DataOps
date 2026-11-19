@@ -192,15 +192,20 @@ def decide_alert(report, previous, repeat_after=timedelta(hours=6), now=None):
     if current == OK:
         return ("info", "DataOps recovered: all checks OK") if before != OK else None
     if current != before:
-        return current, "DataOps health {}: {}".format(current.upper(), failing_summary(report))
+        return current, "DataOps health {}: {}".format(current.upper(), failing_checks(report))
     last_alert = (previous or {}).get("last_alert_utc")
     try:
         overdue = last_alert is None or now - datetime.fromisoformat(last_alert) >= repeat_after
     except ValueError:
         overdue = True
     if overdue:
-        return current, "DataOps health still {}: {}".format(current.upper(), failing_summary(report))
+        return current, "DataOps health still {}: {}".format(current.upper(), failing_checks(report))
     return None
+
+
+def failing_checks(report):
+    """Short form for alert titles: names of the checks that are not OK."""
+    return ", ".join(check["check"] for check in report["checks"] if check["status"] != OK)
 
 
 def failing_summary(report):
