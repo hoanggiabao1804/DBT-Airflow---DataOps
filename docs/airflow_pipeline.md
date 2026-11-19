@@ -93,6 +93,17 @@ Mỗi task có callback (`airflow/dags/utils/callbacks.py`):
 
 Chi tiết và cách đọc: [thinh_week2_day6_7.md](thinh_week2_day6_7.md).
 
+## Alert và các DAG giám sát
+
+| DAG | Lịch mặc định | Vai trò |
+| --- | --- | --- |
+| `dbt_transform` | `0 6 * * *` | pipeline chính; retry → warning, fail → critical, SLA 1 h cho `dbt_docs` |
+| `dataops_monitoring` | `*/30 * * * *` | services, pipeline freshness, success rate, disk; alert khi trạng thái đổi |
+| `ge_data_quality` | `30 */6 * * *` | GX re-validation Silver; alert critical khi expectation fail |
+
+Alert luôn ghi vào `airflow/logs/dataops_alerts/alerts.jsonl`; webhook (Slack/Discord/Teams)
+và email là tùy chọn qua biến `DATAOPS_ALERT_*`. Chi tiết: [thinh_week2_day8_9.md](thinh_week2_day8_9.md).
+
 ## Lịch sử thay đổi
 
 | Ngày | Nhánh | Thay đổi |
@@ -101,3 +112,4 @@ Chi tiết và cách đọc: [thinh_week2_day6_7.md](thinh_week2_day6_7.md).
 | 19/11/2026 | `feature/thinh-week1-day3-4` | `check_runtime`, retries/timeout theo task, exponential backoff, `dagrun_timeout`, lịch 06:00 VN |
 | 19/11/2026 | `feature/thinh-week1-day5` | E2E `thinh-week1-day5-e2e-01`: 6/6 success, 42,7 s |
 | 19/11/2026 | `feature/thinh-week2-day6-7` | `utils/logging_utils.py`, `utils/callbacks.py`, metrics JSONL, unit tests |
+| 19/11/2026 | `feature/thinh-week2-day8-9` | `utils/alerting.py`, `dataops_monitoring`, `ge_data_quality`, SLA, webhook receiver |
