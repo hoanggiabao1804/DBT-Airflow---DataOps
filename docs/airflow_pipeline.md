@@ -113,3 +113,4 @@ và email là tùy chọn qua biến `DATAOPS_ALERT_*`. Chi tiết: [thinh_week2
 | 19/11/2026 | `feature/thinh-week1-day5` | E2E `thinh-week1-day5-e2e-01`: 6/6 success, 42,7 s |
 | 19/11/2026 | `feature/thinh-week2-day6-7` | `utils/logging_utils.py`, `utils/callbacks.py`, metrics JSONL, unit tests |
 | 19/11/2026 | `feature/thinh-week2-day8-9` | `utils/alerting.py`, `dataops_monitoring`, `ge_data_quality`, SLA, webhook receiver |
+| 19/11/2026 | `feature/thinh-week2-day10` | Diễn tập alert: lỗi dữ liệu (`scripts/dq_drill.sh`) và mất SQL Server; pipeline tích hợp xanh |
