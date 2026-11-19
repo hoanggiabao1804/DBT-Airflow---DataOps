@@ -1,0 +1,6 @@
+gold.gld_customer_metrics|19820
+gold.gld_product_performance|504
+gold.gld_sales_summary|1124
+silver.slvr_customers|19820
+silver.slvr_products|504
+silver.slvr_sales_orders|121317
