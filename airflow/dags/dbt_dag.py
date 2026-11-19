@@ -14,6 +14,10 @@ Configuration (environment of BOTH webserver and scheduler):
   Default ``0 6 * * *`` = 06:00 every day, Asia/Ho_Chi_Minh.
 * ``DATAOPS_DBT_TARGET`` dbt target (default ``dev``).
 * ``DATAOPS_GE_SCHEMA``  schema validated by GX (default ``silver``).
+
+Observability: every task start/success/retry/failure and the DAG outcome are
+written as ``DATAOPS_EVENT`` JSON lines in the task log and appended to
+``$DATAOPS_METRICS_DIR/task_metrics.jsonl`` (see ``utils/callbacks.py``).
 """
 
 from datetime import timedelta
@@ -22,6 +26,8 @@ import os
 import pendulum
 from airflow import DAG
 from airflow.operators.bash import BashOperator
+
+from utils.callbacks import TASK_CALLBACKS, on_dag_failure, on_dag_success
 
 LOCAL_TZ = pendulum.timezone("Asia/Ho_Chi_Minh")
 DEFAULT_SCHEDULE = "0 6 * * *"
@@ -101,6 +107,8 @@ with DAG(
         "retry_exponential_backoff": True,
         "max_retry_delay": timedelta(minutes=10),
         "execution_timeout": timedelta(minutes=20),
+        # Structured log line + metrics record for every start/success/retry/failure.
+        **TASK_CALLBACKS,
     },
     description="dbt Bronze/Silver/Gold, dbt tests, GX checkpoints and dbt docs",
     schedule=resolve_schedule(os.environ.get("DATAOPS_SCHEDULE")),
@@ -109,6 +117,8 @@ with DAG(
     max_active_runs=1,  # two runs would write the same dbt tables
     dagrun_timeout=timedelta(hours=2),
     is_paused_upon_creation=True,
+    on_success_callback=on_dag_success,
+    on_failure_callback=on_dag_failure,
     tags=["dbt", "sqlserver", "data-quality", "dataops"],
     doc_md=__doc__,
 ) as dag:
