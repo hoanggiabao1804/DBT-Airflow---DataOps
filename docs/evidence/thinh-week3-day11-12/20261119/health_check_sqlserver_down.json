@@ -1,0 +1,73 @@
+{
+  "checks": [
+    {
+      "check": "docker",
+      "detail": "server 29.6.2",
+      "hint": "",
+      "status": "ok"
+    },
+    {
+      "check": "services",
+      "detail": "sqlserver exited",
+      "hint": "docker compose ... up -d <service>; docker compose ... logs --tail 100 <service>",
+      "status": "critical"
+    },
+    {
+      "check": "sqlserver",
+      "detail": "container not running",
+      "hint": "docker compose ... up -d sqlserver",
+      "status": "critical"
+    },
+    {
+      "check": "dbt",
+      "detail": "dbt debug failed",
+      "hint": "check dbt/profiles.yml and the dbt SQL login",
+      "status": "critical"
+    },
+    {
+      "check": "airflow",
+      "detail": "metadata DB and scheduler healthy",
+      "hint": "",
+      "status": "ok"
+    },
+    {
+      "check": "dag_imports",
+      "detail": "no DAG import errors",
+      "hint": "",
+      "status": "ok"
+    },
+    {
+      "check": "last_run",
+      "detail": "thinh-week2-day10-integrated-01 success at 2026-11-19T09:06:14.867381+00:00",
+      "hint": "",
+      "status": "ok"
+    },
+    {
+      "check": "orphans",
+      "detail": "2 dbt/GX process(es) running but no dbt_transform run is active",
+      "hint": "runbook 'Ti\u1ebfn tr\u00ecnh m\u1ed3 c\u00f4i': inspect and kill before clearing/retrying tasks",
+      "status": "warning"
+    },
+    {
+      "check": "monitoring",
+      "detail": "dataops_monitoring says ok (4 min ago)",
+      "hint": "",
+      "status": "ok"
+    },
+    {
+      "check": "alerts_24h",
+      "detail": "4 critical alert(s) in 24 h, all followed by recovery",
+      "hint": "",
+      "status": "ok"
+    },
+    {
+      "check": "disk",
+      "detail": "277.5 GB free",
+      "hint": "",
+      "status": "ok"
+    }
+  ],
+  "project": "thinh_dataops",
+  "status": "critical",
+  "timestamp_utc": "2026-11-19T09:11:07.986802+00:00"
+}

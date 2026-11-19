@@ -1,0 +1,15 @@
+DataOps health check - project thinh_dataops - 2026-11-19T09:09:36.409511+00:00
+[OK  ] docker       server 29.6.2
+[FAIL] services     ge-worker exited
+                    -> docker compose ... up -d <service>; docker compose ... logs --tail 100 <service>
+[OK  ] sqlserver    AdventureWorks2014 ONLINE
+[SKIP] dbt          --skip-dbt
+[OK  ] airflow      metadata DB and scheduler healthy
+[OK  ] dag_imports  no DAG import errors
+[OK  ] last_run     thinh-week2-day10-integrated-01 success at 2026-11-19T09:06:14.867381+00:00
+[OK  ] orphans      0 dbt/GX process(es), 0 active run(s)
+[OK  ] monitoring   dataops_monitoring says ok (3 min ago)
+[OK  ] alerts_24h   4 critical alert(s) in 24 h, all followed by recovery
+[OK  ] disk         277.5 GB free
+OVERALL: CRITICAL
+exit=2
