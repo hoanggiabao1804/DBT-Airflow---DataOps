@@ -28,6 +28,15 @@ x-airflow-quality: &airflow-quality
     DATAOPS_COMPOSE_PROJECT: ${COMPOSE_PROJECT_NAME}
     DATAOPS_DBT_TARGET: dev
     DATAOPS_GE_SCHEMA: silver
+    # Thinh - scheduling and alerting (docs/airflow_pipeline.md). Empty = default.
+    DATAOPS_SCHEDULE: ${DATAOPS_SCHEDULE:-}
+    DATAOPS_GE_SCHEDULE: ${DATAOPS_GE_SCHEDULE:-}
+    DATAOPS_MONITORING_SCHEDULE: ${DATAOPS_MONITORING_SCHEDULE:-}
+    DATAOPS_ALERT_WEBHOOK_URL: ${DATAOPS_ALERT_WEBHOOK_URL:-}
+    DATAOPS_ALERT_WEBHOOK_FORMAT: ${DATAOPS_ALERT_WEBHOOK_FORMAT:-generic}
+    DATAOPS_ALERT_EMAIL: ${DATAOPS_ALERT_EMAIL:-}
+    DATAOPS_ALERT_ON_RETRY: ${DATAOPS_ALERT_ON_RETRY:-true}
+    AIRFLOW_ENV: ${AIRFLOW_ENV:-development}
   volumes:
     - ./airflow/dags:/opt/airflow/dags:ro
     - ./airflow/logs:/opt/airflow/logs
