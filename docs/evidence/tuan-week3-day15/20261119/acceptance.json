@@ -1,0 +1,44 @@
+{
+  "all_fixture_cleanup_verified": true,
+  "audience_presentation": {
+    "remaining_action": "Tuan presents the prepared demo and answers questions.",
+    "status": "not_recorded"
+  },
+  "code_commit": "2971267df716f220f78ab047f9a91c0428effa66",
+  "dbt_docs_generated": true,
+  "dbt_models_success": 10,
+  "dbt_tests_pass": 202,
+  "execution_method": "Sequential manual Docker Compose commands; not an Airflow DAG run",
+  "finished_at_utc": "2026-11-19T13:11:37.3668169Z",
+  "freshness": {
+    "executed": false,
+    "issue": "DQ-W2-01",
+    "status": "open"
+  },
+  "ge_expectations_pass": 40,
+  "ge_fixture_scenarios_pass": 8,
+  "ge_native_cli_exit_codes_verified": [
+    0,
+    1,
+    2
+  ],
+  "generic_fixture_assertions_pass": 8,
+  "generic_fixture_expected_fail_tests": 4,
+  "generic_fixture_pass_tests": 4,
+  "generic_native_dbt_test_exit_code": 1,
+  "limits": [
+    "Manual sequential dbt/GE execution, not a fresh Airflow scheduler run or team final acceptance.",
+    "Fixtures exercise isolated schemas or connection-local temporary tables; native expected failures are not production failures.",
+    "Read-only reconciliation uses its own SERIALIZABLE transaction after build/test, not a shared snapshot.",
+    "No source freshness rerun; historical business ModifiedDate finding remains open.",
+    "Passing configured tests and generated docs do not prove complete semantic or column coverage.",
+    "No claim that Tuan has already delivered a live demo to the team or instructor."
+  ],
+  "model_columns_documented": 131,
+  "packaged_at_utc": "2026-11-19T13:26:00.293746+00:00",
+  "reconciliation_checks_pass": 20,
+  "reconciliation_fixture_assertions_pass": 27,
+  "run_id": "tuan-day15-20261119-01",
+  "started_at_utc": "2026-11-19T13:00:59.6194416Z",
+  "status": "passed_technical_rehearsal_ready_for_tuan_presentation"
+}
