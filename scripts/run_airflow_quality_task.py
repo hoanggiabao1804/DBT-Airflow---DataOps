@@ -3,6 +3,12 @@
 Only the Python standard library is needed in Airflow. Native nonzero exit codes
 are preserved; missing/inconsistent success artifacts are execution errors (2).
 Connection credentials remain inside the mounted dbt profile, never CLI arguments.
+
+Cancellation: when Airflow kills the task (timeout, mark failed, clear) it sends
+SIGTERM to the process group. Stopping the local ``docker exec`` client does not
+stop the process inside the container, so every command is tagged with
+``DATAOPS_PROCESS_MARKER`` and, on SIGTERM, processes carrying that marker are
+terminated inside the container before the runner exits (status ``killed``).
 """
 
 import argparse
@@ -13,8 +19,38 @@ import os
 from pathlib import Path
 import re
 import shutil
+import signal
 import subprocess
 import uuid
+
+
+class Terminated(Exception):
+    """Raised from the SIGTERM handler so cleanup runs in normal control flow."""
+
+
+def _on_sigterm(signum, frame):
+    raise Terminated(signum)
+
+
+# Kill only processes whose environment holds this run's marker. The helper shell
+# itself is started without the marker, so it never kills itself.
+KILL_MARKED = (
+    "for p in /proc/[0-9]*; do "
+    'if tr "\\0" "\\n" < "$p/environ" 2>/dev/null | grep -qx "DATAOPS_PROCESS_MARKER=$1"; then '
+    'kill -TERM "${p#/proc/}" 2>/dev/null && echo "${p#/proc/}"; fi; done'
+)
+
+
+def kill_marked(container, marker):
+    """Terminate in-container processes tagged with ``marker``; return how many were signalled."""
+    result = subprocess.run(
+        ["docker", "exec", container, "sh", "-c", KILL_MARKED, "kill-marked", marker],
+        capture_output=True,
+        text=True,
+        timeout=30,
+        check=False,
+    )
+    return len(result.stdout.split())
 
 
 def utc_now():
@@ -53,7 +89,12 @@ def find_container(project, service):
 def run_logged(command, output):
     # Raw dbt/GX diagnostics remain local. Airflow logs receive aggregate status only.
     with output.open("w", encoding="utf-8") as stream:
-        return subprocess.run(command, stdout=stream, stderr=subprocess.STDOUT, check=False).returncode
+        process = subprocess.Popen(command, stdout=stream, stderr=subprocess.STDOUT)
+        try:
+            return process.wait()
+        except Terminated:
+            process.terminate()
+            raise
 
 
 def execute(action):
@@ -83,6 +124,9 @@ def execute(action):
         runner_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
     )
     write_json(evidence / "task_summary.json", summary)
+    marker = uuid.uuid4().hex
+    container = None
+    signal.signal(signal.SIGTERM, _on_sigterm)
     try:
         service = "ge-worker" if action == "ge" else "dbt"
         container = find_container(project, service)
@@ -90,6 +134,8 @@ def execute(action):
             command = [
                 "docker",
                 "exec",
+                "-e",
+                "DATAOPS_PROCESS_MARKER=" + marker,
                 container,
                 "python",
                 "/workspace/scripts/run_ge_checkpoints.py",
@@ -113,6 +159,8 @@ def execute(action):
                 "DBT_LOG_PATH=" + (dbt_relative / "logs").as_posix(),
                 "-e",
                 "DBT_USE_COLORS=false",
+                "-e",
+                "DATAOPS_PROCESS_MARKER=" + marker,
                 container,
                 "dbt",
             ]
@@ -156,6 +204,11 @@ def execute(action):
                 summary["dbt_results"] = counts
                 if native_exit == 0 and (not results or any(key not in ("success", "pass") for key in counts)):
                     raise RuntimeError("dbt returned zero without all selected nodes passing")
+    except Terminated:
+        # Airflow is cancelling this task: stop the work inside the container too.
+        signal.signal(signal.SIGTERM, signal.SIG_IGN)
+        killed = kill_marked(container, marker) if container else 0
+        summary.update(status="killed", exit_code=143, error_type="Terminated", killed_container_processes=killed)
     except Exception as error:
         # Do not publish subprocess commands, connection strings or unexpected row data.
         summary.update(status="error", exit_code=2, error_type=type(error).__name__)
