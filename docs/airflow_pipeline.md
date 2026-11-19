@@ -121,3 +121,4 @@ và email là tùy chọn qua biến `DATAOPS_ALERT_*`. Chi tiết: [thinh_week2
 | 19/11/2026 | `feature/thinh-week2-day10` | Diễn tập alert: lỗi dữ liệu (`scripts/dq_drill.sh`) và mất SQL Server; pipeline tích hợp xanh |
 | 19/11/2026 | `feature/thinh-week3-day11-12` | `docs/incident_runbook.md`, `docs/incident_template.md`, `scripts/health_check.py` |
 | 19/11/2026 | `feature/thinh-week3-day13` | runner dọn tiến trình khi bị kill, `QualityStepOperator` (GX exit 1 không retry), `scripts/check_runtime.sh`, `dataops_timeout_drill`, `--resolve`, E2E cả nhóm |
+| 19/11/2026 | `feature/thinh-week3-day14` | `README.md`, `docs/architecture.md`, `docs/demo_guide.md` |
