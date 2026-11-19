@@ -1,0 +1,76 @@
+{
+  "dag_id": "dbt_transform",
+  "duration_seconds": 177.737,
+  "end_date": "2026-11-19T08:43:31.042671+00:00",
+  "queued_at": "2026-11-19T08:40:32.749357+00:00",
+  "run_id": "thinh-week2-day6-7-failure-01",
+  "run_type": "manual",
+  "start_date": "2026-11-19T08:40:33.305193+00:00",
+  "state": "failed",
+  "task_state_counts": {
+    "failed": 1,
+    "upstream_failed": 5
+  },
+  "tasks": [
+    {
+      "attempts": 3,
+      "duration_seconds": 0.162,
+      "end_date": "2026-11-19T08:43:26.508549+00:00",
+      "max_tries": 2,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:43:26.346691+00:00",
+      "state": "failed",
+      "task_id": "check_runtime"
+    },
+    {
+      "attempts": 0,
+      "duration_seconds": 0.0,
+      "end_date": "2026-11-19T08:43:26.552671+00:00",
+      "max_tries": 3,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:43:26.552671+00:00",
+      "state": "upstream_failed",
+      "task_id": "dbt_deps"
+    },
+    {
+      "attempts": 0,
+      "duration_seconds": 0.0,
+      "end_date": "2026-11-19T08:43:26.897487+00:00",
+      "max_tries": 2,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:43:26.897487+00:00",
+      "state": "upstream_failed",
+      "task_id": "dbt_run"
+    },
+    {
+      "attempts": 0,
+      "duration_seconds": 0.0,
+      "end_date": "2026-11-19T08:43:27.943536+00:00",
+      "max_tries": 2,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:43:27.943536+00:00",
+      "state": "upstream_failed",
+      "task_id": "dbt_test"
+    },
+    {
+      "attempts": 0,
+      "duration_seconds": 0.0,
+      "end_date": "2026-11-19T08:43:28.979296+00:00",
+      "max_tries": 1,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:43:28.979296+00:00",
+      "state": "upstream_failed",
+      "task_id": "ge_validate"
+    },
+    {
+      "attempts": 0,
+      "duration_seconds": 0.0,
+      "end_date": "2026-11-19T08:43:30.011277+00:00",
+      "max_tries": 1,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:43:30.011277+00:00",
+      "state": "upstream_failed",
+      "task_id": "dbt_docs"
+    }
+  ]
+}
