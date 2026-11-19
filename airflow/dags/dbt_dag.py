@@ -31,7 +31,9 @@ from airflow import DAG
 from airflow.operators.bash import BashOperator
 
 from utils.callbacks import TASK_CALLBACKS, on_dag_failure, on_dag_success, on_sla_miss
-from utils.pipeline import CHECK_RUNTIME, LOCAL_TIMEZONE, RUNNER, dbt_target, resolve_schedule, runner_env
+from utils.operators import QualityStepOperator
+from utils.pipeline import CHECK_RUNTIME, DATA_FAILURE_EXIT_CODE, LOCAL_TIMEZONE, RUNNER, dbt_target
+from utils.pipeline import resolve_schedule, runner_env
 
 DEFAULT_SCHEDULE = "0 6 * * *"
 
@@ -92,7 +94,7 @@ with DAG(
 
     previous = check_runtime
     for task_id, action, retries, timeout in STEPS:
-        task = BashOperator(
+        task = QualityStepOperator(
             task_id=task_id,
             bash_command=RUNNER + action,
             env=runner_env(),
@@ -100,6 +102,9 @@ with DAG(
             retries=retries,
             execution_timeout=timeout,
             skip_on_exit_code=None,  # exit 1 (data) and 2 (execution) both fail the task
+            # GX exit 1 = expectations failed: fail at once. dbt also returns 1 for
+            # database errors, so dbt steps keep their retries for every exit code.
+            no_retry_exit_codes=(DATA_FAILURE_EXIT_CODE,) if action == "ge" else (),
             do_xcom_push=False,
             # Scheduled runs: docs (the last step) must be done 1 h after the interval ends.
             sla=timedelta(hours=1) if task_id == "dbt_docs" else None,

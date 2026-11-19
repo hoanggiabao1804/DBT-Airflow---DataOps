@@ -44,31 +44,13 @@ def runner_env():
     }
 
 
-# Fail fast with a clear message when the stack is not up, instead of letting
-# the first dbt/GX task fail with a Docker error. dbt debug also proves the SQL
-# Server login works.
-CHECK_RUNTIME = r"""
-set -euo pipefail
-: "${DATAOPS_COMPOSE_PROJECT:?DATAOPS_COMPOSE_PROJECT is not set}"
-for service in dbt ge-worker; do
-  ids=$(docker ps -q --filter "label=com.docker.compose.project=${DATAOPS_COMPOSE_PROJECT}" \
-        --filter "label=com.docker.compose.service=${service}" --filter status=running)
-  count=$(printf '%s' "$ids" | grep -c . || true)
-  if [ "$count" -ne 1 ]; then
-    echo "Service ${service}: expected 1 running container, found ${count}"; exit 1
-  fi
-  echo "Service ${service}: running (${ids})"
-done
-dbt_id=$(docker ps -q --filter "label=com.docker.compose.project=${DATAOPS_COMPOSE_PROJECT}" \
-         --filter "label=com.docker.compose.service=dbt" --filter status=running)
-if docker exec -w /usr/app/dbt "$dbt_id" dbt debug --target "${DATAOPS_DBT_TARGET}" > /tmp/dbt_debug.log 2>&1; then
-  echo "dbt debug: OK (target ${DATAOPS_DBT_TARGET})"
-else
-  echo "dbt debug: FAILED (target ${DATAOPS_DBT_TARGET}) - SQL Server down or profile invalid"
-  grep -E "Connection test|ERROR|Error" /tmp/dbt_debug.log | head -5 || true
-  exit 1
-fi
-"""
+# Preflight script (scripts/check_runtime.sh, mounted at /opt/airflow/scripts).
+# The trailing space stops Airflow from treating a command ending in ".sh" as a
+# Jinja template file to load.
+CHECK_RUNTIME = "bash /opt/airflow/scripts/check_runtime.sh "
+
+# Runner exit codes: 1 = data/validation failure (deterministic), 2 = execution error.
+DATA_FAILURE_EXIT_CODE = 1
 
 
 def run_key(dag_id, run_id):

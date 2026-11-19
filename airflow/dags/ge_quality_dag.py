@@ -37,7 +37,9 @@ from airflow.sensors.python import PythonSensor
 from utils.alerting import send_alert
 from utils.callbacks import TASK_CALLBACKS, on_dag_failure, on_dag_success, on_task_failure_metric_only
 from utils.logging_utils import record_metric
-from utils.pipeline import CHECK_RUNTIME, LOCAL_TIMEZONE, RUNNER, dbt_target, ge_schema, latest_task_summary
+from utils.operators import QualityStepOperator
+from utils.pipeline import CHECK_RUNTIME, DATA_FAILURE_EXIT_CODE, LOCAL_TIMEZONE, RUNNER, dbt_target, ge_schema
+from utils.pipeline import latest_task_summary
 from utils.pipeline import resolve_schedule, runner_env
 
 TRANSFORM_DAG_ID = "dbt_transform"
@@ -157,13 +159,14 @@ with DAG(
         execution_timeout=timedelta(minutes=3),
         do_xcom_push=False,
     )
-    ge_validate = BashOperator(
+    ge_validate = QualityStepOperator(
         task_id="ge_validate",
         bash_command=RUNNER + "ge",
         env=dict(runner_env(), DATAOPS_GE_SCHEMA="{{ params.schema }}"),
         append_env=True,
-        # Data failures are deterministic; retry once for infra hiccups only.
+        # Retry once for infrastructure hiccups (exit 2); expectations failed (exit 1) fails at once.
         retries=1,
+        no_retry_exit_codes=(DATA_FAILURE_EXIT_CODE,),
         # publish_quality_report sends the detailed alert; record the metric only.
         on_failure_callback=on_task_failure_metric_only,
         skip_on_exit_code=None,
