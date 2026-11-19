@@ -83,6 +83,16 @@ Log: UI → Grid → task → *Logs*, hoặc
 `airflow/logs/dag_id=dbt_transform/run_id=<run>/task_id=<task>/attempt=<n>.log`.
 Bằng chứng dbt/GX: `great_expectations/uncommitted/airflow/<run-hash>/<task>/try-<n>-<uuid>/`.
 
+## Logging và metrics
+
+Mỗi task có callback (`airflow/dags/utils/callbacks.py`):
+
+- Task log có thêm dòng `DATAOPS_EVENT {...}` khi task bắt đầu, thành công, retry, fail.
+- `airflow/logs/dataops_metrics/task_metrics.jsonl` nhận một dòng JSON cho mỗi
+  `task_success | task_retry | task_failure | dag_success | dag_failure`.
+
+Chi tiết và cách đọc: [thinh_week2_day6_7.md](thinh_week2_day6_7.md).
+
 ## Lịch sử thay đổi
 
 | Ngày | Nhánh | Thay đổi |
@@ -90,3 +100,4 @@ Bằng chứng dbt/GX: `great_expectations/uncommitted/airflow/<run-hash>/<task>
 | 19/11/2026 | `feature/thinh-week1-day1-2` | Baseline: 5/5 task success, 41 s. Thêm `scripts/airflow_run_report.py` |
 | 19/11/2026 | `feature/thinh-week1-day3-4` | `check_runtime`, retries/timeout theo task, exponential backoff, `dagrun_timeout`, lịch 06:00 VN |
 | 19/11/2026 | `feature/thinh-week1-day5` | E2E `thinh-week1-day5-e2e-01`: 6/6 success, 42,7 s |
+| 19/11/2026 | `feature/thinh-week2-day6-7` | `utils/logging_utils.py`, `utils/callbacks.py`, metrics JSONL, unit tests |
