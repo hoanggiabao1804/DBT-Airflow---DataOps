@@ -89,3 +89,4 @@ Bằng chứng dbt/GX: `great_expectations/uncommitted/airflow/<run-hash>/<task>
 | --- | --- | --- |
 | 19/11/2026 | `feature/thinh-week1-day1-2` | Baseline: 5/5 task success, 41 s. Thêm `scripts/airflow_run_report.py` |
 | 19/11/2026 | `feature/thinh-week1-day3-4` | `check_runtime`, retries/timeout theo task, exponential backoff, `dagrun_timeout`, lịch 06:00 VN |
+| 19/11/2026 | `feature/thinh-week1-day5` | E2E `thinh-week1-day5-e2e-01`: 6/6 success, 42,7 s |
