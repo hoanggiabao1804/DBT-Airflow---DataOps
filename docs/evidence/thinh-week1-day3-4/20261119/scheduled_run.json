@@ -1,0 +1,75 @@
+{
+  "dag_id": "dbt_transform",
+  "duration_seconds": 42.404,
+  "end_date": "2026-11-19T08:29:42.063654+00:00",
+  "queued_at": "2026-11-19T08:28:59.642850+00:00",
+  "run_id": "scheduled__2026-11-17T23:00:00+00:00",
+  "run_type": "scheduled",
+  "start_date": "2026-11-19T08:28:59.660131+00:00",
+  "state": "success",
+  "task_state_counts": {
+    "success": 6
+  },
+  "tasks": [
+    {
+      "attempts": 1,
+      "duration_seconds": 2.648,
+      "end_date": "2026-11-19T08:29:02.673507+00:00",
+      "max_tries": 2,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:29:00.025152+00:00",
+      "state": "success",
+      "task_id": "check_runtime"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 3.367,
+      "end_date": "2026-11-19T08:29:06.539766+00:00",
+      "max_tries": 3,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:29:03.172519+00:00",
+      "state": "success",
+      "task_id": "dbt_deps"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 6.727,
+      "end_date": "2026-11-19T08:29:13.920696+00:00",
+      "max_tries": 2,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:29:07.193632+00:00",
+      "state": "success",
+      "task_id": "dbt_run"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 8.627,
+      "end_date": "2026-11-19T08:29:23.994997+00:00",
+      "max_tries": 2,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:29:15.367709+00:00",
+      "state": "success",
+      "task_id": "dbt_test"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 8.316,
+      "end_date": "2026-11-19T08:29:33.727128+00:00",
+      "max_tries": 1,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:29:25.410865+00:00",
+      "state": "success",
+      "task_id": "ge_validate"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 6.92,
+      "end_date": "2026-11-19T08:29:41.347963+00:00",
+      "max_tries": 1,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:29:34.428299+00:00",
+      "state": "success",
+      "task_id": "dbt_docs"
+    }
+  ]
+}

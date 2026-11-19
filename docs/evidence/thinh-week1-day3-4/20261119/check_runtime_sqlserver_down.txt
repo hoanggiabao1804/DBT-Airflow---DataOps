@@ -1,0 +1,5 @@
+[2026-11-19T08:30:50.777+0000] Service dbt: running (f71e7cffc78a)
+[2026-11-19T08:30:50.796+0000] Service ge-worker: running (bb88595660a8)
+[2026-11-19T08:31:56.215+0000] dbt debug: FAILED (target dev) - SQL Server down or profile invalid
+[2026-11-19T08:31:56.220+0000] 08:31:55    Connection test: [ERROR]
+[2026-11-19T08:31:56.220+0000] Command exited with return code 1
