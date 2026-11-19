@@ -1,0 +1,65 @@
+{
+  "dag_id": "dbt_transform",
+  "duration_seconds": 41.325,
+  "end_date": "2026-11-19T08:27:03.054349+00:00",
+  "queued_at": "2026-11-19T08:26:21.247146+00:00",
+  "run_id": "thinh-baseline-20261119-01",
+  "run_type": "manual",
+  "start_date": "2026-11-19T08:26:21.728950+00:00",
+  "state": "success",
+  "task_state_counts": {
+    "success": 5
+  },
+  "tasks": [
+    {
+      "attempts": 1,
+      "duration_seconds": 4.357,
+      "end_date": "2026-11-19T08:26:27.282008+00:00",
+      "max_tries": 1,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:26:22.924938+00:00",
+      "state": "success",
+      "task_id": "dbt_deps"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 7.342,
+      "end_date": "2026-11-19T08:26:35.537147+00:00",
+      "max_tries": 1,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:26:28.195447+00:00",
+      "state": "success",
+      "task_id": "dbt_run"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 8.592,
+      "end_date": "2026-11-19T08:26:44.785865+00:00",
+      "max_tries": 1,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:26:36.193429+00:00",
+      "state": "success",
+      "task_id": "dbt_test"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 8.762,
+      "end_date": "2026-11-19T08:26:55.031949+00:00",
+      "max_tries": 1,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:26:46.269493+00:00",
+      "state": "success",
+      "task_id": "ge_validate"
+    },
+    {
+      "attempts": 1,
+      "duration_seconds": 6.492,
+      "end_date": "2026-11-19T08:27:02.827275+00:00",
+      "max_tries": 1,
+      "operator": "BashOperator",
+      "start_date": "2026-11-19T08:26:56.335042+00:00",
+      "state": "success",
+      "task_id": "dbt_docs"
+    }
+  ]
+}
