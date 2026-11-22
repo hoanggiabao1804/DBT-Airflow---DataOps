@@ -1,0 +1,386 @@
+{
+  "args": {
+    "cache_selected_only": false,
+    "defer": false,
+    "enable_legacy_logger": false,
+    "exclude": [],
+    "favor_state": false,
+    "indirect_selection": "eager",
+    "introspect": true,
+    "invocation_command": "dbt test --select tag:source_timestamp --profiles-dir /usr/app/dbt --target dev --vars {source_freshness_warn_hours: 24, source_freshness_error_hours: 48}",
+    "log_file_max_bytes": 10485760,
+    "log_format": "default",
+    "log_format_file": "debug",
+    "log_level": "info",
+    "log_level_file": "debug",
+    "log_path": "/tmp/tuan-source-freshness-20261116T100505040Z-bae04a44/logs",
+    "macro_debugging": false,
+    "partial_parse": true,
+    "partial_parse_file_diff": true,
+    "populate_cache": true,
+    "print": true,
+    "printer_width": 80,
+    "profiles_dir": "/usr/app/dbt",
+    "project_dir": "/usr/app/dbt",
+    "quiet": false,
+    "require_explicit_package_overrides_for_builtin_materializations": true,
+    "require_resource_names_without_spaces": false,
+    "select": [
+      "tag:source_timestamp"
+    ],
+    "send_anonymous_usage_stats": true,
+    "show_resource_report": false,
+    "source_freshness_run_project_hooks": false,
+    "static_parser": true,
+    "strict_mode": false,
+    "target": "dev",
+    "target_path": "/tmp/tuan-source-freshness-20261116T100505040Z-bae04a44/target",
+    "use_colors": false,
+    "use_colors_file": false,
+    "vars": {
+      "source_freshness_error_hours": 48,
+      "source_freshness_warn_hours": 24
+    },
+    "version_check": true,
+    "warn_error_options": {
+      "exclude": [],
+      "include": []
+    },
+    "which": "test",
+    "write_json": true
+  },
+  "elapsed_time": 1.781113862991333,
+  "metadata": {
+    "dbt_schema_version": "https://schemas.getdbt.com/dbt/run-results/v6.json",
+    "dbt_version": "1.8.7",
+    "env": {},
+    "generated_at": "2026-11-16T10:05:29.633564Z",
+    "invocation_id": "1c14f78c-5b39-44c1-97d7-d2cbb15b2978"
+  },
+  "results": [
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"ModifiedDate\"\nfrom \"AdventureWorks2014\".\"Person\".\"Person\"\nwhere \"ModifiedDate\" is not null\n  and \"ModifiedDate\" > getutcdate()\n\n",
+      "execution_time": 0.5868535041809082,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-4",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T10:05:28.151535Z",
+          "name": "compile",
+          "started_at": "2026-11-16T10:05:28.087270Z"
+        },
+        {
+          "completed_at": "2026-11-16T10:05:28.651446Z",
+          "name": "execute",
+          "started_at": "2026-11-16T10:05:28.218998Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_person_Person_ModifiedDate.702fce38cc"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"ModifiedDate\"\nfrom \"AdventureWorks2014\".\"Sales\".\"Customer\"\nwhere \"ModifiedDate\" is not null\n  and \"ModifiedDate\" > getutcdate()\n\n",
+      "execution_time": 0.6393630504608154,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T10:05:28.150845Z",
+          "name": "compile",
+          "started_at": "2026-11-16T10:05:28.046670Z"
+        },
+        {
+          "completed_at": "2026-11-16T10:05:28.671133Z",
+          "name": "execute",
+          "started_at": "2026-11-16T10:05:28.173838Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_Customer_ModifiedDate.7a1c750a56"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"ModifiedDate\"\nfrom \"AdventureWorks2014\".\"Sales\".\"SalesOrderHeader\"\nwhere \"ModifiedDate\" is not null\n  and \"ModifiedDate\" > getutcdate()\n\n",
+      "execution_time": 0.6375722885131836,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-3",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T10:05:28.149909Z",
+          "name": "compile",
+          "started_at": "2026-11-16T10:05:28.070142Z"
+        },
+        {
+          "completed_at": "2026-11-16T10:05:28.673303Z",
+          "name": "execute",
+          "started_at": "2026-11-16T10:05:28.152918Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_SalesOrderHeader_ModifiedDate.c21d965600"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"ModifiedDate\"\nfrom \"AdventureWorks2014\".\"Sales\".\"SalesOrderDetail\"\nwhere \"ModifiedDate\" is not null\n  and \"ModifiedDate\" > getutcdate()\n\n",
+      "execution_time": 0.7019960880279541,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-2",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T10:05:28.152019Z",
+          "name": "compile",
+          "started_at": "2026-11-16T10:05:28.079912Z"
+        },
+        {
+          "completed_at": "2026-11-16T10:05:28.746882Z",
+          "name": "execute",
+          "started_at": "2026-11-16T10:05:28.223037Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_SalesOrderDetail_ModifiedDate.5809c56e4d"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"ModifiedDate\"\nfrom \"AdventureWorks2014\".\"Production\".\"ProductSubcategory\"\nwhere \"ModifiedDate\" is not null\n  and \"ModifiedDate\" > getutcdate()\n\n",
+      "execution_time": 0.30785226821899414,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-4",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T10:05:28.709355Z",
+          "name": "compile",
+          "started_at": "2026-11-16T10:05:28.696172Z"
+        },
+        {
+          "completed_at": "2026-11-16T10:05:28.990491Z",
+          "name": "execute",
+          "started_at": "2026-11-16T10:05:28.714449Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_production_ProductSubcategory_ModifiedDate.e0783d3783"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n    \n    \n\n\n\nselect ModifiedDate\nfrom \"AdventureWorks2014\".\"Sales\".\"Customer\"\nwhere ModifiedDate is null\n\n\n",
+      "execution_time": 0.5424196720123291,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-3",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T10:05:28.749059Z",
+          "name": "compile",
+          "started_at": "2026-11-16T10:05:28.732746Z"
+        },
+        {
+          "completed_at": "2026-11-16T10:05:29.176740Z",
+          "name": "execute",
+          "started_at": "2026-11-16T10:05:28.754928Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_Customer_ModifiedDate.52b6a323f7"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"ModifiedDate\"\nfrom \"AdventureWorks2014\".\"Production\".\"Product\"\nwhere \"ModifiedDate\" is not null\n  and \"ModifiedDate\" > getutcdate()\n\n",
+      "execution_time": 0.5556142330169678,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T10:05:28.748341Z",
+          "name": "compile",
+          "started_at": "2026-11-16T10:05:28.725402Z"
+        },
+        {
+          "completed_at": "2026-11-16T10:05:29.179935Z",
+          "name": "execute",
+          "started_at": "2026-11-16T10:05:28.750398Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.source_no_future_dates_adventureworks_production_Product_ModifiedDate.5790f4f5aa"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n    \n    \n\n\n\nselect ModifiedDate\nfrom \"AdventureWorks2014\".\"Sales\".\"SalesOrderDetail\"\nwhere ModifiedDate is null\n\n\n",
+      "execution_time": 0.4929502010345459,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-2",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T10:05:28.873818Z",
+          "name": "compile",
+          "started_at": "2026-11-16T10:05:28.786449Z"
+        },
+        {
+          "completed_at": "2026-11-16T10:05:29.187486Z",
+          "name": "execute",
+          "started_at": "2026-11-16T10:05:28.878155Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderDetail_ModifiedDate.26292b8558"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n    \n    \n\n\n\nselect ModifiedDate\nfrom \"AdventureWorks2014\".\"Sales\".\"SalesOrderHeader\"\nwhere ModifiedDate is null\n\n\n",
+      "execution_time": 0.31582212448120117,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-4",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T10:05:29.011450Z",
+          "name": "compile",
+          "started_at": "2026-11-16T10:05:29.002231Z"
+        },
+        {
+          "completed_at": "2026-11-16T10:05:29.298470Z",
+          "name": "execute",
+          "started_at": "2026-11-16T10:05:29.011963Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_SalesOrderHeader_ModifiedDate.efae4c2419"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n    \n    \n\n\n\nselect ModifiedDate\nfrom \"AdventureWorks2014\".\"Production\".\"Product\"\nwhere ModifiedDate is null\n\n\n",
+      "execution_time": 0.2536039352416992,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-2",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T10:05:29.367822Z",
+          "name": "compile",
+          "started_at": "2026-11-16T10:05:29.352663Z"
+        },
+        {
+          "completed_at": "2026-11-16T10:05:29.579143Z",
+          "name": "execute",
+          "started_at": "2026-11-16T10:05:29.373044Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_production_Product_ModifiedDate.e1b882561b"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n    \n    \n\n\n\nselect ModifiedDate\nfrom \"AdventureWorks2014\".\"Production\".\"ProductSubcategory\"\nwhere ModifiedDate is null\n\n\n",
+      "execution_time": 0.2852787971496582,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T10:05:29.363034Z",
+          "name": "compile",
+          "started_at": "2026-11-16T10:05:29.337133Z"
+        },
+        {
+          "completed_at": "2026-11-16T10:05:29.608779Z",
+          "name": "execute",
+          "started_at": "2026-11-16T10:05:29.368414Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_production_ProductSubcategory_ModifiedDate.3f5b251a47"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n    \n    \n\n\n\nselect ModifiedDate\nfrom \"AdventureWorks2014\".\"Person\".\"Person\"\nwhere ModifiedDate is null\n\n\n",
+      "execution_time": 0.28519320487976074,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-3",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T10:05:29.362477Z",
+          "name": "compile",
+          "started_at": "2026-11-16T10:05:29.345795Z"
+        },
+        {
+          "completed_at": "2026-11-16T10:05:29.610230Z",
+          "name": "execute",
+          "started_at": "2026-11-16T10:05:29.363799Z"
+        }
+      ],
+      "unique_id": "test.dbt_sqlserver_project.source_not_null_adventureworks_person_Person_ModifiedDate.1eb6bf8422"
+    }
+  ]
+}

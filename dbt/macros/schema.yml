@@ -1,0 +1,83 @@
+version: 2
+
+macros:
+  - name: test_positive_values
+    description: >-
+      Returns non-NULL rows violating a numeric lower bound. The default
+      allow_zero=true accepts zero and rejects negatives; allow_zero=false
+      rejects zero as well. Pair with not_null where the value is required.
+      It does not impose an upper bound or prove a derived amount is correct.
+    arguments:
+      - name: model
+        type: Relation
+        description: Relation evaluated by the generic test.
+      - name: column_name
+        type: string
+        description: Numeric column, quoted with the SQL Server adapter.
+      - name: allow_zero
+        type: boolean
+        description: Defaults to true; set false for strictly positive quantities or counts.
+
+  - name: test_no_future_dates
+    description: >-
+      Returns non-NULL timestamps later than SQL Server GETUTCDATE(), including
+      time of day. Source and model timestamps are interpreted as UTC. NULL is
+      permitted unless a separate not_null test is present. This is an upper
+      timestamp bound, not a freshness check; old historical data can pass.
+      Planned due dates and selling dates intentionally do not use this rule.
+    arguments:
+      - name: model
+        type: Relation
+        description: Relation evaluated by the generic test.
+      - name: column_name
+        type: string
+        description: Timestamp column interpreted as UTC and compared with the database UTC clock.
+
+  - name: test_line_total_matches
+    description: >-
+      Returns complete rows whose net line total differs from quantity times
+      unit price times (1 - fractional discount) by more than tolerance.
+      Defaults to 0.01 currency units; a difference exactly at the tolerance
+      passes. Decimal arithmetic preserves the boundary. Rows with any NULL
+      input are ignored here and must be covered by separate not_null tests.
+      Positivity and discount range are separate contracts; tax and freight
+      are excluded from the formula.
+    arguments:
+      - name: model
+        type: Relation
+        description: Sales-line relation evaluated by the generic test.
+      - name: quantity_column
+        type: string
+        description: Column holding the number of units on the line.
+      - name: unit_price_column
+        type: string
+        description: Column holding the unit price before discount.
+      - name: discount_column
+        type: string
+        description: Column holding a fractional discount such as 0.10, not a percentage value such as 10.
+      - name: line_total_column
+        type: string
+        description: Column holding net line revenue excluding tax and freight.
+      - name: tolerance
+        type: number
+        description: Maximum permitted absolute difference in currency units; defaults to 0.01.
+
+  - name: sqlserver__collect_freshness
+    description: >-
+      SQL Server dispatch implementation used by dbt source freshness. Returns
+      MAX(loaded_at_field) and a SYSUTCDATETIME() snapshot cast as datetime2(6), preserving an
+      empty or all-NULL source as NULL for dbt to reject. The project's loaded
+      field is business ModifiedDate, not ingestion time. Validates that the
+      project variables satisfy 0 < source_freshness_warn_hours <
+      source_freshness_error_hours; defaults are 24 and 48. It does not modify
+      data, replace old dates or turn stale data into a passing result.
+    arguments:
+      - name: source
+        type: Relation
+        description: Source relation selected by dbt source freshness.
+      - name: loaded_at_field
+        type: string
+        description: SQL timestamp expression configured on the source, currently quoted ModifiedDate.
+      - name: filter
+        type: string
+        description: Optional SQL filter supplied by dbt; omitted when no source freshness filter is configured.

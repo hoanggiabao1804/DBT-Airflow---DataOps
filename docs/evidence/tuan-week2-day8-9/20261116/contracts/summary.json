@@ -1,0 +1,239 @@
+{
+  "cleanup_verified": true,
+  "config_sha256": {
+    "checkpoints/customer_checkpoint.yml": "c7c6dc8403513d224100f778c08c006175252102cdce51ad4237af1cb1925023",
+    "checkpoints/order_checkpoint.yml": "10f567997bfad46b0f321e98856cfec117e92d746b0421c6da02d6eac10062e0",
+    "expectations/customer_suite.json": "30650d6e3eeffc0034b16a633d151b1397a7af619511230ade29bbeb7983673c",
+    "expectations/order_suite.json": "3dcb2fc51214b56a50c500fa644d35b0e0d528cd429cff2895257584eb8035ec",
+    "great_expectations.yml": "135cb629b1b0a791427a6cd7293e05c9570ad73cd5f24e2a55572e7a67b5ce55"
+  },
+  "contracts": [
+    {
+      "actual_exit_code": 0,
+      "actual_failures": {},
+      "actual_row_counts": {
+        "customer_nonempty": 4,
+        "order_nonempty": 6
+      },
+      "case": "valid_nullable_free_discount_multiline",
+      "checks_evaluated": 40,
+      "expected_exit_code": 0,
+      "expected_failures": {},
+      "expected_row_counts": {
+        "customer_nonempty": 4,
+        "order_nonempty": 6
+      },
+      "matched": true,
+      "native_cli": true
+    },
+    {
+      "actual_exit_code": 1,
+      "actual_failures": {
+        "customer_id_unique": 2,
+        "order_key_unique": 2
+      },
+      "actual_row_counts": {
+        "customer_nonempty": 2,
+        "order_nonempty": 2
+      },
+      "case": "duplicate_keys",
+      "checks_evaluated": 40,
+      "expected_exit_code": 1,
+      "expected_failures": {
+        "customer_id_unique": 2,
+        "order_key_unique": 2
+      },
+      "expected_row_counts": {
+        "customer_nonempty": 2,
+        "order_nonempty": 2
+      },
+      "matched": true,
+      "native_cli": false
+    },
+    {
+      "actual_exit_code": 1,
+      "actual_failures": {
+        "customer_first_name_not_null": 1,
+        "customer_full_name_not_null": 1,
+        "customer_id_not_null": 1,
+        "customer_last_modified_date_not_null": 1,
+        "customer_last_name_not_null": 1,
+        "order_customer_id_not_null": 1,
+        "order_due_date_not_null": 1,
+        "order_effective_unit_price_not_null": 1,
+        "order_gross_amount_not_null": 1,
+        "order_has_discount_not_null": 1,
+        "order_line_total_not_null": 1,
+        "order_order_channel_not_null": 1,
+        "order_order_date_not_null": 1,
+        "order_order_detail_id_not_null": 1,
+        "order_order_qty_not_null": 1,
+        "order_product_id_not_null": 1,
+        "order_sales_order_id_not_null": 1,
+        "order_sales_order_number_not_null": 1,
+        "order_status_not_null": 1,
+        "order_unit_price_discount_not_null": 1,
+        "order_unit_price_not_null": 1
+      },
+      "actual_row_counts": {
+        "customer_nonempty": 1,
+        "order_nonempty": 1
+      },
+      "case": "required_nulls",
+      "checks_evaluated": 40,
+      "expected_exit_code": 1,
+      "expected_failures": {
+        "customer_first_name_not_null": 1,
+        "customer_full_name_not_null": 1,
+        "customer_id_not_null": 1,
+        "customer_last_modified_date_not_null": 1,
+        "customer_last_name_not_null": 1,
+        "order_customer_id_not_null": 1,
+        "order_due_date_not_null": 1,
+        "order_effective_unit_price_not_null": 1,
+        "order_gross_amount_not_null": 1,
+        "order_has_discount_not_null": 1,
+        "order_line_total_not_null": 1,
+        "order_order_channel_not_null": 1,
+        "order_order_date_not_null": 1,
+        "order_order_detail_id_not_null": 1,
+        "order_order_qty_not_null": 1,
+        "order_product_id_not_null": 1,
+        "order_sales_order_id_not_null": 1,
+        "order_sales_order_number_not_null": 1,
+        "order_status_not_null": 1,
+        "order_unit_price_discount_not_null": 1,
+        "order_unit_price_not_null": 1
+      },
+      "expected_row_counts": {
+        "customer_nonempty": 1,
+        "order_nonempty": 1
+      },
+      "matched": true,
+      "native_cli": false
+    },
+    {
+      "actual_exit_code": 1,
+      "actual_failures": {
+        "customer_email_promotion_allowed": 1,
+        "order_channel_allowed": 1,
+        "order_has_discount_allowed": 1,
+        "order_status_allowed": 1
+      },
+      "actual_row_counts": {
+        "customer_nonempty": 1,
+        "order_nonempty": 1
+      },
+      "case": "invalid_domains",
+      "checks_evaluated": 40,
+      "expected_exit_code": 1,
+      "expected_failures": {
+        "customer_email_promotion_allowed": 1,
+        "order_channel_allowed": 1,
+        "order_has_discount_allowed": 1,
+        "order_status_allowed": 1
+      },
+      "expected_row_counts": {
+        "customer_nonempty": 1,
+        "order_nonempty": 1
+      },
+      "matched": true,
+      "native_cli": false
+    },
+    {
+      "actual_exit_code": 1,
+      "actual_failures": {
+        "order_discount_range": 2,
+        "order_effective_unit_price_nonnegative": 1,
+        "order_gross_amount_nonnegative": 1,
+        "order_line_total_nonnegative": 1,
+        "order_qty_positive": 2,
+        "order_unit_price_nonnegative": 1
+      },
+      "actual_row_counts": {
+        "customer_nonempty": 1,
+        "order_nonempty": 2
+      },
+      "case": "invalid_numeric_ranges",
+      "checks_evaluated": 40,
+      "expected_exit_code": 1,
+      "expected_failures": {
+        "order_discount_range": 2,
+        "order_effective_unit_price_nonnegative": 1,
+        "order_gross_amount_nonnegative": 1,
+        "order_line_total_nonnegative": 1,
+        "order_qty_positive": 2,
+        "order_unit_price_nonnegative": 1
+      },
+      "expected_row_counts": {
+        "customer_nonempty": 1,
+        "order_nonempty": 2
+      },
+      "matched": true,
+      "native_cli": false
+    },
+    {
+      "actual_exit_code": 1,
+      "actual_failures": {
+        "customer_last_modified_date_not_future": 1,
+        "order_order_date_not_future": 1,
+        "order_ship_date_not_future": 1
+      },
+      "actual_row_counts": {
+        "customer_nonempty": 1,
+        "order_nonempty": 1
+      },
+      "case": "future_timestamps",
+      "checks_evaluated": 40,
+      "expected_exit_code": 1,
+      "expected_failures": {
+        "customer_last_modified_date_not_future": 1,
+        "order_order_date_not_future": 1,
+        "order_ship_date_not_future": 1
+      },
+      "expected_row_counts": {
+        "customer_nonempty": 1,
+        "order_nonempty": 1
+      },
+      "matched": true,
+      "native_cli": false
+    },
+    {
+      "actual_exit_code": 1,
+      "actual_failures": {
+        "customer_nonempty": null,
+        "order_nonempty": null
+      },
+      "actual_row_counts": {
+        "customer_nonempty": 0,
+        "order_nonempty": 0
+      },
+      "case": "empty_tables",
+      "checks_evaluated": 40,
+      "expected_exit_code": 1,
+      "expected_failures": {
+        "customer_nonempty": null,
+        "order_nonempty": null
+      },
+      "expected_row_counts": {
+        "customer_nonempty": 0,
+        "order_nonempty": 0
+      },
+      "matched": true,
+      "native_cli": true
+    },
+    {
+      "actual_exit_code": 2,
+      "actual_status": "error",
+      "case": "missing_table_runtime_error",
+      "expected_exit_code": 2,
+      "expected_status": "error",
+      "matched": true,
+      "native_cli": true
+    }
+  ],
+  "finished_at_utc": "2026-11-16T02:05:09.181573+00:00",
+  "fixture_schema": "ge_contracts_04c24c327208451cb9898af891460f94",
+  "started_at_utc": "2026-11-16T02:03:54.699901+00:00",
+  "status": "passed"
+}

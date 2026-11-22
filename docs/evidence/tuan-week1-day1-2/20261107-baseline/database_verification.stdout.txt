@@ -1,0 +1,11 @@
+﻿name state_desc compatibility_level
+---- ---------- -------------------
+AdventureWorks2014 ONLINE 120
+sql_version edition verified_at_utc
+----------- ------- ---------------
+15.0.4500.2 Express Edition (64-bit) 2026-11-07 01:49:37.1467228
+schema_name type_desc model_count
+----------- --------- -----------
+bronze VIEW 4
+gold USER_TABLE 3
+silver USER_TABLE 3

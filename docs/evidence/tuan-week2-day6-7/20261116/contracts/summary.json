@@ -1,0 +1,245 @@
+{
+  "cleanup_verified": true,
+  "contracts": [
+    {
+      "actual": {
+        "fresh": "pass"
+      },
+      "actual_exit_code": 0,
+      "case": "fresh_only",
+      "expected": {
+        "fresh": "pass"
+      },
+      "expected_exit_code": 0,
+      "matched": true
+    },
+    {
+      "actual": {
+        "warning": "warn"
+      },
+      "actual_exit_code": 0,
+      "case": "warn_only",
+      "expected": {
+        "warning": "warn"
+      },
+      "expected_exit_code": 0,
+      "matched": true
+    },
+    {
+      "actual": {
+        "empty": "error",
+        "fresh": "pass",
+        "future": "pass",
+        "missing": "error",
+        "mixed_null": "pass",
+        "stale": "error",
+        "warning": "warn"
+      },
+      "actual_exit_code": 1,
+      "case": "all_sources",
+      "expected": {
+        "empty": "error",
+        "fresh": "pass",
+        "future": "pass",
+        "missing": "error",
+        "mixed_null": "pass",
+        "stale": "error",
+        "warning": "warn"
+      },
+      "expected_exit_code": 1,
+      "matched": true
+    },
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "case": "empty_no_future_dates",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true
+    },
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "case": "empty_not_null",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true
+    },
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "case": "fresh_no_future_dates",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true
+    },
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "case": "fresh_not_null",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true
+    },
+    {
+      "actual_failures": 1,
+      "actual_status": "fail",
+      "case": "future_no_future_dates",
+      "expected_failures": 1,
+      "expected_status": "fail",
+      "matched": true
+    },
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "case": "future_not_null",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true
+    },
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "case": "missing_no_future_dates",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true
+    },
+    {
+      "actual_failures": 1,
+      "actual_status": "fail",
+      "case": "missing_not_null",
+      "expected_failures": 1,
+      "expected_status": "fail",
+      "matched": true
+    },
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "case": "mixed_null_no_future_dates",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true
+    },
+    {
+      "actual_failures": 1,
+      "actual_status": "fail",
+      "case": "mixed_null_not_null",
+      "expected_failures": 1,
+      "expected_status": "fail",
+      "matched": true
+    },
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "case": "stale_no_future_dates",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true
+    },
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "case": "stale_not_null",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true
+    },
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "case": "warning_no_future_dates",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true
+    },
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "case": "warning_not_null",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true
+    }
+  ],
+  "finished_at_utc": "2026-11-16T01:27:59.550608+00:00",
+  "fixture_schema": "tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311",
+  "policy": {
+    "freshness": {
+      "error_after": {
+        "count": 48,
+        "period": "hour"
+      },
+      "warn_after": {
+        "count": 24,
+        "period": "hour"
+      }
+    },
+    "loaded_at_field": "[ModifiedDate]"
+  },
+  "source_definition_sha256": "76c846c0f97fffc4de76137a86ba2bf3277bf0e093a28a26ff1bc5235565dbfb",
+  "sql_sha256": {
+    "macros/sqlserver__collect_freshness.sql": "69a916e29ead4cdf35257a4ac24b124ce76f9777e2c8b25b4b8f1090b9f1f75a",
+    "tests/generic/no_future_dates.sql": "f9c03131062422baa1959de73f736d6f173c91a9708e99dc6cff5652a8191ff1"
+  },
+  "started_at_utc": "2026-11-16T01:26:25.218179+00:00",
+  "status": "passed",
+  "steps": {
+    "all_sources": {
+      "command": "dbt source freshness --select source:fixture",
+      "exit_code": 1,
+      "finished_at_utc": "2026-11-16T01:26:58.905155+00:00",
+      "started_at_utc": "2026-11-16T01:26:52.505093+00:00",
+      "stdout_file": "all_sources.stdout.txt"
+    },
+    "claim_schema": {
+      "command": "dbt run-operation claim_fixture_schema",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-16T01:26:30.923415+00:00",
+      "started_at_utc": "2026-11-16T01:26:25.315831+00:00",
+      "stdout_file": "claim_schema.stdout.txt"
+    },
+    "cleanup": {
+      "command": "dbt run-operation cleanup_fixture_schema",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-16T01:27:36.845144+00:00",
+      "started_at_utc": "2026-11-16T01:27:12.514450+00:00",
+      "stdout_file": "cleanup.stdout.txt"
+    },
+    "fresh_only": {
+      "command": "dbt source freshness --select source:fixture.fresh",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-16T01:26:46.877132+00:00",
+      "started_at_utc": "2026-11-16T01:26:41.090656+00:00",
+      "stdout_file": "fresh_only.stdout.txt"
+    },
+    "run": {
+      "command": "dbt run",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-16T01:26:41.089106+00:00",
+      "started_at_utc": "2026-11-16T01:26:30.923867+00:00",
+      "stdout_file": "run.stdout.txt"
+    },
+    "timestamp_tests": {
+      "command": "dbt test",
+      "exit_code": 1,
+      "finished_at_utc": "2026-11-16T01:27:12.510947+00:00",
+      "started_at_utc": "2026-11-16T01:26:58.906736+00:00",
+      "stdout_file": "timestamp_tests.stdout.txt"
+    },
+    "verify_cleanup": {
+      "command": "dbt run-operation verify_fixture_absent",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-16T01:27:59.548578+00:00",
+      "started_at_utc": "2026-11-16T01:27:36.847894+00:00",
+      "stdout_file": "verify_cleanup.stdout.txt"
+    },
+    "warn_only": {
+      "command": "dbt source freshness --select source:fixture.warning",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-16T01:26:52.503126+00:00",
+      "started_at_utc": "2026-11-16T01:26:46.908841+00:00",
+      "stdout_file": "warn_only.stdout.txt"
+    }
+  }
+}

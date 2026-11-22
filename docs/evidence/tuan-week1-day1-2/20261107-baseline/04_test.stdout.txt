@@ -1,0 +1,48 @@
+﻿01:47:40  Running with dbt=1.8.7
+01:47:40  Registered adapter: sqlserver=1.8.7
+01:47:43  Found 10 models, 18 data tests, 13 sources, 614 macros
+01:47:43  
+01:47:43  Concurrency: 4 threads (target='dev')
+01:47:43  
+01:47:43  1 of 18 START test dbt_utils_unique_combination_of_columns_brnz_sales_orders_sales_order_id__order_detail_id  [RUN]
+01:47:43  2 of 18 START test dbt_utils_unique_combination_of_columns_slvr_sales_orders_sales_order_id__order_detail_id  [RUN]
+01:47:43  3 of 18 START test not_null_brnz_sales_orders_order_detail_id .................. [RUN]
+01:47:43  4 of 18 START test not_null_brnz_sales_orders_sales_order_id ................... [RUN]
+01:47:43  4 of 18 PASS not_null_brnz_sales_orders_sales_order_id ......................... [PASS in 0.59s]
+01:47:44  5 of 18 START test not_null_gld_customer_metrics_customer_id ................... [RUN]
+01:47:44  1 of 18 PASS dbt_utils_unique_combination_of_columns_brnz_sales_orders_sales_order_id__order_detail_id  [PASS in 0.90s]
+01:47:44  6 of 18 START test not_null_gld_product_performance_product_id ................. [RUN]
+01:47:44  5 of 18 PASS not_null_gld_customer_metrics_customer_id ......................... [PASS in 0.57s]
+01:47:44  7 of 18 START test not_null_gld_sales_summary_order_date ....................... [RUN]
+01:47:44  2 of 18 PASS dbt_utils_unique_combination_of_columns_slvr_sales_orders_sales_order_id__order_detail_id  [PASS in 1.33s]
+01:47:44  3 of 18 PASS not_null_brnz_sales_orders_order_detail_id ........................ [PASS in 1.33s]
+01:47:44  8 of 18 START test not_null_slvr_customers_customer_id ......................... [RUN]
+01:47:44  9 of 18 START test not_null_slvr_products_list_price ........................... [RUN]
+01:47:44  6 of 18 PASS not_null_gld_product_performance_product_id ....................... [PASS in 0.64s]
+01:47:44  10 of 18 START test not_null_slvr_products_product_id .......................... [RUN]
+01:47:45  7 of 18 PASS not_null_gld_sales_summary_order_date ............................. [PASS in 0.57s]
+01:47:45  8 of 18 PASS not_null_slvr_customers_customer_id ............................... [PASS in 0.42s]
+01:47:45  9 of 18 PASS not_null_slvr_products_list_price ................................. [PASS in 0.42s]
+01:47:45  11 of 18 START test not_null_slvr_sales_orders_line_total ...................... [RUN]
+01:47:45  12 of 18 START test not_null_slvr_sales_orders_order_detail_id ................. [RUN]
+01:47:45  13 of 18 START test not_null_slvr_sales_orders_sales_order_id .................. [RUN]
+01:47:45  10 of 18 PASS not_null_slvr_products_product_id ................................ [PASS in 0.62s]
+01:47:45  14 of 18 START test unique_gld_customer_metrics_customer_id .................... [RUN]
+01:47:46  13 of 18 PASS not_null_slvr_sales_orders_sales_order_id ........................ [PASS in 1.13s]
+01:47:46  12 of 18 PASS not_null_slvr_sales_orders_order_detail_id ....................... [PASS in 1.15s]
+01:47:46  15 of 18 START test unique_gld_product_performance_product_id .................. [RUN]
+01:47:46  16 of 18 START test unique_gld_sales_summary_order_date ........................ [RUN]
+01:47:46  14 of 18 PASS unique_gld_customer_metrics_customer_id .......................... [PASS in 1.25s]
+01:47:46  17 of 18 START test unique_slvr_customers_customer_id .......................... [RUN]
+01:47:46  16 of 18 PASS unique_gld_sales_summary_order_date .............................. [PASS in 0.46s]
+01:47:46  18 of 18 START test unique_slvr_products_product_id ............................ [RUN]
+01:47:46  15 of 18 PASS unique_gld_product_performance_product_id ........................ [PASS in 0.59s]
+01:47:47  18 of 18 PASS unique_slvr_products_product_id .................................. [PASS in 0.39s]
+01:47:47  17 of 18 PASS unique_slvr_customers_customer_id ................................ [PASS in 0.44s]
+01:47:47  11 of 18 PASS not_null_slvr_sales_orders_line_total ............................ [PASS in 2.13s]
+01:47:47  
+01:47:47  Finished running 18 data tests in 0 hours 0 minutes and 4.19 seconds (4.19s).
+01:47:47  
+01:47:47  Completed successfully
+01:47:47  
+01:47:47  Done. PASS=18 WARN=0 ERROR=0 SKIP=0 TOTAL=18

@@ -1,0 +1,2 @@
+﻿ dbt-airflow---dataops-dbt-1 Copying dbt-airflow---dataops-dbt-1:/tmp/tuan-dbt-baseline-20261107T014621770Z-70dbdc1c/target/manifest.json to C:\Users\DELL\AppData\Local\Temp\tuan-dbt-manifest-20261107T014621770Z-70dbdc1c.json
+ dbt-airflow---dataops-dbt-1 Copied dbt-airflow---dataops-dbt-1:/tmp/tuan-dbt-baseline-20261107T014621770Z-70dbdc1c/target/manifest.json to C:\Users\DELL\AppData\Local\Temp\tuan-dbt-manifest-20261107T014621770Z-70dbdc1c.json

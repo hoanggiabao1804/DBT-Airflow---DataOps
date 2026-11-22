@@ -5,9 +5,10 @@ __pycache__/
 *.so
 .Python
 env/
-venv/
+.venv/
 ENV/
 *.egg-info/
+.venv/
 
 # DBT
 dbt/target/
@@ -15,6 +16,7 @@ dbt/dbt_packages/
 dbt/logs/
 dbt/.user.yml
 dbt/profiles.yml
+dbt/.release_work/
 
 # Airflow
 airflow/logs/
@@ -41,4 +43,7 @@ Thumbs.db
 
 # Backups
 backup/
+backups/
 *.bak
+.env.*
+!.env.example

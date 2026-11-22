@@ -1,0 +1,117 @@
+{
+  "cleanup_verified": true,
+  "contracts": [
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true,
+      "name": "valid_nonnegative"
+    },
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true,
+      "name": "valid_strict_positive"
+    },
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true,
+      "name": "valid_no_future_dates"
+    },
+    {
+      "actual_failures": 0,
+      "actual_status": "pass",
+      "expected_failures": 0,
+      "expected_status": "pass",
+      "matched": true,
+      "name": "valid_line_total"
+    },
+    {
+      "actual_failures": 2,
+      "actual_status": "fail",
+      "expected_failures": 2,
+      "expected_status": "fail",
+      "matched": true,
+      "name": "invalid_nonnegative"
+    },
+    {
+      "actual_failures": 3,
+      "actual_status": "fail",
+      "expected_failures": 3,
+      "expected_status": "fail",
+      "matched": true,
+      "name": "invalid_strict_positive"
+    },
+    {
+      "actual_failures": 2,
+      "actual_status": "fail",
+      "expected_failures": 2,
+      "expected_status": "fail",
+      "matched": true,
+      "name": "invalid_no_future_dates"
+    },
+    {
+      "actual_failures": 3,
+      "actual_status": "fail",
+      "expected_failures": 3,
+      "expected_status": "fail",
+      "matched": true,
+      "name": "invalid_line_total"
+    }
+  ],
+  "contracts_verified": true,
+  "expected_test_exit_code": 1,
+  "finished_at_utc": "2026-11-07T09:30:08.083035+00:00",
+  "fixture_schema": "tuan_test_contracts_05c6d1c9a28b4c85a51ca77802ee8f7e",
+  "generic_test_sha256": {
+    "line_total_matches": "29fbb0caf39c9e0f23db44902c4d3585caf791faad06e72fa45230f0f8626f92",
+    "no_future_dates": "f9c03131062422baa1959de73f736d6f173c91a9708e99dc6cff5652a8191ff1",
+    "positive_values": "a050006dab5b735abba90f67eac9f515275bf12253d8edaa7d078a9ffa44808b"
+  },
+  "started_at_utc": "2026-11-07T09:27:48.919091+00:00",
+  "status": "passed",
+  "steps": {
+    "claim_schema": {
+      "command": "dbt run-operation claim_contract_schema",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-07T09:29:12.410975+00:00",
+      "started_at_utc": "2026-11-07T09:27:49.266854+00:00",
+      "stdout_file": "claim_schema.stdout.txt"
+    },
+    "cleanup": {
+      "command": "dbt run-operation cleanup_contract_schema",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-07T09:30:02.448025+00:00",
+      "started_at_utc": "2026-11-07T09:29:54.120591+00:00",
+      "stdout_file": "cleanup.stdout.txt"
+    },
+    "run": {
+      "command": "dbt run",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-07T09:29:32.778593+00:00",
+      "started_at_utc": "2026-11-07T09:29:12.411704+00:00",
+      "stdout_file": "run.stdout.txt"
+    },
+    "test": {
+      "command": "dbt test",
+      "exit_code": 1,
+      "finished_at_utc": "2026-11-07T09:29:54.118510+00:00",
+      "started_at_utc": "2026-11-07T09:29:32.779751+00:00",
+      "stdout_file": "test.stdout.txt"
+    },
+    "verify_cleanup": {
+      "command": "dbt run-operation verify_contract_schema_absent",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-07T09:30:08.081267+00:00",
+      "started_at_utc": "2026-11-07T09:30:02.448816+00:00",
+      "stdout_file": "verify_cleanup.stdout.txt"
+    }
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "args": {
+    "cache_selected_only": false,
+    "defer": false,
+    "empty": false,
+    "enable_legacy_logger": false,
+    "exclude": [],
+    "favor_state": false,
+    "indirect_selection": "eager",
+    "introspect": true,
+    "invocation_command": "dbt run --project-dir /tmp/tuan-freshness-v6j4dr6g --profiles-dir /tmp/tuan-freshness-v6j4dr6g",
+    "log_file_max_bytes": 10485760,
+    "log_format": "default",
+    "log_format_file": "debug",
+    "log_level": "info",
+    "log_level_file": "debug",
+    "log_path": "/tmp/tuan-freshness-v6j4dr6g/logs/run",
+    "macro_debugging": false,
+    "partial_parse": true,
+    "partial_parse_file_diff": true,
+    "populate_cache": true,
+    "print": true,
+    "printer_width": 80,
+    "profiles_dir": "/tmp/tuan-freshness-v6j4dr6g",
+    "project_dir": "/tmp/tuan-freshness-v6j4dr6g",
+    "quiet": false,
+    "require_explicit_package_overrides_for_builtin_materializations": true,
+    "require_resource_names_without_spaces": false,
+    "select": [],
+    "send_anonymous_usage_stats": false,
+    "show_resource_report": false,
+    "source_freshness_run_project_hooks": false,
+    "static_parser": true,
+    "strict_mode": false,
+    "target_path": "/tmp/tuan-freshness-v6j4dr6g/artifacts/run",
+    "use_colors": false,
+    "use_colors_file": false,
+    "vars": {},
+    "version_check": true,
+    "warn_error_options": {
+      "exclude": [],
+      "include": []
+    },
+    "which": "run",
+    "write_json": true
+  },
+  "elapsed_time": 3.0137267112731934,
+  "metadata": {
+    "dbt_schema_version": "https://schemas.getdbt.com/dbt/run-results/v6.json",
+    "dbt_version": "1.8.7",
+    "env": {},
+    "generated_at": "2026-11-16T01:26:40.763759Z",
+    "invocation_id": "c78f7f91-7f38-45b1-ae4c-607f26ced745"
+  },
+  "results": [
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "select cast(null as datetime2(6)) as ModifiedDate where 1 = 0",
+      "execution_time": 1.3753139972686768,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"empty\"",
+      "status": "success",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:37.883151Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:37.870805Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:39.243725Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:37.883778Z"
+        }
+      ],
+      "unique_id": "model.tuan_freshness_contracts.empty"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "select dateadd(hour, -1, sysutcdatetime()) as ModifiedDate",
+      "execution_time": 0.23982834815979004,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"fresh\"",
+      "status": "success",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:39.254221Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:39.250791Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:39.487749Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:39.254682Z"
+        }
+      ],
+      "unique_id": "model.tuan_freshness_contracts.fresh"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "select dateadd(hour, 24, sysutcdatetime()) as ModifiedDate",
+      "execution_time": 0.35331249237060547,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"future\"",
+      "status": "success",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:39.503108Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:39.498416Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:39.848220Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:39.503830Z"
+        }
+      ],
+      "unique_id": "model.tuan_freshness_contracts.future"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "select cast(null as datetime2(6)) as ModifiedDate",
+      "execution_time": 0.3162839412689209,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"missing\"",
+      "status": "success",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:39.856960Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:39.853595Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:40.167609Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:39.857426Z"
+        }
+      ],
+      "unique_id": "model.tuan_freshness_contracts.missing"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "select dateadd(hour, -1, sysutcdatetime()) as ModifiedDate union all select cast(null as datetime2(6))",
+      "execution_time": 0.2661459445953369,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"mixed_null\"",
+      "status": "success",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:40.177163Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:40.173166Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:40.437094Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:40.177716Z"
+        }
+      ],
+      "unique_id": "model.tuan_freshness_contracts.mixed_null"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "select dateadd(hour, -72, sysutcdatetime()) as ModifiedDate",
+      "execution_time": 0.2362194061279297,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"stale\"",
+      "status": "success",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:40.446792Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:40.443292Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:40.676921Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:40.447260Z"
+        }
+      ],
+      "unique_id": "model.tuan_freshness_contracts.stale"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "select dateadd(hour, -36, sysutcdatetime()) as ModifiedDate",
+      "execution_time": 0.0762181282043457,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311\".\"warning\"",
+      "status": "success",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-16T01:26:40.685879Z",
+          "name": "compile",
+          "started_at": "2026-11-16T01:26:40.682453Z"
+        },
+        {
+          "completed_at": "2026-11-16T01:26:40.756522Z",
+          "name": "execute",
+          "started_at": "2026-11-16T01:26:40.686340Z"
+        }
+      ],
+      "unique_id": "model.tuan_freshness_contracts.warning"
+    }
+  ]
+}

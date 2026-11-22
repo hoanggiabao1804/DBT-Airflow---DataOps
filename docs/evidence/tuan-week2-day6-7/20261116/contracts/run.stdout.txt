@@ -1,0 +1,27 @@
+01:26:32  Running with dbt=1.8.7
+01:26:33  Registered adapter: sqlserver=1.8.7
+01:26:33  Unable to do partial parsing because saved manifest not found. Starting full parse.
+01:26:37  Found 7 models, 14 data tests, 7 sources, 506 macros
+01:26:37
+01:26:37  Concurrency: 1 threads (target='dev')
+01:26:37
+01:26:37  1 of 7 START sql view model tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311.empty  [RUN]
+01:26:39  1 of 7 OK created sql view model tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311.empty  [OK in 1.38s]
+01:26:39  2 of 7 START sql view model tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311.fresh  [RUN]
+01:26:39  2 of 7 OK created sql view model tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311.fresh  [OK in 0.24s]
+01:26:39  3 of 7 START sql view model tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311.future  [RUN]
+01:26:39  3 of 7 OK created sql view model tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311.future  [OK in 0.35s]
+01:26:39  4 of 7 START sql view model tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311.missing  [RUN]
+01:26:40  4 of 7 OK created sql view model tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311.missing  [OK in 0.32s]
+01:26:40  5 of 7 START sql view model tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311.mixed_null  [RUN]
+01:26:40  5 of 7 OK created sql view model tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311.mixed_null  [OK in 0.27s]
+01:26:40  6 of 7 START sql view model tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311.stale  [RUN]
+01:26:40  6 of 7 OK created sql view model tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311.stale  [OK in 0.24s]
+01:26:40  7 of 7 START sql view model tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311.warning  [RUN]
+01:26:40  7 of 7 OK created sql view model tuan_freshness_contracts_21b5d394513a4fdfb546e1625931b311.warning  [OK in 0.08s]
+01:26:40
+01:26:40  Finished running 7 view models in 0 hours 0 minutes and 3.01 seconds (3.01s).
+01:26:40
+01:26:40  Completed successfully
+01:26:40
+01:26:40  Done. PASS=7 WARN=0 ERROR=0 SKIP=0 TOTAL=7

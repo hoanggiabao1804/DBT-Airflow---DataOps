@@ -1,0 +1,34 @@
+﻿01:46:41  Running with dbt=1.8.7
+01:46:41  dbt version: 1.8.7
+01:46:41  python version: 3.9.25
+01:46:41  python path: /usr/local/bin/python3.9
+01:46:41  os info: Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.41
+01:46:42  Using profiles dir at /usr/app/dbt
+01:46:42  Using profiles.yml file at /usr/app/dbt/profiles.yml
+01:46:42  Using dbt_project.yml file at /usr/app/dbt/dbt_project.yml
+01:46:42  adapter type: sqlserver
+01:46:42  adapter version: 1.8.7
+01:46:42  Configuration:
+01:46:42    profiles.yml file [OK found and valid]
+01:46:42    dbt_project.yml file [OK found and valid]
+01:46:42  Required dependencies:
+01:46:43   - git [OK found]
+
+01:46:43  Connection:
+01:46:43    server: sqlserver
+01:46:43    database: AdventureWorks2014
+01:46:43    schema: dbo
+01:46:43    UID: imrandbtnew
+01:46:43    client_id: None
+01:46:43    authentication: sql
+01:46:43    encrypt: False
+01:46:43    trust_cert: True
+01:46:43    retries: 3
+01:46:43    login_timeout: 0
+01:46:43    query_timeout: 0
+01:46:43    trace_flag: False
+01:46:43    port: 1433
+01:46:43  Registered adapter: sqlserver=1.8.7
+01:46:44    Connection test: [OK connection ok]
+
+01:46:44  All checks passed!

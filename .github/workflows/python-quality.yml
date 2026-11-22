@@ -1,0 +1,34 @@
+name: Python Code Quality
+
+on:
+  push:
+    branches: [main, develop, 'feature/**']
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  code-quality:
+    name: Check Python Code Quality
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install flake8 black pylint
+
+      - name: Run Black formatter check
+        run: black --check --line-length=120 airflow/dags/
+
+      - name: Run Flake8
+        run: flake8 airflow/dags/ --max-line-length=120 --statistics
+
+      - name: Run Pylint
+        run: pylint airflow/dags/ --errors-only --disable=import-error

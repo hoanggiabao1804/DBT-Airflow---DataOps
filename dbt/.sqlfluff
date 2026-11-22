@@ -1,0 +1,10 @@
+[sqlfluff]
+dialect = tsql
+templater = jinja
+max_line_length = 120
+# AdventureWorks uses PascalCase source columns. Existing model output aliases
+# and column order are intentional contracts for downstream models.
+exclude_rules = CP02, AL09, ST06
+
+[sqlfluff:templater:jinja]
+apply_dbt_builtins = True

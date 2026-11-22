@@ -26,7 +26,7 @@ cleaned as (
         ProductCategoryID as category_id,
         SellStartDate as sell_start_date,
         SellEndDate as sell_end_date,
-        case 
+        case
             when DiscontinuedDate is not null then 1
             else 0
         end as is_discontinued,

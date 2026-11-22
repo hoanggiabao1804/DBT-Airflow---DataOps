@@ -1,0 +1,120 @@
+{
+  "expectation_suite_name": "customer_suite",
+  "expectations": [
+    {
+      "expectation_type": "expect_table_columns_to_match_set",
+      "kwargs": {
+        "column_set": [
+          "customer_id",
+          "first_name",
+          "last_name",
+          "full_name",
+          "email_promotion",
+          "store_id",
+          "territory_id",
+          "last_modified_date"
+        ],
+        "exact_match": true
+      },
+      "meta": {
+        "rule_id": "customer_columns"
+      }
+    },
+    {
+      "expectation_type": "expect_table_row_count_to_be_between",
+      "kwargs": {
+        "min_value": 1
+      },
+      "meta": {
+        "rule_id": "customer_nonempty"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "customer_id"
+      },
+      "meta": {
+        "rule_id": "customer_id_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "first_name"
+      },
+      "meta": {
+        "rule_id": "customer_first_name_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "last_name"
+      },
+      "meta": {
+        "rule_id": "customer_last_name_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "full_name"
+      },
+      "meta": {
+        "rule_id": "customer_full_name_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "last_modified_date"
+      },
+      "meta": {
+        "rule_id": "customer_last_modified_date_not_null"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_unique",
+      "kwargs": {
+        "column": "customer_id"
+      },
+      "meta": {
+        "rule_id": "customer_id_unique"
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "email_promotion",
+        "value_set": [
+          0,
+          1,
+          2
+        ]
+      },
+      "meta": {
+        "rule_id": "customer_email_promotion_allowed",
+        "notes": "NULL is valid for customers without a matching Person record."
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "last_modified_date",
+        "max_value": {
+          "$PARAMETER": "validation_time"
+        },
+        "parse_strings_as_datetimes": true
+      },
+      "meta": {
+        "rule_id": "customer_last_modified_date_not_future",
+        "notes": "Source timestamps are interpreted as UTC; the runner supplies validation_time."
+      }
+    }
+  ],
+  "meta": {
+    "great_expectations_version": "0.18.22",
+    "notes": "Full Silver customer table. Unknown names and optional email preferences are valid; no source freshness SLA is applied."
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "container_artifact_directory": "/tmp/tuan-source-freshness-20261116T012339249Z-fbabf7b6",
+  "error_after_hours": 48,
+  "exit_code": 1,
+  "finished_at_utc": "2026-11-16T01:24:45.5139695Z",
+  "freshness_counts": [
+    {
+      "Count": 6,
+      "Name": "error"
+    }
+  ],
+  "loaded_at_meaning": "ModifiedDate is the latest business update, not ingestion or restore time; interpreted as UTC.",
+  "run_id": "20261116T012339249Z-fbabf7b6",
+  "source_definition_sha256": "76c846c0f97fffc4de76137a86ba2bf3277bf0e093a28a26ff1bc5235565dbfb",
+  "started_at_utc": "2026-11-16T01:23:39.7574931Z",
+  "status": "stale",
+  "steps": [
+    {
+      "command": "dbt deps",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-16T01:23:56.3366175Z",
+      "name": "deps",
+      "started_at_utc": "2026-11-16T01:23:41.1416931Z",
+      "stdout_file": "deps.stdout.txt"
+    },
+    {
+      "command": "dbt test --select tag:source_timestamp",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-16T01:24:37.5631721Z",
+      "name": "timestamp_tests",
+      "started_at_utc": "2026-11-16T01:23:56.3466368Z",
+      "stdout_file": "timestamp_tests.stdout.txt"
+    },
+    {
+      "command": "dbt source freshness --select source:adventureworks source:adventureworks_production source:adventureworks_person",
+      "exit_code": 1,
+      "finished_at_utc": "2026-11-16T01:24:45.1356425Z",
+      "name": "freshness",
+      "started_at_utc": "2026-11-16T01:24:38.1745955Z",
+      "stdout_file": "freshness.stdout.txt"
+    }
+  ],
+  "target": "dev",
+  "timestamp_test_counts": [
+    {
+      "Count": 12,
+      "Name": "pass"
+    }
+  ],
+  "warn_after_hours": 24
+}

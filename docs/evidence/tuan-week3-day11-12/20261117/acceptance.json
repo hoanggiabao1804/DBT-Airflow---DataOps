@@ -1,0 +1,32 @@
+{
+  "dag_id": "dbt_transform",
+  "documentation": {
+    "active_sources": 6,
+    "model_columns_described": 131,
+    "source_fields_described": 59
+  },
+  "fixture_cleanup_verified": true,
+  "fixture_contracts_pass": 4,
+  "freshness": {
+    "executed_in_this_dag": false,
+    "historical_sources_stale_at_week2_review": 6,
+    "issue": "DQ-W2-01",
+    "status": "open"
+  },
+  "limits": [
+    "Production positive run used the actual scheduler with LocalExecutor and a manual trigger.",
+    "Fixture cases used real operators via DAG.test with retries=0, not the scheduler.",
+    "Repeated helper invocation verifies immutable prior evidence, not scheduler retry timing.",
+    "Forced cancellation and in-container process cleanup after timeout remain unverified.",
+    "This closes Tuan days 11-12 only, not the whole team's final acceptance or a production release."
+  ],
+  "packaged_at_utc": "2026-11-17T02:00:26.366154+00:00",
+  "production_run": {
+    "dbt_tests_pass": 200,
+    "ge_expectations_pass": 40,
+    "models_success": 10,
+    "tasks_success": 5
+  },
+  "run_id": "tuan-week3-day11-12-20261117-01",
+  "status": "passed_for_tuan_day11_12_scope"
+}

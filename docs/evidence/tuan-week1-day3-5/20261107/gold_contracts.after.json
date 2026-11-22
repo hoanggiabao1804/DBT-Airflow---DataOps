@@ -1,0 +1,26 @@
+{
+  "checks": [
+    {
+      "mismatches": [],
+      "model": "gld_customer_metrics",
+      "sql_sha256": "4b1bc6972cde596c90ef2932b57ff4badc7ab2d1c513b12bfe4feeec9108c1e3",
+      "status": "passed"
+    },
+    {
+      "mismatches": [],
+      "model": "gld_sales_summary",
+      "sql_sha256": "3b904bd9066dd07b284539a24c898acddaf5e78d8e86ea2fa1c29a514d898134",
+      "status": "passed"
+    },
+    {
+      "mismatches": [],
+      "model": "gld_product_performance",
+      "sql_sha256": "012c17216c8ee684ab52ed198939e05e5434cdb37badfed078bae94f85894cae",
+      "status": "passed"
+    }
+  ],
+  "finished_at_utc": "2026-11-07T09:31:17.708859+00:00",
+  "fixture_scope": "Connection-local #temporary tables; removed when the connection closes.",
+  "started_at_utc": "2026-11-07T09:31:17.597476+00:00",
+  "status": "passed"
+}

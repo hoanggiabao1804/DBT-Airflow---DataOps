@@ -1,0 +1,2 @@
+﻿ dbt-airflow---dataops-sqlserver-1 Copying D:\DBT-Airflow---DataOps\scripts\sql\review_dbt_models.sql to dbt-airflow---dataops-sqlserver-1:/tmp/review-dbt-models-e9a06bafce1e4cbdabd0ea51bc80da49.sql
+ dbt-airflow---dataops-sqlserver-1 Copied D:\DBT-Airflow---DataOps\scripts\sql\review_dbt_models.sql to dbt-airflow---dataops-sqlserver-1:/tmp/review-dbt-models-e9a06bafce1e4cbdabd0ea51bc80da49.sql

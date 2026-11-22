@@ -1,0 +1,42 @@
+digraph DataOps {
+  graph [label="DataOps - luồng dữ liệu và điều khiển", labelloc=t, fontsize=22,
+         fontname="DejaVu Sans", rankdir=LR, splines=polyline, nodesep=0.45,
+         ranksep=0.65, pad=0.25, bgcolor="white"];
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=11,
+        color="#3c5365", fillcolor="#f4f8fb", margin="0.14,0.1"];
+  edge [fontname="DejaVu Sans", fontsize=9, color="#446277", arrowsize=0.7];
+
+  subgraph cluster_local {
+    label="Docker Compose (local)";
+    color="#a9b6c2";
+    style=rounded;
+
+    sql [label="SQL Server\nAdventureWorks2014\nSales / Person / Production", fillcolor="#dceefc"];
+    bronze [label="Bronze\n4 views", fillcolor="#f8edd8"];
+    silver [label="Silver\n3 tables", fillcolor="#e0f1e3"];
+    gold [label="Gold\n3 tables", fillcolor="#f7e4d8"];
+    dbt [label="dbt container\nODBC: run / test / docs", fillcolor="#f4e7d7"];
+    ge [label="GE worker (overlay)\n2 checkpoints / 40 rules", fillcolor="#e4eef8"];
+    airflow [label="Airflow\nwebserver + scheduler\ndbt_transform DAG", fillcolor="#e7eaf8"];
+    pg [label="PostgreSQL\nAirflow metadata", fillcolor="#e8f3ed"];
+
+    sql -> bronze [label="source()"];
+    bronze -> silver [label="ref()"];
+    silver -> gold [label="ref()"];
+    airflow -> dbt [label="Docker CLI", color="#6856a3"];
+    airflow -> ge [label="Docker CLI", color="#6856a3"];
+    airflow -> pg [label="task state", color="#6856a3"];
+    ge -> silver [label="read / validate", color="#6856a3", constraint=false];
+  }
+
+  subgraph cluster_actions {
+    label="GitHub-hosted runner (tách khỏi local)";
+    color="#b9b3db";
+    style=rounded;
+    actions [label="GitHub Actions\nCI + deploy workflow", fillcolor="#e8e7fa"];
+    cli [label="dbt CLI\nrun / test / smoke", fillcolor="#f4e7d7"];
+    staging [label="SQL Server staging tạm\ntrên runner", fillcolor="#dceefc"];
+    actions -> cli [label="deploy"];
+    cli -> staging [label="SQL / ODBC"];
+  }
+}

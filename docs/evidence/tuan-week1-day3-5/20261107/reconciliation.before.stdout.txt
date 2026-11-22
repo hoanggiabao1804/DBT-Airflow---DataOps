@@ -1,0 +1,35 @@
+02:53:18  Running with dbt=1.8.7
+02:53:19  Registered adapter: sqlserver=1.8.7
+02:53:21  Unable to do partial parsing because saved manifest not found. Starting full parse.
+02:53:35  [WARNING]: Deprecated functionality
+The `tests` config has been renamed to `data_tests`. Please see
+https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax for more
+information.
+02:53:46  Found 10 models, 121 data tests, 13 sources, 617 macros
+02:53:46
+02:53:48  Concurrency: 4 threads (target='dev')
+02:53:48
+02:53:48  1 of 4 START test assert_customer_metrics_reconciliation ....................... [RUN]
+02:53:48  2 of 4 START test assert_daily_sales_reconciliation ............................ [RUN]
+02:53:48  4 of 4 START test assert_silver_eligible_order_lines ........................... [RUN]
+02:53:48  3 of 4 START test assert_product_metrics_reconciliation ........................ [RUN]
+02:53:54  2 of 4 FAIL 421 assert_daily_sales_reconciliation .............................. [FAIL 421 in 5.38s]
+02:54:02  3 of 4 PASS assert_product_metrics_reconciliation .............................. [PASS in 13.79s]
+02:54:02  1 of 4 FAIL 15913 assert_customer_metrics_reconciliation ....................... [FAIL 15913 in 13.81s]
+02:54:07  4 of 4 PASS assert_silver_eligible_order_lines ................................. [PASS in 19.01s]
+02:54:07
+02:54:07  Finished running 4 data tests in 0 hours 0 minutes and 20.90 seconds (20.90s).
+02:54:08
+02:54:08  Completed with 2 errors and 0 warnings:
+02:54:08
+02:54:08  Failure in test assert_daily_sales_reconciliation (tests/data_quality/assert_daily_sales_reconciliation.sql)
+02:54:08    Got 421 results, configured to fail if != 0
+02:54:08
+02:54:08    compiled code at /tmp/tuan-day35-before/target/compiled/dbt_sqlserver_project/tests/data_quality/assert_daily_sales_reconciliation.sql
+02:54:08
+02:54:08  Failure in test assert_customer_metrics_reconciliation (tests/data_quality/assert_customer_metrics_reconciliation.sql)
+02:54:08    Got 15913 results, configured to fail if != 0
+02:54:08
+02:54:08    compiled code at /tmp/tuan-day35-before/target/compiled/dbt_sqlserver_project/tests/data_quality/assert_customer_metrics_reconciliation.sql
+02:54:08
+02:54:08  Done. PASS=2 WARN=0 ERROR=2 SKIP=0 TOTAL=4

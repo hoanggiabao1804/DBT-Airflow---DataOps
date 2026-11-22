@@ -1,0 +1,327 @@
+{
+  "args": {
+    "cache_selected_only": false,
+    "defer": false,
+    "empty": false,
+    "enable_legacy_logger": false,
+    "exclude": [],
+    "favor_state": false,
+    "indirect_selection": "eager",
+    "introspect": true,
+    "invocation_command": "dbt run --profiles-dir /usr/app/dbt",
+    "log_file_max_bytes": 10485760,
+    "log_format": "default",
+    "log_format_file": "debug",
+    "log_level": "info",
+    "log_level_file": "debug",
+    "log_path": "/tmp/tuan-dbt-baseline-20261107T092738326Z-20ada20d/logs",
+    "macro_debugging": false,
+    "partial_parse": true,
+    "partial_parse_file_diff": true,
+    "populate_cache": true,
+    "print": true,
+    "printer_width": 80,
+    "profiles_dir": "/usr/app/dbt",
+    "project_dir": "/usr/app/dbt",
+    "quiet": false,
+    "require_explicit_package_overrides_for_builtin_materializations": true,
+    "require_resource_names_without_spaces": false,
+    "select": [],
+    "send_anonymous_usage_stats": true,
+    "show_resource_report": false,
+    "source_freshness_run_project_hooks": false,
+    "static_parser": true,
+    "strict_mode": false,
+    "target_path": "/tmp/tuan-dbt-baseline-20261107T092738326Z-20ada20d/target",
+    "use_colors": false,
+    "use_colors_file": false,
+    "vars": {},
+    "version_check": true,
+    "warn_error_options": {
+      "exclude": [],
+      "include": []
+    },
+    "which": "run",
+    "write_json": true
+  },
+  "elapsed_time": 8.78966498374939,
+  "metadata": {
+    "dbt_schema_version": "https://schemas.getdbt.com/dbt/run-results/v6.json",
+    "dbt_version": "1.8.7",
+    "env": {},
+    "generated_at": "2026-11-07T09:30:17.743923Z",
+    "invocation_id": "ba79b03d-25d5-4a21-840a-3b51ce77d1b0"
+  },
+  "results": [
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\nwith source_data as (\n    select * from \"AdventureWorks2014\".\"Sales\".\"Customer\"\n),\n\ntransformed as (\n    select\n        CustomerID as id,\n        AccountNumber as name,\n        ModifiedDate as created_at,\n        ModifiedDate as updated_at\n    from source_data\n)\n\nselect * from transformed",
+      "execution_time": 1.4525060653686523,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"bronze\".\"brnz_example\"",
+      "status": "success",
+      "thread_id": "Thread-2",
+      "timing": [
+        {
+          "completed_at": "2026-11-07T09:30:09.429373Z",
+          "name": "compile",
+          "started_at": "2026-11-07T09:30:09.276170Z"
+        },
+        {
+          "completed_at": "2026-11-07T09:30:10.665889Z",
+          "name": "execute",
+          "started_at": "2026-11-07T09:30:09.515822Z"
+        }
+      ],
+      "unique_id": "model.dbt_sqlserver_project.brnz_example"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\nwith source as (\n    select * from \"AdventureWorks2014\".\"Sales\".\"Customer\"\n),\n\nperson as (\n    select * from \"AdventureWorks2014\".\"Person\".\"Person\"\n),\n\nstaged as (\n    select\n        c.CustomerID,\n        p.FirstName,\n        p.LastName,\n        p.EmailPromotion,\n        c.StoreID,\n        c.TerritoryID,\n        c.ModifiedDate as last_modified_date\n    from source c\n    left join person p\n        on c.PersonID = p.BusinessEntityID\n)\n\nselect * from staged",
+      "execution_time": 1.5391390323638916,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"bronze\".\"brnz_customers\"",
+      "status": "success",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-07T09:30:09.376161Z",
+          "name": "compile",
+          "started_at": "2026-11-07T09:30:09.235814Z"
+        },
+        {
+          "completed_at": "2026-11-07T09:30:10.756298Z",
+          "name": "execute",
+          "started_at": "2026-11-07T09:30:09.445002Z"
+        }
+      ],
+      "unique_id": "model.dbt_sqlserver_project.brnz_customers"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "with sales_order_header as (\n    select\n        SalesOrderID as sales_order_id,\n        OrderDate as order_date,\n        DueDate as due_date,\n        ShipDate as ship_date,\n        Status as status,\n        OnlineOrderFlag as online_order_flag,\n        SalesOrderNumber as sales_order_number,\n        PurchaseOrderNumber as purchase_order_number,\n        CustomerID as customer_id,\n        SalesPersonID as sales_person_id,\n        TerritoryID as territory_id\n    from \"AdventureWorks2014\".\"Sales\".\"SalesOrderHeader\"\n),\n\nsales_order_detail as (\n    select\n        SalesOrderDetailID as order_detail_id,\n        SalesOrderID as sales_order_id,\n        ProductID as product_id,\n        OrderQty as order_qty,\n        UnitPrice as unit_price,\n        UnitPriceDiscount as unit_price_discount,\n        LineTotal as line_total\n    from \"AdventureWorks2014\".\"Sales\".\"SalesOrderDetail\"\n)\n\nselect\n    h.sales_order_id,\n    h.order_date,\n    h.due_date,\n    h.ship_date,\n    h.status,\n    h.online_order_flag,\n    h.sales_order_number,\n    h.purchase_order_number,\n    h.customer_id,\n    h.sales_person_id,\n    h.territory_id,\n    d.order_detail_id,\n    d.product_id,\n    d.order_qty,\n    d.unit_price,\n    d.unit_price_discount,\n    d.line_total\nfrom sales_order_header h\nleft join sales_order_detail d\n    on h.sales_order_id = d.sales_order_id",
+      "execution_time": 1.5604398250579834,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"bronze\".\"brnz_sales_orders\"",
+      "status": "success",
+      "thread_id": "Thread-4",
+      "timing": [
+        {
+          "completed_at": "2026-11-07T09:30:09.364324Z",
+          "name": "compile",
+          "started_at": "2026-11-07T09:30:09.329297Z"
+        },
+        {
+          "completed_at": "2026-11-07T09:30:10.784195Z",
+          "name": "execute",
+          "started_at": "2026-11-07T09:30:09.370988Z"
+        }
+      ],
+      "unique_id": "model.dbt_sqlserver_project.brnz_sales_orders"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "with product as (\n    select * from \"AdventureWorks2014\".\"Production\".\"Product\"\n),\n\nproduct_subcategory as (\n    select * from \"AdventureWorks2014\".\"Production\".\"ProductSubcategory\"\n),\n\nstaged as (\n    select\n        p.ProductID,\n        p.Name as ProductName,\n        p.ProductNumber,\n        p.MakeFlag,\n        p.FinishedGoodsFlag,\n        p.Color,\n        p.SafetyStockLevel,\n        p.ReorderPoint,\n        p.StandardCost,\n        p.ListPrice,\n        p.Size,\n        p.SizeUnitMeasureCode,\n        p.WeightUnitMeasureCode,\n        p.Weight,\n        p.DaysToManufacture,\n        p.ProductLine,\n        p.Class,\n        p.Style,\n        p.ProductSubcategoryID,\n        p.ProductModelID,\n        p.SellStartDate,\n        p.SellEndDate,\n        p.DiscontinuedDate,\n        ps.Name as SubcategoryName,\n        ps.ProductCategoryID,\n        p.ModifiedDate as last_modified_date\n    from product p\n    left join product_subcategory ps\n        on p.ProductSubcategoryID = ps.ProductSubcategoryID\n)\n\nselect * from staged",
+      "execution_time": 1.6190431118011475,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"bronze\".\"brnz_products\"",
+      "status": "success",
+      "thread_id": "Thread-3",
+      "timing": [
+        {
+          "completed_at": "2026-11-07T09:30:09.357090Z",
+          "name": "compile",
+          "started_at": "2026-11-07T09:30:09.311533Z"
+        },
+        {
+          "completed_at": "2026-11-07T09:30:10.830178Z",
+          "name": "execute",
+          "started_at": "2026-11-07T09:30:09.358277Z"
+        }
+      ],
+      "unique_id": "model.dbt_sqlserver_project.brnz_products"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\nwith bronze_products as (\n    select * from \"AdventureWorks2014\".\"bronze\".\"brnz_products\"\n),\n\ncleaned as (\n    select\n        ProductID as product_id,\n        ProductName as product_name,\n        ProductNumber as product_number,\n        coalesce(Color, 'N/A') as color,\n        StandardCost as standard_cost,\n        ListPrice as list_price,\n        coalesce(Size, 'N/A') as size,\n        coalesce(Weight, 0) as weight,\n        ProductLine as product_line,\n        Class as class,\n        Style as style,\n        ProductSubcategoryID as subcategory_id,\n        coalesce(SubcategoryName, 'Uncategorized') as subcategory_name,\n        ProductCategoryID as category_id,\n        SellStartDate as sell_start_date,\n        SellEndDate as sell_end_date,\n        case\n            when DiscontinuedDate is not null then 1\n            else 0\n        end as is_discontinued,\n        last_modified_date\n    from bronze_products\n)\n\nselect * from cleaned",
+      "execution_time": 2.4739151000976562,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"silver\".\"slvr_products\"",
+      "status": "success",
+      "thread_id": "Thread-4",
+      "timing": [
+        {
+          "completed_at": "2026-11-07T09:30:10.899001Z",
+          "name": "compile",
+          "started_at": "2026-11-07T09:30:10.873273Z"
+        },
+        {
+          "completed_at": "2026-11-07T09:30:13.332709Z",
+          "name": "execute",
+          "started_at": "2026-11-07T09:30:10.902632Z"
+        }
+      ],
+      "unique_id": "model.dbt_sqlserver_project.slvr_products"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\nwith bronze_customers as (\n    select * from \"AdventureWorks2014\".\"bronze\".\"brnz_customers\"\n),\n\ncleaned as (\n    select\n        CustomerID as customer_id,\n        coalesce(FirstName, 'Unknown') as first_name,\n        coalesce(LastName, 'Unknown') as last_name,\n        concat(coalesce(FirstName, 'Unknown'), ' ', coalesce(LastName, 'Unknown')) as full_name,\n        EmailPromotion as email_promotion,\n        StoreID as store_id,\n        TerritoryID as territory_id,\n        last_modified_date\n    from bronze_customers\n)\n\nselect * from cleaned",
+      "execution_time": 2.6293742656707764,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"silver\".\"slvr_customers\"",
+      "status": "success",
+      "thread_id": "Thread-2",
+      "timing": [
+        {
+          "completed_at": "2026-11-07T09:30:10.786519Z",
+          "name": "compile",
+          "started_at": "2026-11-07T09:30:10.773190Z"
+        },
+        {
+          "completed_at": "2026-11-07T09:30:13.397779Z",
+          "name": "execute",
+          "started_at": "2026-11-07T09:30:10.788829Z"
+        }
+      ],
+      "unique_id": "model.dbt_sqlserver_project.slvr_customers"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\nwith bronze_sales as (\n    select * from \"AdventureWorks2014\".\"bronze\".\"brnz_sales_orders\"\n),\n\ncleaned as (\n    select\n        sales_order_id,\n        order_detail_id,\n        order_date,\n        due_date,\n        ship_date,\n        status,\n        case\n            when online_order_flag = 1 then 'Online'\n            else 'Offline'\n        end as order_channel,\n        sales_order_number,\n        purchase_order_number,\n        customer_id,\n        sales_person_id,\n        territory_id,\n        product_id,\n        order_qty,\n        unit_price,\n        unit_price_discount,\n        line_total,\n        -- Calculated fields\n        unit_price * order_qty as gross_amount,\n        line_total / nullif(order_qty, 0) as effective_unit_price,\n        case\n            when unit_price_discount > 0 then 1\n            else 0\n        end as has_discount\n    from bronze_sales\n    where order_qty > 0\n        and unit_price >= 0\n)\n\nselect * from cleaned",
+      "execution_time": 3.8993170261383057,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"silver\".\"slvr_sales_orders\"",
+      "status": "success",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-07T09:30:10.872018Z",
+          "name": "compile",
+          "started_at": "2026-11-07T09:30:10.858947Z"
+        },
+        {
+          "completed_at": "2026-11-07T09:30:14.751014Z",
+          "name": "execute",
+          "started_at": "2026-11-07T09:30:10.884528Z"
+        }
+      ],
+      "unique_id": "model.dbt_sqlserver_project.slvr_sales_orders"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\nwith customers as (\n    select * from \"AdventureWorks2014\".\"silver\".\"slvr_customers\"\n),\n\nsales as (\n    select * from \"AdventureWorks2014\".\"silver\".\"slvr_sales_orders\"\n),\n\ncustomer_sales as (\n    select\n        c.customer_id,\n        c.full_name,\n        c.territory_id,\n        count(distinct s.sales_order_id) as total_orders,\n        sum(s.line_total) as total_revenue,\n        -- Sales rows are order lines; AOV uses the number of distinct orders.\n        sum(s.line_total) / nullif(count(distinct s.sales_order_id), 0) as avg_order_value,\n        sum(s.order_qty) as total_items_purchased,\n        min(s.order_date) as first_order_date,\n        max(s.order_date) as last_order_date,\n        count(distinct case when s.has_discount = 1 then s.sales_order_id end) as orders_with_discount\n    from customers c\n    left join sales s\n        on c.customer_id = s.customer_id\n    group by c.customer_id, c.full_name, c.territory_id\n)\n\nselect * from customer_sales",
+      "execution_time": 2.523038625717163,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"gold\".\"gld_customer_metrics\"",
+      "status": "success",
+      "thread_id": "Thread-3",
+      "timing": [
+        {
+          "completed_at": "2026-11-07T09:30:14.803489Z",
+          "name": "compile",
+          "started_at": "2026-11-07T09:30:14.775802Z"
+        },
+        {
+          "completed_at": "2026-11-07T09:30:17.288113Z",
+          "name": "execute",
+          "started_at": "2026-11-07T09:30:14.805257Z"
+        }
+      ],
+      "unique_id": "model.dbt_sqlserver_project.gld_customer_metrics"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\nwith sales as (\n    select * from \"AdventureWorks2014\".\"silver\".\"slvr_sales_orders\"\n),\n\ndaily_summary as (\n    select\n        cast(order_date as date) as order_date,\n        count(distinct sales_order_id) as total_orders,\n        count(distinct customer_id) as unique_customers,\n        sum(order_qty) as total_items_sold,\n        sum(line_total) as total_revenue,\n        avg(line_total) as avg_order_line_value,\n        -- An order can contain several lines, including in the same channel.\n        count(distinct case when order_channel = 'Online' then sales_order_id end) as online_orders,\n        count(distinct case when order_channel = 'Offline' then sales_order_id end) as offline_orders,\n        sum(case when has_discount = 1 then line_total else 0 end) as discounted_revenue\n    from sales\n    group by cast(order_date as date)\n)\n\nselect * from daily_summary",
+      "execution_time": 2.8185088634490967,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"gold\".\"gld_sales_summary\"",
+      "status": "success",
+      "thread_id": "Thread-2",
+      "timing": [
+        {
+          "completed_at": "2026-11-07T09:30:14.804688Z",
+          "name": "compile",
+          "started_at": "2026-11-07T09:30:14.790323Z"
+        },
+        {
+          "completed_at": "2026-11-07T09:30:17.590457Z",
+          "name": "execute",
+          "started_at": "2026-11-07T09:30:14.815475Z"
+        }
+      ],
+      "unique_id": "model.dbt_sqlserver_project.gld_sales_summary"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\nwith products as (\n    select * from \"AdventureWorks2014\".\"silver\".\"slvr_products\"\n),\n\nsales as (\n    select * from \"AdventureWorks2014\".\"silver\".\"slvr_sales_orders\"\n),\n\nproduct_sales as (\n    select\n        p.product_id,\n        p.product_name,\n        p.subcategory_name,\n        p.color,\n        p.list_price,\n        p.standard_cost,\n        count(distinct s.sales_order_id) as total_orders,\n        sum(s.order_qty) as total_quantity_sold,\n        sum(s.line_total) as total_revenue,\n        avg(s.unit_price) as avg_selling_price,\n        sum(s.line_total) - (sum(s.order_qty) * p.standard_cost) as total_profit,\n        case\n            when sum(s.order_qty) > 0 then\n                -- A sold product with zero revenue has an undefined margin.\n                (sum(s.line_total) - (sum(s.order_qty) * p.standard_cost)) / nullif(sum(s.line_total), 0) * 100\n            else 0\n        end as profit_margin_pct\n    from products p\n    left join sales s\n        on p.product_id = s.product_id\n    group by\n        p.product_id,\n        p.product_name,\n        p.subcategory_name,\n        p.color,\n        p.list_price,\n        p.standard_cost\n)\n\nselect * from product_sales",
+      "execution_time": 2.9621217250823975,
+      "failures": null,
+      "message": "OK",
+      "relation_name": "\"AdventureWorks2014\".\"gold\".\"gld_product_performance\"",
+      "status": "success",
+      "thread_id": "Thread-4",
+      "timing": [
+        {
+          "completed_at": "2026-11-07T09:30:14.797288Z",
+          "name": "compile",
+          "started_at": "2026-11-07T09:30:14.782966Z"
+        },
+        {
+          "completed_at": "2026-11-07T09:30:17.730941Z",
+          "name": "execute",
+          "started_at": "2026-11-07T09:30:14.798278Z"
+        }
+      ],
+      "unique_id": "model.dbt_sqlserver_project.gld_product_performance"
+    }
+  ]
+}

@@ -170,4 +170,4 @@ docker-compose exec dbt ping postgres
    - Always use `docker-compose exec` for running commands in containers
    - Use `-d` flag for running containers in detached mode
    - Check logs when troubleshooting issues
-   - Use specific service names when running commands 
+   - Use specific service names when running commands

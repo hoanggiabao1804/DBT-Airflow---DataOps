@@ -1,0 +1,4 @@
+01:27:16  Running with dbt=1.8.7
+01:27:17  Registered adapter: sqlserver=1.8.7
+01:27:17  Unable to do partial parsing because saved manifest not found. Starting full parse.
+01:27:34  Found 7 models, 14 data tests, 7 sources, 506 macros

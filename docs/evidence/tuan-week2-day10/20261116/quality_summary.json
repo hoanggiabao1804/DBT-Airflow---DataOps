@@ -1,0 +1,183 @@
+{
+  "automation_scope": {
+    "existing_ci_runs_dbt": true,
+    "existing_ci_runs_ge": false,
+    "ge_airflow_integration_verified": false,
+    "whole_team_week2_acceptance": "not_assessed"
+  },
+  "configuration_sha256": {
+    "dbt/dbt_project.yml": "1089f091de064c79b040f28885396f97a58d96ebbe5b39a42b347ebd18f21ce8",
+    "dbt/macros/sqlserver__collect_freshness.sql": "69a916e29ead4cdf35257a4ac24b124ce76f9777e2c8b25b4b8f1090b9f1f75a",
+    "dbt/models/bronze/brnz_customers.sql": "b184d2488fc8635b004ff6654e463e75170965d72bebc6ae81abc53b91637286",
+    "dbt/models/bronze/brnz_example.sql": "980a39126614011444660b4b91154b02ba4432febf8fac48aa7a6f126b7b8a1e",
+    "dbt/models/bronze/brnz_products.sql": "d5c8730b69d5f12de621f4341ec708e86d1bb0c44c2c6211ee112f71d64334cd",
+    "dbt/models/bronze/brnz_sales_orders.sql": "727463c8e8be6a48734cbf904a5ced6e6d27459bec98f8ba036dd214d2454be9",
+    "dbt/models/bronze/schema.yml": "528686c4b0a47c83e0f6bda13d3a8f6c844f3262cbb45fd9da6515713e894053",
+    "dbt/models/bronze/src_adventureworks.yml": "76c846c0f97fffc4de76137a86ba2bf3277bf0e093a28a26ff1bc5235565dbfb",
+    "dbt/models/gold/gld_customer_metrics.sql": "c615c528e5833e6679015980820716c598dfbd13816e1aca98320b0d21c84351",
+    "dbt/models/gold/gld_product_performance.sql": "f9867115113773e52b1dc8deea03e2c7e7578686e39909db61152ad1d6702e9e",
+    "dbt/models/gold/gld_sales_summary.sql": "3b904bd9066dd07b284539a24c898acddaf5e78d8e86ea2fa1c29a514d898134",
+    "dbt/models/gold/schema.yml": "565f097440b8437792e3568397f0c506af8677336da52315d4e8a169dfb9b198",
+    "dbt/models/silver/schema.yml": "be6745b68c07abbfec89268308e37cf80a609d0be15895f600bcfec71fc28dc8",
+    "dbt/models/silver/slvr_customers.sql": "7bacaf8b0da9222224cf37dfc74843f98ee123c572275db500644410f08bf8f7",
+    "dbt/models/silver/slvr_products.sql": "76d839c10fa9823e3164290b3e94e48f7318ee8d745ad3fe0443b7d2e1ca502a",
+    "dbt/models/silver/slvr_sales_orders.sql": "a1840155a57934586ccecb391499db886f449f6ab2f9c2d97e3554753789945c",
+    "dbt/models/sources.yml": "3d0dc1c5e4a14e2566a32ff20759a5d18b83462ac62778764e147309ab4a9922",
+    "dbt/packages.yml": "a66bb01cfea7655c6a5f63e934500c11c03b3a7096516cf4a96610a1a6bcc3ad",
+    "dbt/requirements.txt": "e44c2e394853cd61790aa289296eb2c861b2795ff53ee93565746c3a728976e0",
+    "dbt/tests/data_quality/assert_customer_metrics_reconciliation.sql": "3f5c158d438b235ca7cfdef2405196bd14139325e2928961c09540c8fb94d87b",
+    "dbt/tests/data_quality/assert_daily_sales_reconciliation.sql": "85872682bd3de335d43088876d7365214cef2441bf0b46f511c14357aad85941",
+    "dbt/tests/data_quality/assert_product_metrics_reconciliation.sql": "e9dd1da5cfb5cdb4659b209ccdc1cc5e54435caacca4b1d7ab351d8c2ad3d1de",
+    "dbt/tests/data_quality/assert_silver_eligible_order_lines.sql": "00c95793953c2c10633db80e8f9fdadb9ce8a7a69b31cbb060af643208d20a63",
+    "dbt/tests/generic/line_total_matches.sql": "29fbb0caf39c9e0f23db44902c4d3585caf791faad06e72fa45230f0f8626f92",
+    "dbt/tests/generic/no_future_dates.sql": "f9c03131062422baa1959de73f736d6f173c91a9708e99dc6cff5652a8191ff1",
+    "dbt/tests/generic/positive_values.sql": "a050006dab5b735abba90f67eac9f515275bf12253d8edaa7d078a9ffa44808b",
+    "great_expectations/checkpoints/customer_checkpoint.yml": "c7c6dc8403513d224100f778c08c006175252102cdce51ad4237af1cb1925023",
+    "great_expectations/checkpoints/order_checkpoint.yml": "10f567997bfad46b0f321e98856cfec117e92d746b0421c6da02d6eac10062e0",
+    "great_expectations/expectations/customer_suite.json": "30650d6e3eeffc0034b16a633d151b1397a7af619511230ade29bbeb7983673c",
+    "great_expectations/expectations/order_suite.json": "3dcb2fc51214b56a50c500fa644d35b0e0d528cd429cff2895257584eb8035ec",
+    "great_expectations/great_expectations.yml": "135cb629b1b0a791427a6cd7293e05c9570ad73cd5f24e2a55572e7a67b5ce55",
+    "great_expectations/requirements.txt": "0a5dcdfec1ae6699ccb891507406db87fb30d763c60171a69d42af8023dfe41d",
+    "scripts/run_ge_checkpoints.py": "ef94d0ad6cf3c984bc9d697e6846e87a9c1347dabe3c6a0fd5eabae57d34cc84"
+  },
+  "dbt": {
+    "baseline_exit_code": 0,
+    "data_tests": {
+      "pass": 200
+    },
+    "models": {
+      "success": 10
+    },
+    "source_timestamp_tests": {
+      "included_in_200": true,
+      "pass": 12
+    },
+    "test_inventory": {
+      "accepted_values": 13,
+      "dbt_utils_accepted_range": 2,
+      "dbt_utils_unique_combination_of_columns": 3,
+      "line_total_matches": 2,
+      "no_future_dates": 21,
+      "not_null": 92,
+      "positive_values": 33,
+      "relationships": 15,
+      "singular": 4,
+      "unique": 15
+    }
+  },
+  "environment": {
+    "database": "AdventureWorks2014",
+    "ge_schema": "silver",
+    "target": "dev"
+  },
+  "evidence_sha256": {
+    "baseline/baseline_status.json": "5c2ad61efc5ad91f023b3a5d15abda7b2c21f03450d75d9103e8c0a898704f18",
+    "baseline/model_relations.json": "a3d0100f2fdd80966a9d25daac38b98b366c3ef7857c0e0445b53cb778ee171d",
+    "baseline/run.run_results.json": "9cb072664d0a8956bcc0cb556e06d47bf27d1937060103ca6866e007e9820724",
+    "baseline/test.run_results.json": "0acbeb1a5370ef3f6816680dacb659a5573e8e0554e47131ebd478c6b61f17d3",
+    "freshness/freshness_status.json": "aedd95bec4e001653a29160c9715a95fddf5a6ac3110b9e46a29fb370ba16ae2",
+    "freshness/sources.json": "8c476ebc489f73994c82797cf80d9909e4a490c9f00b67b4c6b49a31dfa0cefd",
+    "freshness/timestamp_tests.run_results.json": "de1aaa7b79db8ecef6fcc807b01b340eef79dfa7f0b10ffe161089728f657a74",
+    "ge/customer_checkpoint.json": "00b3284f47a1e26e9d9efd03819f1cb3d7978e2af560b83a5ad8653afa4b1d56",
+    "ge/order_checkpoint.json": "999ff67f71d53cf5ad2ce1dd101675683a576abc7cf93ec92be6455cc89683c8",
+    "ge/summary.json": "6b9b613da83ac2db52b4739bc03317727754adbef3d7ba575f8c47893e5e2306"
+  },
+  "freshness": {
+    "error_after_hours": 48,
+    "exit_code": 1,
+    "sources": [
+      {
+        "age_days": 4448.0,
+        "max_loaded_at": "2014-09-12T11:15:07.263000+00:00",
+        "snapshotted_at": "2026-11-16T10:05:38.078587+00:00",
+        "status": "error",
+        "unique_id": "source.dbt_sqlserver_project.adventureworks.Customer"
+      },
+      {
+        "age_days": 4522.4,
+        "max_loaded_at": "2014-06-30T00:00:00+00:00",
+        "snapshotted_at": "2026-11-16T10:05:38.090940+00:00",
+        "status": "error",
+        "unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderDetail"
+      },
+      {
+        "age_days": 4515.4,
+        "max_loaded_at": "2014-07-07T00:00:00+00:00",
+        "snapshotted_at": "2026-11-16T10:05:38.082725+00:00",
+        "status": "error",
+        "unique_id": "source.dbt_sqlserver_project.adventureworks.SalesOrderHeader"
+      },
+      {
+        "age_days": 4232.7,
+        "max_loaded_at": "2015-04-15T16:33:33.123000+00:00",
+        "snapshotted_at": "2026-11-16T10:05:38.078587+00:00",
+        "status": "error",
+        "unique_id": "source.dbt_sqlserver_project.adventureworks_person.Person"
+      },
+      {
+        "age_days": 4664.0,
+        "max_loaded_at": "2014-02-08T10:03:55.510000+00:00",
+        "snapshotted_at": "2026-11-16T10:05:38.208060+00:00",
+        "status": "error",
+        "unique_id": "source.dbt_sqlserver_project.adventureworks_production.Product"
+      },
+      {
+        "age_days": 6774.4,
+        "max_loaded_at": "2008-04-30T00:00:00+00:00",
+        "snapshotted_at": "2026-11-16T10:05:38.208060+00:00",
+        "status": "error",
+        "unique_id": "source.dbt_sqlserver_project.adventureworks_production.ProductSubcategory"
+      }
+    ],
+    "status": "stale",
+    "warn_after_hours": 24
+  },
+  "ge": {
+    "checkpoints": [
+      {
+        "name": "customer_checkpoint",
+        "row_count": 19820,
+        "statistics": {
+          "evaluated_expectations": 10,
+          "success_percent": 100.0,
+          "successful_expectations": 10,
+          "unsuccessful_expectations": 0
+        },
+        "suite": "customer_suite"
+      },
+      {
+        "name": "order_checkpoint",
+        "row_count": 121317,
+        "statistics": {
+          "evaluated_expectations": 30,
+          "success_percent": 100.0,
+          "successful_expectations": 30,
+          "unsuccessful_expectations": 0
+        },
+        "suite": "order_suite"
+      }
+    ],
+    "exit_code": 0,
+    "permitted_customer_email_promotion_null_count": 701
+  },
+  "implementation_status": "complete_for_review",
+  "overall_data_quality_status": "failed_freshness",
+  "prior_contract_evidence": {
+    "cleanup_verified": true,
+    "dbt_freshness_assertions": 17,
+    "ge_scenarios": 8,
+    "paths": [
+      "docs/evidence/tuan-week2-day6-7/20261116/contracts/summary.json",
+      "docs/evidence/tuan-week2-day8-9/20261116/contracts/summary.json"
+    ],
+    "reason": "Relevant definitions match previously verified SHA-256 values",
+    "rerun_on_day10": false
+  },
+  "reviewed_at_utc": "2026-11-16T10:09:27.056585+00:00",
+  "scope": "Tuan week 2 days 6-10: dbt tests, source freshness, GE suites/checkpoints and quality report",
+  "validated_code_commit": "ae97a1c684c2098cd1a8bd68f3fa7b58c914b15c",
+  "validation_window_utc": {
+    "end": "2026-11-16T10:06:35.616563+00:00",
+    "start": "2026-11-16T10:03:24.0729950Z"
+  }
+}

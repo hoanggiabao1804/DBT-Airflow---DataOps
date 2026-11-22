@@ -1,29 +1,287 @@
 version: 2
 
 sources:
+  # dbt Core 1.8: freshness/loaded_at_field are source properties, not config.
+  # ModifiedDate measures the latest business update, NOT ingestion/restore time.
+  # The static AdventureWorks2014 snapshot is expected to breach these demo SLAs.
   - name: adventureworks
+    description: >-
+      Active Sales inputs in the AdventureWorks2014 sample database. Freshness
+      compares the latest business ModifiedDate with the UTC collection time;
+      it does not measure when this historical database was restored or ingested.
+      The demo warn/error thresholds default to 24/48 hours, so the static sample
+      is expected to be stale even when its structural and business tests pass.
     database: AdventureWorks2014
     schema: Sales
+    loaded_at_field: "[ModifiedDate]"
+    freshness:
+      warn_after:
+        count: "{{ var('source_freshness_warn_hours', 24) | int }}"
+        period: hour
+      error_after:
+        count: "{{ var('source_freshness_error_hours', 48) | int }}"
+        period: hour
     tables:
       - name: SalesOrderHeader
-        description: Contains the sales order header information
+        description: One row per order; distinct from the sales-line grain of Bronze and Silver.
+        columns:
+          - name: ModifiedDate
+            description: Latest business modification timestamp, interpreted as UTC; not an ingestion timestamp.
+            data_tests:
+              - not_null:
+                  config:
+                    tags: [source_timestamp]
+              - no_future_dates:
+                  config:
+                    tags: [source_timestamp]
+          - name: SalesOrderID
+            description: Order primary key.
+            data_tests: [not_null, unique]
+          - name: CustomerID
+            description: Customer responsible for the order.
+            data_tests:
+              - not_null
+              - relationships:
+                  to: source('adventureworks', 'Customer')
+                  field: CustomerID
+          - name: OrderDate
+            description: Order placement timestamp, interpreted as UTC.
+            data_tests: [not_null, no_future_dates]
+          - name: DueDate
+            description: Required delivery due date; future dates are permitted.
+            data_tests: [not_null]
+          - name: ShipDate
+            description: Actual shipping timestamp; NULL before shipping.
+            data_tests: [no_future_dates]
+          - name: Status
+            description: Order status code from 1 through 6.
+            data_tests:
+              - not_null
+              - accepted_values:
+                  values: [1, 2, 3, 4, 5, 6]
+                  quote: false
+          - name: OnlineOrderFlag
+            description: Zero for offline and one for online orders.
+            data_tests:
+              - not_null
+              - accepted_values:
+                  values: [0, 1]
+                  quote: false
+          - name: SalesOrderNumber
+            description: Business order number, repeated for each line after joining details.
+          - name: PurchaseOrderNumber
+            description: Optional purchase order number supplied by the customer.
+          - name: SalesPersonID
+            description: Optional salesperson identifier passed through to Bronze and Silver.
+          - name: TerritoryID
+            description: Optional territory identifier passed through to Bronze and Silver.
       - name: SalesOrderDetail
-        description: Contains the sales order detail line items
+        description: One sales line per (SalesOrderID, SalesOrderDetailID).
+        data_tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns: [SalesOrderID, SalesOrderDetailID]
+        columns:
+          - name: ModifiedDate
+            description: Business modification timestamp, interpreted as UTC; separate from the order date.
+            data_tests:
+              - not_null:
+                  config:
+                    tags: [source_timestamp]
+              - no_future_dates:
+                  config:
+                    tags: [source_timestamp]
+          - name: SalesOrderID
+            description: Parent order key.
+            data_tests:
+              - not_null
+              - relationships:
+                  to: source('adventureworks', 'SalesOrderHeader')
+                  field: SalesOrderID
+          - name: SalesOrderDetailID
+            description: Order line identifier, paired with SalesOrderID for the source key.
+            data_tests: [not_null]
+          - name: ProductID
+            description: Product on the order line.
+            data_tests:
+              - not_null
+              - relationships:
+                  to: source('adventureworks_production', 'Product')
+                  field: ProductID
+          - name: OrderQty
+            description: Units on a line; Bronze requires a strictly positive quantity before Silver filtering.
+          - name: UnitPrice
+            description: Unit price before discount; zero is permitted by the Bronze and Silver contracts.
+          - name: UnitPriceDiscount
+            description: Fractional discount; Bronze and Silver require values from 0 through 1 inclusive.
+          - name: LineTotal
+            description: Net line revenue excluding tax and freight; arithmetic is checked in Bronze and Silver with 0.01 tolerance.
       - name: Customer
-        description: Contains customer information
+        description: One row per customer; person and store links are optional.
+        columns:
+          - name: ModifiedDate
+            description: Business modification timestamp, interpreted as UTC; not an ingestion timestamp.
+            data_tests:
+              - not_null:
+                  config:
+                    tags: [source_timestamp]
+              - no_future_dates:
+                  config:
+                    tags: [source_timestamp]
+          - name: CustomerID
+            description: Customer primary key.
+            data_tests: [not_null, unique]
+          - name: PersonID
+            description: Optional person link; store customers may have no person.
+            data_tests:
+              - relationships:
+                  to: source('adventureworks_person', 'Person')
+                  field: BusinessEntityID
+          - name: StoreID
+            description: Optional store identifier; a customer can have no linked person.
+          - name: TerritoryID
+            description: Optional customer territory identifier used by the customer metrics model.
+          - name: AccountNumber
+            description: Customer account number, exposed as name only in the standalone brnz_example model.
 
   - name: adventureworks_production
+    description: >-
+      Active Product and ProductSubcategory inputs. Freshness uses business
+      ModifiedDate in UTC, not ingestion time; a quiet catalog or historical
+      sample can breach the default 24/48-hour demo thresholds. There is no
+      ProductCategory lookup in the current models.
     database: AdventureWorks2014
     schema: Production
+    loaded_at_field: "[ModifiedDate]"
+    freshness:
+      warn_after:
+        count: "{{ var('source_freshness_warn_hours', 24) | int }}"
+        period: hour
+      error_after:
+        count: "{{ var('source_freshness_error_hours', 48) | int }}"
+        period: hour
     tables:
       - name: Product
-        description: Contains product information
+        description: One row per product, including unsold and uncategorized products.
+        columns:
+          - name: ModifiedDate
+            description: Business modification timestamp, interpreted as UTC; a quiet catalog can legitimately be old.
+            data_tests:
+              - not_null:
+                  config:
+                    tags: [source_timestamp]
+              - no_future_dates:
+                  config:
+                    tags: [source_timestamp]
+          - name: ProductID
+            description: Product primary key.
+            data_tests: [not_null, unique]
+          - name: ProductSubcategoryID
+            description: Optional subcategory link.
+            data_tests:
+              - relationships:
+                  to: source('adventureworks_production', 'ProductSubcategory')
+                  field: ProductSubcategoryID
+          - name: Name
+            description: Product name, renamed ProductName in Bronze and product_name in Silver.
+          - name: ProductNumber
+            description: Business product identifier; Bronze and Silver require unique non-NULL values.
+          - name: MakeFlag
+            description: Zero for purchased products and one for products manufactured in-house.
+          - name: FinishedGoodsFlag
+            description: Zero for components and one for salable finished goods.
+          - name: Color
+            description: Optional product color; Silver substitutes N/A for NULL.
+          - name: SafetyStockLevel
+            description: Source minimum inventory threshold, retained in Bronze.
+          - name: ReorderPoint
+            description: Source inventory replenishment threshold, retained in Bronze.
+          - name: StandardCost
+            description: Current unit cost; Gold profit estimates use this value rather than historical cost at sale time.
+          - name: ListPrice
+            description: Current list price; zero is valid and actual sales prices come from order details.
+          - name: Size
+            description: Optional size label; Silver substitutes N/A for NULL.
+          - name: SizeUnitMeasureCode
+            description: Optional unit code for Size, retained in Bronze.
+          - name: WeightUnitMeasureCode
+            description: Optional unit code for Weight, retained in Bronze; the models do not convert units.
+          - name: Weight
+            description: Optional nonnegative product weight; Silver substitutes zero for NULL.
+          - name: DaysToManufacture
+            description: Source number of manufacturing days, retained in Bronze.
+          - name: ProductLine
+            description: Optional product line code, passed through without recoding.
+          - name: Class
+            description: Optional product class code, passed through without recoding.
+          - name: Style
+            description: Optional product style code, passed through without recoding.
+          - name: ProductModelID
+            description: Optional product model identifier, retained in Bronze without a lookup.
+          - name: SellStartDate
+            description: Selling start date; a planned future date is valid.
+          - name: SellEndDate
+            description: Optional selling end date; a future date is valid.
+          - name: DiscontinuedDate
+            description: Optional discontinuation date; its presence determines Silver is_discontinued.
       - name: ProductSubcategory
-        description: Contains product subcategory information
+        description: One row per product subcategory.
+        columns:
+          - name: ModifiedDate
+            description: Business modification timestamp, interpreted as UTC; a quiet catalog can legitimately be old.
+            data_tests:
+              - not_null:
+                  config:
+                    tags: [source_timestamp]
+              - no_future_dates:
+                  config:
+                    tags: [source_timestamp]
+          - name: ProductSubcategoryID
+            description: Subcategory primary key.
+            data_tests: [not_null, unique]
+          - name: Name
+            description: Subcategory label; the left join can yield NULL and Silver then supplies Uncategorized.
+          - name: ProductCategoryID
+            description: Parent category identifier passed through to the product models; no category-name lookup is performed.
 
   - name: adventureworks_person
+    description: >-
+      Active Person input used for optional customer attributes. ModifiedDate
+      freshness measures business updates in UTC with default 24/48-hour demo
+      thresholds; historical staleness is separate from key or value validity.
     database: AdventureWorks2014
     schema: Person
+    loaded_at_field: "[ModifiedDate]"
+    freshness:
+      warn_after:
+        count: "{{ var('source_freshness_warn_hours', 24) | int }}"
+        period: hour
+      error_after:
+        count: "{{ var('source_freshness_error_hours', 48) | int }}"
+        period: hour
     tables:
       - name: Person
-        description: Contains person information 
+        description: One row per person; only some people are customers.
+        columns:
+          - name: ModifiedDate
+            description: Business modification timestamp, interpreted as UTC; not an ingestion timestamp.
+            data_tests:
+              - not_null:
+                  config:
+                    tags: [source_timestamp]
+              - no_future_dates:
+                  config:
+                    tags: [source_timestamp]
+          - name: BusinessEntityID
+            description: Person primary key.
+            data_tests: [not_null, unique]
+          - name: FirstName
+            description: Person first name; a missing customer-person join yields NULL in Bronze and Unknown in Silver.
+          - name: LastName
+            description: Person last name; Silver substitutes Unknown only for NULL and does not trim or normalize case.
+          - name: EmailPromotion
+            description: Person email preference code.
+            data_tests:
+              - not_null
+              - accepted_values:
+                  values: [0, 1, 2]
+                  quote: false

@@ -1,6 +1,4 @@
-apache-airflow-providers-microsoft-mssql==3.5.0
-apache-airflow-providers-postgres==5.6.0
-apache-airflow-providers-ssh==3.7.1
-python-dotenv==1.0.0
-psycopg2-binary==2.9.9
-pyodbc==4.0.39 
+# Runtime contract: supplied by apache/airflow:2.7.1-python3.9.
+# The image already includes the PostgreSQL driver used by LocalExecutor.
+# dbt and Great Expectations run in separate, independently pinned images.
+apache-airflow==2.7.1

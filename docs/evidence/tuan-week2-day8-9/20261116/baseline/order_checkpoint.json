@@ -1,0 +1,202 @@
+{
+  "checkpoint": "order_checkpoint",
+  "checks": [
+    {
+      "rule_id": "order_columns",
+      "success": true
+    },
+    {
+      "observed_value": 121317,
+      "rule_id": "order_nonempty",
+      "success": true
+    },
+    {
+      "element_count": 121317,
+      "missing_count": 0,
+      "rule_id": "order_key_unique",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_sales_order_id_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_order_detail_id_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_order_date_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "missing_count": 0,
+      "rule_id": "order_order_date_not_future",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_due_date_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_status_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "missing_count": 0,
+      "rule_id": "order_status_allowed",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_order_channel_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "missing_count": 0,
+      "rule_id": "order_channel_allowed",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_sales_order_number_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_customer_id_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_product_id_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_order_qty_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "missing_count": 0,
+      "rule_id": "order_qty_positive",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_unit_price_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "missing_count": 0,
+      "rule_id": "order_unit_price_nonnegative",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_unit_price_discount_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "missing_count": 0,
+      "rule_id": "order_discount_range",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_line_total_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "missing_count": 0,
+      "rule_id": "order_line_total_nonnegative",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_gross_amount_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "missing_count": 0,
+      "rule_id": "order_gross_amount_nonnegative",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_effective_unit_price_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "missing_count": 0,
+      "rule_id": "order_effective_unit_price_nonnegative",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "rule_id": "order_has_discount_not_null",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "missing_count": 0,
+      "rule_id": "order_has_discount_allowed",
+      "success": true,
+      "unexpected_count": 0
+    },
+    {
+      "element_count": 121317,
+      "missing_count": 0,
+      "rule_id": "order_ship_date_not_future",
+      "success": true,
+      "unexpected_count": 0
+    }
+  ],
+  "statistics": {
+    "evaluated_expectations": 30,
+    "success_percent": 100.0,
+    "successful_expectations": 30,
+    "unsuccessful_expectations": 0
+  },
+  "success": true,
+  "suite": "order_suite"
+}
