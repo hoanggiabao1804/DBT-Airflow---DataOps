@@ -1,3 +1,0 @@
-[2026-11-19T08:30:38.293+0000] Service dbt: running (f71e7cffc78a)
-[2026-11-19T08:30:38.304+0000] Service ge-worker: expected 1 running container, found 0
-[2026-11-19T08:30:38.304+0000] Command exited with return code 1

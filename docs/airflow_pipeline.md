@@ -1,124 +1,262 @@
-# Airflow pipeline `dbt_transform`
+# Tầng orchestration và giám sát (Airflow)
 
-Tài liệu vận hành chính cho tầng orchestration (người phụ trách: Thịnh). Phần
-kiểm thử chất lượng bên trong các task (dbt tests, GX checkpoints, bằng chứng) do
-Tuân phụ trách: xem [tuan_week3_day11_12.md](tuan_week3_day11_12.md).
+Tài liệu này mô tả cách pipeline dữ liệu được điều phối bằng Apache Airflow, cách hệ thống xử lý
+lỗi, ghi nhận và cảnh báo, cùng các kịch bản lỗi đã được kiểm thử. Phần này đáp ứng các yêu cầu
+của mục _Airflow Orchestration_ trong đề bài: DAG chạy dbt đúng thứ tự, task dependencies,
+lịch chạy, xử lý lỗi và retry, kiểm tra chất lượng dữ liệu trong pipeline và gửi thông báo khi
+thất bại. Ngoài ra phần giám sát và health check hỗ trợ các mục _monitoring_, _runbook_ và
+_post-deployment health checks_ của phần CI/CD.
 
-## Luồng xử lý
+## 1. Tổng quan
+
+Hệ thống gồm bốn DAG:
+
+| DAG                     | Lịch                           | Vai trò                                                                          |
+| ----------------------- | ------------------------------ | -------------------------------------------------------------------------------- |
+| `dbt_transform`         | 06:00 hằng ngày (giờ Việt Nam) | Pipeline chính: build Bronze → Silver → Gold, kiểm tra chất lượng, sinh tài liệu |
+| `ge_data_quality`       | Phút 30, mỗi 6 giờ             | Kiểm tra lại chất lượng dữ liệu Silver giữa các lần build                        |
+| `dataops_monitoring`    | Mỗi 30 phút                    | Giám sát sức khỏe toàn hệ thống và gửi cảnh báo khi trạng thái thay đổi          |
+| `dataops_timeout_drill` | Chỉ chạy tay                   | Diễn tập tình huống task bị treo                                                 |
+
+Airflow không cài dbt hay Great Expectations (GX) bên trong. Mỗi task gọi
+`scripts/run_airflow_quality_task.py`, script này thực thi lệnh trong container `dbt` hoặc
+`ge-worker` bằng `docker exec`. Nhờ vậy môi trường của từng công cụ được tách biệt, còn Airflow
+chỉ đảm nhận việc điều phối. Định nghĩa test nằm ở `dbt/models/*/schema.yml` và `dbt/tests/`,
+expectation GX ở `great_expectations/expectations/`.
+
+## 2. DAG `dbt_transform`
 
 ```text
 check_runtime → dbt_deps → dbt_run → dbt_test → ge_validate → dbt_docs
 ```
 
-| Task | Làm gì | Retries | Timeout |
-| --- | --- | ---: | ---: |
-| `check_runtime` | Có đúng 1 container `dbt` và 1 `ge-worker` đang chạy; `dbt debug` đăng nhập được SQL Server | 2 (30 s) | 3 phút |
-| `dbt_deps` | Cài package dbt (`dbt_utils`) — cần mạng | 3 | 10 phút |
-| `dbt_run` | Build 10 models Bronze → Silver → Gold | 2 | 30 phút |
-| `dbt_test` | Toàn bộ schema/generic/singular tests | 2 | 20 phút |
-| `ge_validate` | 2 checkpoint GX (customer, order) trên schema Silver | 1 (chỉ lỗi thực thi; expectation fail = fail ngay) | 20 phút |
-| `dbt_docs` | `dbt docs generate` — chỉ chạy khi mọi kiểm tra chất lượng đạt | 1 | 10 phút |
+| Task            | Chức năng                                                                                |            Số lần retry | Timeout |
+| --------------- | ---------------------------------------------------------------------------------------- | ----------------------: | ------: |
+| `check_runtime` | Xác nhận container `dbt` và `ge-worker` đang chạy, `dbt debug` đăng nhập được SQL Server |                       2 |  3 phút |
+| `dbt_deps`      | Cài package dbt (`dbt_utils`), cần kết nối mạng                                          |                       3 | 10 phút |
+| `dbt_run`       | Build 10 model Bronze → Silver → Gold                                                    |                       2 | 30 phút |
+| `dbt_test`      | Chạy toàn bộ 202 schema/generic/singular test                                            |                       2 | 20 phút |
+| `ge_validate`   | Chạy 2 checkpoint GX (customer, order) với 40 expectation trên Silver                    | 1, chỉ cho lỗi thực thi | 20 phút |
+| `dbt_docs`      | Sinh tài liệu dbt                                                                        |                       1 | 10 phút |
 
-Mọi cạnh là `all_success`: một task fail thì mọi task phía sau thành
-`upstream_failed`. Không có nhánh "bỏ qua lỗi". Exit 1 (dữ liệu sai) và exit 2 (lỗi
-thực thi) của runner đều làm task fail.
+Mọi phụ thuộc giữa các task đều là `all_success`: một task thất bại thì toàn bộ task phía sau
+chuyển sang `upstream_failed`. Vì vậy `dbt_test` và `ge_validate` đóng vai trò **cổng chặn chất
+lượng**: dữ liệu không đạt kiểm tra thì tài liệu không được sinh ra.
 
-### Vì sao có `check_runtime`?
-
-Trước đây nếu container `dbt` chết hoặc SQL Server sập, lỗi chỉ lộ ra trong
-`dbt_deps`/`dbt_run` dưới dạng lỗi Docker/ODBC khó đọc. `check_runtime` kiểm tra
-trước và in thông báo rõ ràng:
+Task `check_runtime` (`scripts/check_runtime.sh`) được thêm vào đầu pipeline để **phát hiện lỗi
+hạ tầng sớm**. Nếu không có task này, khi container hoặc SQL Server ngừng hoạt động, lỗi chỉ lộ ra
+ở các bước sau dưới dạng lỗi Docker/ODBC khó đọc. Với `check_runtime`, pipeline dừng ngay sau vài
+giây kèm thông báo rõ ràng, ví dụ:
 
 ```text
 Service ge-worker: expected 1 running container, found 0
 dbt debug: FAILED or >30 s (target dev) - SQL Server down or profile invalid
 ```
 
-Script: `scripts/check_runtime.sh` (dùng chung cho `dbt_transform` và `ge_data_quality`).
+Thời gian chạy toàn bộ DAG khi bình thường khoảng 45 giây.
 
-Đã kiểm chứng cả hai trường hợp: [ge-worker dừng](evidence/thinh-week1-day3-4/20261119/check_runtime_ge_worker_down.txt),
-[SQL Server dừng](evidence/thinh-week1-day3-4/20261119/check_runtime_sqlserver_down.txt).
+## 3. Lịch chạy
 
-## Retry và timeout
+- Lịch mặc định `0 6 * * *` với timezone `Asia/Ho_Chi_Minh`, tức 06:00 giờ Việt Nam (23:00 UTC
+  ngày hôm trước). Airflow lưu và hiển thị thời gian theo UTC.
+- `catchup=False`: AdventureWorks là dữ liệu lịch sử cố định nên hệ thống không chạy bù các ngày
+  đã lỡ, chỉ chạy khoảng thời gian gần nhất.
+- `max_active_runs=1`: tại mỗi thời điểm chỉ có một lần chạy, tránh hai tiến trình cùng ghi vào
+  một bảng.
+- `is_paused_upon_creation=True`: DAG mới triển khai ở trạng thái tạm dừng cho đến khi được bật,
+  để không tự chạy trước khi được kiểm tra.
+- Lịch được cấu hình qua biến môi trường `DATAOPS_SCHEDULE` (giá trị `manual` để chỉ chạy tay),
+  không cần sửa code khi đổi môi trường.
 
-- `retry_exponential_backoff=True`, `retry_delay=1 phút`, `max_retry_delay=10 phút`:
-  lần thử lại cách nhau khoảng 1 → 2 → 4 phút (Airflow cộng thêm jitter). Lỗi tạm
-  thời (SQL Server khởi động lại, mất mạng ngắn) có thời gian tự phục hồi.
-- Lỗi **dữ liệu** (dbt test fail, GX fail) không tự hết khi retry. Retries ở `dbt_test`
-  và `ge_validate` để chống lỗi hạ tầng, không phải để "thử may". Từ ngày 13, `ge_validate` dùng
-  `QualityStepOperator`: exit 1 (expectation fail) fail ngay không retry; exit 2 mới retry.
-- Khi Airflow hủy task (timeout/clear/mark failed), runner dừng luôn tiến trình dbt/GX bên trong
-  container (`task_summary.json`: `status: killed`).
-- `execution_timeout` cho từng task ≈ 3–5 lần thời gian thực tế (cả DAG ~45 giây trên máy
-  dev) nhưng tối thiểu vài phút: timeout nghĩa là **treo**, không phải **chậm**.
-- `dagrun_timeout=2h`: một run treo không giữ mãi slot duy nhất (`max_active_runs=1`).
-- Mỗi attempt có thư mục bằng chứng riêng (`try-<n>-<uuid>`), retry không ghi đè bằng
-  chứng của lần trước.
+## 4. Xử lý lỗi
 
-## Lịch chạy
+Hệ thống phân biệt hai loại lỗi và xử lý khác nhau.
 
-| Biến môi trường (đặt cho **cả** webserver và scheduler) | Mặc định | Ý nghĩa |
-| --- | --- | --- |
-| `DATAOPS_SCHEDULE` | `0 6 * * *` | Cron/preset Airflow. `manual`/`none`/`off` = chỉ chạy khi trigger tay |
-| `DATAOPS_DBT_TARGET` | `dev` | Target trong `dbt/profiles.yml` |
-| `DATAOPS_GE_SCHEMA` | `silver` | Schema GX kiểm tra |
+**Lỗi tạm thời** (mất kết nối mạng, SQL Server khởi động lại, Docker bận) có thể tự hết sau một
+thời gian. Các task được retry với **exponential backoff**: khoảng chờ tăng dần 1 → 2 → 4 phút,
+tối đa 10 phút. Hệ thống có thời gian hồi phục mà không bị gọi liên tục khi đang quá tải. Số lần
+retry khác nhau theo task: `dbt_deps` phụ thuộc mạng nên được retry nhiều nhất.
 
-- Timezone của DAG: `Asia/Ho_Chi_Minh`, nên `0 6 * * *` là **06:00 giờ Việt Nam**
-  (23:00 UTC hôm trước). Airflow UI mặc định hiển thị UTC.
-- `catchup=False`: dataset AdventureWorks là dữ liệu lịch sử, không backfill các ngày đã
-  lỡ. Khi bật DAG lần đầu Airflow chỉ tạo **một** run cho khoảng gần nhất.
-- `is_paused_upon_creation=True`: DAG mới luôn ở trạng thái tạm dừng cho đến khi có người
-  bật. Khi Bảo test deploy/rollback, hãy **pause** DAG để tránh hai tiến trình cùng ghi bảng.
+**Lỗi dữ liệu** (expectation GX không đạt) cho cùng một kết quả dù chạy lại bao nhiêu lần.
+`ge_validate` dùng `QualityStepOperator` (`airflow/dags/utils/operators.py`): khi GX trả exit
+code 1, task thất bại ngay mà không retry. Kết quả đo được: thời gian một lần chạy có dữ liệu sai
+giảm từ khoảng 2 phút 10 giây xuống 16 giây, và chỉ có một cảnh báo thay vì nhiều cảnh báo lặp.
+Các bước dbt vẫn được retry vì dbt trả cùng exit code 1 cho cả lỗi SQL và lỗi mất kết nối, nên
+không thể phân biệt hai trường hợp.
 
-```bash
-$DC exec -T airflow-scheduler airflow dags pause dbt_transform
-$DC exec -T airflow-scheduler airflow dags unpause dbt_transform
+**Timeout** có hai mức:
+
+- `execution_timeout` theo từng task, đặt lớn hơn nhiều lần thời gian thực tế. Khi timeout xảy ra
+  thì task thực sự bị treo, không phải chỉ chạy chậm.
+- `dagrun_timeout=2h` cho cả lần chạy. Do chỉ cho phép một lần chạy tại một thời điểm, giới hạn
+  này đảm bảo một lần chạy bị treo không chặn các lần chạy theo lịch sau đó.
+
+**Dọn tiến trình khi task bị hủy.** Khi Airflow hủy một task (timeout, clear, mark failed), tín
+hiệu SIGTERM chỉ tới tiến trình runner trong container Airflow. Tiến trình dbt/GX thật sự chạy
+trong container khác và có thể tiếp tục chạy ngầm, gây xung đột với lần retry sau. Runner gắn một
+mã định danh riêng cho mỗi lần chạy vào tiến trình trong container. Khi nhận SIGTERM, runner tìm
+và dừng đúng các tiến trình mang mã đó, rồi ghi `status: killed` vào `task_summary.json`.
+
+## 5. Logging và metrics
+
+Mọi task được gắn callback (`airflow/dags/utils/callbacks.py`), Airflow tự gọi các callback này
+khi task bắt đầu, thành công, retry hoặc thất bại và khi DAG kết thúc. Mỗi sự kiện tạo ra hai đầu
+ra:
+
+- Một dòng log có cấu trúc `DATAOPS_EVENT {...}` dạng JSON trong log của task, đọc được trên
+  Airflow UI.
+- Một bản ghi trong `airflow/logs/dataops_metrics/task_metrics.jsonl`, gồm thời gian chạy, lần
+  thử, trạng thái. Monitoring DAG và health check đọc file này để tính tỉ lệ thành công và thời
+  gian chạy.
+
+Các nguyên tắc thiết kế:
+
+- Code giám sát không bao giờ làm thay đổi kết quả pipeline. Mọi callback được bọc để nếu có lỗi
+  (ví dụ đĩa đầy) thì chỉ ghi cảnh báo, không đánh dấu một task thành công thành thất bại.
+- Các bản ghi được ghi nối tiếp bằng một thao tác ghi đơn, nên nhiều task ghi đồng thời không bị
+  trộn dòng.
+- Tỉ lệ thành công được tính bằng `task_success / (task_success + task_failure)`. Lần retry là
+  bước trung gian nên không tính vào mẫu số.
+- Hai lỗi của Airflow 2.7 đã được xử lý và có unit test: `try_number` trong callback bị lệch một
+  đơn vị, và DAG callback nhận thông tin của task cuối cùng thay vì của cả DAG.
+
+Phần logging, alerting và monitoring có 28 unit test (`airflow/tests/`), chạy được mà không cần
+Airflow nhờ dùng đối tượng giả lập thay cho context của Airflow.
+
+## 6. Cảnh báo (alert)
+
+`airflow/dags/utils/alerting.py` gửi cảnh báo tới ba kênh:
+
+| Kênh              | Điều kiện                                      | Ghi chú                                                                    |
+| ----------------- | ---------------------------------------------- | -------------------------------------------------------------------------- |
+| File log cảnh báo | Luôn bật                                       | `airflow/logs/dataops_alerts/alerts.jsonl`, hoạt động cả khi không có mạng |
+| Webhook           | Có biến `DATAOPS_ALERT_WEBHOOK_URL`            | Hỗ trợ định dạng Slack, Discord, Teams                                     |
+| Email             | Có biến `DATAOPS_ALERT_EMAIL` và cấu hình SMTP | Dùng cơ chế email của Airflow                                              |
+
+Các sự kiện tạo cảnh báo:
+
+| Sự kiện                                                                | Mức độ                                        |
+| ---------------------------------------------------------------------- | --------------------------------------------- |
+| Task thất bại nhưng còn lượt retry                                     | warning                                       |
+| Task thất bại hẳn                                                      | critical                                      |
+| DAG thất bại vì lý do khác task thất bại, ví dụ vượt `dagrun_timeout`  | critical                                      |
+| `dbt_docs` hoàn thành trễ hơn 1 giờ so với lịch (SLA)                  | warning                                       |
+| Sức khỏe hệ thống chuyển sang xấu / sự cố kéo dài quá 6 giờ / phục hồi | critical / warning / info                     |
+| Kiểm tra GX thất bại                                                   | critical, kèm số expectation đạt và không đạt |
+
+Mỗi cảnh báo ghi rõ mức độ, DAG, task, lần chạy, lần thử, đường dẫn log và đường dẫn runbook.
+Việc gửi cảnh báo thất bại không ảnh hưởng đến trạng thái pipeline. URL webhook được xem là bí mật:
+chỉ đọc từ biến môi trường, không ghi vào log hay nội dung cảnh báo. Khi trình diễn không có Slack,
+nhóm dùng `scripts/alert_webhook_receiver.py`, một web server nhỏ đóng vai Slack để nhận và ghi
+lại cảnh báo.
+
+## 7. Monitoring DAG `dataops_monitoring`
+
+```text
+check_services ─┐
+check_pipeline ─┤
+check_metrics  ─┼─> publish_report
+check_disk     ─┘
 ```
 
-## Chạy thủ công và đọc kết quả
+| Kiểm tra | Critical khi                                                                                           | Warning khi                                                      |
+| -------- | ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| services | Một trong 6 service không chạy hoặc `unhealthy`                                                        | —                                                                |
+| pipeline | Lần chạy `dbt_transform` gần nhất thất bại, hoặc DAG đang có lịch mà lần thành công cuối đã quá 26 giờ | DAG tạm dừng và lần thành công cuối quá cũ                       |
+| metrics  | —                                                                                                      | Tỉ lệ task thành công của `dbt_transform` trong 24 giờ dưới 80 % |
+| disk     | Dưới 2 GB trống                                                                                        | Dưới 5 GB trống                                                  |
 
-```bash
-RUN_ID=manual-$(date -u +%Y%m%dT%H%M%SZ)
-$DC exec -T airflow-scheduler airflow dags trigger dbt_transform --run-id "$RUN_ID"
-$DC exec -T airflow-scheduler airflow tasks states-for-dag-run dbt_transform "$RUN_ID"
-$DC exec -T airflow-scheduler python /opt/airflow/scripts/airflow_run_report.py dbt_transform "$RUN_ID"
+Callback chỉ hoạt động khi có task chạy. Nếu scheduler hoặc một service ngừng hoạt động thì sẽ
+không có lần chạy nào và cũng không có callback nào được gọi. Monitoring DAG chủ động kiểm tra định
+kỳ để phát hiện cả những trường hợp này, và báo khi hệ thống phục hồi.
+
+Để tránh gửi cảnh báo lặp lại, monitoring lưu trạng thái lần kiểm tra trước
+(`airflow/logs/dataops_monitoring/latest.json`) và chỉ gửi cảnh báo khi trạng thái **thay đổi**:
+từ bình thường sang lỗi, hoặc từ lỗi sang bình thường (cảnh báo `recovered`). Nếu sự cố kéo dài,
+cảnh báo được nhắc lại sau mỗi 6 giờ. Các ngưỡng được cấu hình qua biến môi trường.
+
+## 8. DAG chất lượng dữ liệu `ge_data_quality`
+
+```text
+wait_for_transform_idle → check_runtime → ge_validate → publish_quality_report
 ```
 
-Log: UI → Grid → task → *Logs*, hoặc
-`airflow/logs/dag_id=dbt_transform/run_id=<run>/task_id=<task>/attempt=<n>.log`.
-Bằng chứng dbt/GX: `great_expectations/uncommitted/airflow/<run-hash>/<task>/try-<n>-<uuid>/`.
+`dbt_transform` kiểm tra dữ liệu ngay sau khi build. DAG này trả lời một câu hỏi khác: dữ liệu ở
+thời điểm hiện tại có còn hợp lệ không.
 
-## Logging và metrics
+- `wait_for_transform_idle` chờ cho đến khi `dbt_transform` không còn chạy, tránh kiểm tra đúng
+  lúc bảng Silver đang được ghi lại và báo lỗi sai.
+- `publish_quality_report` chạy bất kể `ge_validate` thành công hay thất bại
+  (`trigger_rule="all_done"`). Task này ghi metric cho từng checkpoint, gửi một cảnh báo chi tiết
+  khi có lỗi, rồi đánh dấu lần chạy thất bại để trạng thái trên UI phản ánh đúng chất lượng dữ liệu.
+- Tham số `schema` cho phép kiểm tra một schema khác `silver`. Tham số này được dùng cho diễn tập
+  với schema `dq_drill`, một bản sao Silver có cấy lỗi (`scripts/dq_drill.sh`), để dữ liệu thật
+  không bị ảnh hưởng.
 
-Mỗi task có callback (`airflow/dags/utils/callbacks.py`):
+## 9. Health check và xử lý sự cố
 
-- Task log có thêm dòng `DATAOPS_EVENT {...}` khi task bắt đầu, thành công, retry, fail.
-- `airflow/logs/dataops_metrics/task_metrics.jsonl` nhận một dòng JSON cho mỗi
-  `task_success | task_retry | task_failure | dag_success | dag_failure`.
+`scripts/health_check.py` kiểm tra toàn bộ hệ thống bằng một lệnh và trả exit code
+0 (bình thường), 1 (cảnh báo), 2 (nghiêm trọng). Nhờ đó cả người vận hành lẫn script tự động
+(cron, CI, bước kiểm tra sau deploy) đều dùng được kết quả.
 
-Chi tiết và cách đọc: [thinh_week2_day6_7.md](thinh_week2_day6_7.md).
+| Kiểm tra    | Nội dung                                                       | Mức khi lỗi                    |
+| ----------- | -------------------------------------------------------------- | ------------------------------ |
+| docker      | Docker daemon truy cập được                                    | FAIL                           |
+| services    | 6 service Compose đang chạy, không `unhealthy`                 | FAIL                           |
+| sqlserver   | Database `AdventureWorks2014` ở trạng thái `ONLINE`            | FAIL                           |
+| dbt         | `dbt debug` trong container dbt thành công                     | FAIL                           |
+| airflow     | Metadata DB và heartbeat của scheduler                         | FAIL                           |
+| dag_imports | Không có DAG lỗi import                                        | FAIL                           |
+| last_run    | Lần chạy `dbt_transform` gần nhất không thất bại               | FAIL                           |
+| orphans     | Không có tiến trình dbt/GX chạy ngầm khi không có lần chạy nào | WARN                           |
+| monitoring  | Kết quả monitoring còn mới (dưới 1 giờ) và trạng thái của nó   | theo monitoring                |
+| alerts_24h  | Không còn cảnh báo critical chưa được đóng                     | WARN                           |
+| disk        | Dung lượng trống của ổ đĩa                                     | WARN dưới 5 GB, FAIL dưới 2 GB |
 
-## Alert và các DAG giám sát
+Mỗi kiểm tra lỗi đi kèm gợi ý cách xử lý. Quy trình xử lý chi tiết cho từng loại sự cố nằm trong
+[incident_runbook.md](incident_runbook.md). Sau mỗi sự cố, nhóm ghi báo cáo theo
+[incident_template.md](incident_template.md); một báo cáo mẫu từ diễn tập mất SQL Server nằm trong
+[incidents/](incidents/).
 
-| DAG | Lịch mặc định | Vai trò |
-| --- | --- | --- |
-| `dbt_transform` | `0 6 * * *` | pipeline chính; retry → warning, fail → critical, SLA 1 h cho `dbt_docs` |
-| `dataops_monitoring` | `*/30 * * * *` | services, pipeline freshness, success rate, disk; alert khi trạng thái đổi |
-| `ge_data_quality` | `30 */6 * * *` | GX re-validation Silver; alert critical khi expectation fail |
+## 10. Kiểm thử các kịch bản lỗi
 
-Alert luôn ghi vào `airflow/logs/dataops_alerts/alerts.jsonl`; webhook (Slack/Discord/Teams)
-và email là tùy chọn qua biến `DATAOPS_ALERT_*`. Chi tiết: [thinh_week2_day8_9.md](thinh_week2_day8_9.md).
+Các kịch bản dưới đây được tạo ra có chủ đích trên môi trường thật để kiểm chứng toàn bộ chuỗi
+phát hiện, cảnh báo và phục hồi.
 
-## Lịch sử thay đổi
+| #   | Kịch bản                     | Phát hiện bởi                             | Retry         | Cảnh báo                          | Phục hồi                                            |
+| --- | ---------------------------- | ----------------------------------------- | ------------- | --------------------------------- | --------------------------------------------------- |
+| 1   | Container `ge-worker` dừng   | `check_runtime`, monitoring, health check | Có, backoff   | warning, critical                 | Khởi động lại container, chạy lại task              |
+| 2   | SQL Server dừng              | `check_runtime`, monitoring, health check | Có, backoff   | warning, critical, recovered      | Retry tự chạy tiếp sau khi SQL Server hoạt động lại |
+| 3   | Dữ liệu sai                  | `ge_validate`                             | Không         | Một cảnh báo critical có chi tiết | Sửa dữ liệu hoặc model                              |
+| 4   | Task bị treo, vượt timeout   | Airflow `execution_timeout`               | Theo cấu hình | critical                          | Runner tự dừng tiến trình trong container           |
+| 5   | Tiến trình dbt chạy ngầm     | Health check (`orphans`)                  | —             | WARN                              | Theo runbook mục 2.5                                |
+| 6   | Hệ thống trở lại bình thường | monitoring                                | —             | info `recovered`                  | —                                                   |
 
-| Ngày | Nhánh | Thay đổi |
-| --- | --- | --- |
-| 19/11/2026 | `feature/thinh-week1-day1-2` | Baseline: 5/5 task success, 41 s. Thêm `scripts/airflow_run_report.py` |
-| 19/11/2026 | `feature/thinh-week1-day3-4` | `check_runtime`, retries/timeout theo task, exponential backoff, `dagrun_timeout`, lịch 06:00 VN |
-| 19/11/2026 | `feature/thinh-week1-day5` | E2E `thinh-week1-day5-e2e-01`: 6/6 success, 42,7 s |
-| 19/11/2026 | `feature/thinh-week2-day6-7` | `utils/logging_utils.py`, `utils/callbacks.py`, metrics JSONL, unit tests |
-| 19/11/2026 | `feature/thinh-week2-day8-9` | `utils/alerting.py`, `dataops_monitoring`, `ge_data_quality`, SLA, webhook receiver |
-| 19/11/2026 | `feature/thinh-week2-day10` | Diễn tập alert: lỗi dữ liệu (`scripts/dq_drill.sh`) và mất SQL Server; pipeline tích hợp xanh |
-| 19/11/2026 | `feature/thinh-week3-day11-12` | `docs/incident_runbook.md`, `docs/incident_template.md`, `scripts/health_check.py` |
-| 19/11/2026 | `feature/thinh-week3-day13` | runner dọn tiến trình khi bị kill, `QualityStepOperator` (GX exit 1 không retry), `scripts/check_runtime.sh`, `dataops_timeout_drill`, `--resolve`, E2E cả nhóm |
-| 19/11/2026 | `feature/thinh-week3-day14` | `README.md`, `docs/architecture.md`, `docs/demo_guide.md` |
+Kết quả đo được trong lần kiểm thử cuối:
+
+| Kịch bản                                                   | Kết quả                                                                                                                                                                    |
+| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chạy bình thường                                           | `dbt_transform` 6/6 task thành công trong 45 giây; ghi đủ 7 bản ghi metrics                                                                                                |
+| Dữ liệu sai (25 + 40 + 15 dòng lỗi cấy vào bản sao Silver) | `ge_validate` thất bại ngay lần đầu, không retry; cảnh báo báo đúng customer 9/10, order 28/30 expectation đạt                                                             |
+| SQL Server dừng giữa lúc chạy                              | Health check báo CRITICAL ngay; cảnh báo đầu tiên sau 43 giây; sau khi SQL Server hoạt động lại, pipeline tự hoàn thành 6/6 nhờ retry; monitoring gửi cảnh báo `recovered` |
+| Task bị treo                                               | Task bị dừng sau 5 giây, runner dừng 2 tiến trình trong container, health check xác nhận không còn tiến trình chạy ngầm                                                    |
+
+Các bước tái hiện từng kịch bản khi trình diễn nằm trong [demo_guide.md](demo_guide.md), phần 4
+và 5.
+
+## 11. Cấu hình
+
+Toàn bộ cấu hình đọc từ biến môi trường của container Airflow, nên cùng một mã nguồn chạy được trên
+nhiều môi trường mà không cần sửa code.
+
+| Biến                           | Mặc định       | Ý nghĩa                                        |
+| ------------------------------ | -------------- | ---------------------------------------------- |
+| `DATAOPS_SCHEDULE`             | `0 6 * * *`    | Lịch `dbt_transform`; `manual` để chỉ chạy tay |
+| `DATAOPS_GE_SCHEDULE`          | `30 */6 * * *` | Lịch `ge_data_quality`                         |
+| `DATAOPS_MONITORING_SCHEDULE`  | `*/30 * * * *` | Lịch `dataops_monitoring`                      |
+| `DATAOPS_DBT_TARGET`           | `dev`          | Target dbt trong `dbt/profiles.yml`            |
+| `DATAOPS_GE_SCHEMA`            | `silver`       | Schema được GX kiểm tra                        |
+| `DATAOPS_ALERT_WEBHOOK_URL`    | (trống)        | Địa chỉ webhook Slack/Discord/Teams            |
+| `DATAOPS_ALERT_WEBHOOK_FORMAT` | `generic`      | Định dạng tin nhắn webhook                     |
+| `DATAOPS_ALERT_EMAIL`          | (trống)        | Địa chỉ nhận cảnh báo qua email                |
+| `DATAOPS_ALERT_ON_RETRY`       | `true`         | Gửi cảnh báo warning khi task retry            |

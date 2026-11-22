@@ -1,4 +1,0 @@
-[2026-11-19T09:16:52.583+0000] Running command: ['/bin/bash', '-c', 'bash /opt/***/scripts/check_runtime.sh ']
-[2026-11-19T09:16:52.614+0000] Service dbt: running (f71e7cffc78a)
-[2026-11-19T09:16:52.631+0000] Service ge-worker: running (bb88595660a8)
-[2026-11-19T09:16:55.094+0000] dbt debug: OK (target dev)

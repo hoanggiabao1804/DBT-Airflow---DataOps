@@ -71,5 +71,5 @@ Hai–ba câu: chuyện gì xảy ra, ảnh hưởng gì, đã xử lý thế n�
 ## Bằng chứng
 
 - Alert: `airflow/logs/dataops_alerts/alerts.jsonl` (các dòng liên quan)
-- Báo cáo run: `scripts/airflow_run_report.py <dag> <run_id>`
+- Trạng thái run: `airflow tasks states-for-dag-run <dag> <run_id>`
 - Health check: `python3 scripts/health_check.py --json`

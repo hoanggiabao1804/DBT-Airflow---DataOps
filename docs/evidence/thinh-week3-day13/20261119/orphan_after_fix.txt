@@ -1,4 +1,0 @@
-before kill: 1 dbt test process(es)
-after kill+3s: 0 dbt test process(es)
-runner output:
-dbt_test: killed, native exit None, final exit 143. Evidence: /opt/airflow/quality_evidence/airflow/a775500161b75dd6bf46/dbt_test/try-1-27e65791ac9545db86d21cba1735df2e

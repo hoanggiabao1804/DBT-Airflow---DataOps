@@ -115,9 +115,9 @@ $DC exec dbt sh -c 'for p in /proc/[0-9]*; do printf "%s " "${p#/proc/}"; tr "\0
 $DC exec dbt kill <pid>                         # dừng tiến trình mồ côi
 ```
 
-Sau đó mới clear/retry task. Từ ngày 13, runner tự dừng tiến trình trong container khi task bị
+Sau đó mới clear/retry task. Runner tự dừng tiến trình trong container khi task bị
 kill (`task_summary.json`: `status: killed`, `killed_container_processes`) — xem
-[thinh_week3_day13.md](thinh_week3_day13.md); các lệnh trên là phương án dự phòng khi runner bị
+[airflow_pipeline.md](airflow_pipeline.md#4-xử-lý-lỗi); các lệnh trên là phương án dự phòng khi runner bị
 `SIGKILL` (không kịp dọn).
 
 ### 2.6 Pipeline không chạy theo lịch
@@ -157,8 +157,8 @@ $AF dags unpause dbt_transform
 $AF dags trigger dbt_transform --run-id rollback-verify-$(date -u +%Y%m%dT%H%M%SZ)
 ```
 
-Chi tiết và giới hạn (rollback chỉ khôi phục phiên bản dbt, không restore database):
-[week3_deployment.md](week3_deployment.md) (Bảo).
+Giới hạn: rollback chỉ khôi phục phiên bản dbt, không restore database. Script:
+`scripts/rollback.sh {dev|staging|production} <release_dir> [--yes]`.
 
 ### 2.9 DAG không xuất hiện / lỗi import
 

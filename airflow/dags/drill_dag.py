@@ -2,8 +2,8 @@
 
 Manual only (no schedule), paused at creation; it does not modify any table.
 ``dbt_test_with_timeout`` runs the real ``dbt test`` step (normally ~9 s) with a
-5-second ``execution_timeout``. Expected outcome, verified in
-docs/thinh_week3_day13.md:
+5-second ``execution_timeout``. Expected outcome (scenario 4 in
+docs/airflow_pipeline.md):
 
 1. Airflow raises AirflowTaskTimeout and calls ``on_kill`` -> SIGTERM.
 2. The runner terminates the dbt process *inside* the dbt container

@@ -1,6 +1,0 @@
-airflow-scheduler|Up About a minute (healthy)
-airflow-webserver|Up 2 minutes (healthy)
-dbt|Up 4 minutes
-ge-worker|Up 2 minutes (healthy)
-postgres|Up 2 minutes (healthy)
-sqlserver|Up 4 minutes

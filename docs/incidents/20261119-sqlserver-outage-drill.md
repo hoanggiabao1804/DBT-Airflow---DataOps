@@ -1,7 +1,7 @@
 # Incident: SQL Server dừng trong lúc chạy `dbt_transform` (diễn tập)
 
-> Báo cáo mẫu điền từ [incident_template.md](../incident_template.md) cho diễn tập ngày 10
-> ([thinh_week2_day10.md](../thinh_week2_day10.md)). Lỗi được tạo có chủ đích bằng
+> Báo cáo mẫu điền từ [incident_template.md](../incident_template.md) cho diễn tập ngày 19/11/2026
+> (kịch bản 2 trong [airflow_pipeline.md](../airflow_pipeline.md#10-kiểm-thử-các-kịch-bản-lỗi)). Lỗi được tạo có chủ đích bằng
 > `docker compose stop sqlserver`; mọi thời điểm và số liệu lấy từ bằng chứng thật.
 
 | Trường | Giá trị |
@@ -32,21 +32,19 @@ SQL Server, pipeline chạy lại thành công và monitor gửi thông báo ph�
 
 ## Timeline (giờ VN)
 
-| Thời gian | Sự kiện | Nguồn bằng chứng |
-| --- | --- | --- |
-| 15:58:40 | SQL Server dừng; trigger `dbt_transform` | lệnh diễn tập |
-| 16:00:03 | Alert **warning** `Task retry: dbt_transform.check_runtime` (attempt 1/3) | `alerts.jsonl` |
-| 16:00:07 | Alert **critical** `DataOps health CRITICAL: services=sqlserver: not running` | `alerts.jsonl`, monitor run `scheduled__2026-11-19T08:30:00+00:00` |
-| 16:01:49 | Attempt 2/3 fail, alert warning | `infra_drill_check_runtime_log.txt` |
-| 16:04:52 | Attempt 3/3 fail → alert **critical** `Task failed: dbt_transform.check_runtime` | `alerts.jsonl` |
-| 16:05:14 | Monitor vẫn CRITICAL (services + pipeline) — không gửi lại (chống spam) | `monitor_during_outage_log.txt` |
-| 16:05:14 | Runbook 2.1: `docker compose start sqlserver` | lệnh |
-| 16:05:31 | `dbt debug` OK trở lại | |
-| 16:06:23 | `dbt_transform` `thinh-week2-day10-integrated-01` success 6/6 | `integrated_transform_run.json` |
-| 16:06:52 | `ge_data_quality` success 4/4 | `integrated_ge_run.json` |
-| 16:06:58 | Alert **info** `DataOps recovered: all checks OK` | `alerts.jsonl` |
-
-Bằng chứng: [evidence/thinh-week2-day10/20261119](../evidence/thinh-week2-day10/20261119/).
+| Thời gian | Sự kiện |
+| --- | --- |
+| 15:58:40 | SQL Server dừng; trigger `dbt_transform` |
+| 16:00:03 | Alert **warning** `Task retry: dbt_transform.check_runtime` (attempt 1/3) |
+| 16:00:07 | Alert **critical** `DataOps health CRITICAL: services=sqlserver: not running` |
+| 16:01:49 | Attempt 2/3 fail, alert warning |
+| 16:04:52 | Attempt 3/3 fail → alert **critical** `Task failed: dbt_transform.check_runtime` |
+| 16:05:14 | Monitor vẫn CRITICAL (services + pipeline) — không gửi lại (chống spam) |
+| 16:05:14 | Runbook 2.1: `docker compose start sqlserver` |
+| 16:05:31 | `dbt debug` OK trở lại |
+| 16:06:23 | `dbt_transform` `thinh-week2-day10-integrated-01` success 6/6 |
+| 16:06:52 | `ge_data_quality` success 4/4 |
+| 16:06:58 | Alert **info** `DataOps recovered: all checks OK` |
 
 ## Phát hiện và chẩn đoán
 

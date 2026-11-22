@@ -1,3 +1,0 @@
-GX status=failed exit=1 schema=dq_drill
-customer_checkpoint: 9/10 expectations passed
-order_checkpoint: 28/30 expectations passed

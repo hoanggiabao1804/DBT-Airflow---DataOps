@@ -1,3 +1,0 @@
-GX status=passed exit=0 schema=silver
-customer_checkpoint: 10/10 expectations passed
-order_checkpoint: 30/30 expectations passed
