@@ -6,8 +6,9 @@ hành theo các nguyên tắc DataOps: quản lý mã nguồn bằng Git, CI/CD 
 động, kiểm tra chất lượng dữ liệu bằng Great Expectations, giám sát, cảnh báo và quy trình xử lý sự
 cố.
 
-Hướng dẫn lab gốc của môn học được giữ nguyên ở [`1. README.md`](1.%20README.md) và
-[`0. NEW_COMPUTER_SETUP.md`](0.%20NEW_COMPUTER_SETUP.md).
+Danh mục tài liệu nộp bài (sơ đồ kiến trúc PDF/PNG, hướng dẫn cài đặt, tài liệu model,
+troubleshooting) nằm trong [docs/README.md](docs/README.md). Hướng dẫn lab gốc của môn học được
+giữ nguyên ở [`1. README.md`](1.%20README.md) và [`0. NEW_COMPUTER_SETUP.md`](0.%20NEW_COMPUTER_SETUP.md).
 
 ## 1. Đối chiếu với yêu cầu đề bài
 

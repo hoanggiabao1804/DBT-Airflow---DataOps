@@ -1,0 +1,272 @@
+{
+  "args": {
+    "cache_selected_only": false,
+    "defer": false,
+    "enable_legacy_logger": false,
+    "exclude": [],
+    "favor_state": false,
+    "indirect_selection": "eager",
+    "introspect": true,
+    "invocation_command": "dbt test --project-dir /tmp/tuan-dbt-test-contracts-3v46hvn_ --profiles-dir /tmp/tuan-dbt-test-contracts-3v46hvn_",
+    "log_file_max_bytes": 10485760,
+    "log_format": "default",
+    "log_format_file": "debug",
+    "log_level": "info",
+    "log_level_file": "debug",
+    "log_path": "/tmp/tuan-dbt-test-contracts-3v46hvn_/logs",
+    "macro_debugging": false,
+    "partial_parse": true,
+    "partial_parse_file_diff": true,
+    "populate_cache": true,
+    "print": true,
+    "printer_width": 80,
+    "profiles_dir": "/tmp/tuan-dbt-test-contracts-3v46hvn_",
+    "project_dir": "/tmp/tuan-dbt-test-contracts-3v46hvn_",
+    "quiet": false,
+    "require_explicit_package_overrides_for_builtin_materializations": true,
+    "require_resource_names_without_spaces": false,
+    "select": [],
+    "send_anonymous_usage_stats": false,
+    "show_resource_report": false,
+    "source_freshness_run_project_hooks": false,
+    "static_parser": true,
+    "strict_mode": false,
+    "target_path": "/tmp/tuan-dbt-test-contracts-3v46hvn_/target",
+    "use_colors": false,
+    "use_colors_file": false,
+    "vars": {},
+    "version_check": true,
+    "warn_error_options": {
+      "exclude": [],
+      "include": []
+    },
+    "which": "test",
+    "write_json": true
+  },
+  "elapsed_time": 0.9963254928588867,
+  "metadata": {
+    "dbt_schema_version": "https://schemas.getdbt.com/dbt/run-results/v6.json",
+    "dbt_version": "1.8.7",
+    "env": {},
+    "generated_at": "2026-11-19T13:09:19.551610Z",
+    "invocation_id": "22825410-050e-4498-b826-8c41a168778b"
+  },
+  "results": [
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Decimal arithmetic preserves sub-cent differences at the tolerance boundary.\n-- Missing inputs are left to separate not_null tests, not treated as zero.\nselect\n    \"quantity\",\n    \"unit price\",\n    \"discount rate\",\n    \"line total\"\nfrom \"AdventureWorks2014\".\"tuan_test_contracts_74b3533c321b4f3b9a336d0d5c811f4c\".\"contract_invalid\"\nwhere \"quantity\" is not null\n  and \"unit price\" is not null\n  and \"discount rate\" is not null\n  and \"line total\" is not null\n  and abs(\n      cast(\"line total\" as decimal(28, 8))\n      - cast(\n          cast(\"quantity\" as decimal(18, 6))\n          * cast(\"unit price\" as decimal(18, 6))\n          * (cast(1 as decimal(9, 6)) - cast(\"discount rate\" as decimal(9, 6)))\n          as decimal(28, 8)\n      )\n  ) > cast(0.01 as decimal(28, 8))\n\n",
+      "execution_time": 0.20276188850402832,
+      "failures": 3,
+      "message": "Got 3 results, configured to fail if != 0",
+      "relation_name": null,
+      "status": "fail",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-19T13:09:18.664593Z",
+          "name": "compile",
+          "started_at": "2026-11-19T13:09:18.629509Z"
+        },
+        {
+          "completed_at": "2026-11-19T13:09:18.829717Z",
+          "name": "execute",
+          "started_at": "2026-11-19T13:09:18.665600Z"
+        }
+      ],
+      "unique_id": "test.tuan_test_contracts.invalid_line_total.33365d8b1f"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"occurred at\"\nfrom \"AdventureWorks2014\".\"tuan_test_contracts_74b3533c321b4f3b9a336d0d5c811f4c\".\"contract_invalid\"\nwhere \"occurred at\" is not null\n  and \"occurred at\" > getutcdate()\n\n",
+      "execution_time": 0.08129167556762695,
+      "failures": 2,
+      "message": "Got 2 results, configured to fail if != 0",
+      "relation_name": null,
+      "status": "fail",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-19T13:09:18.865360Z",
+          "name": "compile",
+          "started_at": "2026-11-19T13:09:18.841985Z"
+        },
+        {
+          "completed_at": "2026-11-19T13:09:18.918262Z",
+          "name": "execute",
+          "started_at": "2026-11-19T13:09:18.866179Z"
+        }
+      ],
+      "unique_id": "test.tuan_test_contracts.invalid_no_future_dates.98c1b158ed"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- NULL is checked separately with not_null when the column is required.\nselect \"amount allowed\"\nfrom \"AdventureWorks2014\".\"tuan_test_contracts_74b3533c321b4f3b9a336d0d5c811f4c\".\"contract_invalid\"\nwhere \"amount allowed\" is not null\n  and \"amount allowed\" < 0\n\n",
+      "execution_time": 0.14966702461242676,
+      "failures": 2,
+      "message": "Got 2 results, configured to fail if != 0",
+      "relation_name": null,
+      "status": "fail",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-19T13:09:18.944353Z",
+          "name": "compile",
+          "started_at": "2026-11-19T13:09:18.929063Z"
+        },
+        {
+          "completed_at": "2026-11-19T13:09:19.074323Z",
+          "name": "execute",
+          "started_at": "2026-11-19T13:09:18.945224Z"
+        }
+      ],
+      "unique_id": "test.tuan_test_contracts.invalid_nonnegative.d96787237b"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- NULL is checked separately with not_null when the column is required.\nselect \"amount strict\"\nfrom \"AdventureWorks2014\".\"tuan_test_contracts_74b3533c321b4f3b9a336d0d5c811f4c\".\"contract_invalid\"\nwhere \"amount strict\" is not null\n  and \"amount strict\" <= 0\n\n",
+      "execution_time": 0.10634994506835938,
+      "failures": 3,
+      "message": "Got 3 results, configured to fail if != 0",
+      "relation_name": null,
+      "status": "fail",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-19T13:09:19.124769Z",
+          "name": "compile",
+          "started_at": "2026-11-19T13:09:19.094100Z"
+        },
+        {
+          "completed_at": "2026-11-19T13:09:19.186754Z",
+          "name": "execute",
+          "started_at": "2026-11-19T13:09:19.126043Z"
+        }
+      ],
+      "unique_id": "test.tuan_test_contracts.invalid_strict_positive.82f85cd458"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Decimal arithmetic preserves sub-cent differences at the tolerance boundary.\n-- Missing inputs are left to separate not_null tests, not treated as zero.\nselect\n    \"quantity\",\n    \"unit price\",\n    \"discount rate\",\n    \"line total\"\nfrom \"AdventureWorks2014\".\"tuan_test_contracts_74b3533c321b4f3b9a336d0d5c811f4c\".\"contract_valid\"\nwhere \"quantity\" is not null\n  and \"unit price\" is not null\n  and \"discount rate\" is not null\n  and \"line total\" is not null\n  and abs(\n      cast(\"line total\" as decimal(28, 8))\n      - cast(\n          cast(\"quantity\" as decimal(18, 6))\n          * cast(\"unit price\" as decimal(18, 6))\n          * (cast(1 as decimal(9, 6)) - cast(\"discount rate\" as decimal(9, 6)))\n          as decimal(28, 8)\n      )\n  ) > cast(0.01 as decimal(28, 8))\n\n",
+      "execution_time": 0.05720329284667969,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-19T13:09:19.200838Z",
+          "name": "compile",
+          "started_at": "2026-11-19T13:09:19.194005Z"
+        },
+        {
+          "completed_at": "2026-11-19T13:09:19.248197Z",
+          "name": "execute",
+          "started_at": "2026-11-19T13:09:19.201370Z"
+        }
+      ],
+      "unique_id": "test.tuan_test_contracts.valid_line_total.d0f588efb8"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- Compare timestamps, including the time of day. NULL uses a separate not_null.\nselect \"occurred at\"\nfrom \"AdventureWorks2014\".\"tuan_test_contracts_74b3533c321b4f3b9a336d0d5c811f4c\".\"contract_valid\"\nwhere \"occurred at\" is not null\n  and \"occurred at\" > getutcdate()\n\n",
+      "execution_time": 0.12154150009155273,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-19T13:09:19.262505Z",
+          "name": "compile",
+          "started_at": "2026-11-19T13:09:19.253300Z"
+        },
+        {
+          "completed_at": "2026-11-19T13:09:19.371178Z",
+          "name": "execute",
+          "started_at": "2026-11-19T13:09:19.262997Z"
+        }
+      ],
+      "unique_id": "test.tuan_test_contracts.valid_no_future_dates.6d8bb34dfd"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- NULL is checked separately with not_null when the column is required.\nselect \"amount allowed\"\nfrom \"AdventureWorks2014\".\"tuan_test_contracts_74b3533c321b4f3b9a336d0d5c811f4c\".\"contract_valid\"\nwhere \"amount allowed\" is not null\n  and \"amount allowed\" < 0\n\n",
+      "execution_time": 0.05287003517150879,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-19T13:09:19.389673Z",
+          "name": "compile",
+          "started_at": "2026-11-19T13:09:19.379823Z"
+        },
+        {
+          "completed_at": "2026-11-19T13:09:19.429499Z",
+          "name": "execute",
+          "started_at": "2026-11-19T13:09:19.390587Z"
+        }
+      ],
+      "unique_id": "test.tuan_test_contracts.valid_nonnegative.48c5b68dde"
+    },
+    {
+      "adapter_response": {
+        "_message": "OK",
+        "rows_affected": -1
+      },
+      "compiled": true,
+      "compiled_code": "\n\n-- NULL is checked separately with not_null when the column is required.\nselect \"amount strict\"\nfrom \"AdventureWorks2014\".\"tuan_test_contracts_74b3533c321b4f3b9a336d0d5c811f4c\".\"contract_valid\"\nwhere \"amount strict\" is not null\n  and \"amount strict\" <= 0\n\n",
+      "execution_time": 0.10564851760864258,
+      "failures": 0,
+      "message": null,
+      "relation_name": null,
+      "status": "pass",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2026-11-19T13:09:19.446419Z",
+          "name": "compile",
+          "started_at": "2026-11-19T13:09:19.434756Z"
+        },
+        {
+          "completed_at": "2026-11-19T13:09:19.536786Z",
+          "name": "execute",
+          "started_at": "2026-11-19T13:09:19.447118Z"
+        }
+      ],
+      "unique_id": "test.tuan_test_contracts.valid_strict_positive.93d24ee69a"
+    }
+  ]
+}

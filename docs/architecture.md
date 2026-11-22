@@ -2,8 +2,20 @@
 
 Tài liệu này trình bày kiến trúc của hệ thống theo năm góc nhìn: tổng quan các thành phần, luồng
 dữ liệu, các DAG điều phối, luồng giám sát và quy trình CI/CD. Phần cuối tổng hợp các quyết định
-thiết kế chính và lý do lựa chọn. Các sơ đồ được viết bằng Mermaid và hiển thị trực tiếp trên
-GitHub.
+thiết kế chính và lý do lựa chọn. Sơ đồ nộp bài ở dạng ảnh và PDF được đặt ngay dưới đây; các sơ đồ
+chi tiết trong từng mục được viết bằng Mermaid và hiển thị trực tiếp trên GitHub.
+
+![Sơ đồ kiến trúc DataOps](architecture.png)
+
+[Tải PDF](architecture.pdf) · [Nguồn Graphviz](architecture.dot) ·
+[Lineage chi tiết từng model](tuan_data_lineage.md)
+
+Khi sơ đồ thay đổi, cả hai bản nộp được tạo lại từ gốc repository:
+
+```bash
+dot -Tpng docs/architecture.dot -o docs/architecture.png
+dot -Tpdf docs/architecture.dot -o docs/architecture.pdf
+```
 
 ## 1. Tổng quan
 
@@ -60,11 +72,15 @@ flowchart LR
     b & s & g -. dbt tests .-> t{{202 tests}}
 ```
 
-Dữ liệu đi qua ba lớp, mỗi lớp có một vai trò riêng:
+Sáu bảng nguồn thuộc các schema `Sales`, `Person` và `Production` của AdventureWorks2014 đi qua
+**4 Bronze view → 3 Silver table → 3 Gold table** bằng `source()` và `ref()` của dbt. Các model
+được tạo lại trong cùng SQL Server, không chuyển dữ liệu sang PostgreSQL. Mỗi lớp có một vai trò
+riêng:
 
 - **Bronze** gồm 4 view đọc trực tiếp từ các bảng nguồn Sales, Person, Production, chọn các cột
   cần dùng, ghép các bảng liên quan và đặt lại tên cột. Lớp này chưa làm sạch dữ liệu và không lưu
-  dữ liệu riêng, nên luôn phản ánh đúng dữ liệu nguồn.
+  dữ liệu riêng, nên luôn phản ánh đúng dữ liệu nguồn. `brnz_example` là view minh họa chỉ đọc
+  `Sales.Customer` và không có model nào phía sau.
 - **Silver** gồm 3 bảng đã làm sạch và chuẩn hóa: khách hàng, sản phẩm, dòng đơn hàng. Đây là lớp
   được kiểm tra chất lượng kỹ nhất.
 - **Gold** gồm 3 bảng tổng hợp phục vụ phân tích. Số dòng của `gld_customer_metrics` và
@@ -188,3 +204,21 @@ phục release trước đó. Mã nguồn liên quan: `.github/workflows/deploy.
 | Monitoring chỉ cảnh báo khi trạng thái thay đổi | Mỗi sự cố tạo ra một thông báo thay vì thông báo lặp lại; người trực được báo khi hệ thống phục hồi |
 | Code giám sát chỉ dùng thư viện chuẩn và không bao giờ ném lỗi | Không thêm phụ thuộc vào image; lỗi trong phần giám sát không làm hỏng pipeline |
 | `catchup=False`, `max_active_runs=1` | Dữ liệu là dữ liệu lịch sử nên không cần chạy bù; hai lần chạy cùng ghi vào một bảng dbt là không an toàn |
+
+## 7. Phạm vi và ranh giới
+
+Docker Compose gốc cung cấp các service `sqlserver`, `postgres`, `airflow-webserver`,
+`airflow-scheduler` và `dbt`; file overlay `docker-compose.airflow-quality.yml` bổ sung
+`ge-worker` và `airflow-init`. Cổng trên máy host được khai báo trong Compose gốc: SQL Server
+`1433`, Airflow `8080`. PostgreSQL không lưu dữ liệu nghiệp vụ.
+
+`dbt_transform` ở trạng thái tạm dừng khi mới triển khai và có lịch mặc định 06:00 hằng ngày khi
+được bật. DAG không dùng source freshness làm cổng chặn, vì dữ liệu mẫu AdventureWorks là dữ liệu
+lịch sử và luôn vượt ngưỡng freshness 24/48 giờ.
+
+Workflow staging tạo SQL Server tạm trên runner của GitHub Actions và hủy sau khi job kết thúc.
+Workflow production chỉ chạy từ `main`, dùng secrets của GitHub environment và cần một database
+production thực sự được cung cấp.
+
+Các sơ đồ thể hiện luồng logic; số lượng model, nguồn và lịch chạy cần được đối chiếu lại khi code
+thay đổi.

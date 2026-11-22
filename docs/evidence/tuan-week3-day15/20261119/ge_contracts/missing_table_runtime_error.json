@@ -1,0 +1,99 @@
+{
+  "configuration_sha256": {
+    "checkpoints/customer_checkpoint.yml": "c7c6dc8403513d224100f778c08c006175252102cdce51ad4237af1cb1925023",
+    "checkpoints/order_checkpoint.yml": "10f567997bfad46b0f321e98856cfec117e92d746b0421c6da02d6eac10062e0",
+    "expectations/customer_suite.json": "30650d6e3eeffc0034b16a633d151b1397a7af619511230ade29bbeb7983673c",
+    "expectations/order_suite.json": "3dcb2fc51214b56a50c500fa644d35b0e0d528cd429cff2895257584eb8035ec",
+    "great_expectations.yml": "135cb629b1b0a791427a6cd7293e05c9570ad73cd5f24e2a55572e7a67b5ce55"
+  },
+  "error_hint": "Check SQL connectivity, target/schema, model existence and GX configuration.",
+  "error_type": "CheckpointError",
+  "exit_code": 2,
+  "finished_at_utc": "2026-11-19T13:11:35.625752+00:00",
+  "gx_version": "0.18.22",
+  "requested_checkpoints": [
+    "customer_checkpoint",
+    "order_checkpoint"
+  ],
+  "run_id": "f40131720e614b3db3ed785831c2d670",
+  "runner_sha256": "ef94d0ad6cf3c984bc9d697e6846e87a9c1347dabe3c6a0fd5eabae57d34cc84",
+  "schema": "ge_contracts_c3c511d9d4544d01a0f5fd8ed10d960b",
+  "started_at_utc": "2026-11-19T13:11:31.451659+00:00",
+  "status": "error",
+  "validation_time_utc": "2026-11-19 13:11:31.548564",
+  "validations": [
+    {
+      "checkpoint": "customer_checkpoint",
+      "checks": [
+        {
+          "rule_id": "customer_columns",
+          "success": true
+        },
+        {
+          "observed_value": 0,
+          "rule_id": "customer_nonempty",
+          "success": false
+        },
+        {
+          "element_count": 0,
+          "rule_id": "customer_id_not_null",
+          "success": true,
+          "unexpected_count": null
+        },
+        {
+          "element_count": 0,
+          "missing_count": 0,
+          "rule_id": "customer_id_unique",
+          "success": true,
+          "unexpected_count": 0
+        },
+        {
+          "element_count": 0,
+          "rule_id": "customer_first_name_not_null",
+          "success": true,
+          "unexpected_count": null
+        },
+        {
+          "element_count": 0,
+          "rule_id": "customer_last_name_not_null",
+          "success": true,
+          "unexpected_count": null
+        },
+        {
+          "element_count": 0,
+          "rule_id": "customer_full_name_not_null",
+          "success": true,
+          "unexpected_count": null
+        },
+        {
+          "element_count": 0,
+          "rule_id": "customer_last_modified_date_not_null",
+          "success": true,
+          "unexpected_count": null
+        },
+        {
+          "element_count": 0,
+          "missing_count": 0,
+          "rule_id": "customer_last_modified_date_not_future",
+          "success": true,
+          "unexpected_count": null
+        },
+        {
+          "element_count": 0,
+          "missing_count": 0,
+          "rule_id": "customer_email_promotion_allowed",
+          "success": true,
+          "unexpected_count": null
+        }
+      ],
+      "statistics": {
+        "evaluated_expectations": 10,
+        "success_percent": 90.0,
+        "successful_expectations": 9,
+        "unsuccessful_expectations": 1
+      },
+      "success": false,
+      "suite": "customer_suite"
+    }
+  ]
+}

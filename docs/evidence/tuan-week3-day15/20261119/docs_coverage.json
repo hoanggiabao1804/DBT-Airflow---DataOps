@@ -1,0 +1,13 @@
+{
+  "catalog_columns_match_documented_columns": true,
+  "catalog_models": 10,
+  "docs_generated_at_utc": "2026-11-19T13:08:07.664998Z",
+  "docs_invocation_id": "2a79e0a0-1d24-42d3-a013-aceddcbc4e09",
+  "documented_model_columns": 131,
+  "html_present": true,
+  "limitation": "Generated metadata and static content checks; no claim of a recorded browser presentation.",
+  "model_sql_matches_current_worktree": true,
+  "models_with_descriptions": 10,
+  "sql_comparison": "CRLF normalized to LF; terminal newline ignored as dbt strips it from raw_code",
+  "status": "passed"
+}
